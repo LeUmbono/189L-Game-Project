@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerUnit : MonoBehaviour
+public class PlayerUnit
 {
     // Information of player unit, specifically name and base stats from class.
     public string UnitName;
