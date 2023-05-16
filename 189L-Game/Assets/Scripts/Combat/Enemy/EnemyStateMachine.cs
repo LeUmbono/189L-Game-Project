@@ -4,15 +4,49 @@ using UnityEngine;
 
 public class EnemyStateMachine : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public EnemyUnit Enemy;
+    public CombatStateMachine CSM;
+
+    public enum TurnState
     {
-        
+        WAIT,
+        SELECTACTION,
+        ATTACKING,
+        CLASSACTION,
+        DEAD
     }
 
-    // Update is called once per frame
+    public TurnState CurrentState;
+
+    
+    void Start()
+    {
+        CurrentState = TurnState.WAIT;
+        CSM = GameObject.Find("CombatManager").GetComponent<CombatStateMachine>();
+    }
+
     void Update()
     {
-        
+        switch (CurrentState)
+        {
+            case TurnState.WAIT:
+                break;
+            case TurnState.SELECTACTION:
+                break;
+            case TurnState.ATTACKING:
+                break;
+            case TurnState.DEAD:
+                break;
+        }
+    }
+
+    private void SelectAction()
+    {
+        // Attack random player unit
+        TurnManager currentTurn = new TurnManager();
+        currentTurn.TurnTaker = Enemy.UnitName;
+        currentTurn.TurnTakerGameObject = this.gameObject;
+
     }
 }
+

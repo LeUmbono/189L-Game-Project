@@ -239,8 +239,63 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6852634846256956296, guid: a7590abcff2cb2840a9e2bd6fb04d202, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 545576408}
   m_SourcePrefab: {fileID: 100100000, guid: a7590abcff2cb2840a9e2bd6fb04d202, type: 3}
+--- !u!1 &545576407 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6852634846256956296, guid: a7590abcff2cb2840a9e2bd6fb04d202, type: 3}
+  m_PrefabInstance: {fileID: 545576406}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &545576408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 545576407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a781ca21b13745f4c8993fd4cf5aa856, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player:
+    UnitName: TankGuy
+    BaseClassData: {fileID: 11400000, guid: 3a3850c36f1bffc42a31b9446cbee4bb, type: 2}
+    CurrentHP: 50
+    MaxHP: 50
+    Attack: 20
+    Defense: 35
+    Agility: 10
+  currentState: 0
+--- !u!1 &570363348 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7798994515904964817, guid: 573ba593a91d642419e5491f5ab4e094, type: 3}
+  m_PrefabInstance: {fileID: 1559095365}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &570363351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 570363348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec6a198983dd8ed42bc187657a5d845f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy:
+    UnitName: Enemy 4
+    BaseClassData: {fileID: 0}
+    CurrentHP: 0
+    MaxHP: 0
+    Attack: 0
+    Defense: 0
+    Agility: 0
+  currentState: 0
 --- !u!1 &630755755
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,8 +451,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6852634846256956296, guid: a7590abcff2cb2840a9e2bd6fb04d202, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 822175052}
   m_SourcePrefab: {fileID: 100100000, guid: a7590abcff2cb2840a9e2bd6fb04d202, type: 3}
+--- !u!1 &822175051 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6852634846256956296, guid: a7590abcff2cb2840a9e2bd6fb04d202, type: 3}
+  m_PrefabInstance: {fileID: 822175050}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &822175052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 822175051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a781ca21b13745f4c8993fd4cf5aa856, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player:
+    UnitName: HealerGuy
+    BaseClassData: {fileID: 11400000, guid: 36613402d4ff7a442875c67639ee8c9a, type: 2}
+    CurrentHP: 25
+    MaxHP: 25
+    Attack: 15
+    Defense: 25
+    Agility: 25
+  currentState: 0
 --- !u!1 &937083804
 GameObject:
   m_ObjectHideFlags: 0
@@ -701,7 +785,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7798994515904964817, guid: 573ba593a91d642419e5491f5ab4e094, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1761927351}
   m_SourcePrefab: {fileID: 100100000, guid: 573ba593a91d642419e5491f5ab4e094, type: 3}
 --- !u!1001 &1032694897
 PrefabInstance:
@@ -774,8 +861,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6852634846256956296, guid: a7590abcff2cb2840a9e2bd6fb04d202, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1032694899}
   m_SourcePrefab: {fileID: 100100000, guid: a7590abcff2cb2840a9e2bd6fb04d202, type: 3}
+--- !u!1 &1032694898 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6852634846256956296, guid: a7590abcff2cb2840a9e2bd6fb04d202, type: 3}
+  m_PrefabInstance: {fileID: 1032694897}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1032694899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032694898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a781ca21b13745f4c8993fd4cf5aa856, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player:
+    UnitName: RangerGuy
+    BaseClassData: {fileID: 11400000, guid: 598cd6db82c9d4445b62286f287cdaf7, type: 2}
+    CurrentHP: 20
+    MaxHP: 20
+    Attack: 40
+    Defense: 20
+    Agility: 40
+  currentState: 0
 --- !u!1001 &1273743857
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -835,7 +951,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7798994515904964817, guid: 573ba593a91d642419e5491f5ab4e094, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1685004648}
   m_SourcePrefab: {fileID: 100100000, guid: 573ba593a91d642419e5491f5ab4e094, type: 3}
 --- !u!1001 &1559095365
 PrefabInstance:
@@ -896,8 +1015,37 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7798994515904964817, guid: 573ba593a91d642419e5491f5ab4e094, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 570363351}
   m_SourcePrefab: {fileID: 100100000, guid: 573ba593a91d642419e5491f5ab4e094, type: 3}
+--- !u!1 &1685004645 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7798994515904964817, guid: 573ba593a91d642419e5491f5ab4e094, type: 3}
+  m_PrefabInstance: {fileID: 1273743857}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1685004648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1685004645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec6a198983dd8ed42bc187657a5d845f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy:
+    UnitName: Enemy 2
+    BaseClassData: {fileID: 0}
+    CurrentHP: 0
+    MaxHP: 0
+    Attack: 0
+    Defense: 0
+    Agility: 0
+  currentState: 0
 --- !u!1 &1693452580
 GameObject:
   m_ObjectHideFlags: 0
@@ -1049,8 +1197,110 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6852634846256956296, guid: a7590abcff2cb2840a9e2bd6fb04d202, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1741433916}
   m_SourcePrefab: {fileID: 100100000, guid: a7590abcff2cb2840a9e2bd6fb04d202, type: 3}
+--- !u!1 &1741433915 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6852634846256956296, guid: a7590abcff2cb2840a9e2bd6fb04d202, type: 3}
+  m_PrefabInstance: {fileID: 1741433914}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1741433916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1741433915}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a781ca21b13745f4c8993fd4cf5aa856, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player:
+    UnitName: SupporterGuy
+    BaseClassData: {fileID: 11400000, guid: bfcac68af65e4f447aab5c37644bfbff, type: 2}
+    CurrentHP: 30
+    MaxHP: 30
+    Attack: 10
+    Defense: 20
+    Agility: 30
+  currentState: 0
+--- !u!1 &1761927348 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7798994515904964817, guid: 573ba593a91d642419e5491f5ab4e094, type: 3}
+  m_PrefabInstance: {fileID: 963340244}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1761927351
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761927348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec6a198983dd8ed42bc187657a5d845f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy:
+    UnitName: Enemy 1
+    BaseClassData: {fileID: 0}
+    CurrentHP: 30
+    MaxHP: 30
+    Attack: 30
+    Defense: 30
+    Agility: 50
+  currentState: 0
+--- !u!1 &2121102594
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2121102595}
+  - component: {fileID: 2121102596}
+  m_Layer: 0
+  m_Name: CombatManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2121102595
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121102594}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.122454, y: 2.7277288, z: -0.27686155}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2121102596
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2121102594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24cf2949301384442a3aeeb047a7b172, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentState: 0
+  UnitsInBattle: []
+  TurnOrder: []
 --- !u!1001 &2138127399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1110,5 +1360,34 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7798994515904964817, guid: 573ba593a91d642419e5491f5ab4e094, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2144994037}
   m_SourcePrefab: {fileID: 100100000, guid: 573ba593a91d642419e5491f5ab4e094, type: 3}
+--- !u!1 &2144994034 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7798994515904964817, guid: 573ba593a91d642419e5491f5ab4e094, type: 3}
+  m_PrefabInstance: {fileID: 2138127399}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2144994037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2144994034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec6a198983dd8ed42bc187657a5d845f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Enemy:
+    UnitName: Enemy 3
+    BaseClassData: {fileID: 0}
+    CurrentHP: 0
+    MaxHP: 0
+    Attack: 0
+    Defense: 0
+    Agility: 0
+  currentState: 0
