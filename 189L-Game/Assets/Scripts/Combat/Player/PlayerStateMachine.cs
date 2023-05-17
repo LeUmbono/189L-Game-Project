@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerStateMachine : MonoBehaviour
 {
     public PlayerUnit Player;
+    public CombatStateMachine CSM;
 
     public enum TurnState
     {
@@ -20,6 +21,7 @@ public class PlayerStateMachine : MonoBehaviour
     void Start()
     {
         CurrentState = TurnState.WAIT;
+        CSM = GameObject.Find("CombatManager").GetComponent<CombatStateMachine>();
     }
 
     void Update()
@@ -29,6 +31,8 @@ public class PlayerStateMachine : MonoBehaviour
             case TurnState.WAIT:
                 break;
             case TurnState.SELECTACTION:
+                Debug.Log("Hi");
+                CurrentState = TurnState.WAIT;
                 break;
             case TurnState.ATTACKING: 
                 break;

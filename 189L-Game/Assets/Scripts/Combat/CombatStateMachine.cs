@@ -6,11 +6,12 @@ public class CombatStateMachine : MonoBehaviour
 {
     public enum CombatStates
     {
+        WAIT,
         TAKEACTION,
-        PERFORMACTION,
+        PERFORMACTION
     }
 
-    [SerializeField] private CombatStates currentState;
+    public CombatStates CurrentState;
 
     // List containing player and enemy units, sorted according to position on battlefield.
     public List<GameObject> AlliesInBattle = new List<GameObject>();
@@ -59,13 +60,19 @@ public class CombatStateMachine : MonoBehaviour
             else return -1;
         });
 
-        currentState = CombatStates.TAKEACTION;
+        CurrentState = CombatStates.TAKEACTION;
     }
 
     void Update()
     {
-        switch(currentState)
+        switch(CurrentState)
         {
+            case CombatStates.WAIT:
+                if(TurnOrder.Count > 0)
+                {
+                    CurrentState = CombatStates.TAKEACTION;
+                }
+                break;
             case CombatStates.TAKEACTION:
                 if (TurnOrder[0].tag == "Ally")
                 {
@@ -77,6 +84,11 @@ public class CombatStateMachine : MonoBehaviour
                     var ESM = TurnOrder[0].GetComponent<EnemyStateMachine>();
                     ESM.CurrentState = EnemyStateMachine.TurnState.SELECTACTION;
                 }
+                else
+                {
+                    Debug.Log("Invalid tag!");
+                }
+                CurrentState = CombatStates.PERFORMACTION;
                 break;
             case CombatStates.PERFORMACTION:
                 break;
