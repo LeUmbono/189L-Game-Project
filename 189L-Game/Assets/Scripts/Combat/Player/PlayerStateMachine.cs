@@ -11,6 +11,7 @@ public class PlayerStateMachine : MonoBehaviour
     {
         WAIT,
         SELECTACTION,
+        SELECTTARGET,
         ATTACKING,
         CLASSACTION,
         DEAD
