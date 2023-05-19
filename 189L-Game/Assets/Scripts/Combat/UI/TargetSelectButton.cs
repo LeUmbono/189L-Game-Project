@@ -4,15 +4,10 @@ using UnityEngine;
 
 public class TargetSelectButton : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public GameObject TargetPrefab;
 
-    // Update is called once per frame
-    void Update()
+    public void SelectTarget()
     {
-        
+        GameObject.Find("CombatManager").GetComponent<CombatStateMachine>().SelectTarget(TargetPrefab);
     }
 }

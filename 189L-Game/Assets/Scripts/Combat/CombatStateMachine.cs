@@ -11,13 +11,35 @@ public class CombatStateMachine : MonoBehaviour
         PERFORMACTION
     }
 
-    public CombatStates CurrentState;
+    public enum UIStates
+    {
+        ACTIVATE,
+        WAIT,
+        SELECTACTION,
+        SELECTTARGET,
+        DONE
+    }
 
-    // List containing player and enemy units, sorted according to position on battlefield.
+    public CombatStates CurrentCombatState;
+    public UIStates CurrentUIState;
+
     public List<GameObject> AlliesInBattle = new List<GameObject>();
     public List<GameObject> EnemiesInBattle = new List<GameObject>();
+
+    // List containing player and enemy units, sorted according to position on battlefield.
     public List<GameObject> UnitsInBattle = new List<GameObject>();
+
+    // List that tracks the turn order queue.
     public List<GameObject> TurnOrder = new List<GameObject>();
+
+    public GameObject TargetIndicator;
+
+    public GameObject UnitInfoPanel;
+    public GameObject SelectActionPanel;
+    public GameObject SelectTargetPanel;
+
+    private PlayerStateMachine.TurnState PlayerActionType;
+
     void Start()
     {
         AlliesInBattle.AddRange(GameObject.FindGameObjectsWithTag("Ally"));
@@ -60,20 +82,31 @@ public class CombatStateMachine : MonoBehaviour
             else return -1;
         });
 
-        CurrentState = CombatStates.TAKEACTION;
+        CurrentCombatState = CombatStates.TAKEACTION;
+        CurrentUIState = UIStates.ACTIVATE;
+
+        // Deactivate UI elements at the start of combat.
+        UnitInfoPanel.SetActive(false);
+        SelectActionPanel.SetActive(false);
+        SelectTargetPanel.SetActive(false);
     }
 
     void Update()
     {
-        switch(CurrentState)
+        switch(CurrentCombatState)
         {
             case CombatStates.WAIT:
-                if(TurnOrder.Count > 0)
+                TargetIndicator.SetActive(false);
+                if (TurnOrder.Count > 0)
                 {
-                    CurrentState = CombatStates.TAKEACTION;
+                    CurrentCombatState = CombatStates.TAKEACTION;
                 }
                 break;
             case CombatStates.TAKEACTION:
+                TargetIndicator.transform.position = TurnOrder[0].transform.position 
+                    + new Vector3(0.0f, 1.0f, 0.0f);
+                TargetIndicator.SetActive(true);
+
                 if (TurnOrder[0].tag == "Ally")
                 {
                     var PSM = TurnOrder[0].GetComponent<PlayerStateMachine>();
@@ -88,10 +121,63 @@ public class CombatStateMachine : MonoBehaviour
                 {
                     Debug.Log("Invalid tag!");
                 }
-                CurrentState = CombatStates.PERFORMACTION;
+                
+                CurrentCombatState = CombatStates.PERFORMACTION;
                 break;
             case CombatStates.PERFORMACTION:
+                TargetIndicator.transform.position = TurnOrder[0].transform.position
+                    + new Vector3(0.0f, 1.0f, 0.0f);
                 break;
         }
+
+        switch(CurrentUIState)
+        {
+            case UIStates.ACTIVATE:
+                if (TurnOrder.Count > 0 && TurnOrder[0].tag == "Ally")
+                {
+                    UnitInfoPanel.SetActive(true);
+                    SelectActionPanel.SetActive(true);
+                    CurrentUIState = UIStates.WAIT;
+                }
+                break;
+            case UIStates.WAIT:
+                break;
+            case UIStates.DONE:
+                SelectionDone();
+                break;
+        }
+    }
+
+    public void SelectAttack()
+    {
+        PlayerActionType = PlayerStateMachine.TurnState.ATTACK;
+        SelectActionPanel.SetActive(false);
+        SelectTargetPanel.SetActive(true);
+    }
+
+    public void SelectSwap()
+    {
+
+    }
+
+    public void SelectSpecial()
+    {
+
+    }
+
+    public void SelectTarget(GameObject target)
+    {
+        var PSM = TurnOrder[0].GetComponent<PlayerStateMachine>();
+        PSM.EnemyToTarget = target;
+        CurrentUIState = UIStates.DONE;
+    }
+
+    private void SelectionDone()
+    {
+        UnitInfoPanel.SetActive(false);
+        SelectTargetPanel.SetActive(false);
+        
+        var PSM = TurnOrder[0].GetComponent<PlayerStateMachine>();
+        PSM.CurrentState = PlayerActionType;
     }
 }

@@ -13,7 +13,7 @@ public class EnemyStateMachine : MonoBehaviour
     {
         WAIT,
         SELECTACTION,
-        ATTACKING,
+        ATTACK,
         CLASSACTION,
         DEAD
     }
@@ -36,7 +36,7 @@ public class EnemyStateMachine : MonoBehaviour
             case TurnState.SELECTACTION:
                 SelectAction();
                 break;
-            case TurnState.ATTACKING:
+            case TurnState.ATTACK:
                 StartCoroutine(PerformAttack());
                 break;
             case TurnState.DEAD:
@@ -46,9 +46,9 @@ public class EnemyStateMachine : MonoBehaviour
 
     private void SelectAction()
     {
-        // Randomly select a player unit to target
+        // Randomly select a player unit to target.
         playerToTarget = CSM.AlliesInBattle[Random.Range(0, CSM.AlliesInBattle.Count)];
-        CurrentState = TurnState.ATTACKING;
+        CurrentState = TurnState.ATTACK;
     }
 
     private IEnumerator PerformAttack()
@@ -81,8 +81,8 @@ public class EnemyStateMachine : MonoBehaviour
         CSM.TurnOrder.RemoveAt(0);
         CSM.TurnOrder.Add(this.gameObject);
 
-        // Set state of CSM to Wait.
-        CSM.CurrentState = CombatStateMachine.CombatStates.WAIT;
+        // Set combat state of CSM to Wait.
+        CSM.CurrentCombatState = CombatStateMachine.CombatStates.WAIT;
 
         actionStarted = false;
         CurrentState = TurnState.WAIT;
