@@ -1,19 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
-public class EnemyStateMachine : MonoBehaviour
+public class PlayerStateMachine : MonoBehaviour
 {
-    public EnemyUnit Enemy;
-    public CombatStateMachine CSM;
+    public PlayerUnit Player;
+    private CombatStateMachine csm;
+    public GameObject EnemyToTarget = null;
     private bool actionStarted = false;
-    private GameObject playerToTarget = null;
-    
+
     public enum TurnState
     {
         WAIT,
         SELECTACTION,
+        SELECTTARGET,
         ATTACK,
         CLASSACTION,
         DEAD
@@ -21,21 +21,19 @@ public class EnemyStateMachine : MonoBehaviour
 
     public TurnState CurrentState;
 
-    
     void Start()
     {
         CurrentState = TurnState.WAIT;
-        CSM = GameObject.Find("CombatManager").GetComponent<CombatStateMachine>();
+        csm = GameObject.Find("CombatManager").GetComponent<CombatStateMachine>();
     }
 
     void Update()
     {
-        switch (CurrentState)
+        switch(CurrentState)
         {
             case TurnState.WAIT:
                 break;
             case TurnState.SELECTACTION:
-                SelectAction();
                 break;
             case TurnState.ATTACK:
                 StartCoroutine(PerformAttack());
@@ -45,26 +43,27 @@ public class EnemyStateMachine : MonoBehaviour
         }
     }
 
-    private void SelectAction()
+    /*
+    public void SelectAction(GameObject target)
     {
         // Randomly select a player unit to target.
         playerToTarget = CSM.AlliesInBattle[Random.Range(0, CSM.AlliesInBattle.Count)];
         CurrentState = TurnState.ATTACK;
-    }
+    }*/
 
     private IEnumerator PerformAttack()
     {
-        if(actionStarted)
+        if (actionStarted)
         {
             yield break;
         }
 
         actionStarted = true;
 
-        // Animate enemy to attack player unit.
+        // Animate player to attack enemy unit.
         var initialPosition = transform.position;
-        var targetPosition = playerToTarget.transform.position + new Vector3(1f, 0f, 0f);
-        while(MoveTowardsPosition(targetPosition))
+        var targetPosition = EnemyToTarget.transform.position - new Vector3(1f, 0f, 0f);
+        while (MoveTowardsPosition(targetPosition))
         {
             yield return null;
         }
@@ -79,10 +78,12 @@ public class EnemyStateMachine : MonoBehaviour
         }
 
         // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
-        CSM.EndTurn(this.gameObject);
+        csm.EndTurn(this.gameObject);
 
+        csm.CurrentUIState = CombatStateMachine.UIStates.ACTIVATE;
+        
         // Set combat state of CSM to Wait.
-        CSM.CurrentCombatState = CombatStateMachine.CombatStates.WAIT;
+        csm.CurrentCombatState = CombatStateMachine.CombatStates.WAIT;
 
         actionStarted = false;
         CurrentState = TurnState.WAIT;
