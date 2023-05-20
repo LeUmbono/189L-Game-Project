@@ -2262,6 +2262,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4553209344642977671, guid: 82819ec060c37d841be980d837881eb0, type: 3}
+      propertyPath: m_text
+      value: Ally 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4907360787147677242, guid: 82819ec060c37d841be980d837881eb0, type: 3}
       propertyPath: m_Name
       value: SelectTargetPanel
@@ -2309,6 +2313,10 @@ PrefabInstance:
     - target: {fileID: 7882442607757746021, guid: 82819ec060c37d841be980d837881eb0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7957379670613734890, guid: 82819ec060c37d841be980d837881eb0, type: 3}
+      propertyPath: m_text
+      value: Ally 2
       objectReference: {fileID: 0}
     - target: {fileID: 8018596153682896039, guid: 82819ec060c37d841be980d837881eb0, type: 3}
       propertyPath: TargetPrefab

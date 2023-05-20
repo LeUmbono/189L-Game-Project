@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class EnemyUnit 
+public class EnemyUnit : GenericUnit
 {
     // Information of enemy unit, specifically name and base stats from class.
     public string UnitName;

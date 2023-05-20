@@ -148,6 +148,13 @@ public class CombatStateMachine : MonoBehaviour
         }
     }
 
+
+    public void EndTurn(GameObject unit)
+    {
+        TurnOrder.RemoveAt(0);
+        TurnOrder.Add(unit);
+    }
+
     public void SelectAttack()
     {
         PlayerActionType = PlayerStateMachine.TurnState.ATTACK;

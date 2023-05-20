@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyStateMachine : MonoBehaviour
@@ -77,9 +78,8 @@ public class EnemyStateMachine : MonoBehaviour
             yield return null;
         }
 
-        // Remove this enemy game object from front of turn queue and readd back at the back of the queue.
-        CSM.TurnOrder.RemoveAt(0);
-        CSM.TurnOrder.Add(this.gameObject);
+        // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
+        CSM.EndTurn(this.gameObject);
 
         // Set combat state of CSM to Wait.
         CSM.CurrentCombatState = CombatStateMachine.CombatStates.WAIT;
