@@ -568,7 +568,7 @@ MonoBehaviour:
     BaseClassData: {fileID: 0}
     CurrentHP: 20
     MaxHP: 20
-    Attack: 100
+    Attack: 1
     Defense: 20
     Agility: 20
   CurrentState: 0
@@ -1354,7 +1354,7 @@ MonoBehaviour:
     BaseClassData: {fileID: 0}
     CurrentHP: 20
     MaxHP: 20
-    Attack: 100
+    Attack: 1
     Defense: 20
     Agility: 36
   CurrentState: 0
@@ -1563,7 +1563,7 @@ MonoBehaviour:
     BaseClassData: {fileID: 0}
     CurrentHP: 30
     MaxHP: 30
-    Attack: 100
+    Attack: 1
     Defense: 30
     Agility: 50
   CurrentState: 0
@@ -1791,7 +1791,7 @@ MonoBehaviour:
     BaseClassData: {fileID: 0}
     CurrentHP: 20
     MaxHP: 20
-    Attack: 100
+    Attack: 1
     Defense: 20
     Agility: 20
   CurrentState: 0
