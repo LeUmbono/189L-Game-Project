@@ -5,8 +5,9 @@ using UnityEngine;
 public class PlayerStateMachine : MonoBehaviour
 {
     public PlayerUnit Player;
+    public int Location;
     private CombatStateMachine csm;
-    public GameObject EnemyToTarget = null;
+    public GameObject UnitToTarget = null;
     private bool actionStarted = false;
     private bool isDead = false;
     public enum TurnState
@@ -15,7 +16,8 @@ public class PlayerStateMachine : MonoBehaviour
         SELECTACTION,
         SELECTTARGET,
         ATTACK,
-        CLASSACTION,
+        SWAP,
+        SPECIAL,
         DEAD
     }
 
@@ -37,6 +39,9 @@ public class PlayerStateMachine : MonoBehaviour
                 break;
             case TurnState.ATTACK:
                 StartCoroutine(PerformAttack());
+                break;
+            case TurnState.SWAP:
+                StartCoroutine(PerformSwap());
                 break;
             case TurnState.DEAD:
                 if(isDead)
@@ -69,7 +74,7 @@ public class PlayerStateMachine : MonoBehaviour
     }*/
     private void DoDamage()
     {
-        EnemyToTarget.GetComponent<EnemyStateMachine>().TakeDamage(Player.Attack);
+        UnitToTarget.GetComponent<EnemyStateMachine>().TakeDamage(Player.Attack);
     }
 
     public void TakeDamage(float damage)
@@ -95,7 +100,7 @@ public class PlayerStateMachine : MonoBehaviour
 
         // Animate player to attack enemy unit.
         var initialPosition = transform.position;
-        var targetPosition = EnemyToTarget.transform.position - new Vector3(1f, 0f, 0f);
+        var targetPosition = UnitToTarget.transform.position - new Vector3(1f, 0f, 0f);
         while (MoveTowardsPosition(targetPosition))
         {
             yield return null;
@@ -116,9 +121,7 @@ public class PlayerStateMachine : MonoBehaviour
         // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
         csm.EndTurn(this.gameObject);
 
-        
-        
-        // Set combat state of CSM to Wait.
+        // Set combat state of CSM to CheckGame.
         csm.CurrentCombatState = CombatStateMachine.CombatStates.CHECKGAME;
 
         //csm.CurrentUIState = CombatStateMachine.UIStates.ACTIVATE;
@@ -127,6 +130,45 @@ public class PlayerStateMachine : MonoBehaviour
         CurrentState = TurnState.WAIT;
     }
 
+    private IEnumerator PerformSwap()
+    {
+        if (actionStarted)
+        {
+            yield break;
+        }
+
+        actionStarted = true;
+
+        // Switch positions of player unit and swapped target.
+        var initialPosition = transform.position;
+        var targetPosition = UnitToTarget.transform.position;
+
+        this.gameObject.transform.position = targetPosition;
+        UnitToTarget.transform.position = initialPosition;
+
+        // Change name of this variable.
+        var targetLocation = UnitToTarget.GetComponent<PlayerStateMachine>().Location;
+
+        // Switch prefabs of associated buttons.
+        GameObject thisButtonPrefab = csm.TargetButtons[Location].GetComponent<TargetSelectButton>().TargetPrefab;
+        GameObject targetButtonPrefab = csm.TargetButtons[targetLocation].GetComponent<TargetSelectButton>().TargetPrefab;
+
+        csm.TargetButtons[Location].GetComponent<TargetSelectButton>().TargetPrefab = targetButtonPrefab;
+        csm.TargetButtons[targetLocation].GetComponent<TargetSelectButton>().TargetPrefab = thisButtonPrefab;
+        // Switch locations of player unit and swapped target
+        UnitToTarget.GetComponent<PlayerStateMachine>().Location = Location;
+        Location = targetLocation;
+
+        // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
+        csm.EndTurn(this.gameObject);
+
+        // Set combat state of CSM to Wait.
+        csm.CurrentCombatState = CombatStateMachine.CombatStates.WAIT;
+        csm.CurrentUIState = CombatStateMachine.UIStates.ACTIVATE;
+
+        actionStarted = false;
+        CurrentState = TurnState.WAIT;
+    }
     private bool MoveTowardsPosition(Vector3 target)
     {
         return target != (transform.position = Vector3.MoveTowards(transform.position, target, 5f * Time.deltaTime));
