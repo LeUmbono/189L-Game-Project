@@ -541,10 +541,9 @@ MonoBehaviour:
     BaseClassData: {fileID: 11400000, guid: 3a3850c36f1bffc42a31b9446cbee4bb, type: 2}
     CurrentHP: 50
     MaxHP: 50
-    Attack: 20
+    Attack: 1
     Defense: 35
     Agility: 10
-  CSM: {fileID: 0}
   EnemyToTarget: {fileID: 0}
   CurrentState: 0
 --- !u!1 &570363348 stripped
@@ -567,12 +566,11 @@ MonoBehaviour:
   Enemy:
     UnitName: Enemy 4
     BaseClassData: {fileID: 0}
-    CurrentHP: 0
-    MaxHP: 0
-    Attack: 0
-    Defense: 0
-    Agility: 0
-  CSM: {fileID: 0}
+    CurrentHP: 20
+    MaxHP: 20
+    Attack: 100
+    Defense: 20
+    Agility: 20
   CurrentState: 0
 --- !u!1 &630755755
 GameObject:
@@ -756,10 +754,9 @@ MonoBehaviour:
     BaseClassData: {fileID: 11400000, guid: 36613402d4ff7a442875c67639ee8c9a, type: 2}
     CurrentHP: 25
     MaxHP: 25
-    Attack: 15
+    Attack: 1
     Defense: 25
     Agility: 25
-  CSM: {fileID: 0}
   EnemyToTarget: {fileID: 0}
   CurrentState: 0
 --- !u!1 &937083804
@@ -1192,10 +1189,9 @@ MonoBehaviour:
     BaseClassData: {fileID: 11400000, guid: 598cd6db82c9d4445b62286f287cdaf7, type: 2}
     CurrentHP: 20
     MaxHP: 20
-    Attack: 40
+    Attack: 1
     Defense: 20
     Agility: 40
-  CSM: {fileID: 0}
   EnemyToTarget: {fileID: 0}
   CurrentState: 0
 --- !u!1 &1120532339 stripped
@@ -1356,12 +1352,11 @@ MonoBehaviour:
   Enemy:
     UnitName: Enemy 2
     BaseClassData: {fileID: 0}
-    CurrentHP: 0
-    MaxHP: 0
-    Attack: 0
-    Defense: 0
+    CurrentHP: 20
+    MaxHP: 20
+    Attack: 100
+    Defense: 20
     Agility: 36
-  CSM: {fileID: 0}
   CurrentState: 0
 --- !u!1 &1693452580
 GameObject:
@@ -1541,10 +1536,9 @@ MonoBehaviour:
     BaseClassData: {fileID: 11400000, guid: bfcac68af65e4f447aab5c37644bfbff, type: 2}
     CurrentHP: 30
     MaxHP: 30
-    Attack: 10
+    Attack: 1
     Defense: 20
     Agility: 30
-  CSM: {fileID: 0}
   EnemyToTarget: {fileID: 0}
   CurrentState: 0
 --- !u!1 &1761927348 stripped
@@ -1569,10 +1563,9 @@ MonoBehaviour:
     BaseClassData: {fileID: 0}
     CurrentHP: 30
     MaxHP: 30
-    Attack: 30
+    Attack: 100
     Defense: 30
     Agility: 50
-  CSM: {fileID: 0}
   CurrentState: 0
 --- !u!1 &2121102594
 GameObject:
@@ -1796,12 +1789,11 @@ MonoBehaviour:
   Enemy:
     UnitName: Enemy 3
     BaseClassData: {fileID: 0}
-    CurrentHP: 0
-    MaxHP: 0
-    Attack: 0
-    Defense: 0
-    Agility: 0
-  CSM: {fileID: 0}
+    CurrentHP: 20
+    MaxHP: 20
+    Attack: 100
+    Defense: 20
+    Agility: 20
   CurrentState: 0
 --- !u!1 &730145272896875635 stripped
 GameObject:
@@ -2262,6 +2254,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4553209344642977671, guid: 82819ec060c37d841be980d837881eb0, type: 3}
+      propertyPath: m_text
+      value: Ally 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4907360787147677242, guid: 82819ec060c37d841be980d837881eb0, type: 3}
       propertyPath: m_Name
       value: SelectTargetPanel
@@ -2309,6 +2305,10 @@ PrefabInstance:
     - target: {fileID: 7882442607757746021, guid: 82819ec060c37d841be980d837881eb0, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 7957379670613734890, guid: 82819ec060c37d841be980d837881eb0, type: 3}
+      propertyPath: m_text
+      value: Ally 2
       objectReference: {fileID: 0}
     - target: {fileID: 8018596153682896039, guid: 82819ec060c37d841be980d837881eb0, type: 3}
       propertyPath: TargetPrefab

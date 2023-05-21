@@ -2,7 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\189L-Game",
-    "\\189L-Game\\Assets"
+    "\\189L-Game\\Assets",
+    "\\189L-Game\\Assets\\Scripts",
+    "\\189L-Game\\Assets\\Scripts\\Combat",
+    "\\189L-Game\\Assets\\Scripts\\Combat\\StateMachines",
+    "\\189L-Game\\Assets\\Scripts\\Combat\\UI"
   ],
+  "SelectedNode": "\\189L-Game\\Assets\\Scripts\\Combat\\StateMachines\\EnemyStateMachine.cs",
   "PreviewInSolutionExplorer": false
 }
