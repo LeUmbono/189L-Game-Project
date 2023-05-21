@@ -1,11 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyStateMachine : MonoBehaviour
 {
     public EnemyUnit Enemy;
+    public int Location;
     private CombatStateMachine csm;
     private GameObject playerToTarget = null;
     private bool actionStarted = false;
@@ -119,7 +119,7 @@ public class EnemyStateMachine : MonoBehaviour
         // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
         csm.EndTurn(this.gameObject);
 
-        // Set combat state of CSM to Wait.
+        // Set combat state of CSM to CheckGame.
         csm.CurrentCombatState = CombatStateMachine.CombatStates.CHECKGAME;
 
         actionStarted = false;

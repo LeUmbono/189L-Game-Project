@@ -42,6 +42,8 @@ public class CombatStateMachine : MonoBehaviour
     public GameObject SelectActionPanel;
     public GameObject SelectTargetPanel;
 
+    public List<GameObject> TargetButtons;
+
     private PlayerStateMachine.TurnState PlayerActionType;
 
     void Start()
@@ -195,7 +197,9 @@ public class CombatStateMachine : MonoBehaviour
 
     public void SelectSwap()
     {
-
+        PlayerActionType = PlayerStateMachine.TurnState.SWAP;
+        SelectActionPanel.SetActive(false);
+        SelectTargetPanel.SetActive(true);
     }
 
     public void SelectSpecial()
@@ -206,7 +210,7 @@ public class CombatStateMachine : MonoBehaviour
     public void SelectTarget(GameObject target)
     {
         var PSM = TurnOrder[0].GetComponent<PlayerStateMachine>();
-        PSM.EnemyToTarget = target;
+        PSM.UnitToTarget = target;
         CurrentUIState = UIStates.DONE;
     }
 

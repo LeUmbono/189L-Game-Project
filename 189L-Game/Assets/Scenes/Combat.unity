@@ -296,6 +296,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &360097572 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3104739911339106695, guid: 82819ec060c37d841be980d837881eb0, type: 3}
+  m_PrefabInstance: {fileID: 3668599770156422141}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &403085200
 GameObject:
   m_ObjectHideFlags: 0
@@ -544,7 +549,8 @@ MonoBehaviour:
     Attack: 1
     Defense: 35
     Agility: 10
-  EnemyToTarget: {fileID: 0}
+  Location: 3
+  UnitToTarget: {fileID: 0}
   CurrentState: 0
 --- !u!1 &570363348 stripped
 GameObject:
@@ -571,6 +577,7 @@ MonoBehaviour:
     Attack: 1
     Defense: 20
     Agility: 20
+  Location: 7
   CurrentState: 0
 --- !u!1 &630755755
 GameObject:
@@ -656,6 +663,16 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &747357700 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4291356673403944357, guid: 82819ec060c37d841be980d837881eb0, type: 3}
+  m_PrefabInstance: {fileID: 3668599770156422141}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &768584895 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8811351078377348074, guid: 82819ec060c37d841be980d837881eb0, type: 3}
+  m_PrefabInstance: {fileID: 3668599770156422141}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &822175050
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -757,7 +774,8 @@ MonoBehaviour:
     Attack: 1
     Defense: 25
     Agility: 25
-  EnemyToTarget: {fileID: 0}
+  Location: 1
+  UnitToTarget: {fileID: 0}
   CurrentState: 0
 --- !u!1 &937083804
 GameObject:
@@ -1027,6 +1045,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &939586270 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2726684647522900203, guid: 82819ec060c37d841be980d837881eb0, type: 3}
+  m_PrefabInstance: {fileID: 3668599770156422141}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &963340244
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1192,7 +1215,8 @@ MonoBehaviour:
     Attack: 1
     Defense: 20
     Agility: 40
-  EnemyToTarget: {fileID: 0}
+  Location: 0
+  UnitToTarget: {fileID: 0}
   CurrentState: 0
 --- !u!1 &1120532339 stripped
 GameObject:
@@ -1203,6 +1227,11 @@ GameObject:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5264059671218241796, guid: 56710efd17d5e7d43a4c38eee7ab1135, type: 3}
   m_PrefabInstance: {fileID: 3255397637975360025}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1219934050 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2598215360214067795, guid: 82819ec060c37d841be980d837881eb0, type: 3}
+  m_PrefabInstance: {fileID: 3668599770156422141}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1273743857
 PrefabInstance:
@@ -1268,6 +1297,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1685004648}
   m_SourcePrefab: {fileID: 100100000, guid: 573ba593a91d642419e5491f5ab4e094, type: 3}
+--- !u!1 &1426471557 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3804360357410464429, guid: 82819ec060c37d841be980d837881eb0, type: 3}
+  m_PrefabInstance: {fileID: 3668599770156422141}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1559095365
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1357,6 +1391,7 @@ MonoBehaviour:
     Attack: 1
     Defense: 20
     Agility: 36
+  Location: 5
   CurrentState: 0
 --- !u!1 &1693452580
 GameObject:
@@ -1539,7 +1574,8 @@ MonoBehaviour:
     Attack: 1
     Defense: 20
     Agility: 30
-  EnemyToTarget: {fileID: 0}
+  Location: 2
+  UnitToTarget: {fileID: 0}
   CurrentState: 0
 --- !u!1 &1761927348 stripped
 GameObject:
@@ -1566,7 +1602,18 @@ MonoBehaviour:
     Attack: 1
     Defense: 30
     Agility: 50
+  Location: 4
   CurrentState: 0
+--- !u!1 &1782935661 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4827133209676991416, guid: 82819ec060c37d841be980d837881eb0, type: 3}
+  m_PrefabInstance: {fileID: 3668599770156422141}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1787890056 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5703160118519255954, guid: 82819ec060c37d841be980d837881eb0, type: 3}
+  m_PrefabInstance: {fileID: 3668599770156422141}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2121102594
 GameObject:
   m_ObjectHideFlags: 0
@@ -1621,6 +1668,15 @@ MonoBehaviour:
   UnitInfoPanel: {fileID: 137804645}
   SelectActionPanel: {fileID: 1120532339}
   SelectTargetPanel: {fileID: 730145272896875635}
+  TargetButtons:
+  - {fileID: 939586270}
+  - {fileID: 1787890056}
+  - {fileID: 360097572}
+  - {fileID: 768584895}
+  - {fileID: 1426471557}
+  - {fileID: 1782935661}
+  - {fileID: 747357700}
+  - {fileID: 1219934050}
 --- !u!1001 &2138127399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1794,6 +1850,7 @@ MonoBehaviour:
     Attack: 1
     Defense: 20
     Agility: 20
+  Location: 6
   CurrentState: 0
 --- !u!1 &730145272896875635 stripped
 GameObject:
@@ -2372,7 +2429,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 318841073060486502, guid: 82819ec060c37d841be980d837881eb0, type: 3}
   m_PrefabInstance: {fileID: 3668599770156422141}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1219934050}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7ddd725a3c814c4e8feaaaa96e4e215, type: 3}
@@ -2383,7 +2440,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2012969904456108688, guid: 82819ec060c37d841be980d837881eb0, type: 3}
   m_PrefabInstance: {fileID: 3668599770156422141}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 747357700}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7ddd725a3c814c4e8feaaaa96e4e215, type: 3}
@@ -2394,7 +2451,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7106428745386245261, guid: 82819ec060c37d841be980d837881eb0, type: 3}
   m_PrefabInstance: {fileID: 3668599770156422141}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1782935661}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7ddd725a3c814c4e8feaaaa96e4e215, type: 3}
@@ -2405,7 +2462,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1488926521540318616, guid: 82819ec060c37d841be980d837881eb0, type: 3}
   m_PrefabInstance: {fileID: 3668599770156422141}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1426471557}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7ddd725a3c814c4e8feaaaa96e4e215, type: 3}
@@ -2416,7 +2473,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6497078263166872799, guid: 82819ec060c37d841be980d837881eb0, type: 3}
   m_PrefabInstance: {fileID: 3668599770156422141}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 768584895}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7ddd725a3c814c4e8feaaaa96e4e215, type: 3}
@@ -2427,7 +2484,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 825345246711682738, guid: 82819ec060c37d841be980d837881eb0, type: 3}
   m_PrefabInstance: {fileID: 3668599770156422141}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 360097572}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7ddd725a3c814c4e8feaaaa96e4e215, type: 3}
@@ -2438,7 +2495,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8018596153682896039, guid: 82819ec060c37d841be980d837881eb0, type: 3}
   m_PrefabInstance: {fileID: 3668599770156422141}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1787890056}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7ddd725a3c814c4e8feaaaa96e4e215, type: 3}
@@ -2449,7 +2506,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 411329926022295518, guid: 82819ec060c37d841be980d837881eb0, type: 3}
   m_PrefabInstance: {fileID: 3668599770156422141}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 939586270}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7ddd725a3c814c4e8feaaaa96e4e215, type: 3}
