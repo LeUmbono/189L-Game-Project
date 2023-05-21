@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class CombatStateMachine : MonoBehaviour
@@ -8,7 +9,10 @@ public class CombatStateMachine : MonoBehaviour
     {
         WAIT,
         TAKEACTION,
-        PERFORMACTION
+        PERFORMACTION,
+        CHECKGAME,
+        WIN,
+        LOSE,
     }
 
     public enum UIStates
@@ -127,6 +131,33 @@ public class CombatStateMachine : MonoBehaviour
             case CombatStates.PERFORMACTION:
                 TargetIndicator.transform.position = TurnOrder[0].transform.position
                     + new Vector3(0.0f, 1.0f, 0.0f);
+                break;
+            case CombatStates.CHECKGAME:
+                if(AlliesInBattle.Count < 1)
+                {
+                    // Disable target indicator.
+                    TargetIndicator.SetActive(false);
+                    CurrentUIState = UIStates.WAIT;
+                    CurrentCombatState = CombatStates.LOSE;
+                }
+                else if(EnemiesInBattle.Count < 1)
+                {
+                    // Disable target indicator.
+                    TargetIndicator.SetActive(false);
+                    CurrentUIState = UIStates.WAIT;
+                    CurrentCombatState = CombatStates.WIN;
+                }
+                else
+                {
+                    CurrentUIState = UIStates.ACTIVATE;
+                    CurrentCombatState = CombatStates.WAIT;
+                }
+                break;
+            case CombatStates.WIN:
+                Debug.Log("You win!");
+                break;
+            case CombatStates.LOSE:
+                Debug.Log("You lose!");
                 break;
         }
 

@@ -8,7 +8,7 @@ public class PlayerStateMachine : MonoBehaviour
     private CombatStateMachine csm;
     public GameObject EnemyToTarget = null;
     private bool actionStarted = false;
-
+    private bool isDead = false;
     public enum TurnState
     {
         WAIT,
@@ -39,6 +39,23 @@ public class PlayerStateMachine : MonoBehaviour
                 StartCoroutine(PerformAttack());
                 break;
             case TurnState.DEAD:
+                if(isDead)
+                {
+                    return;
+                }
+                else
+                {
+                    // Make dead character invulnerable to enemy attack.
+                    csm.AlliesInBattle.Remove(this.gameObject);
+
+                    // Change sprite to reflect death / play death animation.
+                    this.gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
+                    
+                    isDead = true;
+
+                    // Remove unit from turn list.
+                    csm.TurnOrder.Remove(this.gameObject);
+                }
                 break;
         }
     }
@@ -50,7 +67,23 @@ public class PlayerStateMachine : MonoBehaviour
         playerToTarget = CSM.AlliesInBattle[Random.Range(0, CSM.AlliesInBattle.Count)];
         CurrentState = TurnState.ATTACK;
     }*/
+    private void DoDamage()
+    {
+        EnemyToTarget.GetComponent<EnemyStateMachine>().TakeDamage(Player.Attack);
+    }
 
+    public void TakeDamage(float damage)
+    {
+        var damageTaken = Mathf.Max(damage - Player.Defense, 1.0f);
+        Player.CurrentHP -= damageTaken;
+
+        if(Player.CurrentHP <= 0.0f)
+        {
+            Player.CurrentHP = 0.0f;
+            CurrentState = TurnState.DEAD;
+        }
+
+    }
     private IEnumerator PerformAttack()
     {
         if (actionStarted)
@@ -71,6 +104,9 @@ public class PlayerStateMachine : MonoBehaviour
         // Pause for 0.5 seconds.
         yield return new WaitForSeconds(0.5f);
 
+        // Do damage.
+        DoDamage();
+
         // Animate enemy back to initial position.
         while (MoveTowardsPosition(initialPosition))
         {
@@ -80,10 +116,12 @@ public class PlayerStateMachine : MonoBehaviour
         // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
         csm.EndTurn(this.gameObject);
 
-        csm.CurrentUIState = CombatStateMachine.UIStates.ACTIVATE;
+        
         
         // Set combat state of CSM to Wait.
-        csm.CurrentCombatState = CombatStateMachine.CombatStates.WAIT;
+        csm.CurrentCombatState = CombatStateMachine.CombatStates.CHECKGAME;
+
+        //csm.CurrentUIState = CombatStateMachine.UIStates.ACTIVATE;
 
         actionStarted = false;
         CurrentState = TurnState.WAIT;
@@ -93,5 +131,7 @@ public class PlayerStateMachine : MonoBehaviour
     {
         return target != (transform.position = Vector3.MoveTowards(transform.position, target, 5f * Time.deltaTime));
     }
+
+
 }
 
