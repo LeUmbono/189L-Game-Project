@@ -13,8 +13,9 @@ MonoBehaviour:
   m_Name: Support
   m_EditorClassIdentifier: 
   className: 
+  classSprite: {fileID: 0}
   baseHP: 0
   baseAttack: 0
   baseDefense: 0
   baseAgility: 0
-  attackRange: 0
+  attackRange: 3

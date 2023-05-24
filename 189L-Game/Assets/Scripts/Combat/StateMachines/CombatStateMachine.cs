@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CombatStateMachine : MonoBehaviour
 {
@@ -192,6 +193,14 @@ public class CombatStateMachine : MonoBehaviour
     {
         PlayerActionType = PlayerStateMachine.TurnState.ATTACK;
         SelectActionPanel.SetActive(false);
+
+        var PSM = TurnOrder[0].GetComponent<PlayerStateMachine>();
+        
+        // Only let player attack enemies up until their attack range.
+        DisableTargetButtons();
+        //EnableTargetButtons(4, Mathf.Min(PSM.Location + PSM.Player.BaseClassData.AttackRange, 7));
+        EnableTargetButtons(0, 7);
+
         SelectTargetPanel.SetActive(true);
     }
 
@@ -199,6 +208,13 @@ public class CombatStateMachine : MonoBehaviour
     {
         PlayerActionType = PlayerStateMachine.TurnState.SWAP;
         SelectActionPanel.SetActive(false);
+
+        var PSM = TurnOrder[0].GetComponent<PlayerStateMachine>();
+
+        // Only let player swap adjacent units.
+        DisableTargetButtons();
+        EnableTargetButtons(Mathf.Max(PSM.Location-1, 0), Mathf.Min(PSM.Location+1, 3), PSM.Location);
+
         SelectTargetPanel.SetActive(true);
     }
 
@@ -221,5 +237,24 @@ public class CombatStateMachine : MonoBehaviour
         
         var PSM = TurnOrder[0].GetComponent<PlayerStateMachine>();
         PSM.CurrentState = PlayerActionType;
+    }
+
+    private void DisableTargetButtons()
+    {
+        foreach(var button in TargetButtons)
+        {
+            button.GetComponent<Button>().interactable = false;
+        }
+    }
+
+    private void EnableTargetButtons(int minRange, int maxRange, int targetSelf = -1)
+    {
+       for(int i = minRange; i <= maxRange; i++)
+        {
+            if(i != targetSelf)
+            {
+                TargetButtons[i].GetComponent<Button>().interactable = true;
+            }
+        }
     }
 }
