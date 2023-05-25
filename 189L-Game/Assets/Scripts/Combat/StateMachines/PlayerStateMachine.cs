@@ -191,6 +191,9 @@ public class PlayerStateMachine : MonoBehaviour
             yield return null;
         }
 
+        // Pause for 0.5 seconds.
+        yield return new WaitForSeconds(0.5f);
+
         // See if this works.
         Player.BaseClassData.SpecialAbility.Execute(this.gameObject);
 
@@ -199,9 +202,6 @@ public class PlayerStateMachine : MonoBehaviour
         {
             yield return null;
         }
-
-        // Pause for 0.5 seconds.
-        yield return new WaitForSeconds(0.5f);
 
         // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
         csm.EndTurn(this.gameObject);
