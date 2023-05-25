@@ -155,6 +155,7 @@ public class PlayerStateMachine : MonoBehaviour
 
         csm.TargetButtons[Location].GetComponent<TargetSelectButton>().TargetPrefab = targetButtonPrefab;
         csm.TargetButtons[targetLocation].GetComponent<TargetSelectButton>().TargetPrefab = thisButtonPrefab;
+        
         // Switch locations of player unit and swapped target
         UnitToTarget.GetComponent<PlayerStateMachine>().Location = Location;
         Location = targetLocation;
