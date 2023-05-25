@@ -43,6 +43,9 @@ public class PlayerStateMachine : MonoBehaviour
             case TurnState.SWAP:
                 StartCoroutine(PerformSwap());
                 break;
+            case TurnState.SPECIAL:
+                StartCoroutine(PerformSpecial());
+                break;
             case TurnState.DEAD:
                 if(isDead)
                 {
@@ -166,6 +169,45 @@ public class PlayerStateMachine : MonoBehaviour
         // Set combat state of CSM to Wait.
         csm.CurrentCombatState = CombatStateMachine.CombatStates.WAIT;
         csm.CurrentUIState = CombatStateMachine.UIStates.ACTIVATE;
+
+        actionStarted = false;
+        CurrentState = TurnState.WAIT;
+    }
+
+    private IEnumerator PerformSpecial()
+    {
+        if (actionStarted)
+        {
+            yield break;
+        }
+
+        actionStarted = true;
+
+        // Animation probably in execute later.
+        var initialPosition = transform.position;
+        var targetPosition = UnitToTarget.transform.position - new Vector3(1f, 0f, 0f);
+        while (MoveTowardsPosition(targetPosition))
+        {
+            yield return null;
+        }
+
+        // Pause for 0.5 seconds.
+        yield return new WaitForSeconds(0.5f);
+
+        // See if this works.
+        Player.BaseClassData.SpecialAbility.Execute(this.gameObject);
+
+        // Animation probably in execute later.
+        while (MoveTowardsPosition(initialPosition))
+        {
+            yield return null;
+        }
+
+        // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
+        csm.EndTurn(this.gameObject);
+
+        // Set combat state of CSM to CheckGame.
+        csm.CurrentCombatState = CombatStateMachine.CombatStates.CHECKGAME;
 
         actionStarted = false;
         CurrentState = TurnState.WAIT;
