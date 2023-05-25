@@ -220,7 +220,14 @@ public class CombatStateMachine : MonoBehaviour
 
     public void SelectSpecial()
     {
+        PlayerActionType = PlayerStateMachine.TurnState.SPECIAL;
+        SelectActionPanel.SetActive(false);
 
+        // Only let player swap adjacent units.
+        DisableTargetButtons();
+        EnableTargetButtons(4, 7);
+
+        SelectTargetPanel.SetActive(true);
     }
 
     public void SelectTarget(GameObject target)
