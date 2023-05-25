@@ -260,6 +260,12 @@ public class CombatStateMachine : MonoBehaviour
         CurrentUIState = UIStates.DONE;
     }
 
+    public void CancelAction()
+    {
+        SelectTargetPanel.SetActive(false);
+        SelectActionPanel.SetActive(true);
+    }
+
     private void SelectionDone()
     {
         UnitInfoPanel.SetActive(false);
