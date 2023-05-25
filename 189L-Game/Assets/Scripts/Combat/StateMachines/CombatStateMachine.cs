@@ -198,8 +198,16 @@ public class CombatStateMachine : MonoBehaviour
         
         // Only let player attack enemies up until their attack range.
         DisableTargetButtons();
-        //EnableTargetButtons(4, Mathf.Min(PSM.Location + PSM.Player.BaseClassData.AttackRange, 7));
-        EnableTargetButtons(0, 7);
+        
+        var targets = new List<bool>() { false, false, false, false, false, false, false, false };
+
+        for(int i = 4; i <= Mathf.Min(PSM.Location + PSM.Player.BaseClassData.AttackRange, 7); i++)
+        { 
+            targets[i] = true;
+            Debug.Log(i);
+        }
+        
+        EnableTargetButtons(targets);
 
         SelectTargetPanel.SetActive(true);
     }
@@ -213,7 +221,20 @@ public class CombatStateMachine : MonoBehaviour
 
         // Only let player swap adjacent units.
         DisableTargetButtons();
-        EnableTargetButtons(Mathf.Max(PSM.Location-1, 0), Mathf.Min(PSM.Location+1, 3), PSM.Location);
+
+        var targets = new List<bool>() { false, false, false, false, false, false, false, false };
+        
+        if(PSM.Location - 1 >= 0)
+        {
+            targets[PSM.Location - 1] = true;
+        }
+
+        if(PSM.Location + 1 < 4)
+        {
+            targets[PSM.Location + 1] = true;
+        }
+
+        EnableTargetButtons(targets);
 
         SelectTargetPanel.SetActive(true);
     }
@@ -223,9 +244,11 @@ public class CombatStateMachine : MonoBehaviour
         PlayerActionType = PlayerStateMachine.TurnState.SPECIAL;
         SelectActionPanel.SetActive(false);
 
+        var special = TurnOrder[0].GetComponent<PlayerStateMachine>().Player.BaseClassData.SpecialAbility;
+
         // Only let player swap adjacent units.
         DisableTargetButtons();
-        EnableTargetButtons(4, 7);
+        EnableTargetButtons(special.SelectTargets());
 
         SelectTargetPanel.SetActive(true);
     }
@@ -254,11 +277,16 @@ public class CombatStateMachine : MonoBehaviour
         }
     }
 
-    private void EnableTargetButtons(int minRange, int maxRange, int targetSelf = -1)
+    private void EnableTargetButtons(List<bool> targets)
     {
-       for(int i = minRange; i <= maxRange; i++)
+        if(targets.Count != 8) 
         {
-            if(i != targetSelf)
+            Debug.Log("Invalid list passed.");
+        }
+
+        for(int i = 0; i < TargetButtons.Count; i++)
+        {
+            if (targets[i] == true)
             {
                 TargetButtons[i].GetComponent<Button>().interactable = true;
             }
