@@ -204,7 +204,6 @@ public class CombatStateMachine : MonoBehaviour
         for(int i = 4; i <= Mathf.Min(PSM.Location + PSM.Player.BaseClassData.AttackRange, 7); i++)
         { 
             targets[i] = true;
-            Debug.Log(i);
         }
         
         EnableTargetButtons(targets);
