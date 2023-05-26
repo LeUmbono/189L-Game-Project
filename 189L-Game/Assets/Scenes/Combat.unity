@@ -1604,7 +1604,7 @@ MonoBehaviour:
     BaseClassData: {fileID: 0}
     CurrentHP: 30
     MaxHP: 30
-    Attack: 1
+    Attack: 100
     Defense: 30
     Agility: 50
 --- !u!1 &1782935661 stripped
@@ -1665,6 +1665,7 @@ MonoBehaviour:
   CurrentUIState: 0
   AlliesInBattle: []
   EnemiesInBattle: []
+  UnitsInBattle: []
   TurnOrder: []
   targetIndicator: {fileID: 2144776049}
   unitInfoPanel: {fileID: 137804645}

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyStateMachine : GenericUnitStateMachine
@@ -38,7 +39,18 @@ public class EnemyStateMachine : GenericUnitStateMachine
                     this.gameObject.GetComponent<SpriteRenderer>().color = Color.black;
 
                     // Move dead enemy to the furthest end of the formation.
-                    
+                    for (int i = location; i < csm.UnitsInBattle.Count-1; i++)
+                    {
+                        var targetToSwap = csm.UnitsInBattle[i + 1];
+                        if (targetToSwap.GetComponent<EnemyStateMachine>().isDead == false)
+                        {
+                            DoSwap(targetToSwap);
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
 
                     isDead = true;
 

@@ -38,4 +38,35 @@ public class GenericUnitStateMachine : MonoBehaviour
     {
         
     }
+
+    protected void DoSwap(GameObject target)
+    {
+        // Switch positions of player unit and swapped target.
+        var initialPosition = transform.position;
+
+        this.gameObject.transform.position = target.transform.position;
+        target.transform.position = initialPosition;
+
+        // Change name of this variable.
+        var targetLocation = target.GetComponent<GenericUnitStateMachine>().location;
+
+        // Switch prefabs of associated buttons.
+        GameObject thisButtonPrefab = csm.TargetButtons[location].
+            GetComponent<TargetSelectButton>().TargetPrefab;
+
+        csm.TargetButtons[location].GetComponent<TargetSelectButton>().
+            TargetPrefab = csm.TargetButtons[targetLocation].
+            GetComponent<TargetSelectButton>().TargetPrefab;
+
+        csm.TargetButtons[targetLocation].GetComponent<TargetSelectButton>().
+            TargetPrefab = thisButtonPrefab;
+
+        // Switch locations of player unit and swapped target
+        var positionInBattle = csm.UnitsInBattle[location];
+        csm.UnitsInBattle[location] = csm.UnitsInBattle[targetLocation];
+        csm.UnitsInBattle[targetLocation] = positionInBattle;
+
+        target.GetComponent<GenericUnitStateMachine>().location = location;
+        location = targetLocation;
+    }
 }

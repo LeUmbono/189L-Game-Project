@@ -40,7 +40,21 @@ public class PlayerStateMachine : GenericUnitStateMachine
 
                     // Change sprite to reflect death / play death animation.
                     this.gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
-                    
+
+                    // Move dead player to furthest end of the formation.
+                    for (int i = location; i > 0; i--)
+                    {
+                        var targetToSwap = csm.UnitsInBattle[i - 1];
+                        if (targetToSwap.GetComponent<PlayerStateMachine>().isDead == false)
+                        {
+                            DoSwap(targetToSwap);
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+
                     isDead = true;
 
                     // Remove unit from turn list.
@@ -67,6 +81,7 @@ public class PlayerStateMachine : GenericUnitStateMachine
         }
 
     }
+
     private IEnumerator PerformAttack()
     {
         if (actionStarted)
@@ -117,35 +132,7 @@ public class PlayerStateMachine : GenericUnitStateMachine
 
         actionStarted = true;
 
-        // Switch positions of player unit and swapped target.
-        var initialPosition = transform.position;
-
-        this.gameObject.transform.position = UnitToTarget.transform.position;
-        UnitToTarget.transform.position = initialPosition;
-
-        // Change name of this variable.
-        var targetLocation = UnitToTarget.GetComponent<PlayerStateMachine>().location;
-
-        // Switch prefabs of associated buttons.
-        GameObject thisButtonPrefab = csm.TargetButtons[location].
-            GetComponent<TargetSelectButton>().TargetPrefab;
-
-        csm.TargetButtons[location].GetComponent<TargetSelectButton>().
-            TargetPrefab = csm.TargetButtons[targetLocation].
-            GetComponent<TargetSelectButton>().TargetPrefab;
-
-        csm.TargetButtons[targetLocation].GetComponent<TargetSelectButton>().
-            TargetPrefab = thisButtonPrefab;
-
-        // Switch locations of player unit and swapped target
-        var positionInBattle = csm.UnitsInBattle[location];
-        csm.UnitsInBattle[location] = csm.UnitsInBattle[targetLocation];
-        csm.UnitsInBattle[targetLocation] = positionInBattle;
-
-        UnitToTarget.GetComponent<PlayerStateMachine>().location = location;
-        location = targetLocation;
-
-
+        DoSwap(UnitToTarget);
 
         // Remove this enemy game object from front of turn queue
         // and re-add back at the back of the queue.
