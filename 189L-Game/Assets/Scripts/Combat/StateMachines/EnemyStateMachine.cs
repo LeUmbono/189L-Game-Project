@@ -2,25 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyStateMachine : MonoBehaviour
+public class EnemyStateMachine : GenericUnitStateMachine
 {
     public EnemyUnit Enemy;
-    public int Location;
-    private CombatStateMachine csm;
-    private GameObject playerToTarget = null;
-    private bool actionStarted = false;
-    private bool isDead = false;
-    public enum TurnState
-    {
-        WAIT,
-        SELECTACTION,
-        ATTACK,
-        CLASSACTION,
-        DEAD
-    }
-
-    public TurnState CurrentState;
-
     
     void Start()
     {
@@ -66,16 +50,16 @@ public class EnemyStateMachine : MonoBehaviour
     private void SelectAction()
     {
         // Randomly select a player unit to target.
-        playerToTarget = csm.AlliesInBattle[Random.Range(0, csm.AlliesInBattle.Count)];
+        UnitToTarget = csm.AlliesInBattle[Random.Range(0, csm.AlliesInBattle.Count)];
         CurrentState = TurnState.ATTACK;
     }
     
-    private void DoDamage()
+    protected override void DoDamage()
     {
-        playerToTarget.GetComponent<PlayerStateMachine>().TakeDamage(Enemy.Attack);
+        UnitToTarget.GetComponent<PlayerStateMachine>().TakeDamage(Enemy.Attack);
     }
 
-    public void TakeDamage(float damage)
+    public override void TakeDamage(float damage)
     {
         var damageTaken = Mathf.Max(damage - Enemy.Defense, 1.0f);
         Enemy.CurrentHP -= damageTaken;
@@ -98,7 +82,7 @@ public class EnemyStateMachine : MonoBehaviour
 
         // Animate enemy to attack player unit.
         var initialPosition = transform.position;
-        var targetPosition = playerToTarget.transform.position + new Vector3(1f, 0f, 0f);
+        var targetPosition = UnitToTarget.transform.position + new Vector3(1f, 0f, 0f);
         while(MoveTowardsPosition(targetPosition))
         {
             yield return null;

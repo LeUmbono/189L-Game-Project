@@ -5,8 +5,11 @@
     "\\189L-Game\\Assets",
     "\\189L-Game\\Assets\\Scripts",
     "\\189L-Game\\Assets\\Scripts\\Combat",
+    "\\189L-Game\\Assets\\Scripts\\Combat\\Classes",
     "\\189L-Game\\Assets\\Scripts\\Combat\\StateMachines",
-    "\\189L-Game\\Assets\\Scripts\\Combat\\UI"
+    "\\189L-Game\\Assets\\Scripts\\Combat\\UI",
+    "\\189L-Game\\Assets\\Scripts\\Combat\\Units"
   ],
+  "SelectedNode": "\\189L-Game\\Assets\\Scripts\\Combat\\StateMachines",
   "PreviewInSolutionExplorer": false
 }

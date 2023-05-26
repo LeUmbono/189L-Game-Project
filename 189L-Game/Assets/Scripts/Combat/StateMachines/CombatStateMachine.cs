@@ -1,6 +1,4 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,9 +29,6 @@ public class CombatStateMachine : MonoBehaviour
     public List<GameObject> AlliesInBattle = new List<GameObject>();
     public List<GameObject> EnemiesInBattle = new List<GameObject>();
 
-    // List containing player and enemy units, sorted according to position on battlefield.
-    public List<GameObject> UnitsInBattle = new List<GameObject>();
-
     // List that tracks the turn order queue.
     public List<GameObject> TurnOrder = new List<GameObject>();
 
@@ -45,21 +40,12 @@ public class CombatStateMachine : MonoBehaviour
 
     public List<GameObject> TargetButtons;
 
-    private PlayerStateMachine.TurnState PlayerActionType;
+    private GenericUnitStateMachine.TurnState PlayerActionType;
 
     void Start()
     {
         AlliesInBattle.AddRange(GameObject.FindGameObjectsWithTag("Ally"));
         EnemiesInBattle.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
-        
-        UnitsInBattle.AddRange(AlliesInBattle);
-        UnitsInBattle.AddRange(EnemiesInBattle);
-
-        UnitsInBattle.Sort(delegate(GameObject x, GameObject y)
-        {
-            if (x.transform.position.x > y.transform.position.x) return 1;
-            else return -1;
-        });
 
         TurnOrder.AddRange(GameObject.FindGameObjectsWithTag("Ally"));
         TurnOrder.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
@@ -114,20 +100,8 @@ public class CombatStateMachine : MonoBehaviour
                     + new Vector3(0.0f, 1.0f, 0.0f);
                 TargetIndicator.SetActive(true);
 
-                if (TurnOrder[0].tag == "Ally")
-                {
-                    var PSM = TurnOrder[0].GetComponent<PlayerStateMachine>();
-                    PSM.CurrentState = PlayerStateMachine.TurnState.SELECTACTION;
-                }
-                else if (TurnOrder[0].tag == "Enemy")
-                {
-                    var ESM = TurnOrder[0].GetComponent<EnemyStateMachine>();
-                    ESM.CurrentState = EnemyStateMachine.TurnState.SELECTACTION;
-                }
-                else
-                {
-                    Debug.Log("Invalid tag!");
-                }
+                var GSM = TurnOrder[0].GetComponent<GenericUnitStateMachine>();
+                GSM.CurrentState = GenericUnitStateMachine.TurnState.SELECTACTION;
                 
                 CurrentCombatState = CombatStates.PERFORMACTION;
                 break;

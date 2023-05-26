@@ -1,27 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStateMachine : MonoBehaviour
+public class PlayerStateMachine : GenericUnitStateMachine
 {
     public PlayerUnit Player;
-    public int Location;
-    private CombatStateMachine csm;
-    public GameObject UnitToTarget = null;
-    private bool actionStarted = false;
-    private bool isDead = false;
-    public enum TurnState
-    {
-        WAIT,
-        SELECTACTION,
-        SELECTTARGET,
-        ATTACK,
-        SWAP,
-        SPECIAL,
-        DEAD
-    }
-
-    public TurnState CurrentState;
 
     void Start()
     {
@@ -68,19 +50,12 @@ public class PlayerStateMachine : MonoBehaviour
         }
     }
 
-    /*
-    public void SelectAction(GameObject target)
-    {
-        // Randomly select a player unit to target.
-        playerToTarget = CSM.AlliesInBattle[Random.Range(0, CSM.AlliesInBattle.Count)];
-        CurrentState = TurnState.ATTACK;
-    }*/
-    private void DoDamage()
+    protected override void DoDamage()
     {
         UnitToTarget.GetComponent<EnemyStateMachine>().TakeDamage(Player.Attack);
     }
 
-    public void TakeDamage(float damage)
+    public override void TakeDamage(float damage)
     {
         var damageTaken = Mathf.Max(damage - Player.Defense, 1.0f);
         Player.CurrentHP -= damageTaken;
@@ -150,18 +125,18 @@ public class PlayerStateMachine : MonoBehaviour
         UnitToTarget.transform.position = initialPosition;
 
         // Change name of this variable.
-        var targetLocation = UnitToTarget.GetComponent<PlayerStateMachine>().Location;
+        var targetLocation = UnitToTarget.GetComponent<PlayerStateMachine>().location;
 
         // Switch prefabs of associated buttons.
-        GameObject thisButtonPrefab = csm.TargetButtons[Location].GetComponent<TargetSelectButton>().TargetPrefab;
+        GameObject thisButtonPrefab = csm.TargetButtons[location].GetComponent<TargetSelectButton>().TargetPrefab;
         GameObject targetButtonPrefab = csm.TargetButtons[targetLocation].GetComponent<TargetSelectButton>().TargetPrefab;
 
-        csm.TargetButtons[Location].GetComponent<TargetSelectButton>().TargetPrefab = targetButtonPrefab;
+        csm.TargetButtons[location].GetComponent<TargetSelectButton>().TargetPrefab = targetButtonPrefab;
         csm.TargetButtons[targetLocation].GetComponent<TargetSelectButton>().TargetPrefab = thisButtonPrefab;
         
         // Switch locations of player unit and swapped target
-        UnitToTarget.GetComponent<PlayerStateMachine>().Location = Location;
-        Location = targetLocation;
+        UnitToTarget.GetComponent<PlayerStateMachine>().location = location;
+        location = targetLocation;
 
         // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
         csm.EndTurn(this.gameObject);
