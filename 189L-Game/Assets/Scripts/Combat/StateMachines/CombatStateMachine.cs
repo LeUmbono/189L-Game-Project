@@ -266,7 +266,8 @@ public class CombatStateMachine : MonoBehaviour
 
         for(int i = 0; i < TargetButtons.Count; i++)
         {
-            var isDead = TargetButtons[i].GetComponent<GenericUnitStateMachine>().IsDead;
+            var isDead = TargetButtons[i].GetComponent<TargetSelectButton>().
+                TargetPrefab.GetComponent<GenericUnitStateMachine>().IsDead;
             if (targets[i] == true && isDead != true) 
             {
                 TargetButtons[i].GetComponent<Button>().interactable = true;
