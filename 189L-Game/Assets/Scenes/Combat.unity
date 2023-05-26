@@ -2391,6 +2391,22 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5790489808820176735, guid: 82819ec060c37d841be980d837881eb0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2121102596}
+    - target: {fileID: 5790489808820176735, guid: 82819ec060c37d841be980d837881eb0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: CancelAction
+      objectReference: {fileID: 0}
+    - target: {fileID: 5790489808820176735, guid: 82819ec060c37d841be980d837881eb0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: CombatStateMachine, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5790489808820176735, guid: 82819ec060c37d841be980d837881eb0, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6497078263166872799, guid: 82819ec060c37d841be980d837881eb0, type: 3}
       propertyPath: TargetPrefab
       value: 
