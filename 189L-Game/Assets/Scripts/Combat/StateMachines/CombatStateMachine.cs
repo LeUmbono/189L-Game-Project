@@ -29,12 +29,13 @@ public class CombatStateMachine : MonoBehaviour
     public List<GameObject> AlliesInBattle = new List<GameObject>();
     public List<GameObject> EnemiesInBattle = new List<GameObject>();
 
+    // List that tracks the positions of the units in battle.
+    public List<GameObject> UnitsInBattle = new List<GameObject>();
+    
     // List that tracks the turn order queue.
     public List<GameObject> TurnOrder = new List<GameObject>();
 
     [SerializeField] private GameObject targetIndicator;
-
-
     [SerializeField] private GameObject unitInfoPanel;
     [SerializeField] private GameObject selectActionPanel;
     [SerializeField] private GameObject selectTargetPanel;
@@ -47,6 +48,24 @@ public class CombatStateMachine : MonoBehaviour
     {
         AlliesInBattle.AddRange(GameObject.FindGameObjectsWithTag("Ally"));
         EnemiesInBattle.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+
+        UnitsInBattle.AddRange(AlliesInBattle);
+        UnitsInBattle.AddRange(EnemiesInBattle);
+
+        UnitsInBattle.Sort(delegate (GameObject x, GameObject y)
+        {
+            var xLocation = x.GetComponent<GenericUnitStateMachine>().Location;
+            var yLocation = y.GetComponent<GenericUnitStateMachine>().Location;
+
+            if (xLocation > yLocation)
+            {
+                return 1;
+            }   
+            else
+            {
+                return -1;
+            }
+        });
 
         TurnOrder.AddRange(GameObject.FindGameObjectsWithTag("Ally"));
         TurnOrder.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
@@ -266,8 +285,7 @@ public class CombatStateMachine : MonoBehaviour
 
         for(int i = 0; i < TargetButtons.Count; i++)
         {
-            var isDead = TargetButtons[i].GetComponent<TargetSelectButton>().
-                TargetPrefab.GetComponent<GenericUnitStateMachine>().IsDead;
+            var isDead = UnitsInBattle[i].GetComponent<GenericUnitStateMachine>().IsDead;
             if (targets[i] == true && isDead != true) 
             {
                 TargetButtons[i].GetComponent<Button>().interactable = true;

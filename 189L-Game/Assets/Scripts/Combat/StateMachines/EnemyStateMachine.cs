@@ -37,6 +37,9 @@ public class EnemyStateMachine : GenericUnitStateMachine
                     // Change sprite to reflect death / play death animation.
                     this.gameObject.GetComponent<SpriteRenderer>().color = Color.black;
 
+                    // Move dead enemy to the furthest end of the formation.
+                    
+
                     isDead = true;
 
                     // Remove unit from turn list.

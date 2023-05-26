@@ -119,26 +119,36 @@ public class PlayerStateMachine : GenericUnitStateMachine
 
         // Switch positions of player unit and swapped target.
         var initialPosition = transform.position;
-        var targetPosition = UnitToTarget.transform.position;
 
-        this.gameObject.transform.position = targetPosition;
+        this.gameObject.transform.position = UnitToTarget.transform.position;
         UnitToTarget.transform.position = initialPosition;
 
         // Change name of this variable.
         var targetLocation = UnitToTarget.GetComponent<PlayerStateMachine>().location;
 
         // Switch prefabs of associated buttons.
-        GameObject thisButtonPrefab = csm.TargetButtons[location].GetComponent<TargetSelectButton>().TargetPrefab;
-        GameObject targetButtonPrefab = csm.TargetButtons[targetLocation].GetComponent<TargetSelectButton>().TargetPrefab;
+        GameObject thisButtonPrefab = csm.TargetButtons[location].
+            GetComponent<TargetSelectButton>().TargetPrefab;
 
-        csm.TargetButtons[location].GetComponent<TargetSelectButton>().TargetPrefab = targetButtonPrefab;
-        csm.TargetButtons[targetLocation].GetComponent<TargetSelectButton>().TargetPrefab = thisButtonPrefab;
-        
+        csm.TargetButtons[location].GetComponent<TargetSelectButton>().
+            TargetPrefab = csm.TargetButtons[targetLocation].
+            GetComponent<TargetSelectButton>().TargetPrefab;
+
+        csm.TargetButtons[targetLocation].GetComponent<TargetSelectButton>().
+            TargetPrefab = thisButtonPrefab;
+
         // Switch locations of player unit and swapped target
+        var positionInBattle = csm.UnitsInBattle[location];
+        csm.UnitsInBattle[location] = csm.UnitsInBattle[targetLocation];
+        csm.UnitsInBattle[targetLocation] = positionInBattle;
+
         UnitToTarget.GetComponent<PlayerStateMachine>().location = location;
         location = targetLocation;
 
-        // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
+
+
+        // Remove this enemy game object from front of turn queue
+        // and re-add back at the back of the queue.
         csm.EndTurn(this.gameObject);
 
         // Set combat state of CSM to Wait.
