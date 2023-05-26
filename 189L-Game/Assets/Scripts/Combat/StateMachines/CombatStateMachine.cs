@@ -32,11 +32,12 @@ public class CombatStateMachine : MonoBehaviour
     // List that tracks the turn order queue.
     public List<GameObject> TurnOrder = new List<GameObject>();
 
-    public GameObject TargetIndicator;
+    [SerializeField] private GameObject targetIndicator;
 
-    public GameObject UnitInfoPanel;
-    public GameObject SelectActionPanel;
-    public GameObject SelectTargetPanel;
+
+    [SerializeField] private GameObject unitInfoPanel;
+    [SerializeField] private GameObject selectActionPanel;
+    [SerializeField] private GameObject selectTargetPanel;
 
     public List<GameObject> TargetButtons;
 
@@ -79,9 +80,9 @@ public class CombatStateMachine : MonoBehaviour
         CurrentUIState = UIStates.ACTIVATE;
 
         // Deactivate UI elements at the start of combat.
-        UnitInfoPanel.SetActive(false);
-        SelectActionPanel.SetActive(false);
-        SelectTargetPanel.SetActive(false);
+        unitInfoPanel.SetActive(false);
+        selectActionPanel.SetActive(false);
+        selectTargetPanel.SetActive(false);
     }
 
     void Update()
@@ -89,16 +90,16 @@ public class CombatStateMachine : MonoBehaviour
         switch(CurrentCombatState)
         {
             case CombatStates.WAIT:
-                TargetIndicator.SetActive(false);
+                targetIndicator.SetActive(false);
                 if (TurnOrder.Count > 0)
                 {
                     CurrentCombatState = CombatStates.TAKEACTION;
                 }
                 break;
             case CombatStates.TAKEACTION:
-                TargetIndicator.transform.position = TurnOrder[0].transform.position 
+                targetIndicator.transform.position = TurnOrder[0].transform.position 
                     + new Vector3(0.0f, 1.0f, 0.0f);
-                TargetIndicator.SetActive(true);
+                targetIndicator.SetActive(true);
 
                 var GSM = TurnOrder[0].GetComponent<GenericUnitStateMachine>();
                 GSM.CurrentState = GenericUnitStateMachine.TurnState.SELECTACTION;
@@ -106,21 +107,21 @@ public class CombatStateMachine : MonoBehaviour
                 CurrentCombatState = CombatStates.PERFORMACTION;
                 break;
             case CombatStates.PERFORMACTION:
-                TargetIndicator.transform.position = TurnOrder[0].transform.position
+                targetIndicator.transform.position = TurnOrder[0].transform.position
                     + new Vector3(0.0f, 1.0f, 0.0f);
                 break;
             case CombatStates.CHECKGAME:
                 if(AlliesInBattle.Count < 1)
                 {
                     // Disable target indicator.
-                    TargetIndicator.SetActive(false);
+                    targetIndicator.SetActive(false);
                     CurrentUIState = UIStates.WAIT;
                     CurrentCombatState = CombatStates.LOSE;
                 }
                 else if(EnemiesInBattle.Count < 1)
                 {
                     // Disable target indicator.
-                    TargetIndicator.SetActive(false);
+                    targetIndicator.SetActive(false);
                     CurrentUIState = UIStates.WAIT;
                     CurrentCombatState = CombatStates.WIN;
                 }
@@ -143,8 +144,8 @@ public class CombatStateMachine : MonoBehaviour
             case UIStates.ACTIVATE:
                 if (TurnOrder.Count > 0 && TurnOrder[0].tag == "Ally")
                 {
-                    UnitInfoPanel.SetActive(true);
-                    SelectActionPanel.SetActive(true);
+                    unitInfoPanel.SetActive(true);
+                    selectActionPanel.SetActive(true);
                     CurrentUIState = UIStates.WAIT;
                 }
                 break;
@@ -165,8 +166,8 @@ public class CombatStateMachine : MonoBehaviour
 
     public void SelectAttack()
     {
-        PlayerActionType = PlayerStateMachine.TurnState.ATTACK;
-        SelectActionPanel.SetActive(false);
+        PlayerActionType = GenericUnitStateMachine.TurnState.ATTACK;
+        selectActionPanel.SetActive(false);
 
         var PSM = TurnOrder[0].GetComponent<PlayerStateMachine>();
         
@@ -182,13 +183,13 @@ public class CombatStateMachine : MonoBehaviour
         
         EnableTargetButtons(targets);
 
-        SelectTargetPanel.SetActive(true);
+        selectTargetPanel.SetActive(true);
     }
 
     public void SelectSwap()
     {
-        PlayerActionType = PlayerStateMachine.TurnState.SWAP;
-        SelectActionPanel.SetActive(false);
+        PlayerActionType = GenericUnitStateMachine.TurnState.SWAP;
+        selectActionPanel.SetActive(false);
 
         var PSM = TurnOrder[0].GetComponent<PlayerStateMachine>();
 
@@ -209,13 +210,13 @@ public class CombatStateMachine : MonoBehaviour
 
         EnableTargetButtons(targets);
 
-        SelectTargetPanel.SetActive(true);
+        selectTargetPanel.SetActive(true);
     }
 
     public void SelectSpecial()
     {
-        PlayerActionType = PlayerStateMachine.TurnState.SPECIAL;
-        SelectActionPanel.SetActive(false);
+        PlayerActionType = GenericUnitStateMachine.TurnState.SPECIAL;
+        selectActionPanel.SetActive(false);
 
         var special = TurnOrder[0].GetComponent<PlayerStateMachine>().Player.BaseClassData.SpecialAbility;
 
@@ -223,7 +224,7 @@ public class CombatStateMachine : MonoBehaviour
         DisableTargetButtons();
         EnableTargetButtons(special.SelectTargets());
 
-        SelectTargetPanel.SetActive(true);
+        selectTargetPanel.SetActive(true);
     }
 
     public void SelectTarget(GameObject target)
@@ -235,14 +236,14 @@ public class CombatStateMachine : MonoBehaviour
 
     public void CancelAction()
     {
-        SelectTargetPanel.SetActive(false);
-        SelectActionPanel.SetActive(true);
+        selectTargetPanel.SetActive(false);
+        selectActionPanel.SetActive(true);
     }
 
     private void SelectionDone()
     {
-        UnitInfoPanel.SetActive(false);
-        SelectTargetPanel.SetActive(false);
+        unitInfoPanel.SetActive(false);
+        selectTargetPanel.SetActive(false);
         
         var PSM = TurnOrder[0].GetComponent<PlayerStateMachine>();
         PSM.CurrentState = PlayerActionType;
@@ -265,7 +266,8 @@ public class CombatStateMachine : MonoBehaviour
 
         for(int i = 0; i < TargetButtons.Count; i++)
         {
-            if (targets[i] == true)
+            var isDead = TargetButtons[i].GetComponent<GenericUnitStateMachine>().IsDead;
+            if (targets[i] == true && isDead != true) 
             {
                 TargetButtons[i].GetComponent<Button>().interactable = true;
             }
