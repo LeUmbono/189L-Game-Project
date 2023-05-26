@@ -18,4 +18,3 @@ namespace Combat
         public float Agility; //{ get; private set; }
     }
 }
-
