@@ -1,299 +1,297 @@
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class CombatStateMachine : MonoBehaviour
+namespace Combat
 {
-    public enum CombatStates
+    public class CombatStateMachine : MonoBehaviour
     {
-        WAIT,
-        TAKEACTION,
-        PERFORMACTION,
-        CHECKGAME,
-        WIN,
-        LOSE,
-    }
-
-    public enum UIStates
-    {
-        ACTIVATE,
-        WAIT,
-        SELECTACTION,
-        SELECTTARGET,
-        DONE
-    }
-
-    public CombatStates CurrentCombatState;
-    public UIStates CurrentUIState;
-
-    public List<GameObject> AlliesInBattle = new List<GameObject>();
-    public List<GameObject> EnemiesInBattle = new List<GameObject>();
-
-    // List containing player and enemy units, sorted according to position on battlefield.
-    public List<GameObject> UnitsInBattle = new List<GameObject>();
-
-    // List that tracks the turn order queue.
-    public List<GameObject> TurnOrder = new List<GameObject>();
-
-    public GameObject TargetIndicator;
-
-    public GameObject UnitInfoPanel;
-    public GameObject SelectActionPanel;
-    public GameObject SelectTargetPanel;
-
-    public List<GameObject> TargetButtons;
-
-    private PlayerStateMachine.TurnState PlayerActionType;
-
-    void Start()
-    {
-        AlliesInBattle.AddRange(GameObject.FindGameObjectsWithTag("Ally"));
-        EnemiesInBattle.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
-        
-        UnitsInBattle.AddRange(AlliesInBattle);
-        UnitsInBattle.AddRange(EnemiesInBattle);
-
-        UnitsInBattle.Sort(delegate(GameObject x, GameObject y)
+        public enum CombatStates
         {
-            if (x.transform.position.x > y.transform.position.x) return 1;
-            else return -1;
-        });
+            WAIT,
+            TAKEACTION,
+            PERFORMACTION,
+            CHECKGAME,
+            WIN,
+            LOSE,
+        }
 
-        TurnOrder.AddRange(GameObject.FindGameObjectsWithTag("Ally"));
-        TurnOrder.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
-        TurnOrder.Sort(delegate (GameObject x, GameObject y)
+        public enum UIStates
         {
-            float xAgility, yAgility;
+            ACTIVATE,
+            WAIT,
+            SELECTACTION,
+            SELECTTARGET,
+            DONE
+        }
 
-            if(x.tag == "Ally")
-            {
-                xAgility = x.GetComponent<PlayerStateMachine>().Player.Agility;
-            }
-            else
-            {
-                xAgility = x.GetComponent<EnemyStateMachine>().Enemy.Agility;
-            }
+        public CombatStates CurrentCombatState;
+        public UIStates CurrentUIState;
 
-            if (y.tag == "Ally")
-            {
-                yAgility = y.GetComponent<PlayerStateMachine>().Player.Agility;
-            }
-            else
-            {
-                yAgility = y.GetComponent<EnemyStateMachine>().Enemy.Agility;
-            }
+        public List<GameObject> AlliesInBattle = new List<GameObject>();
+        public List<GameObject> EnemiesInBattle = new List<GameObject>();
 
-            if (xAgility < yAgility) return 1;
-            else return -1;
-        });
+        // List that tracks the positions of the units in battle.
+        public List<GameObject> UnitsInBattle = new List<GameObject>();
 
-        CurrentCombatState = CombatStates.TAKEACTION;
-        CurrentUIState = UIStates.ACTIVATE;
+        // List that tracks the turn order queue.
+        public List<GameObject> TurnOrder = new List<GameObject>();
 
-        // Deactivate UI elements at the start of combat.
-        UnitInfoPanel.SetActive(false);
-        SelectActionPanel.SetActive(false);
-        SelectTargetPanel.SetActive(false);
-    }
+        [SerializeField] private GameObject targetIndicator;
+        [SerializeField] private GameObject unitInfoPanel;
+        [SerializeField] private GameObject selectActionPanel;
+        [SerializeField] private GameObject selectTargetPanel;
 
-    void Update()
-    {
-        switch(CurrentCombatState)
+        public List<GameObject> TargetButtons;
+
+        private GenericUnitStateMachine.TurnState PlayerActionType;
+
+        void Start()
         {
-            case CombatStates.WAIT:
-                TargetIndicator.SetActive(false);
-                if (TurnOrder.Count > 0)
-                {
-                    CurrentCombatState = CombatStates.TAKEACTION;
-                }
-                break;
-            case CombatStates.TAKEACTION:
-                TargetIndicator.transform.position = TurnOrder[0].transform.position 
-                    + new Vector3(0.0f, 1.0f, 0.0f);
-                TargetIndicator.SetActive(true);
+            AlliesInBattle.AddRange(GameObject.FindGameObjectsWithTag("Ally"));
+            EnemiesInBattle.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
 
-                if (TurnOrder[0].tag == "Ally")
+            UnitsInBattle.AddRange(AlliesInBattle);
+            UnitsInBattle.AddRange(EnemiesInBattle);
+
+            UnitsInBattle.Sort(delegate (GameObject x, GameObject y)
+            {
+                var xLocation = x.GetComponent<GenericUnitStateMachine>().Location;
+                var yLocation = y.GetComponent<GenericUnitStateMachine>().Location;
+
+                if (xLocation > yLocation)
                 {
-                    var PSM = TurnOrder[0].GetComponent<PlayerStateMachine>();
-                    PSM.CurrentState = PlayerStateMachine.TurnState.SELECTACTION;
-                }
-                else if (TurnOrder[0].tag == "Enemy")
-                {
-                    var ESM = TurnOrder[0].GetComponent<EnemyStateMachine>();
-                    ESM.CurrentState = EnemyStateMachine.TurnState.SELECTACTION;
+                    return 1;
                 }
                 else
                 {
-                    Debug.Log("Invalid tag!");
+                    return -1;
                 }
-                
-                CurrentCombatState = CombatStates.PERFORMACTION;
-                break;
-            case CombatStates.PERFORMACTION:
-                TargetIndicator.transform.position = TurnOrder[0].transform.position
-                    + new Vector3(0.0f, 1.0f, 0.0f);
-                break;
-            case CombatStates.CHECKGAME:
-                if(AlliesInBattle.Count < 1)
+            });
+
+            TurnOrder.AddRange(GameObject.FindGameObjectsWithTag("Ally"));
+            TurnOrder.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
+            TurnOrder.Sort(delegate (GameObject x, GameObject y)
+            {
+                float xAgility, yAgility;
+
+                if (x.tag == "Ally")
                 {
-                    // Disable target indicator.
-                    TargetIndicator.SetActive(false);
-                    CurrentUIState = UIStates.WAIT;
-                    CurrentCombatState = CombatStates.LOSE;
-                }
-                else if(EnemiesInBattle.Count < 1)
-                {
-                    // Disable target indicator.
-                    TargetIndicator.SetActive(false);
-                    CurrentUIState = UIStates.WAIT;
-                    CurrentCombatState = CombatStates.WIN;
+                    xAgility = x.GetComponent<PlayerStateMachine>().Player.Agility;
                 }
                 else
                 {
-                    CurrentUIState = UIStates.ACTIVATE;
-                    CurrentCombatState = CombatStates.WAIT;
+                    xAgility = x.GetComponent<EnemyStateMachine>().Enemy.Agility;
                 }
-                break;
-            case CombatStates.WIN:
-                Debug.Log("You win!");
-                break;
-            case CombatStates.LOSE:
-                Debug.Log("You lose!");
-                break;
-        }
 
-        switch(CurrentUIState)
-        {
-            case UIStates.ACTIVATE:
-                if (TurnOrder.Count > 0 && TurnOrder[0].tag == "Ally")
+                if (y.tag == "Ally")
                 {
-                    UnitInfoPanel.SetActive(true);
-                    SelectActionPanel.SetActive(true);
-                    CurrentUIState = UIStates.WAIT;
+                    yAgility = y.GetComponent<PlayerStateMachine>().Player.Agility;
                 }
-                break;
-            case UIStates.WAIT:
-                break;
-            case UIStates.DONE:
-                SelectionDone();
-                break;
+                else
+                {
+                    yAgility = y.GetComponent<EnemyStateMachine>().Enemy.Agility;
+                }
+
+                if (xAgility < yAgility) return 1;
+                else return -1;
+            });
+
+            CurrentCombatState = CombatStates.TAKEACTION;
+            CurrentUIState = UIStates.ACTIVATE;
+
+            // Deactivate UI elements at the start of combat.
+            unitInfoPanel.SetActive(false);
+            selectActionPanel.SetActive(false);
+            selectTargetPanel.SetActive(false);
         }
-    }
 
-
-    public void EndTurn(GameObject unit)
-    {
-        TurnOrder.RemoveAt(0);
-        TurnOrder.Add(unit);
-    }
-
-    public void SelectAttack()
-    {
-        PlayerActionType = PlayerStateMachine.TurnState.ATTACK;
-        SelectActionPanel.SetActive(false);
-
-        var PSM = TurnOrder[0].GetComponent<PlayerStateMachine>();
-        
-        // Only let player attack enemies up until their attack range.
-        DisableTargetButtons();
-        
-        var targets = new List<bool>() { false, false, false, false, false, false, false, false };
-
-        for(int i = 4; i <= Mathf.Min(PSM.Location + PSM.Player.BaseClassData.AttackRange, 7); i++)
-        { 
-            targets[i] = true;
-        }
-        
-        EnableTargetButtons(targets);
-
-        SelectTargetPanel.SetActive(true);
-    }
-
-    public void SelectSwap()
-    {
-        PlayerActionType = PlayerStateMachine.TurnState.SWAP;
-        SelectActionPanel.SetActive(false);
-
-        var PSM = TurnOrder[0].GetComponent<PlayerStateMachine>();
-
-        // Only let player swap adjacent units.
-        DisableTargetButtons();
-
-        var targets = new List<bool>() { false, false, false, false, false, false, false, false };
-        
-        if(PSM.Location - 1 >= 0)
+        void Update()
         {
-            targets[PSM.Location - 1] = true;
-        }
-
-        if(PSM.Location + 1 < 4)
-        {
-            targets[PSM.Location + 1] = true;
-        }
-
-        EnableTargetButtons(targets);
-
-        SelectTargetPanel.SetActive(true);
-    }
-
-    public void SelectSpecial()
-    {
-        PlayerActionType = PlayerStateMachine.TurnState.SPECIAL;
-        SelectActionPanel.SetActive(false);
-
-        var special = TurnOrder[0].GetComponent<PlayerStateMachine>().Player.BaseClassData.SpecialAbility;
-
-        // Only let player swap adjacent units.
-        DisableTargetButtons();
-        EnableTargetButtons(special.SelectTargets());
-
-        SelectTargetPanel.SetActive(true);
-    }
-
-    public void SelectTarget(GameObject target)
-    {
-        var PSM = TurnOrder[0].GetComponent<PlayerStateMachine>();
-        PSM.UnitToTarget = target;
-        CurrentUIState = UIStates.DONE;
-    }
-
-    public void CancelAction()
-    {
-        SelectTargetPanel.SetActive(false);
-        SelectActionPanel.SetActive(true);
-    }
-
-    private void SelectionDone()
-    {
-        UnitInfoPanel.SetActive(false);
-        SelectTargetPanel.SetActive(false);
-        
-        var PSM = TurnOrder[0].GetComponent<PlayerStateMachine>();
-        PSM.CurrentState = PlayerActionType;
-    }
-
-    private void DisableTargetButtons()
-    {
-        foreach(var button in TargetButtons)
-        {
-            button.GetComponent<Button>().interactable = false;
-        }
-    }
-
-    private void EnableTargetButtons(List<bool> targets)
-    {
-        if(targets.Count != 8) 
-        {
-            Debug.Log("Invalid list passed.");
-        }
-
-        for(int i = 0; i < TargetButtons.Count; i++)
-        {
-            if (targets[i] == true)
+            switch (CurrentCombatState)
             {
-                TargetButtons[i].GetComponent<Button>().interactable = true;
+                case CombatStates.WAIT:
+                    targetIndicator.SetActive(false);
+                    if (TurnOrder.Count > 0)
+                    {
+                        CurrentCombatState = CombatStates.TAKEACTION;
+                    }
+                    break;
+                case CombatStates.TAKEACTION:
+                    targetIndicator.transform.position = TurnOrder[0].transform.position
+                        + new Vector3(0.0f, 1.0f, 0.0f);
+                    targetIndicator.SetActive(true);
+
+                    var GSM = TurnOrder[0].GetComponent<GenericUnitStateMachine>();
+                    GSM.CurrentState = GenericUnitStateMachine.TurnState.SELECTACTION;
+
+                    CurrentCombatState = CombatStates.PERFORMACTION;
+                    break;
+                case CombatStates.PERFORMACTION:
+                    targetIndicator.transform.position = TurnOrder[0].transform.position
+                        + new Vector3(0.0f, 1.0f, 0.0f);
+                    break;
+                case CombatStates.CHECKGAME:
+                    if (AlliesInBattle.Count < 1)
+                    {
+                        // Disable target indicator.
+                        targetIndicator.SetActive(false);
+                        CurrentUIState = UIStates.WAIT;
+                        CurrentCombatState = CombatStates.LOSE;
+                    }
+                    else if (EnemiesInBattle.Count < 1)
+                    {
+                        // Disable target indicator.
+                        targetIndicator.SetActive(false);
+                        CurrentUIState = UIStates.WAIT;
+                        CurrentCombatState = CombatStates.WIN;
+                    }
+                    else
+                    {
+                        CurrentUIState = UIStates.ACTIVATE;
+                        CurrentCombatState = CombatStates.WAIT;
+                    }
+                    break;
+                case CombatStates.WIN:
+                    Debug.Log("You win!");
+                    break;
+                case CombatStates.LOSE:
+                    Debug.Log("You lose!");
+                    break;
+            }
+
+            switch (CurrentUIState)
+            {
+                case UIStates.ACTIVATE:
+                    if (TurnOrder.Count > 0 && TurnOrder[0].tag == "Ally")
+                    {
+                        unitInfoPanel.SetActive(true);
+                        selectActionPanel.SetActive(true);
+                        CurrentUIState = UIStates.WAIT;
+                    }
+                    break;
+                case UIStates.WAIT:
+                    break;
+                case UIStates.DONE:
+                    SelectionDone();
+                    break;
+            }
+        }
+
+
+        public void EndTurn(GameObject unit)
+        {
+            TurnOrder.RemoveAt(0);
+            TurnOrder.Add(unit);
+        }
+
+        public void SelectAttack()
+        {
+            PlayerActionType = GenericUnitStateMachine.TurnState.ATTACK;
+            selectActionPanel.SetActive(false);
+
+            var PSM = TurnOrder[0].GetComponent<PlayerStateMachine>();
+
+            // Only let player attack enemies up until their attack range.
+            DisableTargetButtons();
+
+            var targets = new List<bool>() { false, false, false, false, false, false, false, false };
+
+            for (int i = 4; i <= Mathf.Min(PSM.Location + PSM.Player.BaseClassData.AttackRange, 7); i++)
+            {
+                targets[i] = true;
+            }
+
+            EnableTargetButtons(targets);
+
+            selectTargetPanel.SetActive(true);
+        }
+
+        public void SelectSwap()
+        {
+            PlayerActionType = GenericUnitStateMachine.TurnState.SWAP;
+            selectActionPanel.SetActive(false);
+
+            var PSM = TurnOrder[0].GetComponent<PlayerStateMachine>();
+
+            // Only let player swap adjacent units.
+            DisableTargetButtons();
+
+            var targets = new List<bool>() { false, false, false, false, false, false, false, false };
+
+            if (PSM.Location - 1 >= 0)
+            {
+                targets[PSM.Location - 1] = true;
+            }
+
+            if (PSM.Location + 1 < 4)
+            {
+                targets[PSM.Location + 1] = true;
+            }
+
+            EnableTargetButtons(targets);
+
+            selectTargetPanel.SetActive(true);
+        }
+
+        public void SelectSpecial()
+        {
+            PlayerActionType = GenericUnitStateMachine.TurnState.SPECIAL;
+            selectActionPanel.SetActive(false);
+
+            var special = TurnOrder[0].GetComponent<PlayerStateMachine>().Player.BaseClassData.SpecialAbility;
+
+            // Only let player swap adjacent units.
+            DisableTargetButtons();
+            EnableTargetButtons(special.SelectTargets());
+
+            selectTargetPanel.SetActive(true);
+        }
+
+        public void SelectTarget(GameObject target)
+        {
+            var PSM = TurnOrder[0].GetComponent<PlayerStateMachine>();
+            PSM.UnitToTarget = target;
+            CurrentUIState = UIStates.DONE;
+        }
+
+        public void CancelAction()
+        {
+            selectTargetPanel.SetActive(false);
+            selectActionPanel.SetActive(true);
+        }
+
+        private void SelectionDone()
+        {
+            unitInfoPanel.SetActive(false);
+            selectTargetPanel.SetActive(false);
+
+            var PSM = TurnOrder[0].GetComponent<PlayerStateMachine>();
+            PSM.CurrentState = PlayerActionType;
+        }
+
+        private void DisableTargetButtons()
+        {
+            foreach (var button in TargetButtons)
+            {
+                button.GetComponent<Button>().interactable = false;
+            }
+        }
+
+        private void EnableTargetButtons(List<bool> targets)
+        {
+            if (targets.Count != 8)
+            {
+                Debug.Log("Invalid list passed.");
+            }
+
+            for (int i = 0; i < TargetButtons.Count; i++)
+            {
+                var isDead = UnitsInBattle[i].GetComponent<GenericUnitStateMachine>().IsDead;
+                if (targets[i] == true && isDead != true)
+                {
+                    TargetButtons[i].GetComponent<Button>().interactable = true;
+                }
             }
         }
     }

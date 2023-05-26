@@ -541,6 +541,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a781ca21b13745f4c8993fd4cf5aa856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentState: 0
+  UnitToTarget: {fileID: 0}
+  location: 3
   Player:
     UnitName: TankGuy
     BaseClassData: {fileID: 11400000, guid: 3a3850c36f1bffc42a31b9446cbee4bb, type: 2}
@@ -549,9 +552,6 @@ MonoBehaviour:
     Attack: 1
     Defense: 35
     Agility: 10
-  Location: 3
-  UnitToTarget: {fileID: 0}
-  CurrentState: 0
 --- !u!1 &570363348 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7798994515904964817, guid: 573ba593a91d642419e5491f5ab4e094, type: 3}
@@ -569,6 +569,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6a198983dd8ed42bc187657a5d845f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentState: 0
+  UnitToTarget: {fileID: 0}
+  location: 7
   Enemy:
     UnitName: Enemy 4
     BaseClassData: {fileID: 0}
@@ -577,8 +580,6 @@ MonoBehaviour:
     Attack: 1
     Defense: 20
     Agility: 20
-  Location: 7
-  CurrentState: 0
 --- !u!1 &630755755
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,6 +767,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a781ca21b13745f4c8993fd4cf5aa856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentState: 0
+  UnitToTarget: {fileID: 0}
+  location: 1
   Player:
     UnitName: HealerGuy
     BaseClassData: {fileID: 11400000, guid: 36613402d4ff7a442875c67639ee8c9a, type: 2}
@@ -774,9 +778,6 @@ MonoBehaviour:
     Attack: 1
     Defense: 25
     Agility: 25
-  Location: 1
-  UnitToTarget: {fileID: 0}
-  CurrentState: 0
 --- !u!1 &937083804
 GameObject:
   m_ObjectHideFlags: 0
@@ -1207,17 +1208,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a781ca21b13745f4c8993fd4cf5aa856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentState: 0
+  UnitToTarget: {fileID: 0}
+  location: 0
   Player:
     UnitName: RangerGuy
     BaseClassData: {fileID: 11400000, guid: 598cd6db82c9d4445b62286f287cdaf7, type: 2}
     CurrentHP: 20
     MaxHP: 20
-    Attack: 30
+    Attack: 100
     Defense: 20
     Agility: 40
-  Location: 0
-  UnitToTarget: {fileID: 0}
-  CurrentState: 0
 --- !u!1 &1120532339 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 730145271608245508, guid: 56710efd17d5e7d43a4c38eee7ab1135, type: 3}
@@ -1383,6 +1384,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6a198983dd8ed42bc187657a5d845f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentState: 0
+  UnitToTarget: {fileID: 0}
+  location: 5
   Enemy:
     UnitName: Enemy 2
     BaseClassData: {fileID: 0}
@@ -1391,8 +1395,6 @@ MonoBehaviour:
     Attack: 1
     Defense: 20
     Agility: 36
-  Location: 5
-  CurrentState: 0
 --- !u!1 &1693452580
 GameObject:
   m_ObjectHideFlags: 0
@@ -1566,6 +1568,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a781ca21b13745f4c8993fd4cf5aa856, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentState: 0
+  UnitToTarget: {fileID: 0}
+  location: 2
   Player:
     UnitName: SupporterGuy
     BaseClassData: {fileID: 11400000, guid: bfcac68af65e4f447aab5c37644bfbff, type: 2}
@@ -1574,9 +1579,6 @@ MonoBehaviour:
     Attack: 100
     Defense: 20
     Agility: 30
-  Location: 2
-  UnitToTarget: {fileID: 0}
-  CurrentState: 0
 --- !u!1 &1761927348 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7798994515904964817, guid: 573ba593a91d642419e5491f5ab4e094, type: 3}
@@ -1594,16 +1596,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6a198983dd8ed42bc187657a5d845f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentState: 0
+  UnitToTarget: {fileID: 0}
+  location: 4
   Enemy:
     UnitName: Enemy 1
     BaseClassData: {fileID: 0}
     CurrentHP: 30
     MaxHP: 30
-    Attack: 1
+    Attack: 100
     Defense: 30
     Agility: 50
-  Location: 4
-  CurrentState: 0
 --- !u!1 &1782935661 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4827133209676991416, guid: 82819ec060c37d841be980d837881eb0, type: 3}
@@ -1664,10 +1667,10 @@ MonoBehaviour:
   EnemiesInBattle: []
   UnitsInBattle: []
   TurnOrder: []
-  TargetIndicator: {fileID: 2144776049}
-  UnitInfoPanel: {fileID: 137804645}
-  SelectActionPanel: {fileID: 1120532339}
-  SelectTargetPanel: {fileID: 730145272896875635}
+  targetIndicator: {fileID: 2144776049}
+  unitInfoPanel: {fileID: 137804645}
+  selectActionPanel: {fileID: 1120532339}
+  selectTargetPanel: {fileID: 730145272896875635}
   TargetButtons:
   - {fileID: 939586270}
   - {fileID: 1787890056}
@@ -1842,6 +1845,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec6a198983dd8ed42bc187657a5d845f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CurrentState: 0
+  UnitToTarget: {fileID: 0}
+  location: 6
   Enemy:
     UnitName: Enemy 3
     BaseClassData: {fileID: 0}
@@ -1850,8 +1856,6 @@ MonoBehaviour:
     Attack: 1
     Defense: 20
     Agility: 20
-  Location: 6
-  CurrentState: 0
 --- !u!1 &730145272896875635 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4907360787147677242, guid: 82819ec060c37d841be980d837881eb0, type: 3}

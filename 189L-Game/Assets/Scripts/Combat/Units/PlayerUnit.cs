@@ -2,8 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class PlayerUnit : GenericUnit
+namespace Combat
 {
-    public PlayerUnit() { }
+    [System.Serializable]
+    public class PlayerUnit : GenericUnit
+    {
+        public PlayerUnit() { }
+    }
 }

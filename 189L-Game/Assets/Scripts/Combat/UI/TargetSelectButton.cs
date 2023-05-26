@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TargetSelectButton : MonoBehaviour
+namespace Combat
 {
-    public GameObject TargetPrefab;
-
-    public void SelectTarget()
+    public class TargetSelectButton : MonoBehaviour
     {
-        GameObject.Find("CombatManager").GetComponent<CombatStateMachine>().SelectTarget(TargetPrefab);
+        public GameObject TargetPrefab;
+
+        public void SelectTarget()
+        {
+            GameObject.Find("CombatManager").GetComponent<CombatStateMachine>().SelectTarget(TargetPrefab);
+        }
     }
 }
