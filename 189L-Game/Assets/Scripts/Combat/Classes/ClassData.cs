@@ -16,7 +16,7 @@ public class ClassData : ScriptableObject
     [SerializeField] private float baseDefense;
     [SerializeField] private float baseAgility;
     [SerializeField] private int attackRange;
-    // [SerializeField] private IClassAction classAction;
+    [SerializeField] private SpecialAbility specialAbility;
 
     public string ClassName => className;
     public Sprite ClassSprite => classSprite;
@@ -25,7 +25,6 @@ public class ClassData : ScriptableObject
     public float BaseDefense => baseDefense;
     public float BaseAgility => baseAgility;
     public int AttackRange => attackRange;
-
-    // public IClassAction ClassAction;
+    public SpecialAbility SpecialAbility => specialAbility;
 
 }
