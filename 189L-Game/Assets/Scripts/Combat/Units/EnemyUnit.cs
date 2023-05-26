@@ -2,8 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[System.Serializable]
-public class EnemyUnit : GenericUnit
+namespace Combat 
 {
-    public EnemyUnit() { }
+    [System.Serializable]
+    public class EnemyUnit : GenericUnit
+    {
+        public EnemyUnit() { }
+    }
 }
+

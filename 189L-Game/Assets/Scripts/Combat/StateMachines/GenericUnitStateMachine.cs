@@ -2,71 +2,74 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GenericUnitStateMachine : MonoBehaviour
+namespace Combat
 {
-    // Unit state list.
-    public enum TurnState
+    public class GenericUnitStateMachine : MonoBehaviour
     {
-        WAIT,
-        SELECTACTION,
-        SELECTTARGET,
-        ATTACK,
-        SWAP,
-        SPECIAL,
-        DEAD
-    }
+        // Unit state list.
+        public enum TurnState
+        {
+            WAIT,
+            SELECTACTION,
+            SELECTTARGET,
+            ATTACK,
+            SWAP,
+            SPECIAL,
+            DEAD
+        }
 
-    // Run-time information about the unit.
-    public TurnState CurrentState;
-    public GameObject UnitToTarget;
+        // Run-time information about the unit.
+        public TurnState CurrentState;
+        public GameObject UnitToTarget;
 
-    [SerializeField]
-    protected int location;
-    protected CombatStateMachine csm;
-    protected bool actionStarted = false;
-    protected bool isDead = false;
+        [SerializeField]
+        protected int location;
+        protected CombatStateMachine csm;
+        protected bool actionStarted = false;
+        protected bool isDead = false;
 
-    // Getters.
-    public int Location => location;
-    public bool IsDead => isDead;   
-    
-    public virtual void TakeDamage(float damage)
-    {
+        // Getters.
+        public int Location => location;
+        public bool IsDead => isDead;
 
-    }
-    protected virtual void DoDamage()
-    {
-        
-    }
+        public virtual void TakeDamage(float damage)
+        {
 
-    protected void DoSwap(GameObject target)
-    {
-        // Switch positions of player unit and swapped target.
-        var initialPosition = transform.position;
+        }
+        protected virtual void DoDamage()
+        {
 
-        this.gameObject.transform.position = target.transform.position;
-        target.transform.position = initialPosition;
+        }
 
-        // Change name of this variable.
-        var targetLocation = target.GetComponent<GenericUnitStateMachine>().location;
+        protected void DoSwap(GameObject target)
+        {
+            // Switch positions of player unit and swapped target.
+            var initialPosition = transform.position;
 
-        // Switch prefabs of associated buttons.
-        GameObject thisButtonPrefab = csm.TargetButtons[location].
-            GetComponent<TargetSelectButton>().TargetPrefab;
+            this.gameObject.transform.position = target.transform.position;
+            target.transform.position = initialPosition;
 
-        csm.TargetButtons[location].GetComponent<TargetSelectButton>().
-            TargetPrefab = csm.TargetButtons[targetLocation].
-            GetComponent<TargetSelectButton>().TargetPrefab;
+            // Change name of this variable.
+            var targetLocation = target.GetComponent<GenericUnitStateMachine>().location;
 
-        csm.TargetButtons[targetLocation].GetComponent<TargetSelectButton>().
-            TargetPrefab = thisButtonPrefab;
+            // Switch prefabs of associated buttons.
+            GameObject thisButtonPrefab = csm.TargetButtons[location].
+                GetComponent<TargetSelectButton>().TargetPrefab;
 
-        // Switch locations of player unit and swapped target
-        var positionInBattle = csm.UnitsInBattle[location];
-        csm.UnitsInBattle[location] = csm.UnitsInBattle[targetLocation];
-        csm.UnitsInBattle[targetLocation] = positionInBattle;
+            csm.TargetButtons[location].GetComponent<TargetSelectButton>().
+                TargetPrefab = csm.TargetButtons[targetLocation].
+                GetComponent<TargetSelectButton>().TargetPrefab;
 
-        target.GetComponent<GenericUnitStateMachine>().location = location;
-        location = targetLocation;
+            csm.TargetButtons[targetLocation].GetComponent<TargetSelectButton>().
+                TargetPrefab = thisButtonPrefab;
+
+            // Switch locations of player unit and swapped target
+            var positionInBattle = csm.UnitsInBattle[location];
+            csm.UnitsInBattle[location] = csm.UnitsInBattle[targetLocation];
+            csm.UnitsInBattle[targetLocation] = positionInBattle;
+
+            target.GetComponent<GenericUnitStateMachine>().location = location;
+            location = targetLocation;
+        }
     }
 }
