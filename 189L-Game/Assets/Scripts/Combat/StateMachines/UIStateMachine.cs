@@ -135,6 +135,7 @@ namespace Combat
             unitInfoPanel.SetActive(false);
             selectTargetPanel.SetActive(false);
 
+            CurrentUIState = UIStates.WAIT;
             psm.CurrentState = PlayerActionType;
         }
 
