@@ -18,6 +18,7 @@ namespace Combat
 
         public UIStates CurrentUIState;
         public List<GameObject> TargetButtons;
+        public List<GameObject> HealthBars;
 
         [SerializeField] private GameObject unitInfoPanel;
         [SerializeField] private GameObject selectActionPanel;

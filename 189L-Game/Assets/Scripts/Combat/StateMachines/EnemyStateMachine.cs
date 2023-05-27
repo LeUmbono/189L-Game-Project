@@ -14,6 +14,8 @@ namespace Combat
             CurrentState = TurnState.WAIT;
             csm = GameObject.Find("CombatManager").GetComponent<CombatStateMachine>();
             uism = GameObject.Find("UIManager").GetComponent<UIStateMachine>();
+            uism.HealthBars[Location].GetComponent<HealthBar>().SetMaxHealth(Enemy.MaxHP);
+            uism.HealthBars[Location].GetComponent<HealthBar>().SetHealth(Enemy.CurrentHP);
         }
 
         void Update()
@@ -87,6 +89,7 @@ namespace Combat
                 Enemy.CurrentHP = 0.0f;
                 CurrentState = TurnState.DEAD;
             }
+            uism.HealthBars[Location].GetComponent<HealthBar>().SetHealth(Enemy.CurrentHP);
         }
 
         private IEnumerator PerformAttack()
