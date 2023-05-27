@@ -25,6 +25,7 @@ namespace Combat
         [SerializeField]
         protected int location;
         protected CombatStateMachine csm;
+        protected UIStateMachine uism;
         protected bool actionStarted = false;
         protected bool isDead = false;
 
@@ -53,14 +54,14 @@ namespace Combat
             var targetLocation = target.GetComponent<GenericUnitStateMachine>().location;
 
             // Switch prefabs of associated buttons.
-            GameObject thisButtonPrefab = csm.TargetButtons[location].
+            GameObject thisButtonPrefab = uism.TargetButtons[location].
                 GetComponent<TargetSelectButton>().TargetPrefab;
 
-            csm.TargetButtons[location].GetComponent<TargetSelectButton>().
-                TargetPrefab = csm.TargetButtons[targetLocation].
+            uism.TargetButtons[location].GetComponent<TargetSelectButton>().
+                TargetPrefab = uism.TargetButtons[targetLocation].
                 GetComponent<TargetSelectButton>().TargetPrefab;
 
-            csm.TargetButtons[targetLocation].GetComponent<TargetSelectButton>().
+            uism.TargetButtons[targetLocation].GetComponent<TargetSelectButton>().
                 TargetPrefab = thisButtonPrefab;
 
             // Switch locations of player unit and swapped target
