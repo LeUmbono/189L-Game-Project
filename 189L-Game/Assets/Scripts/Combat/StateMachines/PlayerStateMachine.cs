@@ -11,6 +11,7 @@ namespace Combat
         {
             CurrentState = TurnState.WAIT;
             csm = GameObject.Find("CombatManager").GetComponent<CombatStateMachine>();
+            uism = GameObject.Find("UIManager").GetComponent<UIStateMachine>();
         }
 
         void Update()
@@ -142,7 +143,7 @@ namespace Combat
 
             // Set combat state of CSM to Wait.
             csm.CurrentCombatState = CombatStateMachine.CombatStates.WAIT;
-            csm.CurrentUIState = CombatStateMachine.UIStates.ACTIVATE;
+            uism.CurrentUIState = UIStateMachine.UIStates.ACTIVATE;
 
             actionStarted = false;
             CurrentState = TurnState.WAIT;

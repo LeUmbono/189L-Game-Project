@@ -13,6 +13,7 @@ namespace Combat
         {
             CurrentState = TurnState.WAIT;
             csm = GameObject.Find("CombatManager").GetComponent<CombatStateMachine>();
+            uism = GameObject.Find("UIManager").GetComponent<UIStateMachine>();
         }
 
         void Update()

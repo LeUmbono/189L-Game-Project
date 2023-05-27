@@ -10,7 +10,7 @@ namespace Combat
 
         public void SelectTarget()
         {
-            GameObject.Find("CombatManager").GetComponent<CombatStateMachine>().SelectTarget(TargetPrefab);
+            GameObject.Find("UIManager").GetComponent<UIStateMachine>().SelectTarget(TargetPrefab);
         }
     }
 }
