@@ -1883,7 +1883,7 @@ MonoBehaviour:
     BaseClassData: {fileID: 11400000, guid: 598cd6db82c9d4445b62286f287cdaf7, type: 2}
     CurrentHP: 20
     MaxHP: 20
-    Attack: 100
+    Attack: 30
     Defense: 20
     Agility: 40
 --- !u!1 &1120532339 stripped
@@ -2374,7 +2374,7 @@ MonoBehaviour:
     BaseClassData: {fileID: 11400000, guid: bfcac68af65e4f447aab5c37644bfbff, type: 2}
     CurrentHP: 30
     MaxHP: 30
-    Attack: 100
+    Attack: 30
     Defense: 20
     Agility: 30
 --- !u!1 &1761927348 stripped

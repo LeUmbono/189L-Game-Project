@@ -42,6 +42,7 @@ namespace Combat
 
                         // Change sprite to reflect death / play death animation.
                         this.gameObject.GetComponent<SpriteRenderer>().color = Color.black;
+                        uism.HealthBars[Location].SetActive(false);
 
                         // Move dead enemy to the furthest end of the formation.
                         for (int i = location; i < csm.UnitsInBattle.Count - 1; i++)
