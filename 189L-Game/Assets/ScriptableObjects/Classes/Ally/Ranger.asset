@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   className: Ranger
   classSprite: {fileID: 0}
-  baseHP: 20
-  baseAttack: 20
-  baseDefense: 3
-  baseAgility: 12
+  baseHP: 30
+  baseAttack: 12
+  baseDefense: 5
+  baseAgility: 14
   attackRange: 7
   specialAbility: {fileID: 11400000, guid: 9d61da8cf18e1fa4fbcd657506550e3b, type: 2}

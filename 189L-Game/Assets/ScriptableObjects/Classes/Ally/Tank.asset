@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   className: Tank
   classSprite: {fileID: 0}
-  baseHP: 40
-  baseAttack: 5
-  baseDefense: 0
-  baseAgility: 0
+  baseHP: 50
+  baseAttack: 20
+  baseDefense: 7
+  baseAgility: 7
   attackRange: 2
   specialAbility: {fileID: 0}

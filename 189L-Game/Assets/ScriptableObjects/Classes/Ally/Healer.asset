@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   className: Healer
   classSprite: {fileID: 0}
-  baseHP: 20
-  baseAttack: 0
-  baseDefense: 0
-  baseAgility: 0
+  baseHP: 25
+  baseAttack: 10
+  baseDefense: 10
+  baseAgility: 10
   attackRange: 3
   specialAbility: {fileID: 11400000, guid: b095484d18e02994ab26ef008ea84ed6, type: 2}
