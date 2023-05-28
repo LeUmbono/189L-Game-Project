@@ -1222,9 +1222,9 @@ MonoBehaviour:
     BaseClassData: {fileID: 11400000, guid: 3a3850c36f1bffc42a31b9446cbee4bb, type: 2}
     CurrentHP: 50
     MaxHP: 50
-    Attack: 1
-    Defense: 35
-    Agility: 10
+    Attack: 20
+    Defense: 7
+    Agility: 7
 --- !u!1 &547582933
 GameObject:
   m_ObjectHideFlags: 0
@@ -1383,11 +1383,11 @@ MonoBehaviour:
   Enemy:
     UnitName: Enemy 4
     BaseClassData: {fileID: 0}
-    CurrentHP: 20
-    MaxHP: 20
-    Attack: 1
-    Defense: 20
-    Agility: 20
+    CurrentHP: 30
+    MaxHP: 30
+    Attack: 12
+    Defense: 3
+    Agility: 12
 --- !u!1 &630755755
 GameObject:
   m_ObjectHideFlags: 0
@@ -1984,9 +1984,9 @@ MonoBehaviour:
     BaseClassData: {fileID: 11400000, guid: 36613402d4ff7a442875c67639ee8c9a, type: 2}
     CurrentHP: 25
     MaxHP: 25
-    Attack: 1
-    Defense: 25
-    Agility: 45
+    Attack: 10
+    Defense: 10
+    Agility: 10
 --- !u!1 &937083804
 GameObject:
   m_ObjectHideFlags: 0
@@ -2423,11 +2423,11 @@ MonoBehaviour:
   Player:
     UnitName: Joe
     BaseClassData: {fileID: 11400000, guid: 598cd6db82c9d4445b62286f287cdaf7, type: 2}
-    CurrentHP: 20
-    MaxHP: 20
-    Attack: 30
-    Defense: 20
-    Agility: 40
+    CurrentHP: 30
+    MaxHP: 30
+    Attack: 20
+    Defense: 5
+    Agility: 14
 --- !u!1 &1120532339 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 730145271608245508, guid: 56710efd17d5e7d43a4c38eee7ab1135, type: 3}
@@ -3497,11 +3497,11 @@ MonoBehaviour:
   Enemy:
     UnitName: Enemy 2
     BaseClassData: {fileID: 0}
-    CurrentHP: 20
-    MaxHP: 20
-    Attack: 1
-    Defense: 20
-    Agility: 36
+    CurrentHP: 30
+    MaxHP: 30
+    Attack: 12
+    Defense: 3
+    Agility: 12
 --- !u!1 &1693452580
 GameObject:
   m_ObjectHideFlags: 0
@@ -3683,9 +3683,9 @@ MonoBehaviour:
     BaseClassData: {fileID: 11400000, guid: bfcac68af65e4f447aab5c37644bfbff, type: 2}
     CurrentHP: 30
     MaxHP: 30
-    Attack: 30
-    Defense: 20
-    Agility: 30
+    Attack: 10
+    Defense: 10
+    Agility: 16
 --- !u!1 &1761927348 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7798994515904964817, guid: 573ba593a91d642419e5491f5ab4e094, type: 3}
@@ -3711,9 +3711,9 @@ MonoBehaviour:
     BaseClassData: {fileID: 0}
     CurrentHP: 30
     MaxHP: 30
-    Attack: 30
-    Defense: 30
-    Agility: 50
+    Attack: 12
+    Defense: 3
+    Agility: 12
 --- !u!1 &1774796343
 GameObject:
   m_ObjectHideFlags: 0
@@ -4410,11 +4410,11 @@ MonoBehaviour:
   Enemy:
     UnitName: Enemy 3
     BaseClassData: {fileID: 0}
-    CurrentHP: 20
-    MaxHP: 20
-    Attack: 1
-    Defense: 20
-    Agility: 20
+    CurrentHP: 30
+    MaxHP: 30
+    Attack: 12
+    Defense: 3
+    Agility: 12
 --- !u!1 &730145272896875635 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4907360787147677242, guid: 82819ec060c37d841be980d837881eb0, type: 3}
