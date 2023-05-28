@@ -9,14 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2e80af631229bb042ab15801456b94bd, type: 3}
-  m_Name: Tank
+  m_Script: {fileID: 11500000, guid: 157c430cf213a3a4ba70a34a54d5130e, type: 3}
+  m_Name: HealerHeal
   m_EditorClassIdentifier: 
-  className: Tank
-  classSprite: {fileID: 0}
-  baseHP: 0
-  baseAttack: 0
-  baseDefense: 0
-  baseAgility: 0
-  attackRange: 1
-  specialAbility: {fileID: 0}

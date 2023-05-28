@@ -1986,7 +1986,7 @@ MonoBehaviour:
     MaxHP: 25
     Attack: 1
     Defense: 25
-    Agility: 25
+    Agility: 45
 --- !u!1 &937083804
 GameObject:
   m_ObjectHideFlags: 0
@@ -3711,7 +3711,7 @@ MonoBehaviour:
     BaseClassData: {fileID: 0}
     CurrentHP: 30
     MaxHP: 30
-    Attack: 100
+    Attack: 30
     Defense: 30
     Agility: 50
 --- !u!1 &1774796343

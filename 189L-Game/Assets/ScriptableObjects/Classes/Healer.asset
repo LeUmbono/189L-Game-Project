@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e80af631229bb042ab15801456b94bd, type: 3}
   m_Name: Healer
   m_EditorClassIdentifier: 
-  className: 
+  className: Healer
   classSprite: {fileID: 0}
   baseHP: 0
   baseAttack: 0
   baseDefense: 0
   baseAgility: 0
   attackRange: 3
+  specialAbility: {fileID: 11400000, guid: b095484d18e02994ab26ef008ea84ed6, type: 2}
