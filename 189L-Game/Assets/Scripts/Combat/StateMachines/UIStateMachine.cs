@@ -47,6 +47,7 @@ namespace Combat
                     if (csm.TurnOrder.Count > 0 && csm.TurnOrder[0].tag == "Ally")
                     {
                         psm = csm.TurnOrder[0].GetComponent<PlayerStateMachine>();
+                        PopulateUnitInfoPanel();
                         unitInfoPanel.SetActive(true);
                         selectActionPanel.SetActive(true);
                         CurrentUIState = UIStates.WAIT;
@@ -129,6 +130,17 @@ namespace Combat
         {
             selectTargetPanel.SetActive(false);
             selectActionPanel.SetActive(true);
+        }
+
+        private void PopulateUnitInfoPanel()
+        {
+            unitInfoPanel.transform.Find("Icon").GetComponent<Image>().color = psm.GetComponent<SpriteRenderer>().color;
+            unitInfoPanel.transform.Find("Name").GetComponent<TMPro.TextMeshProUGUI>().text = psm.Player.UnitName;
+            unitInfoPanel.transform.Find("ClassName").GetComponent<TMPro.TextMeshProUGUI>().text = psm.Player.BaseClassData.ClassName;
+            unitInfoPanel.transform.Find("StrengthValue").GetComponent<TMPro.TextMeshProUGUI>().text = (psm.Player.Attack).ToString();
+            unitInfoPanel.transform.Find("DefenseValue").GetComponent<TMPro.TextMeshProUGUI>().text = (psm.Player.Defense).ToString();
+            unitInfoPanel.transform.Find("AgilityValue").GetComponent<TMPro.TextMeshProUGUI>().text = (psm.Player.Agility).ToString();
+            unitInfoPanel.transform.Find("RangeValue").GetComponent<TMPro.TextMeshProUGUI>().text = psm.Player.BaseClassData.AttackRange.ToString();
         }
 
         private void SelectionDone()
