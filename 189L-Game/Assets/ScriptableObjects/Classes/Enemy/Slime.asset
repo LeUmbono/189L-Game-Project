@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e80af631229bb042ab15801456b94bd, type: 3}
-  m_Name: Support
+  m_Name: Slime
   m_EditorClassIdentifier: 
-  className: Support
+  className: 
   classSprite: {fileID: 0}
   baseHP: 0
   baseAttack: 0
   baseDefense: 0
   baseAgility: 0
-  attackRange: 3
-  specialAbility: {fileID: 11400000, guid: 9d61da8cf18e1fa4fbcd657506550e3b, type: 2}
+  attackRange: 0
+  specialAbility: {fileID: 0}
