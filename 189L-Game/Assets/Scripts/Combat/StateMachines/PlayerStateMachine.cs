@@ -12,6 +12,8 @@ namespace Combat
             CurrentState = TurnState.WAIT;
             csm = GameObject.Find("CombatManager").GetComponent<CombatStateMachine>();
             uism = GameObject.Find("UIManager").GetComponent<UIStateMachine>();
+            uism.HealthBars[Location].GetComponent<HealthBar>().SetMaxHealth(Player.MaxHP);
+            uism.HealthBars[Location].GetComponent<HealthBar>().SetHealth(Player.CurrentHP);
         }
 
         void Update()
@@ -43,6 +45,7 @@ namespace Combat
 
                         // Change sprite to reflect death / play death animation.
                         this.gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
+                        uism.HealthBars[Location].SetActive(false);
 
                         // Move dead player to furthest end of the formation.
                         for (int i = location; i > 0; i--)
@@ -83,6 +86,7 @@ namespace Combat
                 CurrentState = TurnState.DEAD;
             }
 
+            uism.HealthBars[Location].GetComponent<HealthBar>().SetHealth(Player.CurrentHP);
         }
 
         private IEnumerator PerformAttack()

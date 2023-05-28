@@ -64,6 +64,16 @@ namespace Combat
             uism.TargetButtons[targetLocation].GetComponent<TargetSelectButton>().
                 TargetPrefab = thisButtonPrefab;
 
+            // Switch positions of health bars.
+            GameObject thisHealthBar = uism.HealthBars[location];
+            var thisHealthBarPosition = thisHealthBar.transform.position;
+            
+            uism.HealthBars[location].transform.position = uism.HealthBars[targetLocation].transform.position;
+            uism.HealthBars[targetLocation].transform.position = thisHealthBarPosition;
+
+            uism.HealthBars[location] = uism.HealthBars[targetLocation];
+            uism.HealthBars[targetLocation] = thisHealthBar;
+
             // Switch locations of player unit and swapped target
             var positionInBattle = csm.UnitsInBattle[location];
             csm.UnitsInBattle[location] = csm.UnitsInBattle[targetLocation];
