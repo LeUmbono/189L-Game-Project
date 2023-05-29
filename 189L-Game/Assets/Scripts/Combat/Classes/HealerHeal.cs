@@ -25,9 +25,21 @@ namespace Combat
             target.UpdateHealthBar(target.Player.CurrentHP);
         }
 
-        public override List<bool> SelectTargets()
+        public override List<bool> SelectTargets(GenericUnitStateMachine performer)
         {
-            var targets = new List<bool>() { true, true, true, true, false, false, false, false };
+            var targets = new List<bool>() { false, false, false, false, false, false, false, false };
+
+            // Set unit to the left as targetable.
+            if (performer.Location - 1 >= 0)
+            {
+                targets[performer.Location - 1] = true;
+            }
+
+            // Set unit to the right as targetable.
+            if (performer.Location + 1 < 4)
+            {
+                targets[performer.Location + 1] = true;
+            }
 
             return targets;
         }

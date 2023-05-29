@@ -11,7 +11,7 @@ namespace Combat
 
         }
 
-        public virtual List<bool> SelectTargets()
+        public virtual List<bool> SelectTargets(GenericUnitStateMachine performer)
         {
             return null;
         }

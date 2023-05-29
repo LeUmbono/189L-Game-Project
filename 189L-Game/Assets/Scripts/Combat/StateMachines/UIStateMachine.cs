@@ -91,11 +91,13 @@ namespace Combat
 
             var targets = new List<bool>() { false, false, false, false, false, false, false, false };
 
+            // Set unit to the left as targetable.
             if (psm.Location - 1 >= 0)
             {
                 targets[psm.Location - 1] = true;
             }
 
+            // Set unit to the right as targetable.
             if (psm.Location + 1 < 4)
             {
                 targets[psm.Location + 1] = true;
@@ -115,7 +117,7 @@ namespace Combat
 
             // Only let player swap adjacent units.
             DisableTargetButtons();
-            EnableTargetButtons(special.SelectTargets());
+            EnableTargetButtons(special.SelectTargets(psm));
 
             selectTargetPanel.SetActive(true);
         }

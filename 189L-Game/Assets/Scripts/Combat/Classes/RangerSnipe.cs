@@ -19,7 +19,7 @@ namespace Combat
             target.TakeDamage(PSM.Player.Attack * 2);
         }
 
-        public override List<bool> SelectTargets()
+        public override List<bool> SelectTargets(GenericUnitStateMachine performer)
         {
             return new List<bool>() { false, false, false, false, true, true, true, true };
         }
