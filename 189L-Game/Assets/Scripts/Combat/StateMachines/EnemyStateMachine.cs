@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -8,7 +9,7 @@ namespace Combat
     public class EnemyStateMachine : GenericUnitStateMachine
     {
         public EnemyUnit Enemy;
-
+        public bool IsTaunted = false;
         void Start()
         {
             CurrentState = TurnState.WAIT;
@@ -70,8 +71,23 @@ namespace Combat
 
         private void SelectAction()
         {
-            // Randomly select a player unit to target.
-            UnitToTarget = csm.AlliesInBattle[Random.Range(0, csm.AlliesInBattle.Count)];
+            // Randomly select a player unit to target. If taunted, UnitToTarget has already
+            // been set.
+
+            // Check that taunted unit has died. If so, set IsTaunted to false.
+            if(IsTaunted)
+            {
+                if(UnitToTarget.GetComponent<PlayerStateMachine>().IsDead == true)
+                {
+                    IsTaunted = false;
+                }
+            }
+
+            if(!IsTaunted)
+            {
+                UnitToTarget = csm.AlliesInBattle[Random.Range(0, csm.AlliesInBattle.Count)];
+            }
+            
             CurrentState = TurnState.ATTACK;
         }
 
@@ -115,6 +131,9 @@ namespace Combat
 
             // Do damage.
             DoDamage();
+
+            // Once taunted unit attacks provoker, reset taunted status.
+            IsTaunted = false;
 
             // Animate enemy back to initial position.
             while (MoveTowardsPosition(initialPosition))

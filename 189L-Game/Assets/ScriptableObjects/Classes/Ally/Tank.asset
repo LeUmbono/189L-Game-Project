@@ -19,4 +19,4 @@ MonoBehaviour:
   baseDefense: 7
   baseAgility: 7
   attackRange: 2
-  specialAbility: {fileID: 0}
+  specialAbility: {fileID: 11400000, guid: c2f7e3ddd19b34c43995dbd8fac4124d, type: 2}
