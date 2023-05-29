@@ -4,10 +4,9 @@ using UnityEngine;
 
 namespace Combat
 {
-    [CreateAssetMenu(fileName = "RangerSnipe", menuName = "Special/RangerSnipe")]
-    public class RangerSnipe : SpecialAbility
+    [CreateAssetMenu(fileName = "TankTaunt", menuName = "Special/TankTaunt")]
+    public class TankTaunt : SpecialAbility
     {
-
         public override void Execute(GameObject gameObject)
         {
             var PSM = gameObject.GetComponent<PlayerStateMachine>();
@@ -15,13 +14,16 @@ namespace Combat
 
             // Play animation.
 
-            // Deal damage. 
-            target.TakeDamage(PSM.Player.Attack * 2);
+            // Taunt the enemy.
+            target.IsTaunted = true;
+            target.UnitToTarget = gameObject;
         }
 
         public override List<bool> SelectTargets(GenericUnitStateMachine performer)
         {
             return new List<bool>() { false, false, false, false, true, true, true, true };
         }
+
     }
 }
+
