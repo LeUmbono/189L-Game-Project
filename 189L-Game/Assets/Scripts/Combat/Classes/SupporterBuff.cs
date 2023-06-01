@@ -50,6 +50,9 @@ namespace Combat
 
             return targets;
         }
-
+        public override float GetSteamBarChangeValue()
+        {
+            return -10.0f;
+        }
     }
 }
