@@ -44,9 +44,9 @@ namespace Combat
             switch (CurrentUIState)
             {
                 case UIStates.ACTIVATE:
-                    if (csm.TurnOrder.Count > 0 && csm.TurnOrder[0].tag == "Ally")
+                    if (CombatStateMachine.TurnOrder.Count > 0 && CombatStateMachine.TurnOrder[0].tag == "Ally")
                     {
-                        psm = csm.TurnOrder[0].GetComponent<PlayerStateMachine>();
+                        psm = CombatStateMachine.TurnOrder[0].GetComponent<PlayerStateMachine>();
                         PopulateUnitInfoPanel();
                         unitInfoPanel.SetActive(true);
                         selectActionPanel.SetActive(true);
