@@ -24,7 +24,7 @@ namespace Combat
         public List<GameObject> UnitsInBattle = new List<GameObject>();
 
         // List that tracks the turn order queue.
-        public List<GameObject> TurnOrder = new List<GameObject>();
+        public static List<GameObject> TurnOrder = new List<GameObject>();
 
         [SerializeField] private GameObject targetIndicator;
         private UIStateMachine uism;
