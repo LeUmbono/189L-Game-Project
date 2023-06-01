@@ -38,49 +38,11 @@ namespace Combat
 
             UnitsInBattle.AddRange(AlliesInBattle);
             UnitsInBattle.AddRange(EnemiesInBattle);
-
-            UnitsInBattle.Sort(delegate (GameObject x, GameObject y)
-            {
-                var xLocation = x.GetComponent<GenericUnitStateMachine>().Location;
-                var yLocation = y.GetComponent<GenericUnitStateMachine>().Location;
-
-                if (xLocation > yLocation)
-                {
-                    return 1;
-                }
-                else
-                {
-                    return -1;
-                }
-            });
+            ShuffleUnitPositions();
 
             TurnOrder.AddRange(GameObject.FindGameObjectsWithTag("Ally"));
             TurnOrder.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
-            TurnOrder.Sort(delegate (GameObject x, GameObject y)
-            {
-                float xAgility, yAgility;
-
-                if (x.tag == "Ally")
-                {
-                    xAgility = x.GetComponent<PlayerStateMachine>().Player.Agility;
-                }
-                else
-                {
-                    xAgility = x.GetComponent<EnemyStateMachine>().Enemy.Agility;
-                }
-
-                if (y.tag == "Ally")
-                {
-                    yAgility = y.GetComponent<PlayerStateMachine>().Player.Agility;
-                }
-                else
-                {
-                    yAgility = y.GetComponent<EnemyStateMachine>().Enemy.Agility;
-                }
-
-                if (xAgility < yAgility) return 1;
-                else return -1;
-            });
+            ShuffleTurnOrder();
 
             CurrentCombatState = CombatStates.TAKEACTION;
         }
@@ -140,6 +102,52 @@ namespace Combat
             }
         }
 
+        public void ShuffleUnitPositions()
+        {
+            UnitsInBattle.Sort(delegate (GameObject x, GameObject y)
+            {
+                var xLocation = x.GetComponent<GenericUnitStateMachine>().Location;
+                var yLocation = y.GetComponent<GenericUnitStateMachine>().Location;
+
+                if (xLocation > yLocation)
+                {
+                    return 1;
+                }
+                else
+                {
+                    return -1;
+                }
+            });
+        }
+
+        public static void ShuffleTurnOrder()
+        {
+            TurnOrder.Sort(delegate (GameObject x, GameObject y)
+            {
+                float xAgility, yAgility;
+
+                if (x.tag == "Ally")
+                {
+                    xAgility = x.GetComponent<PlayerStateMachine>().Player.Agility;
+                }
+                else
+                {
+                    xAgility = x.GetComponent<EnemyStateMachine>().Enemy.Agility;
+                }
+
+                if (y.tag == "Ally")
+                {
+                    yAgility = y.GetComponent<PlayerStateMachine>().Player.Agility;
+                }
+                else
+                {
+                    yAgility = y.GetComponent<EnemyStateMachine>().Enemy.Agility;
+                }
+
+                if (xAgility < yAgility) return 1;
+                else return -1;
+            });
+        }
         public void EndTurn(GameObject unit)
         {
             TurnOrder.RemoveAt(0);

@@ -87,17 +87,20 @@ namespace Combat
         private void ApplySteamBarInertEffects()
         {
             // Reset all player unit stats to base stats.
+            // Shuffle turn order.
             foreach(var ally in CombatStateMachine.AlliesInBattle)
             {
                 ally.GetComponent<PlayerStateMachine>().Player.ResetStats();
             }
 
+            CombatStateMachine.ShuffleTurnOrder();
             currentSteamState = SteamValue.InertDone;
         }
 
         private void ApplySteamBarOverclockedEffects()
         {
-            // Apply 1.5x multiplier to ATK, AGI. Shuffle turn order.
+            // Reset stats. Apply 1.5x multiplier to ATK, AGI.
+            // Shuffle turn order.
             foreach (var ally in CombatStateMachine.AlliesInBattle)
             {
                 ally.GetComponent<PlayerStateMachine>().Player.ResetStats();
@@ -105,13 +108,14 @@ namespace Combat
                     ApplyMultiplierToStats(1.5f, 1.0f, 1.5f);
             }
 
+            CombatStateMachine.ShuffleTurnOrder();
             currentSteamState = SteamValue.OverclockedDone;
         }
 
         private void ApplySteamBarShortcircuitedEffects()
         {
-            // Reset stats. Apply 0.5x multiplier to DEF. 
-            // Apply 1.5x multiplier to ATK, AGI. Shuffle turn order.
+            // Reset stats. Apply 0.5x multiplier to DEF, AGI. 
+            // Shuffle turn order.
             foreach (var ally in CombatStateMachine.AlliesInBattle)
             {
                 ally.GetComponent<PlayerStateMachine>().Player.ResetStats();
@@ -119,6 +123,7 @@ namespace Combat
                     ApplyMultiplierToStats(1.0f, 0.5f, 0.5f);
             }
 
+            CombatStateMachine.ShuffleTurnOrder();
             currentSteamState = SteamValue.ShortcircuitedDone;
         }
 

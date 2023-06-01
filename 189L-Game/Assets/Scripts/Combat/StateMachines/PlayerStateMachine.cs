@@ -64,7 +64,7 @@ namespace Combat
                         isDead = true;
 
                         // Remove unit from turn list.
-                        csm.TurnOrder.Remove(this.gameObject);
+                        CombatStateMachine.TurnOrder.Remove(this.gameObject);
                     }
                     break;
             }
