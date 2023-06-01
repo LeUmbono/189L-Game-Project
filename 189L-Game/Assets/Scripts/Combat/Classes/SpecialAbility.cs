@@ -15,5 +15,10 @@ namespace Combat
         {
             return null;
         }
+
+        public virtual float GetSteamBarChangeValue()
+        {
+            return 0.0f;
+        }
     }
 }

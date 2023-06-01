@@ -23,5 +23,10 @@ namespace Combat
         {
             return new List<bool>() { false, false, false, false, true, true, true, true };
         }
+
+        public override float GetSteamBarChangeValue()
+        {
+            return 10.0f;
+        }
     }
 }

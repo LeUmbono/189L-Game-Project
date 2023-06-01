@@ -117,19 +117,19 @@ namespace Combat
             // Do damage.
             DoDamage();
 
+            // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
+            csm.EndTurn(this.gameObject);
+
+            SteamBar.ChangeSteam(5.0f);
+
             // Animate enemy back to initial position.
             while (MoveTowardsPosition(initialPosition))
             {
                 yield return null;
             }
 
-            // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
-            csm.EndTurn(this.gameObject);
-
             // Set combat state of CSM to CheckGame.
             csm.CurrentCombatState = CombatStateMachine.CombatStates.CHECKGAME;
-
-            //csm.CurrentUIState = CombatStateMachine.UIStates.ACTIVATE;
 
             actionStarted = false;
             CurrentState = TurnState.WAIT;
@@ -149,6 +149,8 @@ namespace Combat
             // Remove this enemy game object from front of turn queue
             // and re-add back at the back of the queue.
             csm.EndTurn(this.gameObject);
+
+            SteamBar.ChangeSteam(-5.0f);
 
             // Set combat state of CSM to Wait.
             csm.CurrentCombatState = CombatStateMachine.CombatStates.WAIT;
@@ -189,6 +191,8 @@ namespace Combat
 
             // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
             csm.EndTurn(this.gameObject);
+
+            SteamBar.ChangeSteam(Player.BaseClassData.SpecialAbility.GetSteamBarChangeValue());
 
             // Set combat state of CSM to CheckGame.
             csm.CurrentCombatState = CombatStateMachine.CombatStates.CHECKGAME;
