@@ -1,34 +1,25 @@
 using System;
-using System.Security;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
-using static Combat.GenericUnitStateMachine;
 
 namespace Combat
 {
     public class SteamBar : MonoBehaviour
     {
-
         public Slider slider;
 
         public enum SteamValue
         {
             Inert,
-            InertDone,
             Overclocked,
-            OverclockedDone,
-            Shortcircuited,
-            ShortcircuitedDone
+            Shortcircuited
         }
 
-        [SerializeField] 
-        private int overclockedThreshold = 40;
-        [SerializeField] 
-        private int shortcircuitedThreshold = 60;
+        private static float overclockedThreshold = 40.0f;
+        private static float shortcircuitedThreshold = 60.0f;
+
         [Range(0f, 100f)]
         private static float steamValue = 0.0f;
-
         private static SteamValue currentSteamState;
 
         void Start()
@@ -39,52 +30,11 @@ namespace Combat
 
         void Update()
         {
-            switch (currentSteamState)
-            {
-                case SteamValue.Inert:
-                    ApplySteamBarInertEffects(); 
-                    break;
-                case SteamValue.InertDone:
-                    // If steam bar crosses appropriate threshold, move to
-                    // Overclocked state.
-                    if (slider.value >= overclockedThreshold)
-                    {
-                        currentSteamState = SteamValue.Overclocked;
-                    }
-                    break;
-                case SteamValue.Overclocked:
-                    ApplySteamBarOverclockedEffects();
-                    break;
-                case SteamValue.OverclockedDone:
-                    // If steam bar crosses shortcircuited threshold, move to
-                    // Shortcircuited state. Else if steam bar falls below 
-                    // overclocked threshold, move to Inert state.
-                    if (slider.value >= shortcircuitedThreshold)
-                    {
-                        currentSteamState = SteamValue.Overclocked;
-                    }
-                    else if (slider.value < overclockedThreshold)
-                    {
-                        currentSteamState = SteamValue.Inert;
-                    }
-                    break;
-                case SteamValue.Shortcircuited:
-                    ApplySteamBarShortcircuitedEffects();
-                    break;
-                case SteamValue.ShortcircuitedDone:
-                    // If steam bar falls below shortcircuited threshold, move to
-                    // Overclocked state.
-                    if (slider.value < shortcircuitedThreshold)
-                    {
-                        currentSteamState = SteamValue.Overclocked;
-                    }
-                    break;
-            }
-
+            // Update the appearance of the steam bar.
             slider.value = steamValue;
         }
 
-        private void ApplySteamBarInertEffects()
+        private static void ApplySteamBarInertEffects()
         {
             // Reset all player unit stats to base stats.
             // Shuffle turn order.
@@ -94,10 +44,9 @@ namespace Combat
             }
 
             CombatStateMachine.ShuffleTurnOrder();
-            currentSteamState = SteamValue.InertDone;
         }
 
-        private void ApplySteamBarOverclockedEffects()
+        private static void ApplySteamBarOverclockedEffects()
         {
             // Reset stats. Apply 1.5x multiplier to ATK, AGI.
             // Shuffle turn order.
@@ -109,10 +58,9 @@ namespace Combat
             }
 
             CombatStateMachine.ShuffleTurnOrder();
-            currentSteamState = SteamValue.OverclockedDone;
         }
 
-        private void ApplySteamBarShortcircuitedEffects()
+        private static void ApplySteamBarShortcircuitedEffects()
         {
             // Reset stats. Apply 0.5x multiplier to DEF, AGI. 
             // Shuffle turn order.
@@ -124,12 +72,45 @@ namespace Combat
             }
 
             CombatStateMachine.ShuffleTurnOrder();
-            currentSteamState = SteamValue.ShortcircuitedDone;
         }
 
         public static void ChangeSteam(float steam)
         {
             steamValue += steam;
+
+            var previousSteamState = currentSteamState;
+
+            // Set the current steam state.
+            if (0.0f <= steamValue && steamValue < overclockedThreshold)
+            {
+                currentSteamState = SteamValue.Inert;
+            }
+            else if (overclockedThreshold <= steamValue && steamValue < shortcircuitedThreshold)
+            {
+                currentSteamState = SteamValue.Overclocked;
+            }
+            else if (shortcircuitedThreshold <= steamValue && steamValue < 100.0f)
+            {
+                currentSteamState = SteamValue.Shortcircuited;
+            }
+
+            var isInDifferentState = previousSteamState != currentSteamState ? true : false;
+
+            if(isInDifferentState)
+            {
+                switch(currentSteamState)
+                {
+                    case SteamValue.Inert:
+                        ApplySteamBarInertEffects();
+                        break;
+                    case SteamValue.Overclocked:
+                        ApplySteamBarOverclockedEffects();
+                        break;
+                    case SteamValue.Shortcircuited:
+                        ApplySteamBarShortcircuitedEffects();
+                        break;
+                }
+            }
         }
 
         public static SteamValue GetSteamValue()
