@@ -39,7 +39,7 @@ namespace Combat
                     else
                     {
                         // Make dead character invulnerable to enemy attack.
-                        csm.EnemiesInBattle.Remove(this.gameObject);
+                        CombatStateMachine.EnemiesInBattle.Remove(this.gameObject);
 
                         // Change sprite to reflect death / play death animation.
                         this.gameObject.GetComponent<SpriteRenderer>().color = Color.black;
@@ -85,7 +85,7 @@ namespace Combat
 
             if(!IsTaunted)
             {
-                UnitToTarget = csm.AlliesInBattle[Random.Range(0, csm.AlliesInBattle.Count)];
+                UnitToTarget = CombatStateMachine.AlliesInBattle[Random.Range(0, CombatStateMachine.AlliesInBattle.Count)];
             }
             
             CurrentState = TurnState.ATTACK;

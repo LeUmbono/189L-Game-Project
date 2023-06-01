@@ -17,8 +17,8 @@ namespace Combat
 
         public CombatStates CurrentCombatState;
 
-        public List<GameObject> AlliesInBattle = new List<GameObject>();
-        public List<GameObject> EnemiesInBattle = new List<GameObject>();
+        public static List<GameObject> AlliesInBattle = new List<GameObject>();
+        public static List<GameObject> EnemiesInBattle = new List<GameObject>();
 
         // List that tracks the positions of the units in battle.
         public List<GameObject> UnitsInBattle = new List<GameObject>();

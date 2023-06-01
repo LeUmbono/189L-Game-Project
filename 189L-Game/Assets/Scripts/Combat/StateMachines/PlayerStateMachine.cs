@@ -41,7 +41,7 @@ namespace Combat
                     else
                     {
                         // Make dead character invulnerable to enemy attack.
-                        csm.AlliesInBattle.Remove(this.gameObject);
+                        CombatStateMachine.AlliesInBattle.Remove(this.gameObject);
 
                         // Change sprite to reflect death / play death animation.
                         this.gameObject.GetComponent<SpriteRenderer>().color = Color.gray;
