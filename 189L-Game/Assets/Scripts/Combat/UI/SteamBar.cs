@@ -34,6 +34,45 @@ namespace Combat
             slider.value = steamValue;
         }
 
+        public static void ChangeSteam(float steam)
+        {
+            steamValue += steam;
+
+            var previousSteamState = currentSteamState;
+
+            // Set the current steam state.
+            if (0.0f <= steamValue && steamValue < overclockedThreshold)
+            {
+                currentSteamState = SteamValue.Inert;
+            }
+            else if (overclockedThreshold <= steamValue && steamValue < shortcircuitedThreshold)
+            {
+                currentSteamState = SteamValue.Overclocked;
+            }
+            else if (shortcircuitedThreshold <= steamValue && steamValue < 100.0f)
+            {
+                currentSteamState = SteamValue.Shortcircuited;
+            }
+
+            var isInDifferentState = previousSteamState != currentSteamState ? true : false;
+
+            if (isInDifferentState)
+            {
+                switch (currentSteamState)
+                {
+                    case SteamValue.Inert:
+                        ApplySteamBarInertEffects();
+                        break;
+                    case SteamValue.Overclocked:
+                        ApplySteamBarOverclockedEffects();
+                        break;
+                    case SteamValue.Shortcircuited:
+                        ApplySteamBarShortcircuitedEffects();
+                        break;
+                }
+            }
+        }
+
         private static void ApplySteamBarInertEffects()
         {
             // Reset all player unit stats to base stats.
@@ -72,45 +111,6 @@ namespace Combat
             }
 
             CombatStateMachine.ShuffleTurnOrder();
-        }
-
-        public static void ChangeSteam(float steam)
-        {
-            steamValue += steam;
-
-            var previousSteamState = currentSteamState;
-
-            // Set the current steam state.
-            if (0.0f <= steamValue && steamValue < overclockedThreshold)
-            {
-                currentSteamState = SteamValue.Inert;
-            }
-            else if (overclockedThreshold <= steamValue && steamValue < shortcircuitedThreshold)
-            {
-                currentSteamState = SteamValue.Overclocked;
-            }
-            else if (shortcircuitedThreshold <= steamValue && steamValue < 100.0f)
-            {
-                currentSteamState = SteamValue.Shortcircuited;
-            }
-
-            var isInDifferentState = previousSteamState != currentSteamState ? true : false;
-
-            if(isInDifferentState)
-            {
-                switch(currentSteamState)
-                {
-                    case SteamValue.Inert:
-                        ApplySteamBarInertEffects();
-                        break;
-                    case SteamValue.Overclocked:
-                        ApplySteamBarOverclockedEffects();
-                        break;
-                    case SteamValue.Shortcircuited:
-                        ApplySteamBarShortcircuitedEffects();
-                        break;
-                }
-            }
         }
 
         public static SteamValue GetSteamValue()
