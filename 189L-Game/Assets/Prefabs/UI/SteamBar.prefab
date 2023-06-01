@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinValue: 0
   m_MaxValue: 100
   m_WholeNumbers: 1
-  m_Value: 93
+  m_Value: 89
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 362a1a012eba3ce4f89355f3adf40801, type: 2}
+  m_Material: {fileID: 2100000, guid: b6620903787bdcf4da9ad5040562ddc3, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -257,7 +257,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c2ed9ec1e579936488f02217f97c3712, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ed29dddf4a1511841956d65af3af3a42, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
