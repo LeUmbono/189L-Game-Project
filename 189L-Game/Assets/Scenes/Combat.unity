@@ -1134,6 +1134,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5555565389819343665, guid: a7590abcff2cb2840a9e2bd6fb04d202, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: b143f5d70d2d24b4492f788af5cacecd, type: 3}
+    - target: {fileID: 5555565389819343665, guid: a7590abcff2cb2840a9e2bd6fb04d202, type: 3}
       propertyPath: m_Color.b
       value: 0.5660378
       objectReference: {fileID: 0}
@@ -1229,6 +1233,7 @@ MonoBehaviour:
     Attack: 20
     Defense: 7
     Agility: 7
+  BuffAmount: 0
 --- !u!1 &547582933
 GameObject:
   m_ObjectHideFlags: 0
@@ -2167,6 +2172,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5555565389819343665, guid: a7590abcff2cb2840a9e2bd6fb04d202, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: e092a05537e54a4459e5887a2e0a94d0, type: 3}
+    - target: {fileID: 5555565389819343665, guid: a7590abcff2cb2840a9e2bd6fb04d202, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
@@ -2262,6 +2271,7 @@ MonoBehaviour:
     Attack: 10
     Defense: 10
     Agility: 10
+  BuffAmount: 0
 --- !u!1 &937083804
 GameObject:
   m_ObjectHideFlags: 0
@@ -2608,6 +2618,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5555565389819343665, guid: a7590abcff2cb2840a9e2bd6fb04d202, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: cad3d67b8787b154ea5c30a468adcdfb, type: 3}
+    - target: {fileID: 5555565389819343665, guid: a7590abcff2cb2840a9e2bd6fb04d202, type: 3}
       propertyPath: m_Color.b
       value: 0.30943394
       objectReference: {fileID: 0}
@@ -2703,6 +2717,7 @@ MonoBehaviour:
     Attack: 20
     Defense: 5
     Agility: 14
+  BuffAmount: 0
 --- !u!1001 &1108262695
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4019,6 +4034,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5555565389819343665, guid: a7590abcff2cb2840a9e2bd6fb04d202, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7284cfb861033c34497a2518afd4af8b, type: 3}
     - target: {fileID: 6852634846256956296, guid: a7590abcff2cb2840a9e2bd6fb04d202, type: 3}
       propertyPath: m_Name
       value: Supporter
@@ -4103,6 +4122,7 @@ MonoBehaviour:
     Attack: 10
     Defense: 10
     Agility: 16
+  BuffAmount: 0
 --- !u!1 &1761927348 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7798994515904964817, guid: 573ba593a91d642419e5491f5ab4e094, type: 3}
@@ -4521,10 +4541,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CurrentCombatState: 0
-  AlliesInBattle: []
-  EnemiesInBattle: []
   UnitsInBattle: []
-  TurnOrder: []
   targetIndicator: {fileID: 2144776049}
 --- !u!1001 &2122074494
 PrefabInstance:
