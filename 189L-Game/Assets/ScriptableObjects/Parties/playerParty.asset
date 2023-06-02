@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19ef6ca01cea25b42b62751c294bd3cb, type: 3}
+  m_Name: playerParty
+  m_EditorClassIdentifier: 
+  slot1: {fileID: 11400000, guid: 3a3850c36f1bffc42a31b9446cbee4bb, type: 2}
+  slot2: {fileID: 11400000, guid: bfcac68af65e4f447aab5c37644bfbff, type: 2}
+  slot3: {fileID: 11400000, guid: 36613402d4ff7a442875c67639ee8c9a, type: 2}
+  slot4: {fileID: 11400000, guid: 598cd6db82c9d4445b62286f287cdaf7, type: 2}
