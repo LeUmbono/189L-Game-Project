@@ -7,7 +7,7 @@ namespace Combat
     {
         public PlayerUnit Player;
         public float BuffAmount = 0.0f;
-
+        
         void Start()
         {
             CurrentState = TurnState.WAIT;

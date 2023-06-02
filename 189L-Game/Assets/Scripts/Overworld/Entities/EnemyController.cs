@@ -6,7 +6,7 @@ namespace Overworld
 {
     public class EnemyController : OverworldEntity
     {
-        [SerializeField] private SceneTransitioner transitioner;
+        [SerializeField] private SceneGameManager transitioner;
         
         private void OnTriggerEnter2D(Collider2D other) 
         {
