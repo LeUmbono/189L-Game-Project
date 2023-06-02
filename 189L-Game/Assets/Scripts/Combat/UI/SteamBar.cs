@@ -17,8 +17,6 @@ namespace Combat
 
         private static float overclockedThreshold = 40.0f;
         private static float shortcircuitedThreshold = 60.0f;
-
-        [Range(0f, 100f)]
         private static float steamValue = 0.0f;
         private static SteamValue currentSteamState;
 
@@ -37,6 +35,16 @@ namespace Combat
         public static void ChangeSteam(float steam)
         {
             steamValue += steam;
+
+            // Ensure steam value remains within boundaries.
+            if(steamValue < 0.0f) 
+            { 
+                steamValue = 0.0f;
+            }
+            else if(steamValue > 100.0f) 
+            {
+                steamValue = 100.0f;
+            }
 
             var previousSteamState = currentSteamState;
 
