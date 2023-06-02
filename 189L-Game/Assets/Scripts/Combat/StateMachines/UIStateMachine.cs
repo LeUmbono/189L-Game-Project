@@ -140,7 +140,7 @@ namespace Combat
             unitInfoPanel.transform.Find("Name").GetComponent<TMPro.TextMeshProUGUI>().text = psm.Player.UnitName;
             unitInfoPanel.transform.Find("ClassName").GetComponent<TMPro.TextMeshProUGUI>().text = psm.Player.BaseClassData.ClassName;
             unitInfoPanel.transform.Find("HPValue").GetComponent<TMPro.TextMeshProUGUI>().text = Mathf.Ceil(psm.Player.CurrentHP).ToString() + " / " + Mathf.Ceil(psm.Player.MaxHP).ToString();
-            unitInfoPanel.transform.Find("AttackValue").GetComponent<TMPro.TextMeshProUGUI>().text = Mathf.Ceil(psm.Player.Attack).ToString();
+            unitInfoPanel.transform.Find("AttackValue").GetComponent<TMPro.TextMeshProUGUI>().text = Mathf.Ceil(psm.Player.Attack + psm.BuffAmount).ToString();
             unitInfoPanel.transform.Find("DefenseValue").GetComponent<TMPro.TextMeshProUGUI>().text = Mathf.Ceil(psm.Player.Defense).ToString();
             unitInfoPanel.transform.Find("AgilityValue").GetComponent<TMPro.TextMeshProUGUI>().text = Mathf.Ceil(psm.Player.Agility).ToString();
             unitInfoPanel.transform.Find("RangeValue").GetComponent<TMPro.TextMeshProUGUI>().text = psm.Player.BaseClassData.AttackRange.ToString();

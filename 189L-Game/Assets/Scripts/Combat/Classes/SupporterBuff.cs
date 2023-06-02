@@ -13,21 +13,8 @@ namespace Combat
 
             // Play animation.
 
-            // Buff the unit's attack or defense.
-            int buffSeed = Random.Range(0, 2);
-
-            switch(buffSeed)
-            {
-                case 0:
-                    target.Player.Attack += 0.2f * target.Player.BaseClassData.BaseAttack;
-                    break;
-                case 1:
-                    target.Player.Defense += 0.2f * target.Player.BaseClassData.BaseDefense;
-                    break;
-                default:
-                    Debug.Log("Invalid buff seed.");
-                    break;
-            }
+            // Buff the unit's attack.
+            target.BuffAmount += 0.2f * target.Player.Attack;
 
             target.UnitToTarget = gameObject;
         }

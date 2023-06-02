@@ -6,6 +6,7 @@ namespace Combat
     public class PlayerStateMachine : GenericUnitStateMachine
     {
         public PlayerUnit Player;
+        public float BuffAmount = 0.0f;
 
         void Start()
         {
@@ -72,7 +73,7 @@ namespace Combat
 
         protected override void DoDamage()
         {
-            UnitToTarget.GetComponent<EnemyStateMachine>().TakeDamage(Player.Attack);
+            UnitToTarget.GetComponent<EnemyStateMachine>().TakeDamage(Player.Attack + BuffAmount);
         }
 
         public override void TakeDamage(float damage)
