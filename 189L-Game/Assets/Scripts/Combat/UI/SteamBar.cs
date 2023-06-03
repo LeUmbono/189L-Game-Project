@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -15,15 +16,37 @@ namespace Combat
             Shortcircuited
         }
 
-        private static float overclockedThreshold = 40.0f;
-        private static float shortcircuitedThreshold = 60.0f;
-        private static float steamValue = 0.0f;
-        private static SteamValue currentSteamState;
+        // Variables for combat music that changes with the steam bar.
+        private static AudioSource audioSource;
+        [SerializeField]
+        private AudioClip inertTheme;
+        [SerializeField]
+        private AudioClip inertTransition;
+        [SerializeField]
+        private AudioClip overclockedTheme;
+        [SerializeField]
+        private AudioClip overclockedTransition;
+        [SerializeField]
+        private AudioClip shortcircuitedTheme;
+        [SerializeField]
+        private AudioClip shortcircuitedTransition;
+
+        [SerializeField]
+        private float overclockedThreshold = 40.0f;
+        [SerializeField]
+        private float shortcircuitedThreshold = 60.0f;
+        private float steamValue = 0.0f;
+        private SteamValue currentSteamState;
 
         void Start()
         {
+            audioSource = GameObject.Find("CombatMusicManager").GetComponent<AudioSource>();
+            audioSource.clip = inertTheme;
             currentSteamState = SteamValue.Inert;
             slider.value = 0.0f;
+
+            audioSource.loop = true;
+            audioSource.Play();
         }
 
         void Update()
@@ -32,7 +55,7 @@ namespace Combat
             slider.value = steamValue;
         }
 
-        public static void ChangeSteam(float steam)
+        public void ChangeSteam(float steam)
         {
             steamValue += steam;
 
@@ -81,17 +104,21 @@ namespace Combat
             }
         }
 
-        private static void ApplySteamBarInertEffects()
+        private void ApplySteamBarInertEffects()
         {
+            // Transition to inert theme.
+            StartCoroutine(PlayInertTheme());
             // Reset all player unit stats to base stats.
-            foreach(var ally in CombatStateMachine.AlliesInBattle)
+            foreach (var ally in CombatStateMachine.AlliesInBattle)
             {
                 ally.GetComponent<PlayerStateMachine>().Player.ResetStats();
             }
         }
 
-        private static void ApplySteamBarOverclockedEffects()
+        private void ApplySteamBarOverclockedEffects()
         {
+            // Transition to overclocked theme.
+            StartCoroutine(PlayOverclockedTheme());
             // Reset stats. Apply 1.5x multiplier to ATK, AGI.
             foreach (var ally in CombatStateMachine.AlliesInBattle)
             {
@@ -101,8 +128,10 @@ namespace Combat
             }
         }
 
-        private static void ApplySteamBarShortcircuitedEffects()
+        private void ApplySteamBarShortcircuitedEffects()
         {
+            // Transition to shortcircuited theme.
+            StartCoroutine(PlayShortcircuitedTheme());
             // Reset stats. Apply 0.5x multiplier to DEF, AGI.
             foreach (var ally in CombatStateMachine.AlliesInBattle)
             {
@@ -112,9 +141,51 @@ namespace Combat
             }
         }
 
-        public static SteamValue GetSteamValue()
+        public SteamValue GetSteamValue()
         {
             return currentSteamState;
+        }
+
+        IEnumerator PlayInertTheme()
+        {
+            /*
+            audioSource.loop = false;
+            audioSource.clip = inertTransition;
+            audioSource.Play();
+
+            yield return new WaitWhile(() => audioSource.isPlaying);
+            */
+            yield return new WaitForSeconds(1);
+
+            audioSource.loop = true;
+            audioSource.clip = inertTheme;
+            audioSource.Play();
+        }
+
+        IEnumerator PlayOverclockedTheme()
+        {
+            audioSource.loop = false;
+            audioSource.clip = overclockedTransition;
+            audioSource.Play();
+
+            yield return new WaitWhile(()=>audioSource.isPlaying);
+
+            audioSource.loop = true;
+            audioSource.clip = overclockedTheme;
+            audioSource.Play();
+        }
+
+        IEnumerator PlayShortcircuitedTheme()
+        {
+            audioSource.loop = false;
+            audioSource.clip = shortcircuitedTransition;
+            audioSource.Play();
+
+            yield return new WaitWhile(() => audioSource.isPlaying);
+
+            audioSource.loop = true;
+            audioSource.clip = shortcircuitedTheme;
+            audioSource.Play();
         }
     }
 }

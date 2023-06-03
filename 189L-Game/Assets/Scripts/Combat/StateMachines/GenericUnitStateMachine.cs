@@ -28,6 +28,7 @@ namespace Combat
         protected UIStateMachine uism;
         protected bool actionStarted = false;
         protected bool isDead = false;
+        protected SteamBar steamBar;
 
         // Getters.
         public int Location => location;

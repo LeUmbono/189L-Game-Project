@@ -3366,6 +3366,34 @@ PrefabInstance:
       propertyPath: m_Value
       value: 98
       objectReference: {fileID: 0}
+    - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
+      propertyPath: inertTheme
+      value: 
+      objectReference: {fileID: 8300000, guid: 8f63719825669234c95a9aefccb21e6c, type: 3}
+    - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
+      propertyPath: overclockedTheme
+      value: 
+      objectReference: {fileID: 8300000, guid: 1b1283d06f45a58429f9427e00d7583e, type: 3}
+    - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
+      propertyPath: shortcircuitedTheme
+      value: 
+      objectReference: {fileID: 8300000, guid: be56a1f9f56b2b2419877892e0ebd40b, type: 3}
+    - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
+      propertyPath: overclockedThreshold
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
+      propertyPath: overclockedTransition
+      value: 
+      objectReference: {fileID: 8300000, guid: a199e17706be09443934cfeccbb295b8, type: 3}
+    - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
+      propertyPath: shortcircuitedThreshold
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
+      propertyPath: shortcircuitedTransition
+      value: 
+      objectReference: {fileID: 8300000, guid: 9ccdcd1a17fe86c4793518048667fe3d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -5207,7 +5235,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
