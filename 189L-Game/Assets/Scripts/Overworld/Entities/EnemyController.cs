@@ -7,13 +7,14 @@ namespace Overworld
     public class EnemyController : OverworldEntity
     {
         [SerializeField] private SceneGameManager transitioner;
-        
-        private void OnTriggerEnter2D(Collider2D other) 
+        [SerializeField] private EnemyPartyData partyData;
+
+        private void OnTriggerEnter2D(Collider2D other)
         {
             if(other.tag == "Ally")
             {
                 //other.gameObject.GetComponent<PlayerController>().DisableInput();
-                PartyData allyParty = other.gameObject.GetComponent<PlayerController>().partyData;
+                PlayerPartyData allyParty = other.gameObject.GetComponent<PlayerController>().partyData;
                 StartCoroutine(transitioner.LoadCombatScene(allyParty, this.partyData));
             }
         }

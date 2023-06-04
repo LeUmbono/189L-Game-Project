@@ -14,6 +14,8 @@ namespace Overworld
         private const float tileDistance = 1.0f;
         private bool isNotInCombat = true;
 
+        public PlayerPartyData partyData;
+
         public void DisableInput()
         {
             this.isNotInCombat = false;
