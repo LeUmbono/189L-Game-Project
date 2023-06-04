@@ -27,7 +27,9 @@ namespace Combat
         protected CombatStateMachine csm;
         protected UIStateMachine uism;
         protected bool actionStarted = false;
+
         protected bool isDead;
+        protected SteamBar steamBar;
 
         // Getters.
         public int Location => location;
