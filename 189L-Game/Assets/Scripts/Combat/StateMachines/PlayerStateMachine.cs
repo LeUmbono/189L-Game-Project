@@ -7,6 +7,30 @@ namespace Combat
     {
         public PlayerUnit Player;
         public float BuffAmount = 0.0f;
+        private SceneGameManager gameManager;
+
+        void Awake()
+        {
+            gameManager = GameObject.Find("GameManager").GetComponent<SceneGameManager>();
+            switch(this.location)
+            {
+                case 0:
+                    Player = gameManager.playerData.slot1;
+                    break;
+                case 1:
+                    Player = gameManager.playerData.slot2;
+                    break;
+                case 2:
+                    Player = gameManager.playerData.slot3;
+                    break;
+                case 3:
+                    Player = gameManager.playerData.slot4;
+                    break;
+                default:
+                    Debug.LogError("NO PROPER LOCATION");
+                    break;
+            }
+        }
 
         void Start()
         {

@@ -29,6 +29,14 @@ namespace Combat
         [SerializeField] private GameObject targetIndicator;
         private UIStateMachine uism;
 
+        private SceneGameManager gameManager;
+
+        void Awake()
+        {
+            gameManager = GameObject.Find("GameManager").GetComponent<SceneGameManager>();
+            gameManager.InitializeCombatScene();
+        }
+
         void Start()
         {
             uism = GameObject.Find("UIManager").GetComponent<UIStateMachine>();
@@ -95,9 +103,11 @@ namespace Combat
                     break;
                 case CombatStates.WIN:
                     Debug.Log("You win!");
+                    StartCoroutine(gameManager.LoadOverworldScene());
                     break;
                 case CombatStates.LOSE:
-                    Debug.Log("You lose!");
+                    Debug.Log("You lose");
+                    StartCoroutine(gameManager.LoadTitleScene());
                     break;
             }
         }

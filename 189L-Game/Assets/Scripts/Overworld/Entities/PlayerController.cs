@@ -4,13 +4,22 @@ using UnityEngine;
 
 namespace Overworld
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : OverworldEntity
     {
+        //Movement vars
         [SerializeField] private float moveSpeed = 5.0f;
         [SerializeField] private LayerMask collisionLayer;
         private Transform movePoint;
         private bool canMove = true;
         private const float tileDistance = 1.0f;
+        private bool isNotInCombat = true;
+
+        public PlayerPartyData partyData;
+
+        public void DisableInput()
+        {
+            this.isNotInCombat = false;
+        }
 
         private void Awake()
         {
@@ -26,7 +35,7 @@ namespace Overworld
         {
             this.transform.position = Vector3.MoveTowards(this.transform.position, this.movePoint.position, moveSpeed * Time.deltaTime);
 
-            if (canMove)
+            if (canMove && isNotInCombat)
             {
                 CheckForInput();
             }

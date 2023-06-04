@@ -13,7 +13,7 @@ namespace Combat
         {
             Attack = BaseClassData.BaseAttack;
             Defense = BaseClassData.BaseDefense;
-            Agility = BaseClassData.BaseAgility;    
+            Agility = BaseClassData.BaseAgility;
         }
 
         public void ApplyMultiplierToStats(float atkMultiplier, float defMultiplier, float agiMultiplier)
@@ -22,6 +22,6 @@ namespace Combat
             Defense *= defMultiplier;
             Agility *= atkMultiplier;
         }
-           
+
     }
 }
