@@ -27,7 +27,7 @@ namespace Combat
         protected CombatStateMachine csm;
         protected UIStateMachine uism;
         protected bool actionStarted = false;
-        protected bool isDead = false;
+        protected bool isDead;
 
         // Getters.
         public int Location => location;

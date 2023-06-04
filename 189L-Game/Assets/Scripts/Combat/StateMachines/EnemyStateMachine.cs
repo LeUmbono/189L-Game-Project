@@ -9,10 +9,13 @@ namespace Combat
     public class EnemyStateMachine : GenericUnitStateMachine
     {
         public EnemyUnit Enemy;
-        public bool IsTaunted = false;
+        public bool IsTaunted;
         void Start()
         {
+            isDead = false;
+            IsTaunted = false;
             CurrentState = TurnState.WAIT;
+
             csm = GameObject.Find("CombatManager").GetComponent<CombatStateMachine>();
             uism = GameObject.Find("UIManager").GetComponent<UIStateMachine>();
             uism.HealthBars[Location].GetComponent<HealthBar>().SetMaxHealth(Enemy.MaxHP);

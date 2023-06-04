@@ -6,11 +6,14 @@ namespace Combat
     public class PlayerStateMachine : GenericUnitStateMachine
     {
         public PlayerUnit Player;
-        public float BuffAmount = 0.0f;
+        public float BuffAmount;
 
         void Start()
         {
+            isDead = false;
+            BuffAmount = 0.0f;
             CurrentState = TurnState.WAIT;
+
             csm = GameObject.Find("CombatManager").GetComponent<CombatStateMachine>();
             uism = GameObject.Find("UIManager").GetComponent<UIStateMachine>();
             uism.HealthBars[Location].GetComponent<HealthBar>().SetMaxHealth(Player.MaxHP);
