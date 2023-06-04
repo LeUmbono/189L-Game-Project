@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcaba3abee95a43dca4a67cd91021d68, type: 3}
   m_Name: playerParty
   m_EditorClassIdentifier: 
-
   slot1: {fileID: 11400000, guid: 598cd6db82c9d4445b62286f287cdaf7, type: 2}
   slot2: {fileID: 11400000, guid: 36613402d4ff7a442875c67639ee8c9a, type: 2}
   slot3: {fileID: 11400000, guid: bfcac68af65e4f447aab5c37644bfbff, type: 2}
@@ -21,7 +20,7 @@ MonoBehaviour:
   slot2curHP: 25
   slot3curHP: 30
   slot4curHP: 50
-  slot1name: R4NG-3R
-  slot2name: HE41-3R
-  slot3name: HE11P-3R
-  slot4name: T3NK-3R
+  slot1name: Joe
+  slot2name: Schmoe
+  slot3name: Moe
+  slot4name: Aron
