@@ -103,6 +103,7 @@ namespace Combat
                     break;
                 case CombatStates.WIN:
                     Debug.Log("You win!");
+                    gameManager.UpdatePlayerData();
                     StartCoroutine(gameManager.LoadOverworldScene());
                     break;
                 case CombatStates.LOSE:

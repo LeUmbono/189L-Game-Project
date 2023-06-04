@@ -13,6 +13,9 @@ public class SceneGameManager : MonoBehaviour
     [SerializeField] private float timeToWait;
     [SerializeField][Range(0, 1)] private float slowdownPercent;
 
+    //Holds Reference to OverworldPlayer
+    private PlayerController overworldPlayer;
+
     //Holds the most recent reference to player and enemy
     public PartyData playerData;
     public PartyData enemyData;
@@ -21,6 +24,7 @@ public class SceneGameManager : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject);
         playerData = GameObject.FindWithTag("Ally").GetComponent<PlayerController>().partyData;
+        overworldPlayer = GameObject.FindWithTag("Ally").GetComponent<PlayerController>();
     }
 
     public IEnumerator LoadCombatScene(PartyData pData, PartyData eData)
@@ -35,11 +39,40 @@ public class SceneGameManager : MonoBehaviour
         enemyData = eData;
     }
 
+    //To only be called on from overworld / after combat
+    public void UpdatePlayerData()
+    {
+        GameObject[] allies = GameObject.FindGameObjectsWithTag("Ally");
+        foreach(GameObject ally in allies)
+        {
+            PlayerStateMachine psm = ally.GetComponent<PlayerStateMachine>();
+            switch(psm.Location)
+            {
+                case 0:
+                    this.playerData.slot1curHP = psm.Player.CurrentHP;
+                    break;
+                case 1:
+                    this.playerData.slot2curHP = psm.Player.CurrentHP;
+                    break;
+                case 2:
+                    this.playerData.slot3curHP = psm.Player.CurrentHP;
+                    break;
+                case 3:
+                    this.playerData.slot4curHP = psm.Player.CurrentHP;
+                    break;
+                default:
+                    Debug.LogError("NO PROPER LOCATION");
+                    break;
+            }
+        }
+    }
+
     public IEnumerator LoadOverworldScene()
     {
         Debug.Log("Play Transition");
         yield return new WaitForSeconds(timeToWait);
         SceneManager.LoadScene(overworldSceneName, LoadSceneMode.Single);
+        overworldPlayer.partyData = playerData;
     }
 
     public IEnumerator LoadTitleScene()
@@ -75,7 +108,7 @@ public class SceneGameManager : MonoBehaviour
                 default:
                     Debug.LogError("NO PROPER LOCATION");
                     break;
-          }
+            }
         }
 
         foreach (GameObject enemy in enemies)
