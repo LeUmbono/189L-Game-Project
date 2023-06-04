@@ -33,8 +33,13 @@ namespace Combat
 
         void Awake()
         {
+            /*
             gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<SceneGameManager>();
-            gameManager.InitializeCombatScene();
+            if (gameManager != null)
+            {
+                gameManager.InitializeCombatScene();
+            }
+            */
         }
 
         void Start()
