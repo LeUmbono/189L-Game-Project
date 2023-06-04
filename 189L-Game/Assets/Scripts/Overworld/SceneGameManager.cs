@@ -13,10 +13,10 @@ public class SceneGameManager : MonoBehaviour
     [SerializeField] private float timeToWait;
     [SerializeField][Range(0, 1)] private float slowdownPercent;
 
-    //Holds Reference to OverworldPlayer
+    // Holds reference to overworld player.
     private PlayerController overworldPlayer;
 
-    //Holds the most recent reference to player and enemy
+    // Holds the most recent references to player and enemy parties.
     public PartyData playerData;
     public PartyData enemyData;
 
@@ -39,7 +39,7 @@ public class SceneGameManager : MonoBehaviour
         enemyData = eData;
     }
 
-    //To only be called on from overworld / after combat
+    // Only to be called from overworld / after combat.
     public void UpdatePlayerData()
     {
         GameObject[] allies = GameObject.FindGameObjectsWithTag("Ally");
@@ -87,7 +87,7 @@ public class SceneGameManager : MonoBehaviour
         GameObject[] allies = GameObject.FindGameObjectsWithTag("Ally");
         GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
 
-        //initializes from top to bottom based on scene
+        // Initializes from top to bottom based on scene hierarchy.
         foreach (GameObject ally in allies)
         {
             PlayerStateMachine psm = ally.GetComponent<PlayerStateMachine>();

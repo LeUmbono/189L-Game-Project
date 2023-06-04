@@ -15,7 +15,6 @@ namespace Combat
             CurrentState = TurnState.WAIT;
 
             steamBar = GameObject.Find("SteamBar").GetComponent<SteamBar>();
-            
             csm = GameObject.Find("CombatManager").GetComponent<CombatStateMachine>();
             uism = GameObject.Find("UIManager").GetComponent<UIStateMachine>();
             uism.HealthBars[Location].GetComponent<HealthBar>().SetMaxHealth(Player.MaxHP);

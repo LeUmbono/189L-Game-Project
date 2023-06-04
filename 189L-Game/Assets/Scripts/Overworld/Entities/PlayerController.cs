@@ -6,7 +6,7 @@ namespace Overworld
 {
     public class PlayerController : OverworldEntity
     {
-        //Movement vars
+        // Movement variables.
         [SerializeField] private float moveSpeed = 5.0f;
         [SerializeField] private LayerMask collisionLayer;
         private Transform movePoint;

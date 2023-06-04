@@ -11,10 +11,10 @@ namespace Combat
         public ClassData BaseClassData;
 
         // Run-time stats of unit.
-        public float CurrentHP; //{ get; private set; }
-        public float MaxHP; //{ get; private set; }
-        public float Attack; //{ get; private set; }
-        public float Defense; //{ get; private set; }
-        public float Agility; //{ get; private set; }
+        public float CurrentHP; 
+        public float MaxHP; 
+        public float Attack; 
+        public float Defense; 
+        public float Agility; 
     }
 }
