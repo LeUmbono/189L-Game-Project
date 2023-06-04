@@ -17,14 +17,14 @@ namespace Combat
 
         public CombatStates CurrentCombatState;
 
-        public static List<GameObject> AlliesInBattle = new List<GameObject>();
-        public static List<GameObject> EnemiesInBattle = new List<GameObject>();
+        public static List<GameObject> AlliesInBattle;
+        public static List<GameObject> EnemiesInBattle;
 
         // List that tracks the positions of the units in battle.
-        public List<GameObject> UnitsInBattle = new List<GameObject>();
+        public List<GameObject> UnitsInBattle;
 
         // List that tracks the turn order queue.
-        public static List<GameObject> TurnOrder = new List<GameObject>();
+        public static List<GameObject> TurnOrder;
 
         [SerializeField] private GameObject targetIndicator;
         private UIStateMachine uism;
@@ -33,12 +33,17 @@ namespace Combat
 
         void Awake()
         {
-            gameManager = GameObject.Find("GameManager").GetComponent<SceneGameManager>();
+            gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<SceneGameManager>();
             gameManager.InitializeCombatScene();
         }
 
         void Start()
         {
+            AlliesInBattle = new List<GameObject>();
+            EnemiesInBattle = new List<GameObject>();
+            UnitsInBattle = new List<GameObject>();
+            TurnOrder = new List<GameObject>();
+
             uism = GameObject.Find("UIManager").GetComponent<UIStateMachine>();
 
             AlliesInBattle.AddRange(GameObject.FindGameObjectsWithTag("Ally"));
@@ -103,6 +108,7 @@ namespace Combat
                     break;
                 case CombatStates.WIN:
                     Debug.Log("You win!");
+                    gameManager.UpdatePlayerData();
                     StartCoroutine(gameManager.LoadOverworldScene());
                     break;
                 case CombatStates.LOSE:

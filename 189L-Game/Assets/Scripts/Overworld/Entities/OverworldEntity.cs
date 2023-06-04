@@ -6,6 +6,6 @@ namespace Overworld
 {
     public class OverworldEntity : MonoBehaviour
     {
-        //Empty
+        public PartyData partyData;
     }
 }

@@ -6,15 +6,19 @@ namespace Overworld
 {
     public class EnemyController : OverworldEntity
     {
-        [SerializeField] private SceneGameManager transitioner;
-        [SerializeField] private EnemyPartyData partyData;
+        private SceneGameManager transitioner;
+
+        private void Start()
+        {
+            transitioner = GameObject.FindGameObjectWithTag("Manager").GetComponent<SceneGameManager>();
+        }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if(other.tag == "Ally")
             {
                 //other.gameObject.GetComponent<PlayerController>().DisableInput();
-                PlayerPartyData allyParty = other.gameObject.GetComponent<PlayerController>().partyData;
+                PartyData allyParty = other.gameObject.GetComponent<PlayerController>().partyData;
                 StartCoroutine(transitioner.LoadCombatScene(allyParty, this.partyData));
             }
         }

@@ -9,38 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bb8a4e4d18bca43dbb33f98583952b6d, type: 3}
+  m_Script: {fileID: 11500000, guid: fcaba3abee95a43dca4a67cd91021d68, type: 3}
   m_Name: enemyParty
   m_EditorClassIdentifier: 
-  slot1:
-    UnitName: Slimie1
-    BaseClassData: {fileID: 11400000, guid: 6a2e6b66584267b478cb0080eb276ecc, type: 2}
-    CurrentHP: 30
-    MaxHP: 30
-    Attack: 12
-    Defense: 3
-    Agility: 12
-  slot2:
-    UnitName: Slimie2
-    BaseClassData: {fileID: 11400000, guid: 6a2e6b66584267b478cb0080eb276ecc, type: 2}
-    CurrentHP: 30
-    MaxHP: 30
-    Attack: 12
-    Defense: 3
-    Agility: 12
-  slot3:
-    UnitName: Slimie3
-    BaseClassData: {fileID: 11400000, guid: 6a2e6b66584267b478cb0080eb276ecc, type: 2}
-    CurrentHP: 30
-    MaxHP: 30
-    Attack: 12
-    Defense: 3
-    Agility: 12
-  slot4:
-    UnitName: Slimie4
-    BaseClassData: {fileID: 11400000, guid: 6a2e6b66584267b478cb0080eb276ecc, type: 2}
-    CurrentHP: 30
-    MaxHP: 30
-    Attack: 12
-    Defense: 3
-    Agility: 12
+  slot1: {fileID: 11400000, guid: 6a2e6b66584267b478cb0080eb276ecc, type: 2}
+  slot2: {fileID: 11400000, guid: 6a2e6b66584267b478cb0080eb276ecc, type: 2}
+  slot3: {fileID: 11400000, guid: 6a2e6b66584267b478cb0080eb276ecc, type: 2}
+  slot4: {fileID: 11400000, guid: 6a2e6b66584267b478cb0080eb276ecc, type: 2}
+  slot1curHP: 25
+  slot2curHP: 25
+  slot3curHP: 25
+  slot4curHP: 25
+  slot1name: N/A
+  slot2name: N/A
+  slot3name: N/A
+  slot4name: N/A

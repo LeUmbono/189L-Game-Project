@@ -6,36 +6,16 @@ namespace Combat
     public class PlayerStateMachine : GenericUnitStateMachine
     {
         public PlayerUnit Player;
-        public float BuffAmount = 0.0f;
-        private SceneGameManager gameManager;
-
-        void Awake()
-        {
-            gameManager = GameObject.Find("GameManager").GetComponent<SceneGameManager>();
-            switch(this.location)
-            {
-                case 0:
-                    Player = gameManager.playerData.slot1;
-                    break;
-                case 1:
-                    Player = gameManager.playerData.slot2;
-                    break;
-                case 2:
-                    Player = gameManager.playerData.slot3;
-                    break;
-                case 3:
-                    Player = gameManager.playerData.slot4;
-                    break;
-                default:
-                    Debug.LogError("NO PROPER LOCATION");
-                    break;
-            }
-        }
+        public float BuffAmount;
 
         void Start()
         {
+            isDead = false;
+            BuffAmount = 0.0f;
             CurrentState = TurnState.WAIT;
+
             steamBar = GameObject.Find("SteamBar").GetComponent<SteamBar>();
+            
             csm = GameObject.Find("CombatManager").GetComponent<CombatStateMachine>();
             uism = GameObject.Find("UIManager").GetComponent<UIStateMachine>();
             uism.HealthBars[Location].GetComponent<HealthBar>().SetMaxHealth(Player.MaxHP);
