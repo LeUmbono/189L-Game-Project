@@ -35,6 +35,7 @@ namespace Combat
         void Start()
         {
             CurrentState = TurnState.WAIT;
+            steamBar = GameObject.Find("SteamBar").GetComponent<SteamBar>();
             csm = GameObject.Find("CombatManager").GetComponent<CombatStateMachine>();
             uism = GameObject.Find("UIManager").GetComponent<UIStateMachine>();
             uism.HealthBars[Location].GetComponent<HealthBar>().SetMaxHealth(Player.MaxHP);
@@ -145,7 +146,7 @@ namespace Combat
             // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
             csm.EndTurn(this.gameObject);
 
-            SteamBar.ChangeSteam(5.0f);
+            steamBar.ChangeSteam(5.0f);
 
             // Animate enemy back to initial position.
             while (MoveTowardsPosition(initialPosition))
@@ -175,7 +176,7 @@ namespace Combat
             // and re-add back at the back of the queue.
             csm.EndTurn(this.gameObject);
 
-            SteamBar.ChangeSteam(-5.0f);
+            steamBar.ChangeSteam(-5.0f);
 
             // Set combat state of CSM to Wait.
             csm.CurrentCombatState = CombatStateMachine.CombatStates.WAIT;
@@ -217,7 +218,7 @@ namespace Combat
             // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
             csm.EndTurn(this.gameObject);
 
-            SteamBar.ChangeSteam(Player.BaseClassData.SpecialAbility.GetSteamBarChangeValue());
+            steamBar.ChangeSteam(Player.BaseClassData.SpecialAbility.GetSteamBarChangeValue());
 
             // Set combat state of CSM to CheckGame.
             csm.CurrentCombatState = CombatStateMachine.CombatStates.CHECKGAME;
