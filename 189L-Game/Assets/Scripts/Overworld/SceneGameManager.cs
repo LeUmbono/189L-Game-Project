@@ -8,6 +8,8 @@ using Overworld;
 public class SceneGameManager : MonoBehaviour
 {
     [SerializeField] private string combatSceneName;
+    [SerializeField] private string overworldSceneName;
+    [SerializeField] private string titleSceneName;
     [SerializeField] private float timeToWait;
     [SerializeField][Range(0, 1)] private float slowdownPercent;
 
@@ -31,6 +33,20 @@ public class SceneGameManager : MonoBehaviour
 
         playerData = pData;
         enemyData = eData;
+    }
+
+    public IEnumerator LoadOverworldScene()
+    {
+        Debug.Log("Play Transition");
+        yield return new WaitForSeconds(timeToWait);
+        SceneManager.LoadScene(overworldSceneName, LoadSceneMode.Single);
+    }
+
+    public IEnumerator LoadTitleScene()
+    {
+      Debug.Log("Play Transition");
+      yield return new WaitForSeconds(timeToWait);
+      SceneManager.LoadScene(overworldSceneName, LoadSceneMode.Single);
     }
 
     public void InitializeCombatScene()

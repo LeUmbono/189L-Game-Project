@@ -153,6 +153,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   combatSceneName: Combat
+  overworldSceneName: Overworld
+  titleSceneName: Title
   timeToWait: 1
   slowdownPercent: 0.1
   playerData: {fileID: 0}
