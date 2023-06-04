@@ -31,7 +31,7 @@ MonoBehaviour:
   slot3:
     UnitName: H3A1-3R
     BaseClassData: {fileID: 11400000, guid: 36613402d4ff7a442875c67639ee8c9a, type: 2}
-    CurrentHP: 11
+    CurrentHP: 25
     MaxHP: 25
     Attack: 10
     Defense: 10
