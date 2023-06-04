@@ -6,7 +6,12 @@ namespace Overworld
 {
     public class EnemyController : OverworldEntity
     {
-        [SerializeField] private SceneGameManager transitioner;
+        private SceneGameManager transitioner;
+
+        private void Start()
+        {
+            transitioner = GameObject.FindGameObjectWithTag("Manager").GetComponent<SceneGameManager>();
+        }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
