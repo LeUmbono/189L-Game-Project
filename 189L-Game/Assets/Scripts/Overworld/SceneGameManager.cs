@@ -18,6 +18,7 @@ public class SceneGameManager : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
+        playerData = GameObject.FindWithTag("Ally").GetComponent<PlayerController>().partyData;
     }
 
     public IEnumerator LoadCombatScene(PlayerPartyData pData, EnemyPartyData eData)
@@ -83,6 +84,23 @@ public class SceneGameManager : MonoBehaviour
                     break;
             }
         }
+        HealEnemyParty();
 
+    }
+
+    private void HealPlayerParty()
+    {
+        this.playerData.slot1.FullHeal();
+        this.playerData.slot2.FullHeal();
+        this.playerData.slot3.FullHeal();
+        this.playerData.slot4.FullHeal();
+    }
+
+    private void HealEnemyParty()
+    {
+        this.enemyData.slot1.FullHeal();
+        this.enemyData.slot2.FullHeal();
+        this.enemyData.slot3.FullHeal();
+        this.enemyData.slot4.FullHeal();
     }
 }
