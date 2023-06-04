@@ -16,10 +16,5 @@ namespace Combat
         public float Attack; //{ get; private set; }
         public float Defense; //{ get; private set; }
         public float Agility; //{ get; private set; }
-
-        public void FullHeal()
-        {
-            this.CurrentHP = this.MaxHP;
-        }
     }
 }

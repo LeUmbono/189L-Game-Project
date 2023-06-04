@@ -12,24 +12,26 @@ namespace Combat
         void Awake()
         {
             gameManager = GameObject.Find("GameManager").GetComponent<SceneGameManager>();
+            /*
             switch(this.location)
             {
                 case 0:
-                    Player = gameManager.playerData.slot1;
+                    Player = new PlayerUnit(gameManager.playerData.slot1, gameManager.playerData.slot1name, gameManager.playerData.slot1curHP);
                     break;
                 case 1:
-                    Player = gameManager.playerData.slot2;
+                    Player = new PlayerUnit(gameManager.playerData.slot2, gameManager.playerData.slot2name, gameManager.playerData.slot2curHP);
                     break;
                 case 2:
-                    Player = gameManager.playerData.slot3;
+                    Player = new PlayerUnit(gameManager.playerData.slot3, gameManager.playerData.slot3name, gameManager.playerData.slot3curHP);
                     break;
                 case 3:
-                    Player = gameManager.playerData.slot4;
+                    Player = new PlayerUnit(gameManager.playerData.slot4, gameManager.playerData.slot4name, gameManager.playerData.slot4curHP);
                     break;
                 default:
                     Debug.LogError("NO PROPER LOCATION");
                     break;
             }
+            */
         }
 
         void Start()

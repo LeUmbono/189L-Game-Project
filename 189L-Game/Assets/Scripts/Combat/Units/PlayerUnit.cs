@@ -7,7 +7,16 @@ namespace Combat
     [System.Serializable]
     public class PlayerUnit : GenericUnit
     {
-        public PlayerUnit() { }
+        public PlayerUnit(ClassData classInfo, string name, float currentPlayerHP)
+        {
+            this.UnitName = name;
+            this.BaseClassData = classInfo;
+            this.CurrentHP = currentPlayerHP;
+            this.MaxHP = classInfo.BaseHP;
+            this.Attack = classInfo.BaseAttack;
+            this.Defense = classInfo.BaseDefense;
+            this.Agility = classInfo.BaseAgility;
+        }
 
         public void ResetStats()
         {
@@ -24,4 +33,5 @@ namespace Combat
         }
 
     }
+
 }

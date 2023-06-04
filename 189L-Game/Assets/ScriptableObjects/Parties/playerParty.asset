@@ -9,38 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 19ef6ca01cea25b42b62751c294bd3cb, type: 3}
+  m_Script: {fileID: 11500000, guid: fcaba3abee95a43dca4a67cd91021d68, type: 3}
   m_Name: playerParty
   m_EditorClassIdentifier: 
-  slot1:
-    UnitName: R4NG-3R
-    BaseClassData: {fileID: 11400000, guid: 598cd6db82c9d4445b62286f287cdaf7, type: 2}
-    CurrentHP: 30
-    MaxHP: 30
-    Attack: 20
-    Defense: 5
-    Agility: 14
-  slot2:
-    UnitName: HE11P-3R
-    BaseClassData: {fileID: 11400000, guid: bfcac68af65e4f447aab5c37644bfbff, type: 2}
-    CurrentHP: 30
-    MaxHP: 30
-    Attack: 7
-    Defense: 7
-    Agility: 12
-  slot3:
-    UnitName: H3A1-3R
-    BaseClassData: {fileID: 11400000, guid: 36613402d4ff7a442875c67639ee8c9a, type: 2}
-    CurrentHP: 25
-    MaxHP: 25
-    Attack: 6
-    Defense: 6
-    Agility: 10
-  slot4:
-    UnitName: S0L1D-3R
-    BaseClassData: {fileID: 11400000, guid: 3a3850c36f1bffc42a31b9446cbee4bb, type: 2}
-    CurrentHP: 50
-    MaxHP: 50
-    Attack: 15
-    Defense: 10
-    Agility: 5
+  slot1: {fileID: 11400000, guid: 598cd6db82c9d4445b62286f287cdaf7, type: 2}
+  slot2: {fileID: 11400000, guid: 36613402d4ff7a442875c67639ee8c9a, type: 2}
+  slot3: {fileID: 11400000, guid: bfcac68af65e4f447aab5c37644bfbff, type: 2}
+  slot4: {fileID: 11400000, guid: 3a3850c36f1bffc42a31b9446cbee4bb, type: 2}
+  slot1curHP: 30
+  slot2curHP: 25
+  slot3curHP: 30
+  slot4curHP: 50
+  slot1name: R4NG-3R
+  slot2name: HE41-3R
+  slot3name: HE11P-3R
+  slot4name: T3NK-3R

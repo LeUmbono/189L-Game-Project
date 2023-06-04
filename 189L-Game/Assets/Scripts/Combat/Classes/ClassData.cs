@@ -28,6 +28,5 @@ namespace Combat
         public float BaseAgility => baseAgility;
         public int AttackRange => attackRange;
         public SpecialAbility SpecialAbility => specialAbility;
-
     }
 }
