@@ -122,6 +122,9 @@ namespace Combat
             // Animate player to attack enemy unit.
             var initialPosition = transform.position;
             var targetPosition = UnitToTarget.transform.position - new Vector3(1f, 0f, 0f);
+
+            yield return new WaitForSeconds(0.5f);
+
             while (MoveTowardsPosition(targetPosition))
             {
                 yield return null;
@@ -132,6 +135,8 @@ namespace Combat
 
             // Do damage.
             DoDamage();
+
+            yield return new WaitWhile(() => IsPlaying());
 
             // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
             csm.EndTurn(this.gameObject);
@@ -160,7 +165,9 @@ namespace Combat
 
             actionStarted = true;
 
-            if(swapSound != null) 
+            yield return new WaitForSeconds(0.5f);
+
+            if (swapSound != null) 
             {
                 PlaySound(swapSound);
             }
@@ -190,6 +197,8 @@ namespace Combat
 
             actionStarted = true;
 
+            yield return new WaitForSeconds(0.5f);
+
             // Animation probably in execute later.
             var initialPosition = transform.position;
             var targetPosition = UnitToTarget.transform.position - new Vector3(1f, 0f, 0f);
@@ -203,6 +212,8 @@ namespace Combat
 
             // See if this works.
             Player.BaseClassData.SpecialAbility.Execute(this.gameObject);
+
+            yield return new WaitWhile(() => IsPlaying());
 
             // Animation probably in execute later.
             while (MoveTowardsPosition(initialPosition))

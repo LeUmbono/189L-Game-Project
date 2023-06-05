@@ -46,7 +46,13 @@ namespace Combat
 
         public void PlaySound(AudioClip clip)
         {
-            audioSource.PlayOneShot(clip);
+            audioSource.clip = clip;
+            audioSource.Play();
+        }
+
+        public bool IsPlaying()
+        {
+            return audioSource.isPlaying;
         }
 
         public virtual void TakeDamage(float damage)
