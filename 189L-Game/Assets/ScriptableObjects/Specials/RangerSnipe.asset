@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3458af72232d2a84dbbe174cf9a13ef8, type: 3}
   m_Name: RangerSnipe
   m_EditorClassIdentifier: 
+  specialSound: {fileID: 8300000, guid: bd5c13dff4c30e848b652b88cee96287, type: 3}

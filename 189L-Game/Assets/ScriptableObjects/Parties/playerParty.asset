@@ -16,10 +16,10 @@ MonoBehaviour:
   slot2: {fileID: 11400000, guid: 36613402d4ff7a442875c67639ee8c9a, type: 2}
   slot3: {fileID: 11400000, guid: bfcac68af65e4f447aab5c37644bfbff, type: 2}
   slot4: {fileID: 11400000, guid: 3a3850c36f1bffc42a31b9446cbee4bb, type: 2}
-  slot1curHP: 30
-  slot2curHP: 25
-  slot3curHP: 30
-  slot4curHP: 50
+  slot1curHP: 1
+  slot2curHP: 28
+  slot3curHP: 20
+  slot4curHP: 17
   slot1name: Joe
   slot2name: Schmoe
   slot3name: Moe

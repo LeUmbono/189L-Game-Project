@@ -7,13 +7,14 @@ namespace Combat
     {
         public PlayerUnit Player;
         public float BuffAmount;
-
+        
         void Start()
         {
             isDead = false;
             BuffAmount = 0.0f;
             CurrentState = TurnState.WAIT;
 
+            audioSource = this.GetComponent<AudioSource>();
             steamBar = GameObject.Find("SteamBar").GetComponent<SteamBar>();
             csm = GameObject.Find("CombatManager").GetComponent<CombatStateMachine>();
             uism = GameObject.Find("UIManager").GetComponent<UIStateMachine>();
@@ -89,8 +90,18 @@ namespace Combat
             {
                 Player.CurrentHP = 0.0f;
                 CurrentState = TurnState.DEAD;
+                if(deathSound != null)
+                {
+                    PlaySound(deathSound);
+                }
             }
-
+            else
+            {
+                if(takeDamageSound != null)
+                {
+                    PlaySound(takeDamageSound);
+                }
+            }
             UpdateHealthBar(Player.CurrentHP);
         }
 
@@ -111,6 +122,9 @@ namespace Combat
             // Animate player to attack enemy unit.
             var initialPosition = transform.position;
             var targetPosition = UnitToTarget.transform.position - new Vector3(1f, 0f, 0f);
+
+            yield return new WaitForSeconds(0.5f);
+
             while (MoveTowardsPosition(targetPosition))
             {
                 yield return null;
@@ -121,6 +135,9 @@ namespace Combat
 
             // Do damage.
             DoDamage();
+
+            var enemy = UnitToTarget.GetComponent<EnemyStateMachine>();
+            yield return new WaitWhile(() => enemy.IsPlaying());
 
             // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
             csm.EndTurn(this.gameObject);
@@ -149,6 +166,13 @@ namespace Combat
 
             actionStarted = true;
 
+            yield return new WaitForSeconds(0.5f);
+
+            if (swapSound != null) 
+            {
+                PlaySound(swapSound);
+            }
+            
             DoSwap(UnitToTarget);
 
             // Remove this enemy game object from front of turn queue
@@ -174,6 +198,8 @@ namespace Combat
 
             actionStarted = true;
 
+            yield return new WaitForSeconds(0.5f);
+
             // Animation probably in execute later.
             var initialPosition = transform.position;
             var targetPosition = UnitToTarget.transform.position - new Vector3(1f, 0f, 0f);
@@ -187,6 +213,8 @@ namespace Combat
 
             // See if this works.
             Player.BaseClassData.SpecialAbility.Execute(this.gameObject);
+
+            yield return new WaitWhile(() => IsPlaying());
 
             // Animation probably in execute later.
             while (MoveTowardsPosition(initialPosition))

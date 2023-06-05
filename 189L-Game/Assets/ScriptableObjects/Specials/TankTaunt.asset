@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b77c1a37b8dad2547a5b03ea42a800c3, type: 3}
   m_Name: TankTaunt
   m_EditorClassIdentifier: 
+  specialSound: {fileID: 8300000, guid: 52df5f9d2c24e1c489bc5f37cb2bea40, type: 3}
