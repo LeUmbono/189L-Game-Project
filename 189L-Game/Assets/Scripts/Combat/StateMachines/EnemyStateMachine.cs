@@ -133,7 +133,7 @@ namespace Combat
 
             actionStarted = true;
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.25f);
 
             // Animate enemy to attack player unit.
             var initialPosition = transform.position;

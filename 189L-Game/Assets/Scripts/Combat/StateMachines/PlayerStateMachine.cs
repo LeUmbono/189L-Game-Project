@@ -123,7 +123,7 @@ namespace Combat
             var initialPosition = transform.position;
             var targetPosition = UnitToTarget.transform.position - new Vector3(1f, 0f, 0f);
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.25f);
 
             while (MoveTowardsPosition(targetPosition))
             {
@@ -166,7 +166,7 @@ namespace Combat
 
             actionStarted = true;
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.25f);
 
             if (swapSound != null) 
             {
@@ -198,7 +198,7 @@ namespace Combat
 
             actionStarted = true;
 
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.25f);
 
             // Animation probably in execute later.
             var initialPosition = transform.position;
