@@ -14,6 +14,7 @@ namespace Combat
             BuffAmount = 0.0f;
             CurrentState = TurnState.WAIT;
 
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = Player.BaseClassData.ClassSprite;
             audioSource = this.GetComponent<AudioSource>();
             steamBar = GameObject.Find("SteamBar").GetComponent<SteamBar>();
             csm = GameObject.Find("CombatManager").GetComponent<CombatStateMachine>();
