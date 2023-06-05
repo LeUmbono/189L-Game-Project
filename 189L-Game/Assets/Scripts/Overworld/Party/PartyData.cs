@@ -20,6 +20,7 @@ public class PartyData : ScriptableObject
     public string slot3name;
     public string slot4name;
 
+    /*
     public PartyData()
     {
         slot1curHP = slot1.BaseHP;
@@ -27,7 +28,7 @@ public class PartyData : ScriptableObject
         slot3curHP = slot3.BaseHP;
         slot4curHP = slot4.BaseHP;
     }
-
+    */
     public void FullHeal()
     {
         slot1curHP = slot1.BaseHP;
