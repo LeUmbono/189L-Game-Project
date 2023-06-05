@@ -149,6 +149,9 @@ namespace Combat
             // Do damage.
             DoDamage();
 
+            var player = UnitToTarget.GetComponent<PlayerStateMachine>();
+            yield return new WaitWhile(() => player.IsPlaying());
+
             // Once taunted unit attacks provoker, reset taunted status.
             IsTaunted = false;
 

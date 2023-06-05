@@ -136,7 +136,8 @@ namespace Combat
             // Do damage.
             DoDamage();
 
-            yield return new WaitWhile(() => IsPlaying());
+            var enemy = UnitToTarget.GetComponent<EnemyStateMachine>();
+            yield return new WaitWhile(() => enemy.IsPlaying());
 
             // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
             csm.EndTurn(this.gameObject);
