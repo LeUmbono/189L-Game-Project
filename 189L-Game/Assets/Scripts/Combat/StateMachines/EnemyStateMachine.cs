@@ -173,7 +173,7 @@ namespace Combat
 
         private bool MoveTowardsPosition(Vector3 target)
         {
-            return target != (transform.position = Vector3.MoveTowards(transform.position, target, 5f * Time.deltaTime));
+            return target != (transform.position = Vector3.MoveTowards(transform.position, target, 50f * Time.deltaTime));
         }
     }
 }

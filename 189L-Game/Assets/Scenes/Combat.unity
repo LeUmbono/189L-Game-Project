@@ -1433,7 +1433,7 @@ MonoBehaviour:
   CurrentState: 0
   UnitToTarget: {fileID: 0}
   location: 3
-  takeDamageSound: {fileID: 0}
+  takeDamageSound: {fileID: 8300000, guid: 9b0c7f0c013529f41b7320c56fa7da2a, type: 3}
   deathSound: {fileID: 8300000, guid: ac6e1dc751aa3b749b2a7ba683e90ddc, type: 3}
   swapSound: {fileID: 8300000, guid: 56c3e03c95273184d86108f8eebf8b9c, type: 3}
   Player:
@@ -2588,7 +2588,7 @@ MonoBehaviour:
   CurrentState: 0
   UnitToTarget: {fileID: 0}
   location: 1
-  takeDamageSound: {fileID: 0}
+  takeDamageSound: {fileID: 8300000, guid: 9b0c7f0c013529f41b7320c56fa7da2a, type: 3}
   deathSound: {fileID: 8300000, guid: ac6e1dc751aa3b749b2a7ba683e90ddc, type: 3}
   swapSound: {fileID: 8300000, guid: 56c3e03c95273184d86108f8eebf8b9c, type: 3}
   Player:
@@ -3139,7 +3139,7 @@ MonoBehaviour:
   CurrentState: 0
   UnitToTarget: {fileID: 0}
   location: 0
-  takeDamageSound: {fileID: 0}
+  takeDamageSound: {fileID: 8300000, guid: 9b0c7f0c013529f41b7320c56fa7da2a, type: 3}
   deathSound: {fileID: 8300000, guid: ac6e1dc751aa3b749b2a7ba683e90ddc, type: 3}
   swapSound: {fileID: 8300000, guid: 56c3e03c95273184d86108f8eebf8b9c, type: 3}
   Player:
@@ -4767,7 +4767,7 @@ MonoBehaviour:
   CurrentState: 0
   UnitToTarget: {fileID: 0}
   location: 2
-  takeDamageSound: {fileID: 0}
+  takeDamageSound: {fileID: 8300000, guid: 9b0c7f0c013529f41b7320c56fa7da2a, type: 3}
   deathSound: {fileID: 8300000, guid: ac6e1dc751aa3b749b2a7ba683e90ddc, type: 3}
   swapSound: {fileID: 8300000, guid: 56c3e03c95273184d86108f8eebf8b9c, type: 3}
   Player:
