@@ -1433,6 +1433,9 @@ MonoBehaviour:
   CurrentState: 0
   UnitToTarget: {fileID: 0}
   location: 3
+  takeDamageSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: ac6e1dc751aa3b749b2a7ba683e90ddc, type: 3}
+  swapSound: {fileID: 8300000, guid: 56c3e03c95273184d86108f8eebf8b9c, type: 3}
   Player:
     UnitName: Aron
     BaseClassData: {fileID: 11400000, guid: 3a3850c36f1bffc42a31b9446cbee4bb, type: 2}
@@ -1693,6 +1696,9 @@ MonoBehaviour:
   CurrentState: 0
   UnitToTarget: {fileID: 0}
   location: 7
+  takeDamageSound: {fileID: 8300000, guid: d44f19d977bbbec4f9267a82c836ad1d, type: 3}
+  deathSound: {fileID: 8300000, guid: ddd3cedf460143d4cb4969a0a21d45e1, type: 3}
+  swapSound: {fileID: 8300000, guid: 56c3e03c95273184d86108f8eebf8b9c, type: 3}
   Enemy:
     UnitName: Enemy 4
     BaseClassData: {fileID: 0}
@@ -2582,6 +2588,9 @@ MonoBehaviour:
   CurrentState: 0
   UnitToTarget: {fileID: 0}
   location: 1
+  takeDamageSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: ac6e1dc751aa3b749b2a7ba683e90ddc, type: 3}
+  swapSound: {fileID: 8300000, guid: 56c3e03c95273184d86108f8eebf8b9c, type: 3}
   Player:
     UnitName: Schmoe
     BaseClassData: {fileID: 11400000, guid: 36613402d4ff7a442875c67639ee8c9a, type: 2}
@@ -3130,6 +3139,9 @@ MonoBehaviour:
   CurrentState: 0
   UnitToTarget: {fileID: 0}
   location: 0
+  takeDamageSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: ac6e1dc751aa3b749b2a7ba683e90ddc, type: 3}
+  swapSound: {fileID: 8300000, guid: 56c3e03c95273184d86108f8eebf8b9c, type: 3}
   Player:
     UnitName: Joe
     BaseClassData: {fileID: 11400000, guid: 598cd6db82c9d4445b62286f287cdaf7, type: 2}
@@ -3376,6 +3388,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8300000, guid: 8f63719825669234c95a9aefccb21e6c, type: 3}
     - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
+      propertyPath: inertTransition
+      value: 
+      objectReference: {fileID: 8300000, guid: 7f4d728f65691d34cb7ccef1fe0b7a8c, type: 3}
+    - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
       propertyPath: overclockedTheme
       value: 
       objectReference: {fileID: 8300000, guid: 1b1283d06f45a58429f9427e00d7583e, type: 3}
@@ -3390,7 +3406,7 @@ PrefabInstance:
     - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
       propertyPath: overclockedTransition
       value: 
-      objectReference: {fileID: 8300000, guid: a199e17706be09443934cfeccbb295b8, type: 3}
+      objectReference: {fileID: 8300000, guid: 407dc46b148a1974ea403f4a7ab4ea06, type: 3}
     - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
       propertyPath: shortcircuitedThreshold
       value: 40
@@ -4460,6 +4476,9 @@ MonoBehaviour:
   CurrentState: 0
   UnitToTarget: {fileID: 0}
   location: 5
+  takeDamageSound: {fileID: 8300000, guid: d44f19d977bbbec4f9267a82c836ad1d, type: 3}
+  deathSound: {fileID: 8300000, guid: ddd3cedf460143d4cb4969a0a21d45e1, type: 3}
+  swapSound: {fileID: 8300000, guid: 56c3e03c95273184d86108f8eebf8b9c, type: 3}
   Enemy:
     UnitName: Enemy 2
     BaseClassData: {fileID: 0}
@@ -4748,6 +4767,9 @@ MonoBehaviour:
   CurrentState: 0
   UnitToTarget: {fileID: 0}
   location: 2
+  takeDamageSound: {fileID: 0}
+  deathSound: {fileID: 8300000, guid: ac6e1dc751aa3b749b2a7ba683e90ddc, type: 3}
+  swapSound: {fileID: 8300000, guid: 56c3e03c95273184d86108f8eebf8b9c, type: 3}
   Player:
     UnitName: Bildong
     BaseClassData: {fileID: 11400000, guid: bfcac68af65e4f447aab5c37644bfbff, type: 2}
@@ -4873,6 +4895,9 @@ MonoBehaviour:
   CurrentState: 0
   UnitToTarget: {fileID: 0}
   location: 4
+  takeDamageSound: {fileID: 8300000, guid: d44f19d977bbbec4f9267a82c836ad1d, type: 3}
+  deathSound: {fileID: 8300000, guid: ddd3cedf460143d4cb4969a0a21d45e1, type: 3}
+  swapSound: {fileID: 8300000, guid: 56c3e03c95273184d86108f8eebf8b9c, type: 3}
   Enemy:
     UnitName: Enemy 1
     BaseClassData: {fileID: 0}
@@ -5813,6 +5838,9 @@ MonoBehaviour:
   CurrentState: 0
   UnitToTarget: {fileID: 0}
   location: 6
+  takeDamageSound: {fileID: 8300000, guid: d44f19d977bbbec4f9267a82c836ad1d, type: 3}
+  deathSound: {fileID: 8300000, guid: ddd3cedf460143d4cb4969a0a21d45e1, type: 3}
+  swapSound: {fileID: 8300000, guid: 56c3e03c95273184d86108f8eebf8b9c, type: 3}
   Enemy:
     UnitName: Enemy 3
     BaseClassData: {fileID: 0}

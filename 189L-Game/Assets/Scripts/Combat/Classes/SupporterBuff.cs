@@ -11,7 +11,8 @@ namespace Combat
             var PSM = gameObject.GetComponent<PlayerStateMachine>();
             var target = PSM.UnitToTarget.GetComponent<PlayerStateMachine>();
 
-            // Play animation.
+            // Play sound.
+            PSM.PlaySound(specialSound);
 
             // Buff the unit's attack.
             target.BuffAmount += 0.2f * target.Player.Attack;

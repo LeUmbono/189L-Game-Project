@@ -7,13 +7,14 @@ namespace Combat
     {
         public PlayerUnit Player;
         public float BuffAmount;
-
+        
         void Start()
         {
             isDead = false;
             BuffAmount = 0.0f;
             CurrentState = TurnState.WAIT;
 
+            audioSource = this.GetComponent<AudioSource>();
             steamBar = GameObject.Find("SteamBar").GetComponent<SteamBar>();
             csm = GameObject.Find("CombatManager").GetComponent<CombatStateMachine>();
             uism = GameObject.Find("UIManager").GetComponent<UIStateMachine>();
@@ -89,8 +90,18 @@ namespace Combat
             {
                 Player.CurrentHP = 0.0f;
                 CurrentState = TurnState.DEAD;
+                if(deathSound != null)
+                {
+                    PlaySound(deathSound);
+                }
             }
-
+            else
+            {
+                if(takeDamageSound != null)
+                {
+                    PlaySound(takeDamageSound);
+                }
+            }
             UpdateHealthBar(Player.CurrentHP);
         }
 
@@ -149,6 +160,11 @@ namespace Combat
 
             actionStarted = true;
 
+            if(swapSound != null) 
+            {
+                PlaySound(swapSound);
+            }
+            
             DoSwap(UnitToTarget);
 
             // Remove this enemy game object from front of turn queue

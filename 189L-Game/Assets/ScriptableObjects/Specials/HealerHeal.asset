@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157c430cf213a3a4ba70a34a54d5130e, type: 3}
   m_Name: HealerHeal
   m_EditorClassIdentifier: 
+  specialSound: {fileID: 8300000, guid: 7b13aefdf4a845a4e8175ffb6d9a3a37, type: 3}

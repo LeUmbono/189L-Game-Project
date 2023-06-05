@@ -6,6 +6,7 @@ namespace Combat
 {
     public class SpecialAbility : ScriptableObject
     {
+        public AudioClip specialSound;
         public virtual void Execute(GameObject gameObject)
         {
 

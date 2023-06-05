@@ -29,11 +29,25 @@ namespace Combat
         protected bool actionStarted = false;
 
         protected bool isDead;
+        protected AudioSource audioSource;
         protected SteamBar steamBar;
+
+        // Sound clips.
+        [SerializeField]
+        protected AudioClip takeDamageSound;
+        [SerializeField]
+        protected AudioClip deathSound;
+        [SerializeField]
+        protected AudioClip swapSound;
 
         // Getters.
         public int Location => location;
         public bool IsDead => isDead;
+
+        public void PlaySound(AudioClip clip)
+        {
+            audioSource.PlayOneShot(clip);
+        }
 
         public virtual void TakeDamage(float damage)
         {

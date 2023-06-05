@@ -12,7 +12,8 @@ namespace Combat
             var PSM = gameObject.GetComponent<PlayerStateMachine>();
             var target = PSM.UnitToTarget.GetComponent<EnemyStateMachine>();
 
-            // Play animation.
+            // Play sound.
+            PSM.PlaySound(specialSound);
 
             // Taunt the enemy.
             target.IsTaunted = true;

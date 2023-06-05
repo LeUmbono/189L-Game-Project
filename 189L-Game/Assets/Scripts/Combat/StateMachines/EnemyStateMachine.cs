@@ -16,6 +16,7 @@ namespace Combat
             IsTaunted = false;
             CurrentState = TurnState.WAIT;
 
+            audioSource = this.GetComponent<AudioSource>();
             csm = GameObject.Find("CombatManager").GetComponent<CombatStateMachine>();
             uism = GameObject.Find("UIManager").GetComponent<UIStateMachine>();
             uism.HealthBars[Location].GetComponent<HealthBar>().SetMaxHealth(Enemy.MaxHP);
@@ -107,7 +108,19 @@ namespace Combat
             {
                 Enemy.CurrentHP = 0.0f;
                 CurrentState = TurnState.DEAD;
+                if (deathSound != null)
+                {
+                    PlaySound(deathSound);
+                }
             }
+            else
+            {
+                if (takeDamageSound != null)
+                {
+                    PlaySound(takeDamageSound);
+                }
+            }
+
             uism.HealthBars[Location].GetComponent<HealthBar>().SetHealth(Enemy.CurrentHP);
         }
 
