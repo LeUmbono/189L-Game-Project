@@ -72,8 +72,8 @@ namespace Combat
                     }
                     break;
                 case CombatStates.TAKEACTION:
-                    targetIndicator.transform.position = TurnOrder[0].transform.position
-                        + new Vector3(0.0f, 1.0f, 0.0f);
+                    targetIndicator.transform.position = TurnOrder[0].GetComponent<SpriteRenderer>().bounds.center + 
+                        new Vector3(0.0f, TurnOrder[0].GetComponent<SpriteRenderer>().bounds.extents.y, 0.0f);
                     targetIndicator.SetActive(true);
 
                     var GSM = TurnOrder[0].GetComponent<GenericUnitStateMachine>();
@@ -82,8 +82,8 @@ namespace Combat
                     CurrentCombatState = CombatStates.PERFORMACTION;
                     break;
                 case CombatStates.PERFORMACTION:
-                    targetIndicator.transform.position = TurnOrder[0].transform.position
-                        + new Vector3(0.0f, 1.0f, 0.0f);
+                    targetIndicator.transform.position = TurnOrder[0].GetComponent<SpriteRenderer>().bounds.center +
+                        new Vector3(0.0f, TurnOrder[0].GetComponent<SpriteRenderer>().bounds.extents.y, 0.0f);
                     break;
                 case CombatStates.CHECKGAME:
                     if (AlliesInBattle.Count < 1)

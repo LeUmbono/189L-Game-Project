@@ -16,6 +16,7 @@ namespace Combat
             IsTaunted = false;
             CurrentState = TurnState.WAIT;
 
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = Enemy.BaseClassData.ClassSprite;
             audioSource = this.GetComponent<AudioSource>();
             csm = GameObject.Find("CombatManager").GetComponent<CombatStateMachine>();
             uism = GameObject.Find("UIManager").GetComponent<UIStateMachine>();

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Support
   m_EditorClassIdentifier: 
   className: Support
-  classSprite: {fileID: 21300000, guid: 331008d94cde1c44db803595345e809a, type: 3}
+  classSprite: {fileID: 21300000, guid: 411620c0789f2dd4aa6df571bea6ab6e, type: 3}
   baseHP: 30
   baseAttack: 10
   baseDefense: 10
