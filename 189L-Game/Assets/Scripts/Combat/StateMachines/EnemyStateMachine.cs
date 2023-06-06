@@ -138,7 +138,9 @@ namespace Combat
 
             // Animate enemy to attack player unit.
             var initialPosition = transform.position;
-            var targetPosition = UnitToTarget.transform.position + new Vector3(1f, 0f, 0f);
+            var targetPosition = new Vector3(UnitToTarget.GetComponent<SpriteRenderer>().bounds.max.x + gameObject.GetComponent<SpriteRenderer>().bounds.extents.x,
+                UnitToTarget.transform.position.y,
+                UnitToTarget.transform.position.z);
             while (MoveTowardsPosition(targetPosition))
             {
                 yield return null;

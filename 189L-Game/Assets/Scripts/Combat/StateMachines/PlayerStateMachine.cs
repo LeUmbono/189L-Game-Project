@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Combat
@@ -122,7 +123,9 @@ namespace Combat
 
             // Animate player to attack enemy unit.
             var initialPosition = transform.position;
-            var targetPosition = UnitToTarget.transform.position - new Vector3(1f, 0f, 0f);
+            var targetPosition = new Vector3(UnitToTarget.GetComponent<SpriteRenderer>().bounds.min.x - gameObject.GetComponent<SpriteRenderer>().bounds.extents.x, 
+                UnitToTarget.transform.position.y, 
+                UnitToTarget.transform.position.z);
 
             yield return new WaitForSeconds(0.25f);
 
@@ -203,7 +206,10 @@ namespace Combat
 
             // Animation probably in execute later.
             var initialPosition = transform.position;
-            var targetPosition = UnitToTarget.transform.position - new Vector3(1f, 0f, 0f);
+            var targetPosition = new Vector3 (UnitToTarget.GetComponent<SpriteRenderer>().bounds.min.x - gameObject.GetComponent<SpriteRenderer>().bounds.extents.x, 
+                UnitToTarget.transform.position.y, 
+                UnitToTarget.transform.position.z);          
+            
             while (MoveTowardsPosition(targetPosition))
             {
                 yield return null;
