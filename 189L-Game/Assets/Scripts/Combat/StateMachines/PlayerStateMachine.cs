@@ -1,3 +1,4 @@
+using DigitalRuby.Tween;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -255,14 +256,13 @@ namespace Combat
         }
         private bool MoveTowardsPosition(Vector3 target)
         {
-            var newPos = Vector3.MoveTowards(transform.position, target, 25f * Time.deltaTime);
-            if (newPos.x < transform.position.x)
+            System.Action<ITween<Vector3>> updatePos = (t) =>
             {
-                this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
-            }
-            return target != (transform.position = newPos);
+                transform.position = t.CurrentValue;
+            };
+
+            this.gameObject.Tween("Movement", transform.position, target, 0.4f, TweenScaleFunctions.SineEaseOut, updatePos);
+            return target != transform.position;
         }
-
-
     }
 }
