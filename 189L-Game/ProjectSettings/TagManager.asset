@@ -47,9 +47,6 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Turn
-    uniqueID: 3455090681
-    locked: 0
   - name: UI
     uniqueID: 3827742023
     locked: 0
