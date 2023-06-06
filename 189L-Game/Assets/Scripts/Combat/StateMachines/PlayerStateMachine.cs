@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Combat
@@ -14,6 +15,7 @@ namespace Combat
             BuffAmount = 0.0f;
             CurrentState = TurnState.WAIT;
 
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = Player.BaseClassData.ClassSprite;
             audioSource = this.GetComponent<AudioSource>();
             steamBar = GameObject.Find("SteamBar").GetComponent<SteamBar>();
             csm = GameObject.Find("CombatManager").GetComponent<CombatStateMachine>();
@@ -121,7 +123,9 @@ namespace Combat
 
             // Animate player to attack enemy unit.
             var initialPosition = transform.position;
-            var targetPosition = UnitToTarget.transform.position - new Vector3(1f, 0f, 0f);
+            var targetPosition = new Vector3(UnitToTarget.GetComponent<SpriteRenderer>().bounds.min.x - gameObject.GetComponent<SpriteRenderer>().bounds.extents.x, 
+                UnitToTarget.transform.position.y, 
+                UnitToTarget.transform.position.z);
 
             yield return new WaitForSeconds(0.25f);
 
@@ -144,11 +148,17 @@ namespace Combat
 
             steamBar.ChangeSteam(5.0f);
 
+            // Flip sprite on way back.
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = !this.gameObject.GetComponent<SpriteRenderer>().flipX;
+
             // Animate enemy back to initial position.
             while (MoveTowardsPosition(initialPosition))
             {
                 yield return null;
             }
+
+            // Flip sprite to correct orientation once back to original position.
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
 
             // Set combat state of CSM to CheckGame.
             csm.CurrentCombatState = CombatStateMachine.CombatStates.CHECKGAME;
@@ -202,12 +212,16 @@ namespace Combat
 
             // Animation probably in execute later.
             var initialPosition = transform.position;
-            var targetPosition = UnitToTarget.transform.position - new Vector3(1f, 0f, 0f);
+            var targetPosition = new Vector3 (UnitToTarget.GetComponent<SpriteRenderer>().bounds.min.x - gameObject.GetComponent<SpriteRenderer>().bounds.extents.x, 
+                UnitToTarget.transform.position.y, 
+                UnitToTarget.transform.position.z);          
+            
             while (MoveTowardsPosition(targetPosition))
             {
                 yield return null;
             }
 
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
             // Pause for 0.5 seconds.
             yield return new WaitForSeconds(0.5f);
 
@@ -216,11 +230,17 @@ namespace Combat
 
             yield return new WaitWhile(() => IsPlaying());
 
+            // Flip sprite on way back.
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = !this.gameObject.GetComponent<SpriteRenderer>().flipX;
+
             // Animation probably in execute later.
             while (MoveTowardsPosition(initialPosition))
             {
                 yield return null;
             }
+
+            // Flip sprite to correct orientation once back to original position.
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
 
             // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
             csm.EndTurn(this.gameObject);
@@ -235,7 +255,12 @@ namespace Combat
         }
         private bool MoveTowardsPosition(Vector3 target)
         {
-            return target != (transform.position = Vector3.MoveTowards(transform.position, target, 50f * Time.deltaTime));
+            var newPos = Vector3.MoveTowards(transform.position, target, 25f * Time.deltaTime);
+            if (newPos.x < transform.position.x)
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            }
+            return target != (transform.position = newPos);
         }
 
 

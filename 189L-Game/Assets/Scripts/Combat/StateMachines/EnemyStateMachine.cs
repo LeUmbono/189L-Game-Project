@@ -16,6 +16,7 @@ namespace Combat
             IsTaunted = false;
             CurrentState = TurnState.WAIT;
 
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = Enemy.BaseClassData.ClassSprite;
             audioSource = this.GetComponent<AudioSource>();
             csm = GameObject.Find("CombatManager").GetComponent<CombatStateMachine>();
             uism = GameObject.Find("UIManager").GetComponent<UIStateMachine>();
@@ -137,7 +138,9 @@ namespace Combat
 
             // Animate enemy to attack player unit.
             var initialPosition = transform.position;
-            var targetPosition = UnitToTarget.transform.position + new Vector3(1f, 0f, 0f);
+            var targetPosition = new Vector3(UnitToTarget.GetComponent<SpriteRenderer>().bounds.max.x + gameObject.GetComponent<SpriteRenderer>().bounds.extents.x,
+                UnitToTarget.transform.position.y,
+                UnitToTarget.transform.position.z);
             while (MoveTowardsPosition(targetPosition))
             {
                 yield return null;
@@ -155,11 +158,17 @@ namespace Combat
             // Once taunted unit attacks provoker, reset taunted status.
             IsTaunted = false;
 
+            // Flip sprite on way back.
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = !this.gameObject.GetComponent<SpriteRenderer>().flipX;
+
             // Animate enemy back to initial position.
             while (MoveTowardsPosition(initialPosition))
             {
                 yield return null;
             }
+
+            // Flip sprite to correct orientation once back to original position.
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
 
             // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
             csm.EndTurn(this.gameObject);
@@ -173,7 +182,12 @@ namespace Combat
 
         private bool MoveTowardsPosition(Vector3 target)
         {
-            return target != (transform.position = Vector3.MoveTowards(transform.position, target, 50f * Time.deltaTime));
+            var newPos = Vector3.MoveTowards(transform.position, target, 25f * Time.deltaTime);
+            if (newPos.x < transform.position.x)
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            }
+            return target != (transform.position = newPos);
         }
     }
 }
