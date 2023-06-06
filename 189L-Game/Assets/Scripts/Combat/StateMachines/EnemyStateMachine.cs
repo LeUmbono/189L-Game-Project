@@ -158,11 +158,17 @@ namespace Combat
             // Once taunted unit attacks provoker, reset taunted status.
             IsTaunted = false;
 
+            // Flip sprite on way back.
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = !this.gameObject.GetComponent<SpriteRenderer>().flipX;
+
             // Animate enemy back to initial position.
             while (MoveTowardsPosition(initialPosition))
             {
                 yield return null;
             }
+
+            // Flip sprite to correct orientation once back to original position.
+            this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
 
             // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
             csm.EndTurn(this.gameObject);
@@ -176,7 +182,12 @@ namespace Combat
 
         private bool MoveTowardsPosition(Vector3 target)
         {
-            return target != (transform.position = Vector3.MoveTowards(transform.position, target, 50f * Time.deltaTime));
+            var newPos = Vector3.MoveTowards(transform.position, target, 25f * Time.deltaTime);
+            if (newPos.x < transform.position.x)
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            }
+            return target != (transform.position = newPos);
         }
     }
 }
