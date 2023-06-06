@@ -3549,7 +3549,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: be56a1f9f56b2b2419877892e0ebd40b, type: 3}
     - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
       propertyPath: overclockedThreshold
-      value: 20
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
       propertyPath: overclockedTransition
@@ -3557,7 +3557,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 407dc46b148a1974ea403f4a7ab4ea06, type: 3}
     - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
       propertyPath: shortcircuitedThreshold
-      value: 40
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
       propertyPath: shortcircuitedTransition

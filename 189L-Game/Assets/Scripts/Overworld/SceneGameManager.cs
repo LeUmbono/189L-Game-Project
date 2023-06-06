@@ -5,8 +5,6 @@ using UnityEngine.SceneManagement;
 using Combat;
 using Overworld;
 using TMPro;
-using UnityEditor.Rendering;
-using Unity.VisualScripting;
 
 public class SceneGameManager : MonoBehaviour
 {
