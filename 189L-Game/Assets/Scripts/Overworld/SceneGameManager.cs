@@ -6,6 +6,7 @@ using Combat;
 using Overworld;
 using TMPro;
 using UnityEditor.Rendering;
+using Unity.VisualScripting;
 
 public class SceneGameManager : MonoBehaviour
 {
@@ -25,6 +26,7 @@ public class SceneGameManager : MonoBehaviour
 
     private void Awake()
     {
+        transitionMaterial.SetFloat("_Cutoff", 0f);
         DontDestroyOnLoad(this.gameObject);
         playerData = GameObject.FindWithTag("Ally").GetComponent<PlayerController>().partyData;
         overworldPlayer = GameObject.FindWithTag("Ally").GetComponent<PlayerController>();
@@ -77,6 +79,10 @@ public class SceneGameManager : MonoBehaviour
     public IEnumerator LoadOverworldScene()
     {
         Debug.Log("Play Transition");
+
+        // Reset transition to 0
+        transitionMaterial.SetFloat("_Cutoff", 0f);
+
         yield return new WaitForSeconds(timeToWait);
         SceneManager.LoadScene(overworldSceneName, LoadSceneMode.Single);
         overworldPlayer.partyData = playerData;
