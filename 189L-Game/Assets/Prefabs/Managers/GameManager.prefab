@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5062353459696695675
 MonoBehaviour:
@@ -49,5 +49,6 @@ MonoBehaviour:
   titleSceneName: Title
   timeToWait: 1
   slowdownPercent: 0.1
+  transitionMaterial: {fileID: 2100000, guid: 13a8d2f78f9acdb41bfb03a9922c6c09, type: 2}
   playerData: {fileID: 11400000, guid: 564d4e84a0255444194dffac4f71dcfc, type: 2}
   enemyData: {fileID: 11400000, guid: bd217353b916741dbb31f180f3608a1f, type: 2}

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcaba3abee95a43dca4a67cd91021d68, type: 3}
+  m_Name: enemyParty 1
+  m_EditorClassIdentifier: 
+  slot1: {fileID: 11400000, guid: 6a2e6b66584267b478cb0080eb276ecc, type: 2}
+  slot2: {fileID: 11400000, guid: 6a2e6b66584267b478cb0080eb276ecc, type: 2}
+  slot3: {fileID: 11400000, guid: 6a2e6b66584267b478cb0080eb276ecc, type: 2}
+  slot4: {fileID: 11400000, guid: 6a2e6b66584267b478cb0080eb276ecc, type: 2}
+  slot1curHP: 25
+  slot2curHP: 25
+  slot3curHP: 25
+  slot4curHP: 25
+  slot1name: N/A
+  slot2name: N/A
+  slot3name: N/A
+  slot4name: N/A
