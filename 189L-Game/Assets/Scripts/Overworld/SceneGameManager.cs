@@ -29,6 +29,7 @@ public class SceneGameManager : MonoBehaviour
         transitionMaterial.SetFloat("_Cutoff", 0f);
         DontDestroyOnLoad(this.gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
 
     public void SetOverworldPlayerVars(PlayerController player)
@@ -53,7 +54,31 @@ public class SceneGameManager : MonoBehaviour
         else if(string.Equals(sceneName, combatSceneName))
         {
             Debug.Log("Loaded Combat Scene");
-            this.DisableOverworld();
+            this.ToggleOverworld(false);
+        }
+        else
+        {
+            Debug.LogError("UNKNOWN SCENE LOADED");
+        }
+    }
+
+    private void OnSceneUnloaded(Scene scene)
+    {
+        string sceneName = scene.name;
+
+        if(string.Equals(sceneName, titleSceneName))
+        {
+            //Debug.Log("Unloaded Title Screen");
+        }
+        else if(string.Equals(sceneName, overworldSceneName))
+        {
+            //Debug.Log("Unloaded Overworld Scene");
+        }
+        else if(string.Equals(sceneName, combatSceneName))
+        {
+            //Debug.Log("Unloaded Combat Scene");
+            this.ToggleOverworld(true);
+            transitionMaterial.SetFloat("_Cutoff", 0f);
         }
         else
         {
@@ -186,13 +211,13 @@ public class SceneGameManager : MonoBehaviour
 
     }
 
-    private void DisableOverworld()
+    private void ToggleOverworld(bool value)
     {
         GameObject[] objs = SceneManager.GetSceneByName(overworldSceneName).GetRootGameObjects();
 
         foreach(GameObject obj in objs)
         {
-            obj.SetActive(false);
+            obj.SetActive(value);
         }
     }
 
