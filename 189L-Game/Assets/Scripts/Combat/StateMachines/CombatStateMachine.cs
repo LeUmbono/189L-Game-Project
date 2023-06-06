@@ -76,8 +76,13 @@ namespace Combat
                         new Vector3(0.0f, TurnOrder[0].GetComponent<SpriteRenderer>().bounds.extents.y, 0.0f);
                     targetIndicator.SetActive(true);
 
-                    var GSM = TurnOrder[0].GetComponent<GenericUnitStateMachine>();
-                    GSM.CurrentState = GenericUnitStateMachine.TurnState.SELECTACTION;
+                    // Set sprite to the top of the sorting order so that it display above all other sprites
+                    // in the same layer.
+                    var sprite = TurnOrder[0].GetComponent<SpriteRenderer>();
+                    sprite.sortingOrder = 1;
+
+                    var gsm = TurnOrder[0].GetComponent<GenericUnitStateMachine>();
+                    gsm.CurrentState = GenericUnitStateMachine.TurnState.SELECTACTION;
 
                     CurrentCombatState = CombatStates.PERFORMACTION;
                     break;
@@ -166,6 +171,8 @@ namespace Combat
         }
         public void EndTurn(GameObject unit)
         {
+            var sprite = TurnOrder[0].GetComponent<SpriteRenderer>();
+            sprite.sortingOrder = 0;
             TurnOrder.RemoveAt(0);
             TurnOrder.Add(unit);
         }
