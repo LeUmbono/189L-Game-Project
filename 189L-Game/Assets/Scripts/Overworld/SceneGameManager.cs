@@ -28,24 +28,37 @@ public class SceneGameManager : MonoBehaviour
     {
         transitionMaterial.SetFloat("_Cutoff", 0f);
         DontDestroyOnLoad(this.gameObject);
-        playerData = GameObject.FindWithTag("Ally").GetComponent<PlayerController>().partyData;
-        overworldPlayer = GameObject.FindWithTag("Ally").GetComponent<PlayerController>();
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    public IEnumerator LoadCombatScene(PartyData pData, PartyData eData)
+    public void SetOverworldPlayerVars(PlayerController player)
     {
-        while (PlayingTransition())
+        overworldPlayer = player;
+        playerData = player.partyData;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode sceneMode)
+    {
+        string sceneName = scene.name;
+
+        if(string.Equals(sceneName, titleSceneName))
         {
-            yield return null;
+            Debug.Log("Loaded Title Screen");
         }
-
-        Time.timeScale = slowdownPercent;
-        yield return new WaitForSeconds(timeToWait * slowdownPercent);
-        SceneManager.LoadScene(combatSceneName, LoadSceneMode.Single);
-        Time.timeScale = 1f;
-
-        playerData = pData;
-        enemyData = eData;
+        else if(string.Equals(sceneName, overworldSceneName))
+        {
+            Debug.Log("Loaded Overworld Scene");
+            this.StartGame();
+        }
+        else if(string.Equals(sceneName, combatSceneName))
+        {
+            Debug.Log("Loaded Combat Scene");
+            this.DisableOverworld();
+        }
+        else
+        {
+            Debug.LogError("UNKNOWN SCENE LOADED");
+        }
     }
 
     // Only to be called from overworld / after combat.
@@ -76,23 +89,46 @@ public class SceneGameManager : MonoBehaviour
         }
     }
 
-    public IEnumerator LoadOverworldScene()
+    private void StartGame()
     {
-        Debug.Log("Play Transition");
-
-        // Reset transition to 0
-        transitionMaterial.SetFloat("_Cutoff", 0f);
-
-        yield return new WaitForSeconds(timeToWait);
-        SceneManager.LoadScene(overworldSceneName, LoadSceneMode.Single);
-        overworldPlayer.partyData = playerData;
+        this.SetOverworldPlayerVars(GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>());
+        this.HealPlayerParty();
     }
 
     public IEnumerator LoadTitleScene()
     {
-      Debug.Log("Play Transition");
-      yield return new WaitForSeconds(timeToWait);
-      SceneManager.LoadScene(overworldSceneName, LoadSceneMode.Single);
+        transitionMaterial.SetFloat("_Cutoff", 0f);
+        while (PlayingTransition())
+        {
+            yield return null;
+        }
+
+        SceneManager.LoadScene(titleSceneName, LoadSceneMode.Single);
+    }
+    
+    public IEnumerator LoadOverworldScene()
+    {
+        transitionMaterial.SetFloat("_Cutoff", 0f);
+        while (PlayingTransition())
+        {
+            yield return null;
+        }
+
+        SceneManager.LoadScene(overworldSceneName, LoadSceneMode.Single);
+        
+    }
+
+    public IEnumerator LoadCombatScene(PartyData pData, PartyData eData)
+    {
+        while (PlayingTransition())
+        {
+            yield return null;
+        }
+
+        SceneManager.LoadScene(combatSceneName, LoadSceneMode.Additive);
+
+        playerData = pData;
+        enemyData = eData;
     }
 
     public void InitializeCombatScene()
@@ -150,9 +186,20 @@ public class SceneGameManager : MonoBehaviour
 
     }
 
+    private void DisableOverworld()
+    {
+        GameObject[] objs = SceneManager.GetSceneByName(overworldSceneName).GetRootGameObjects();
+
+        foreach(GameObject obj in objs)
+        {
+            obj.SetActive(false);
+        }
+    }
+
     private void HealPlayerParty()
     {
         this.playerData.FullHeal();
+        Debug.Log("Healed Party");
     }
 
     private void HealEnemyParty()
