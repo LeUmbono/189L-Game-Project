@@ -231,9 +231,6 @@ namespace Combat
 
             yield return new WaitWhile(() => IsPlaying());
 
-            // Flip sprite on way back.
-            this.gameObject.GetComponent<SpriteRenderer>().flipX = !this.gameObject.GetComponent<SpriteRenderer>().flipX;
-
             // Animation probably in execute later.
             while (MoveTowardsPosition(initialPosition))
             {
@@ -256,6 +253,13 @@ namespace Combat
         }
         private bool MoveTowardsPosition(Vector3 target)
         {
+            var direction = target.x - transform.position.x;
+
+            if(direction < 0)
+            {
+                this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            }
+
             System.Action<ITween<Vector3>> updatePos = (t) =>
             {
                 transform.position = t.CurrentValue;
