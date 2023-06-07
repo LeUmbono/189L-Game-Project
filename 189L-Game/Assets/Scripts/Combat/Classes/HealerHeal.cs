@@ -16,7 +16,7 @@ namespace Combat
             PSM.PlaySound(specialSound);
 
             // Heal damage. 
-            target.Player.CurrentHP += 0.2f * target.Player.MaxHP;
+            target.Player.CurrentHP += 0.4f * target.Player.MaxHP;
             if(target.Player.CurrentHP > target.Player.MaxHP)
             {
                 target.Player.CurrentHP = target.Player.MaxHP;
