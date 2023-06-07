@@ -3557,7 +3557,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: 407dc46b148a1974ea403f4a7ab4ea06, type: 3}
     - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
       propertyPath: shortcircuitedThreshold
-      value: 60
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
       propertyPath: shortcircuitedTransition
