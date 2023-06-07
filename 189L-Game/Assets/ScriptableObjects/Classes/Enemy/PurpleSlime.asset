@@ -10,13 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2e80af631229bb042ab15801456b94bd, type: 3}
-  m_Name: Slime
+  m_Name: PurpleSlime
   m_EditorClassIdentifier: 
-  className: Slimie
-  classSprite: {fileID: 21300000, guid: 52d86781272778243a6948bec7cb7fb1, type: 3}
-  baseHP: 40
-  baseAttack: 14
-  baseDefense: 3
-  baseAgility: 12
-  attackRange: 3
+  className: 
+  classSprite: {fileID: 0}
+  classIcon: {fileID: 0}
+  baseHP: 0
+  baseAttack: 0
+  baseDefense: 0
+  baseAgility: 0
+  attackRange: 0
   specialAbility: {fileID: 0}

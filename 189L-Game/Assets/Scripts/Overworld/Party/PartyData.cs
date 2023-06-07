@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using Combat;
 
+[CreateAssetMenu(fileName = "newParty", menuName = "Party/NewParty")]
 public class PartyData : ScriptableObject
 {
     public ClassData slot1;
