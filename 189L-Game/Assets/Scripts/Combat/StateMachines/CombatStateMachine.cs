@@ -114,7 +114,7 @@ namespace Combat
                 case CombatStates.WIN:
                     Debug.Log("You win!");
                     gameManager.UpdatePlayerData();
-                    StartCoroutine(gameManager.LoadOverworldScene());
+                    StartCoroutine(gameManager.WinFunction());
                     break;
                 case CombatStates.LOSE:
                     Debug.Log("You lose");

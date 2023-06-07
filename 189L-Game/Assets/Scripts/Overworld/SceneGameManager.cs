@@ -143,6 +143,17 @@ public class SceneGameManager : MonoBehaviour
         
     }
 
+    public IEnumerator WinFunction()
+    {
+        transitionMaterial.SetFloat("_Cutoff", 0f);
+        while (PlayingTransition())
+        {
+            yield return null;
+        }
+
+        SceneManager.UnloadSceneAsync(combatSceneName);
+    }
+
     public IEnumerator LoadCombatScene(PartyData pData, PartyData eData)
     {
         while (PlayingTransition())
