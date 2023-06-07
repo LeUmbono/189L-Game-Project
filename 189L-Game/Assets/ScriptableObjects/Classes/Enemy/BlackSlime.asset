@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e80af631229bb042ab15801456b94bd, type: 3}
   m_Name: BlackSlime
   m_EditorClassIdentifier: 
-  className: Slimie
+  className: Sloop
   classSprite: {fileID: 21300000, guid: 52d86781272778243a6948bec7cb7fb1, type: 3}
+  classIcon: {fileID: 21300000, guid: 52d86781272778243a6948bec7cb7fb1, type: 3}
   baseHP: 40
   baseAttack: 14
   baseDefense: 3
   baseAgility: 12
-  attackRange: 3
+  attackRange: 7
   specialAbility: {fileID: 0}

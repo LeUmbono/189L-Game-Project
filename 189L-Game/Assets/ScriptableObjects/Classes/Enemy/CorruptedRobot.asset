@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e80af631229bb042ab15801456b94bd, type: 3}
   m_Name: CorruptedRobot
   m_EditorClassIdentifier: 
-  className: 
-  classSprite: {fileID: 0}
-  classIcon: {fileID: 0}
-  baseHP: 0
-  baseAttack: 0
+  className: Corrupted Robot
+  classSprite: {fileID: 21300000, guid: 317058914410d17438d111a56c5cfea7, type: 3}
+  classIcon: {fileID: 21300000, guid: 317058914410d17438d111a56c5cfea7, type: 3}
+  baseHP: 20
+  baseAttack: 20
   baseDefense: 0
-  baseAgility: 0
-  attackRange: 0
+  baseAgility: 18
+  attackRange: 7
   specialAbility: {fileID: 0}
