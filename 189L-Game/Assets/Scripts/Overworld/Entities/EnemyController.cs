@@ -15,11 +15,11 @@ namespace Overworld
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if(other.tag == "Ally")
+            if(other.tag == "Player")
             {
-                //other.gameObject.GetComponent<PlayerController>().DisableInput();
                 PartyData allyParty = other.gameObject.GetComponent<PlayerController>().partyData;
                 StartCoroutine(transitioner.LoadCombatScene(allyParty, this.partyData));
+                Object.Destroy(this.gameObject, 1f);
             }
         }
 
