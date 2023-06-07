@@ -1,6 +1,7 @@
 using DigitalRuby.Tween;
 using System.Collections;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace Combat
 {
@@ -184,6 +185,13 @@ namespace Combat
             }
             
             DoSwap(UnitToTarget);
+            
+            // Heal 10% of max HP. 
+            this.Player.CurrentHP += 0.1f * this.Player.MaxHP;
+            if (this.Player.CurrentHP > this.Player.MaxHP)
+            {
+                this.Player.CurrentHP = this.Player.MaxHP;
+            }
 
             // Remove this enemy game object from front of turn queue
             // and re-add back at the back of the queue.
