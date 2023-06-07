@@ -192,6 +192,7 @@ namespace Combat
             {
                 this.Player.CurrentHP = this.Player.MaxHP;
             }
+            UpdateHealthBar(Player.CurrentHP);
 
             // Remove this enemy game object from front of turn queue
             // and re-add back at the back of the queue.
