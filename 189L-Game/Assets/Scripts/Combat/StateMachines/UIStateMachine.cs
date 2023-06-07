@@ -136,7 +136,7 @@ namespace Combat
 
         private void PopulateUnitInfoPanel()
         {
-            unitInfoPanel.transform.Find("Icon").GetComponent<Image>().sprite = psm.GetComponent<SpriteRenderer>().sprite;
+            unitInfoPanel.transform.Find("Icon").GetComponent<Image>().sprite = psm.Player.BaseClassData.ClassIcon;
             unitInfoPanel.transform.Find("Name").GetComponent<TMPro.TextMeshProUGUI>().text = psm.Player.UnitName;
             unitInfoPanel.transform.Find("ClassName").GetComponent<TMPro.TextMeshProUGUI>().text = psm.Player.BaseClassData.ClassName;
             unitInfoPanel.transform.Find("HPValue").GetComponent<TMPro.TextMeshProUGUI>().text = Mathf.Ceil(psm.Player.CurrentHP).ToString() + " / " + Mathf.Ceil(psm.Player.MaxHP).ToString();

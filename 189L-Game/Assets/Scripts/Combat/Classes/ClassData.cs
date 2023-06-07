@@ -11,6 +11,7 @@ namespace Combat
         // Class Information
         [SerializeField] private string className;
         [SerializeField] private Sprite classSprite;
+        [SerializeField] private Sprite classIcon;
 
         // Stats
         [SerializeField] private float baseHP;
@@ -22,6 +23,7 @@ namespace Combat
 
         public string ClassName => className;
         public Sprite ClassSprite => classSprite;
+        public Sprite ClassIcon => classIcon;
         public float BaseHP => baseHP;
         public float BaseAttack => baseAttack;
         public float BaseDefense => baseDefense;

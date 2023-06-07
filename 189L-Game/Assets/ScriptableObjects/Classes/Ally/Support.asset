@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   className: Support
   classSprite: {fileID: 21300000, guid: 411620c0789f2dd4aa6df571bea6ab6e, type: 3}
+  classIcon: {fileID: 21300000, guid: 7c65a55d6a6ccbd49ab21c6d6e6da891, type: 3}
   baseHP: 30
   baseAttack: 10
-  baseDefense: 10
+  baseDefense: 6
   baseAgility: 16
   attackRange: 3
   specialAbility: {fileID: 11400000, guid: 1f5053971d706fc49bdc39ad9e926ece, type: 2}

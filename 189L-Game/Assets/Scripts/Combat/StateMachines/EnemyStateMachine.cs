@@ -148,7 +148,7 @@ namespace Combat
             }
 
             // Pause for 0.5 seconds.
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.25f);
 
             // Do damage.
             DoDamage();

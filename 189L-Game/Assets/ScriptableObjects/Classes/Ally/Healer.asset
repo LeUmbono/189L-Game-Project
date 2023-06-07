@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   className: Healer
   classSprite: {fileID: 21300000, guid: 88d85d3e189d7194ea8bde3649b99364, type: 3}
+  classIcon: {fileID: 21300000, guid: f7d6ffe132418354a89599b0b99910b0, type: 3}
   baseHP: 25
   baseAttack: 10
-  baseDefense: 10
+  baseDefense: 5
   baseAgility: 10
   attackRange: 3
   specialAbility: {fileID: 11400000, guid: b095484d18e02994ab26ef008ea84ed6, type: 2}
