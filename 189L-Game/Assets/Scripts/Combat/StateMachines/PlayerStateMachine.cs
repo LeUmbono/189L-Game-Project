@@ -136,7 +136,7 @@ namespace Combat
             }
 
             // Pause for 0.5 seconds.
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.25f);
 
             // Do damage.
             DoDamage();
@@ -147,7 +147,7 @@ namespace Combat
             // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
             csm.EndTurn(this.gameObject);
 
-            steamBar.ChangeSteam(5.0f);
+            steamBar.ChangeSteam(10.0f);
 
             // Flip sprite on way back.
             this.gameObject.GetComponent<SpriteRenderer>().flipX = !this.gameObject.GetComponent<SpriteRenderer>().flipX;
@@ -190,7 +190,7 @@ namespace Combat
             // and re-add back at the back of the queue.
             csm.EndTurn(this.gameObject);
 
-            steamBar.ChangeSteam(-5.0f);
+            steamBar.ChangeSteam(-10.0f);
 
             // Set combat state of CSM to Wait.
             csm.CurrentCombatState = CombatStateMachine.CombatStates.WAIT;
@@ -223,8 +223,9 @@ namespace Combat
             }
 
             this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
-            // Pause for 0.5 seconds.
-            yield return new WaitForSeconds(0.5f);
+            
+            // Pause for 0.25 seconds.
+            yield return new WaitForSeconds(0.25f);
 
             // See if this works.
             Player.BaseClassData.SpecialAbility.Execute(this.gameObject);

@@ -40,7 +40,7 @@ namespace Combat
         }
         public override float GetSteamBarChangeValue()
         {
-            return -10.0f;
+            return -15.0f;
         }
     }
 }
