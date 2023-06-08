@@ -6,12 +6,56 @@
 
 ## Gameplay Explanation ##
 
-**In this section, explain how the game should be played. Treat this as a manual within a game. It is encouraged to explain the button mappings and the most optimal gameplay strategy.**
+### Controls ###
+## Overworld ##
+WASD - Movement
+Colliding with an enemy initiates the Combat phase
 
+## Combat ##
+Select buttons with the mouse.
+
+- 2D Positional Turn-Based RPG with character classes that dictate actions / stats / attack range in the vein of Darkest Dungeon
+- Overworld vs. Battle Phase
+- In the overworld, the party is able to move in a grid-based system. Enemies / obstacles are littered across the grid and encountering enemies in the overworld leads to a battle. 
+- In battle, party members and enemies each have four positions that they can take up.
+- Depending on the class of the party member / type of enemy, their attack range determines which entities they can target on the battlefield.  
+- The battle system also incorporates a "steam bar", which has various zones that either benefit or disadvantage the entire party. Each action a party member takes as well as their position during their turn affects the progress of this bar. The bar represents an integer from 0-100, and is divided into three main parts:
+  - Inert (0 - 40): 1x Attack
+  - Overclocked (40 - 60): 1.5x Attack, 1.0 Defense
+  - Short-circuited (60 - 100): 0.5x Attack, 0.5 Defense
+- Inspiration: Action Bar in Chained Echoes
 
 **If you did work that should be factored in to your grade that does not fit easily into the proscribed roles, add it here! Please include links to resources and descriptions of game-related material that does not fit into roles here.**
 
 # Main Roles #
+
+Russell
+Main Role: Combat Logic
+Sub Role: Game Director
+
+Jordan
+Main Role: Input / Movement
+Sub Role: Narrative Design
+
+Aron
+Main Role: Combat Logic
+Sub Role: Technical Artist
+
+Morgan
+Main Role: User Interface
+Sub Role: Gameplay Testing
+
+Clarissa
+Main Role: Environmental Art
+Sub Role: Project Management
+
+Chloe
+Main Role: Character Sprites/Animations
+Sub Role: Sound Effects
+
+Josh
+Main Role: Music 
+Sub Role: Sound Effects
 
 Your goal is to relate the work of your role and sub-role in terms of the content of the course. Please look at the role sections below for specific instructions for each role.
 
@@ -39,8 +83,19 @@ You should replay any **bold text** with your relevant information. Liberally us
 ## Animation and Visuals
 
 **List your assets including their sources and licenses.**
+pebbles.png -  Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License (https://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US)
 
 **Describe how your work intersects with game feel, graphic design, and world-building. Include your visual style guide if one exists.**
+
+*Shaders*
+
+I realized that the steam bar would be a central mechanic, the "main appeal" of our game, so I paid great attention to its visuals. To emphasize it controlled the very "life-force" of our party, animating it was a must. Based on my scrapped steam shader, pixels on the left of the material had bigger clouds than the pixels on the right of the material. I wanted to give the impression that the steam bubbled up and disppated. This visual falls apart near the right end since I wanted a distinct cutoff point to indicate the value of the bar; no visual flare should get in the way of visual clarity.
+https://www.shadertoy.com/view/DlcXWr
+
+The transition shader took a bit of iteration. I speculated having a factory-type piston system similar to 
+
+*Sprite Art*
+Great care was put into gears as a thematic element for the party members. Its design is very flexible in nature; our designs used the gear as a shield on the tank, an accessory on the ranger, and a radial crank on the support. Our visual design heavily leaned on strong shape language to communicate party purpose. 
 
 ## Input
 
@@ -87,3 +142,7 @@ You should replay any **bold text** with your relevant information. Liberally us
 ## Game Feel
 
 **Document what you added to and how you tweaked your game to improve its game feel.**
+
+
+
+## Unused Content
