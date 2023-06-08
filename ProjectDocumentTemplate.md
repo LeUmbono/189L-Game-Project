@@ -7,11 +7,11 @@
 ## Gameplay Explanation ##
 
 ### Controls ###
-## Overworld ##
+* Overworld *
 WASD - Movement
 Colliding with an enemy initiates the Combat phase
 
-## Combat ##
+* Combat *
 Select buttons with the mouse.
 
 - 2D Positional Turn-Based RPG with character classes that dictate actions / stats / attack range in the vein of Darkest Dungeon
