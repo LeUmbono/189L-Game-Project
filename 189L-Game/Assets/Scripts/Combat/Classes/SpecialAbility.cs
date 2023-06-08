@@ -4,22 +4,13 @@ using UnityEngine;
 
 namespace Combat
 {
-    public class SpecialAbility : ScriptableObject
+    public abstract class SpecialAbility : ScriptableObject
     {
         public AudioClip specialSound;
-        public virtual void Execute(GameObject gameObject)
-        {
+        public abstract void Execute(GameObject gameObject);
 
-        }
+        public abstract List<bool> SelectTargets(GenericUnitStateMachine performer);
 
-        public virtual List<bool> SelectTargets(GenericUnitStateMachine performer)
-        {
-            return null;
-        }
-
-        public virtual float GetSteamBarChangeValue()
-        {
-            return 0.0f;
-        }
+        public abstract float GetSteamBarChangeValue();
     }
 }
