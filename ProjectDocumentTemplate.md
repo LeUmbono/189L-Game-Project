@@ -102,12 +102,16 @@ The transition shader took a lot of iteration. I speculated having a factory-lik
 Great care was put into gears as a thematic element for the party members. Its design is very flexible in nature; our designs used the gear as a shield on the tank, an accessory on the ranger, and a radial crank on the support. Our visual design heavily leaned on strong shape language to communicate party purpose. 
 
 The tank is sturdy, slow, and reliable. These traits are best communicated with a heavy square shape.
+
 ![Tank](https://github.com/LeUmbono/189L-Game-Project/blob/37db298b54b21f46af9d6708d36a3033c2614c3f/189L-Game/Assets/Art/Combat/Sprites/tankFINAL.png)
+
 The support is friendly and takes a backseat to the rest of the bots. It is round to communicate a friendlier aura than the sharper and sturdier ranger and tank bot.
+
 ![Support](https://github.com/LeUmbono/189L-Game-Project/blob/37db298b54b21f46af9d6708d36a3033c2614c3f/189L-Game/Assets/Art/Combat/Sprites/supportFINAL.png)
 
 
 ![Sniper](https://github.com/LeUmbono/189L-Game-Project/blob/37db298b54b21f46af9d6708d36a3033c2614c3f/189L-Game/Assets/Art/Combat/Sprites/sniperFINAL.png)
+
 ![Healer](https://github.com/LeUmbono/189L-Game-Project/blob/[branch]/189L-Game/Assets/Art/Combat/Sprites/healerFINAL.png](https://github.com/LeUmbono/189L-Game-Project/blob/9fcdcfce2bbec31b492f8a307a1a94886e72fbb4/189L-Game/Assets/Art/Combat/Sprites/healerFINAL.png)
 
 ## Input
