@@ -41,6 +41,7 @@ Shader "Custom/TransitionShader"
             float4 _Color;
             float _Cutoff;
 
+            // Default vertex function
             v2f vert (appdata v)
             {
                 v2f o;
@@ -52,17 +53,17 @@ Shader "Custom/TransitionShader"
 
             fixed4 frag(v2f i) : SV_Target
             {
+                // Sample the "cutoff texture"
                 fixed4 transit = tex2D(_CutoffTex, i.uv);
                 
+                // Since "transit" is animated overtime, the more "dark" a pixel is, 
+                // the longer it takes to be turned black.
+                // The end effect is a screen gradually turning black according
+                // to the given texture file.
                 if (transit.b < _Cutoff)
                     return _Color;
 
                 return tex2D(_MainTex, i.uv);
-                // sample the texture
-                //fixed4 col = tex2D(_MainTex, i.uv);
-                // apply fog
-                //UNITY_APPLY_FOG(i.fogCoord, col);
-                //return col;
             }
             ENDCG
         }
