@@ -163,10 +163,11 @@ public class SceneGameManager : MonoBehaviour
 
     public IEnumerator LoadCombatScene(PartyData pData, PartyData eData)
     {
-        var musicPlayer = GameObject.Find("MusicManager").GetComponent<AudioSource>();
-
         // Stop overworld theme when entering combat.
+        var musicPlayer = GameObject.Find("MusicManager").GetComponent<AudioSource>();
         musicPlayer.Stop();
+
+        // Play encounter sound effect.
         encounterAudioSource.Play();
 
         while (PlayingTransition())
