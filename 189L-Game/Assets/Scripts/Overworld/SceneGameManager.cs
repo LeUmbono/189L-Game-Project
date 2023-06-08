@@ -148,6 +148,7 @@ public class SceneGameManager : MonoBehaviour
         }
 
         SceneManager.UnloadSceneAsync(combatSceneName);
+        HealPlayerParty();
     }
 
     public IEnumerator LoadCombatScene(PartyData pData, PartyData eData)
