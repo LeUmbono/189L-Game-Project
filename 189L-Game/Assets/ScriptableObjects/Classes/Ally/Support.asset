@@ -15,7 +15,7 @@ MonoBehaviour:
   className: Support
   classSprite: {fileID: 21300000, guid: 411620c0789f2dd4aa6df571bea6ab6e, type: 3}
   classIcon: {fileID: 21300000, guid: 7c65a55d6a6ccbd49ab21c6d6e6da891, type: 3}
-  baseHP: 30
+  baseHP: 35
   baseAttack: 10
   baseDefense: 6
   baseAgility: 16
