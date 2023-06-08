@@ -152,6 +152,7 @@ public class SceneGameManager : MonoBehaviour
 
     public IEnumerator LoadCombatScene(PartyData pData, PartyData eData)
     {
+        this.GetComponent<AudioSource>().Play();
         while (PlayingTransition())
         {
             yield return null;
