@@ -3536,7 +3536,7 @@ PrefabInstance:
     - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
       propertyPath: inertTheme
       value: 
-      objectReference: {fileID: 8300000, guid: 8f63719825669234c95a9aefccb21e6c, type: 3}
+      objectReference: {fileID: 8300000, guid: ae8c6e548e361844e96fd0fb30cb6935, type: 3}
     - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
       propertyPath: inertTransition
       value: 
