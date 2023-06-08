@@ -176,6 +176,8 @@ public class SceneGameManager : MonoBehaviour
             yield return null;
         }
 
+        encounterAudioSource.Stop();
+
         SceneManager.LoadScene(combatSceneName, LoadSceneMode.Additive);
 
         playerData = pData;
