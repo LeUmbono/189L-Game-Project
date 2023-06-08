@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Combat;
 using Overworld;
+using Unity.VisualScripting;
 
 public class SceneGameManager : MonoBehaviour
 {
@@ -12,9 +13,11 @@ public class SceneGameManager : MonoBehaviour
     [SerializeField] private float timeToWait;
     [SerializeField][Range(0, 1)] private float slowdownPercent;
     [SerializeField] private Material transitionMaterial;
+  
 
     // Holds reference to overworld player.
     private PlayerController overworldPlayer;
+    private AudioSource encounterAudioSource;
 
     // Holds the most recent references to player and enemy parties.
     public PartyData playerData;
@@ -22,6 +25,10 @@ public class SceneGameManager : MonoBehaviour
 
     private void Awake()
     {
+
+        //overworldMusicPlayer = GameObject.Find("MusicManager").GetComponent<AudioSource>();
+        encounterAudioSource = this.GetComponent<AudioSource>();
+
         transitionMaterial.SetFloat("_Cutoff", 0f);
         DontDestroyOnLoad(this.gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -148,11 +155,22 @@ public class SceneGameManager : MonoBehaviour
         }
 
         SceneManager.UnloadSceneAsync(combatSceneName);
+
         HealPlayerParty();
+        // Resume overworld theme.
+        var musicPlayer = GameObject.Find("MusicManager").GetComponent<AudioSource>();
+        musicPlayer.Play();
     }
 
     public IEnumerator LoadCombatScene(PartyData pData, PartyData eData)
     {
+        // Stop overworld theme when entering combat.
+        var musicPlayer = GameObject.Find("MusicManager").GetComponent<AudioSource>();
+        musicPlayer.Stop();
+
+        // Play encounter sound effect.
+        encounterAudioSource.Play();
+
         while (PlayingTransition())
         {
             yield return null;

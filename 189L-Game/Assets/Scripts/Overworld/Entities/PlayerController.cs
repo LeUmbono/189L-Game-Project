@@ -48,21 +48,25 @@ namespace Overworld
             if (Input.GetKeyDown(KeyCode.A) && NotCollisionTile(-tileDistance, 0.0f))
             {
                 this.movePoint.position += new Vector3(-tileDistance, 0.0f, 0.0f);
+                this.GetComponent<AudioSource>().Play();
                 canMove = false;
             }
             else if (Input.GetKeyDown(KeyCode.D) && NotCollisionTile(tileDistance, 0.0f))
             {
                 this.movePoint.position += new Vector3(tileDistance, 0.0f, 0.0f);
+                this.GetComponent<AudioSource>().Play();
                 canMove = false;
             }
             else if (Input.GetKeyDown(KeyCode.W) && NotCollisionTile(0.0f, tileDistance))
             {
                 this.movePoint.position += new Vector3(0.0f, tileDistance, 0.0f);
+                this.GetComponent<AudioSource>().Play();
                 canMove = false;
             }
             else if (Input.GetKeyDown(KeyCode.S) && NotCollisionTile(0.0f, -tileDistance))
             {
                 this.movePoint.position += new Vector3(0.0f, -tileDistance, 0.0f);
+                this.GetComponent<AudioSource>().Play();
                 canMove = false;
             }
         }
