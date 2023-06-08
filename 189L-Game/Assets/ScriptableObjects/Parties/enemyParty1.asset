@@ -10,17 +10,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fcaba3abee95a43dca4a67cd91021d68, type: 3}
-  m_Name: enemyParty2
+  m_Name: enemyParty1
   m_EditorClassIdentifier: 
   slot1: {fileID: 11400000, guid: 6a2e6b66584267b478cb0080eb276ecc, type: 2}
-  slot2: {fileID: 11400000, guid: bf686cee1e94efc41ae08854ef33f065, type: 2}
+  slot2: {fileID: 11400000, guid: 6a2e6b66584267b478cb0080eb276ecc, type: 2}
   slot3: {fileID: 11400000, guid: 6a2e6b66584267b478cb0080eb276ecc, type: 2}
   slot4: {fileID: 11400000, guid: 6a2e6b66584267b478cb0080eb276ecc, type: 2}
-  slot1curHP: 0
-  slot2curHP: 0
-  slot3curHP: 0
-  slot4curHP: 0
-  slot1name: 
-  slot2name: 
-  slot3name: 
-  slot4name: 
+  slot1curHP: 25
+  slot2curHP: 25
+  slot3curHP: 25
+  slot4curHP: 25
+  slot1name: N/A
+  slot2name: N/A
+  slot3name: N/A
+  slot4name: N/A

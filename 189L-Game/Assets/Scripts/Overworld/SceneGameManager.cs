@@ -156,6 +156,7 @@ public class SceneGameManager : MonoBehaviour
 
         SceneManager.UnloadSceneAsync(combatSceneName);
 
+        HealPlayerParty();
         // Resume overworld theme.
         var musicPlayer = GameObject.Find("MusicManager").GetComponent<AudioSource>();
         musicPlayer.Play();

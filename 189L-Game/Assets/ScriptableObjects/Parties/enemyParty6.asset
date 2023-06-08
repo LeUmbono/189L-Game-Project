@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fcaba3abee95a43dca4a67cd91021d68, type: 3}
-  m_Name: enemyParty2
+  m_Name: enemyParty6
   m_EditorClassIdentifier: 
   slot1: {fileID: 11400000, guid: 6a2e6b66584267b478cb0080eb276ecc, type: 2}
-  slot2: {fileID: 11400000, guid: bf686cee1e94efc41ae08854ef33f065, type: 2}
-  slot3: {fileID: 11400000, guid: 6a2e6b66584267b478cb0080eb276ecc, type: 2}
-  slot4: {fileID: 11400000, guid: 6a2e6b66584267b478cb0080eb276ecc, type: 2}
+  slot2: {fileID: 11400000, guid: e94eae383d2a1cc43b99c3555a643c78, type: 2}
+  slot3: {fileID: 11400000, guid: d2a55c928df4d1049ac2ec78802c1b3b, type: 2}
+  slot4: {fileID: 11400000, guid: e94eae383d2a1cc43b99c3555a643c78, type: 2}
   slot1curHP: 0
   slot2curHP: 0
   slot3curHP: 0
