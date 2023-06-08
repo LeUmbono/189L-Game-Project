@@ -96,6 +96,7 @@ The transition shader took a bit of iteration. I speculated having a factory-typ
 
 *Sprite Art*
 Great care was put into gears as a thematic element for the party members. Its design is very flexible in nature; our designs used the gear as a shield on the tank, an accessory on the ranger, and a radial crank on the support. Our visual design heavily leaned on strong shape language to communicate party purpose. 
+![alt text]([https://github.com/LeUmbono/189L-Game-Project/blob/[branch]/189L-Game/Assets/Art/Combat/Sprites/healerFINAL.png](https://github.com/LeUmbono/189L-Game-Project/blob/9fcdcfce2bbec31b492f8a307a1a94886e72fbb4/189L-Game/Assets/Art/Combat/Sprites/healerFINAL.png))
 
 ## Input
 
