@@ -112,7 +112,7 @@ The support is friendly and takes a backseat to the rest of the bots. It is roun
 
 ![Sniper](https://github.com/LeUmbono/189L-Game-Project/blob/37db298b54b21f46af9d6708d36a3033c2614c3f/189L-Game/Assets/Art/Combat/Sprites/sniperFINAL.png)
 
-![Healer](https://github.com/LeUmbono/189L-Game-Project/blob/[branch]/189L-Game/Assets/Art/Combat/Sprites/healerFINAL.png](https://github.com/LeUmbono/189L-Game-Project/blob/9fcdcfce2bbec31b492f8a307a1a94886e72fbb4/189L-Game/Assets/Art/Combat/Sprites/healerFINAL.png)
+![Healer](https://github.com/LeUmbono/189L-Game-Project/blob/dd6acc891590242862999f573f340b54f847e743/189L-Game/Assets/Art/Combat/Sprites/healerFINAL.png)
 
 ## Input
 
