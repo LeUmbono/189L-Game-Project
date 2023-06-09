@@ -135,6 +135,7 @@ namespace Combat
 
             return targetUnit;
         }
+
         protected override void DoDamage()
         {
             UnitToTarget.GetComponent<PlayerStateMachine>().TakeDamage(Enemy.Attack);
