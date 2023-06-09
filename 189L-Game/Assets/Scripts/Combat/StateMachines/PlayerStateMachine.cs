@@ -232,8 +232,8 @@ namespace Combat
 
             this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
             
-            // Pause for 0.25 seconds.
-            yield return new WaitForSeconds(0.25f);
+            // Pause for 0.1 seconds.
+            yield return new WaitForSeconds(0.1f);
 
             // See if this works.
             Player.BaseClassData.SpecialAbility.Execute(this.gameObject);
@@ -274,7 +274,7 @@ namespace Combat
                 transform.position = t.CurrentValue;
             };
 
-            this.gameObject.Tween("Movement", transform.position, target, 0.4f, TweenScaleFunctions.SineEaseOut, updatePos);
+            this.gameObject.Tween("Movement", transform.position, target, 0.2f, TweenScaleFunctions.SineEaseOut, updatePos);
             return target != transform.position;
         }
     }

@@ -135,7 +135,7 @@ namespace Combat
 
             actionStarted = true;
 
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.1f);
 
             // Animate enemy to attack player unit.
             var initialPosition = transform.position;
@@ -147,8 +147,8 @@ namespace Combat
                 yield return null;
             }
 
-            // Pause for 0.5 seconds.
-            yield return new WaitForSeconds(0.25f);
+            // Pause for 0.1 seconds.
+            yield return new WaitForSeconds(0.1f);
 
             // Do damage.
             DoDamage();
@@ -188,7 +188,7 @@ namespace Combat
                 transform.position = t.CurrentValue;
             };
 
-            this.gameObject.Tween("Movement", transform.position, target, 0.4f, TweenScaleFunctions.SineEaseOut, updatePos);
+            this.gameObject.Tween("Movement", transform.position, target, 0.2f, TweenScaleFunctions.SineEaseOut, updatePos);
             return target != transform.position;
         }
     }
