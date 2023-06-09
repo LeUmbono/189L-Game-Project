@@ -12,15 +12,22 @@ namespace Combat
         
         void Start()
         {
+            // Instantiate class variables.
             isDead = false;
             BuffAmount = 0.0f;
             CurrentState = TurnState.WAIT;
 
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = Player.BaseClassData.ClassSprite;
+            // Set sprite of player based on incoming party data.
+            spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+            spriteRenderer.sprite = Player.BaseClassData.ClassSprite;
+
+            // Instantiate combat scene game object variables.
             audioSource = this.GetComponent<AudioSource>();
             steamBar = GameObject.Find("SteamBar").GetComponent<SteamBar>();
             csm = GameObject.Find("CombatManager").GetComponent<CombatStateMachine>();
             uism = GameObject.Find("UIManager").GetComponent<UIStateMachine>();
+
+            // Initialize health bar.
             uism.HealthBars[Location].GetComponent<HealthBar>().SetMaxHealth(Player.MaxHP);
             UpdateHealthBar(Player.CurrentHP);
         }
@@ -43,6 +50,7 @@ namespace Combat
                     StartCoroutine(PerformSpecial());
                     break;
                 case TurnState.DEAD:
+                    // The flag isDead ensures that death code is only executed once.
                     if (isDead)
                     {
                         return;
@@ -86,25 +94,34 @@ namespace Combat
 
         public override void TakeDamage(float damage)
         {
+            // Damage formula calculated by taking the incoming damage minus the enemy's defense. 
+            // At least 1 point of damage is taken at any given time.
+
             var damageTaken = Mathf.Max(damage - Player.Defense, 1.0f);
             Player.CurrentHP -= damageTaken;
 
+            // Player dies if current HP goes below 0.
             if (Player.CurrentHP <= 0.0f)
             {
                 Player.CurrentHP = 0.0f;
                 CurrentState = TurnState.DEAD;
-                if(deathSound != null)
+
+                // Play death sound effect.
+                if (deathSound != null)
                 {
                     PlaySound(deathSound);
                 }
             }
             else
             {
-                if(takeDamageSound != null)
+                // Play take damage sound effect.
+                if (takeDamageSound != null)
                 {
                     PlaySound(takeDamageSound);
                 }
             }
+
+            // Update health bar of enemy.
             UpdateHealthBar(Player.CurrentHP);
         }
 
@@ -150,7 +167,7 @@ namespace Combat
             steamBar.ChangeSteam(10.0f);
 
             // Flip sprite on way back.
-            this.gameObject.GetComponent<SpriteRenderer>().flipX = !this.gameObject.GetComponent<SpriteRenderer>().flipX;
+            spriteRenderer.flipX = !spriteRenderer.flipX;
 
             // Animate enemy back to initial position.
             while (MoveTowardsPosition(initialPosition))
@@ -159,7 +176,7 @@ namespace Combat
             }
 
             // Flip sprite to correct orientation once back to original position.
-            this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            spriteRenderer.flipX = false;
 
             // Set combat state of CSM to CheckGame.
             csm.CurrentCombatState = CombatStateMachine.CombatStates.CHECKGAME;
@@ -219,7 +236,6 @@ namespace Combat
 
             yield return new WaitForSeconds(0.25f);
 
-            // Animation probably in execute later.
             var initialPosition = transform.position;
             var targetPosition = new Vector3 (UnitToTarget.GetComponent<SpriteRenderer>().bounds.min.x - gameObject.GetComponent<SpriteRenderer>().bounds.extents.x, 
                 UnitToTarget.transform.position.y, 
@@ -230,24 +246,24 @@ namespace Combat
                 yield return null;
             }
 
-            this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            spriteRenderer.flipX = false;
             
             // Pause for 0.1 seconds.
             yield return new WaitForSeconds(0.1f);
 
-            // See if this works.
+            // Execute special ability.
             Player.BaseClassData.SpecialAbility.Execute(this.gameObject);
 
+            // Wait for sound effect to stop playing before proceeding.
             yield return new WaitWhile(() => IsPlaying());
 
-            // Animation probably in execute later.
             while (MoveTowardsPosition(initialPosition))
             {
                 yield return null;
             }
 
             // Flip sprite to correct orientation once back to original position.
-            this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            spriteRenderer.flipX = false;
 
             // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
             csm.EndTurn(this.gameObject);
@@ -266,7 +282,7 @@ namespace Combat
 
             if(direction < 0)
             {
-                this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                spriteRenderer.flipX = true;
             }
 
             System.Action<ITween<Vector3>> updatePos = (t) =>

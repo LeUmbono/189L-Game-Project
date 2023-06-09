@@ -13,14 +13,21 @@ namespace Combat
         public bool IsTaunted;
         void Start()
         {
+            // Instantiate class variables.
             isDead = false;
             IsTaunted = false;
             CurrentState = TurnState.WAIT;
 
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = Enemy.BaseClassData.ClassSprite;
+            // Set sprite of player based on incoming party data.
+            spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+            spriteRenderer.sprite = Enemy.BaseClassData.ClassSprite;
+
+            // Instantiate combat scene game object variables.
             audioSource = this.GetComponent<AudioSource>();
             csm = GameObject.Find("CombatManager").GetComponent<CombatStateMachine>();
             uism = GameObject.Find("UIManager").GetComponent<UIStateMachine>();
+
+            // Initialize health bar.
             uism.HealthBars[Location].GetComponent<HealthBar>().SetMaxHealth(Enemy.MaxHP);
             uism.HealthBars[Location].GetComponent<HealthBar>().SetHealth(Enemy.CurrentHP);
         }
@@ -38,6 +45,7 @@ namespace Combat
                     StartCoroutine(PerformAttack());
                     break;
                 case TurnState.DEAD:
+                    // The flag isDead ensures that death code is only executed once.
                     if (isDead)
                     {
                         return;
@@ -49,6 +57,8 @@ namespace Combat
 
                         // Change sprite to reflect death / play death animation.
                         this.gameObject.GetComponent<SpriteRenderer>().color = Color.black;
+
+                        // Disable dead unit health bar.
                         uism.HealthBars[Location].SetActive(false);
 
                         // Move dead enemy to the furthest end of the formation.
@@ -103,13 +113,19 @@ namespace Combat
 
         public override void TakeDamage(float damage)
         {
+            // Damage formula calculated by taking the incoming damage minus the enemy's defense. 
+            // At least 1 point of damage is taken at any given time.
+
             var damageTaken = Mathf.Max(damage - Enemy.Defense, 1.0f);
             Enemy.CurrentHP -= damageTaken;
 
+            // Enemy dies if current HP goes below 0.
             if (Enemy.CurrentHP <= 0.0f)
             {
                 Enemy.CurrentHP = 0.0f;
                 CurrentState = TurnState.DEAD;
+
+                // Play death sound effect.
                 if (deathSound != null)
                 {
                     PlaySound(deathSound);
@@ -117,12 +133,14 @@ namespace Combat
             }
             else
             {
+                // Play take damage sound effect.
                 if (takeDamageSound != null)
                 {
                     PlaySound(takeDamageSound);
                 }
             }
 
+            // Update health bar of enemy.
             uism.HealthBars[Location].GetComponent<HealthBar>().SetHealth(Enemy.CurrentHP);
         }
 
@@ -160,7 +178,7 @@ namespace Combat
             IsTaunted = false;
 
             // Flip sprite on way back.
-            this.gameObject.GetComponent<SpriteRenderer>().flipX = !this.gameObject.GetComponent<SpriteRenderer>().flipX;
+            spriteRenderer.flipX = !spriteRenderer.flipX;
 
             // Animate enemy back to initial position.
             while (MoveTowardsPosition(initialPosition))
@@ -169,7 +187,7 @@ namespace Combat
             }
 
             // Flip sprite to correct orientation once back to original position.
-            this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            spriteRenderer.flipX = true;
 
             // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
             csm.EndTurn(this.gameObject);

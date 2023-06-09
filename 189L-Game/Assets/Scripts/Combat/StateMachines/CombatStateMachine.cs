@@ -5,6 +5,7 @@ namespace Combat
 {
     public class CombatStateMachine : MonoBehaviour
     {
+        // Combat state list.
         public enum CombatStates
         {
             WAIT,
@@ -17,6 +18,7 @@ namespace Combat
 
         public CombatStates CurrentCombatState;
 
+        // Lists of player and enemy units in battle.
         public static List<GameObject> AlliesInBattle;
         public static List<GameObject> EnemiesInBattle;
 
@@ -26,6 +28,7 @@ namespace Combat
         // List that tracks the turn order queue.
         public static List<GameObject> TurnOrder;
 
+        // UI information.
         [SerializeField] private GameObject targetIndicator;
         private UIStateMachine uism;
 
@@ -33,26 +36,32 @@ namespace Combat
 
         void Awake()
         {
+            // Initializes combat scene with incoming player and enemy party data.
             gameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<SceneGameManager>();
             gameManager.InitializeCombatScene();
         }
 
         void Start()
         {
+            // Instantiate class variables.
             AlliesInBattle = new List<GameObject>();
             EnemiesInBattle = new List<GameObject>();
             UnitsInBattle = new List<GameObject>();
             TurnOrder = new List<GameObject>();
 
+            // Get reference to UI State Machine.
             uism = GameObject.Find("UIManager").GetComponent<UIStateMachine>();
 
+            // Initialize allies and enemies lists.
             AlliesInBattle.AddRange(GameObject.FindGameObjectsWithTag("Ally"));
             EnemiesInBattle.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
 
+            // Arrange unit positions.
             UnitsInBattle.AddRange(AlliesInBattle);
             UnitsInBattle.AddRange(EnemiesInBattle);
             ShuffleUnitPositions();
 
+            // Arrange turn order.
             TurnOrder.AddRange(GameObject.FindGameObjectsWithTag("Ally"));
             TurnOrder.AddRange(GameObject.FindGameObjectsWithTag("Enemy"));
             ShuffleTurnOrder();
@@ -65,13 +74,16 @@ namespace Combat
             switch (CurrentCombatState)
             {
                 case CombatStates.WAIT:
+                    // Disable target indicator.
                     targetIndicator.SetActive(false);
+                    // If turn order list is not empty, it's time for a unit to take action!
                     if (TurnOrder.Count > 0)
                     {
                         CurrentCombatState = CombatStates.TAKEACTION;
                     }
                     break;
                 case CombatStates.TAKEACTION:
+                    // Allows target indicator to follow unit.
                     targetIndicator.transform.position = TurnOrder[0].GetComponent<SpriteRenderer>().bounds.center + 
                         new Vector3(0.0f, TurnOrder[0].GetComponent<SpriteRenderer>().bounds.extents.y, 0.0f);
                     targetIndicator.SetActive(true);
@@ -87,6 +99,7 @@ namespace Combat
                     CurrentCombatState = CombatStates.PERFORMACTION;
                     break;
                 case CombatStates.PERFORMACTION:
+                    // Allows target indicator to follow unit.
                     targetIndicator.transform.position = TurnOrder[0].GetComponent<SpriteRenderer>().bounds.center +
                         new Vector3(0.0f, TurnOrder[0].GetComponent<SpriteRenderer>().bounds.extents.y, 0.0f);
                     break;
@@ -125,6 +138,7 @@ namespace Combat
 
         public void ShuffleUnitPositions()
         {
+            // Sort unit positions based on location.
             UnitsInBattle.Sort(delegate (GameObject x, GameObject y)
             {
                 var xLocation = x.GetComponent<GenericUnitStateMachine>().Location;
@@ -143,6 +157,7 @@ namespace Combat
 
         public static void ShuffleTurnOrder()
         {
+            // Sort initial turn order based on agility of units.
             TurnOrder.Sort(delegate (GameObject x, GameObject y)
             {
                 float xAgility, yAgility;
@@ -171,8 +186,11 @@ namespace Combat
         }
         public void EndTurn(GameObject unit)
         {
+            // Reduce order of sprite in scene.
             var sprite = TurnOrder[0].GetComponent<SpriteRenderer>();
             sprite.sortingOrder = 0;
+            
+            // Remove unit at top of turn queue and add it at the end.
             TurnOrder.RemoveAt(0);
             TurnOrder.Add(unit);
         }
