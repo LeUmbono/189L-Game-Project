@@ -37,6 +37,14 @@ namespace Combat
         private float steamValue = 0.0f;
         private SteamValue currentSteamState;
 
+        [SerializeField]
+        private Material steamMaterial;
+        [SerializeField]
+        private Color inertColor;
+        [SerializeField]
+        private Color overclockedColor;
+        [SerializeField]
+        private Color shortCircuitedColor;
         void Start()
         {
             audioSource = GameObject.Find("CombatMusicManager").GetComponent<AudioSource>();
@@ -73,14 +81,17 @@ namespace Combat
             // Set the current steam state.
             if (0.0f <= steamValue && steamValue < overclockedThreshold)
             {
+                ChangeMaterialColor(inertColor);
                 currentSteamState = SteamValue.Inert;
             }
             else if (overclockedThreshold <= steamValue && steamValue < shortcircuitedThreshold)
             {
+                ChangeMaterialColor(overclockedColor);
                 currentSteamState = SteamValue.Overclocked;
             }
             else if (shortcircuitedThreshold <= steamValue && steamValue < 100.0f)
             {
+                ChangeMaterialColor(shortCircuitedColor);
                 currentSteamState = SteamValue.Shortcircuited;
             }
 
@@ -185,6 +196,10 @@ namespace Combat
             audioSource.loop = true;
             audioSource.clip = shortcircuitedTheme;
             audioSource.Play();
+        }
+        private void ChangeMaterialColor(Color color)
+        {
+            steamMaterial.SetColor("steam_color", color);
         }
     }
 }
