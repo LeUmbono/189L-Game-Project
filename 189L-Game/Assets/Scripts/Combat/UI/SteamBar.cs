@@ -46,7 +46,7 @@ namespace Combat
         [SerializeField]
         private Color overclockedColor;
         [SerializeField]
-        private Color shortCircuitedColor;
+        private Color shortcircuitedColor;
 
         void Start()
         {
@@ -55,7 +55,10 @@ namespace Combat
             audioSource.clip = inertTheme;
             currentSteamState = SteamValue.Inert;
             slider.value = 0.0f;
-            
+
+            // Set color of steam bar to its inert state.
+            ChangeMaterialColor(inertColor);
+
             // Play inert theme at start of combat.
             audioSource.loop = true;
             audioSource.Play();
@@ -96,7 +99,7 @@ namespace Combat
             }
             else if (shortcircuitedThreshold <= steamValue && steamValue < 100.0f)
             {
-                ChangeMaterialColor(shortCircuitedColor);
+                ChangeMaterialColor(shortcircuitedColor);
                 currentSteamState = SteamValue.Shortcircuited;
             }
 
