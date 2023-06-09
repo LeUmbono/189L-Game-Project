@@ -14,7 +14,22 @@ Colliding with an enemy initiates the Combat phase
 
 *Combat*
 
-Select buttons with the mouse.
+In combat, each player unit is able to take three actions during their turn: Attack, Swap and Special. 
+
+- Attack (sword icon) simply damages the targeted enemy within your unit's range based on a max(1, ATK-DEF) formula.
+- Swap (arrow icon) allows you to switch places with an adjacent allied unit, allowing your units to change their available targets for their Attack and Special actions. Swapping also heals 10% of your unit's maximum HP.
+- Special (star icon) is a unit's special ability! Its range of targets and effects are unique to each player class!
+
+Here they are listed below: 
+
+- Tank - Taunt (Range: all enemy units) Provoke the targeted enemy to attack you for one turn. Expends 15 steam. 
+- Support - Buff (Range: adjacent allied units) Increase the attack of an adjacent ally by 40% of their base attack. Expends 15 steam. 
+- Healer - Heal (Range: adjacent allied units) Heal 40% of an adjacent ally's max health points. Generates 15 steam. 
+- Ranger - Snipe (Range: all enemy units) Deal 2x base damage against an enemy. Generates 15 steam. 
+
+The steam bar is an ever-present mechanic in the game! Depending on the section of the bar you're on, your party may get buffed or debuffed. Pay attention to the musical cues and take care to stay in the Overclocked zone! All attacks generate 10 steam. Swapping expends 10 steam. 
+
+
 
 - 2D Positional Turn-Based RPG with character classes that dictate actions / stats / attack range in the vein of Darkest Dungeon
 - Overworld vs. Battle Phase
@@ -22,9 +37,9 @@ Select buttons with the mouse.
 - In battle, party members and enemies each have four positions that they can take up.
 - Depending on the class of the party member / type of enemy, their attack range determines which entities they can target on the battlefield.  
 - The battle system also incorporates a "steam bar", which has various zones that either benefit or disadvantage the entire party. Each action a party member takes as well as their position during their turn affects the progress of this bar. The bar represents an integer from 0-100, and is divided into three main parts:
-  - Inert (0 - 40): 1x Attack
-  - Overclocked (40 - 60): 1.5x Attack, 1.0 Defense
-  - Short-circuited (60 - 100): 0.5x Attack, 0.5 Defense
+    - Default Zone (0-40 steam): No buffs or debuffs are applied to the party. The starting zone. 
+    - Overclocked Zone (40-75 steam): Your party gets a 1.5x boost to ATK and AGI! 
+    - Short-circuited Zone (75-100 steam): Your party's DEF and AGI are halved! 
 - Inspiration: Action Bar in Chained Echoes
 
 **If you did work that should be factored in to your grade that does not fit easily into the proscribed roles, add it here! Please include links to resources and descriptions of game-related material that does not fit into roles here.**
@@ -91,16 +106,16 @@ pebbles.png -  Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unporte
 
 *Shaders*
 
-I realized that the steam bar would be a central mechanic, the "main appeal" of our game, so I paid great attention to its visuals. To emphasize it controlled the very "life-force" of our party, animating it was a must. Based on my scrapped steam shader, pixels on the left of the material had bigger clouds than the pixels on the right of the material. I wanted to give the impression that the steam bubbled up and disppated. This visual falls apart near the right end since I wanted a distinct cutoff point to indicate the value of the bar; no visual flare should get in the way of visual clarity.
+Aron: I realized that the steam bar would be a central mechanic, the "main appeal" of our game, so I paid great attention to its visuals. To emphasize it controlled the very "life-force" of our party, animating it was a must. Based on my scrapped steam shader, pixels on the left of the material had bigger clouds than the pixels on the right of the material. I wanted to give the impression that the steam bubbled up and disppated. This visual falls apart near the right end since I wanted a distinct cutoff point to indicate the value of the bar; no visual flare should get in the way of visual clarity.
 https://www.shadertoy.com/view/DlcXWr
 
 ![Pebbles](https://github.com/LeUmbono/189L-Game-Project/blob/00ae6f72d6bac068c276995ddababd89b3e30f5b/189L-Game/Assets/Art/Materials/SteamBar/pebbles.jpg)
 
-Pebbles were chosen as an interesting noise texture since they were bulbous and had strong outlines for where each cloud would begin and end. A binary simplex noise (through rounding) was tried at first, but its noisy edges made for an unclean cartoony effect. The pebble texture was rounded to give nice banding. See the shadertoy shader for more details.
+Aron: Pebbles were chosen as an interesting noise texture since they were bulbous and had strong outlines for where each cloud would begin and end. A binary simplex noise (through rounding) was tried at first, but its noisy edges made for an unclean cartoony effect. The pebble texture was rounded to give nice banding. See the shadertoy shader for more details.
 
 ![Transition](https://github.com/LeUmbono/189L-Game-Project/blob/00ae6f72d6bac068c276995ddababd89b3e30f5b/189L-Game/Assets/Art/Overworld/Transition/ShaderTexture%20-%20Copy.png)
 
-The transition shader took a lot of iteration. I speculated having a factory-like piston transition, where boxes on a conveyor belt would scroll across and gradually cover the screen, and a steam nozzle shader where steam would "spray" from nozzles in the corner of the screen.. All these transitions felt clunky and not thematic. I ultimately went with a gear, a central character design element for our party members to provide simple visual language for initiating the combat phase.
+Aron: The transition shader took a lot of iteration. I speculated having a factory-like piston transition, where boxes on a conveyor belt would scroll across and gradually cover the screen, and a steam nozzle shader where steam would "spray" from nozzles in the corner of the screen.. All these transitions felt clunky and not thematic. I ultimately went with a gear, a central character design element for our party members to provide simple visual language for initiating the combat phase.
 
 *Sprite Art*
 
@@ -148,6 +163,8 @@ The support is friendly and takes a backseat to the rest of the bots. It is roun
 **Add a link to the full results of your gameplay tests.**
 
 **Summarize the key findings from your gameplay tests.**
+
+Aron: There were a lot of moments in playtesting where players would use the ranger's snipe ability during the overclocked phase of the steam bar on an oil slime. At the current attack of the ranger, the slime would live at 1 HP! This was mildly annoying for the players, and it slipped by as I was balancing the stat tables. It brought about the importance of *damage thresholds*, where dealing 39 damage to a 40 health unit was a lot different from dealing 40 damage to a 40 health unit.
 
 ## Narrative Design
 
