@@ -29,7 +29,8 @@ namespace Combat
         private AudioClip shortcircuitedTheme;
         [SerializeField]
         private AudioClip shortcircuitedTransition;
-
+        
+        // Variables for steam bar functionality.
         [SerializeField]
         private float overclockedThreshold = 40.0f;
         [SerializeField]
@@ -37,6 +38,7 @@ namespace Combat
         private float steamValue = 0.0f;
         private SteamValue currentSteamState;
 
+        // Variables for color of steam bar.
         [SerializeField]
         private Material steamMaterial;
         [SerializeField]
@@ -45,13 +47,16 @@ namespace Combat
         private Color overclockedColor;
         [SerializeField]
         private Color shortCircuitedColor;
+
         void Start()
         {
+            // Initialization of variables.
             audioSource = GameObject.Find("CombatMusicManager").GetComponent<AudioSource>();
             audioSource.clip = inertTheme;
             currentSteamState = SteamValue.Inert;
             slider.value = 0.0f;
-
+            
+            // Play inert theme at start of combat.
             audioSource.loop = true;
             audioSource.Play();
         }
@@ -97,6 +102,7 @@ namespace Combat
 
             var isInDifferentState = previousSteamState != currentSteamState ? true : false;
 
+            // Apply corresponding steam bar effects if state of steam bar changes.
             if (isInDifferentState)
             {
                 switch (currentSteamState)
@@ -158,13 +164,12 @@ namespace Combat
 
         IEnumerator PlayInertTheme()
         {
-            /*
             audioSource.loop = false;
             audioSource.clip = inertTransition;
             audioSource.Play();
 
             yield return new WaitWhile(() => audioSource.isPlaying);
-            */
+            
             yield return new WaitForSeconds(1);
 
             audioSource.loop = true;

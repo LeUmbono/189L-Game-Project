@@ -22,6 +22,7 @@ namespace Combat
                 target.Player.CurrentHP = target.Player.MaxHP;
             }
 
+            // Update health bar of healed player unit.
             target.UpdateHealthBar(target.Player.CurrentHP);
         }
 
