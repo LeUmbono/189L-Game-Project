@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace Combat
 {
-    [System.Serializable]
     public class EnemyUnit : GenericUnit
     {
       public EnemyUnit(ClassData classInfo)

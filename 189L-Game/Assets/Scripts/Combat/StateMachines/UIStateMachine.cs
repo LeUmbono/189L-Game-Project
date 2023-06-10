@@ -181,6 +181,8 @@ namespace Combat
         {
             foreach (var button in TargetButtons)
             {
+                var unitIcon = button.transform.Find("UnitIcon").GetComponent<Image>();
+                unitIcon.color = Color.gray;
                 button.GetComponent<Button>().interactable = false;
             }
         }
@@ -198,6 +200,8 @@ namespace Combat
                 if (targets[i] == true && isDead != true)
                 {
                     TargetButtons[i].GetComponent<Button>().interactable = true;
+                    var unitIcon = TargetButtons[i].transform.Find("UnitIcon").GetComponent<Image>();
+                    unitIcon.color = Color.white;
                 }
             }
         }
