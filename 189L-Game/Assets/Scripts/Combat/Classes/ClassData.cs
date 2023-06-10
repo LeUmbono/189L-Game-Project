@@ -8,12 +8,12 @@ namespace Combat
     [CreateAssetMenu(fileName = "newClass", menuName = "Class/ClassData")]
     public class ClassData : ScriptableObject
     {
-        // Class Information
+        // Class information.
         [SerializeField] private string className;
         [SerializeField] private Sprite classSprite;
         [SerializeField] private Sprite classIcon;
 
-        // Stats
+        // Base stats.
         [SerializeField] private float baseHP;
         [SerializeField] private float baseAttack;
         [SerializeField] private float baseDefense;
@@ -21,6 +21,7 @@ namespace Combat
         [SerializeField] private int attackRange;
         [SerializeField] private SpecialAbility specialAbility;
 
+        // Getters for class information and stats.
         public string ClassName => className;
         public Sprite ClassSprite => classSprite;
         public Sprite ClassIcon => classIcon;

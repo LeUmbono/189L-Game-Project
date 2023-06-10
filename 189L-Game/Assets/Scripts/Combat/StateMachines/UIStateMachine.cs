@@ -6,6 +6,7 @@ namespace Combat
 {
     public class UIStateMachine : MonoBehaviour
     { 
+        // UI state list.
         public enum UIStates
         {
             ACTIVATE,
@@ -15,6 +16,7 @@ namespace Combat
             DONE
         }
 
+        // Internal UI information.
         public UIStates CurrentUIState;
         public List<GameObject> TargetButtons;
         public List<GameObject> HealthBars;
@@ -23,6 +25,7 @@ namespace Combat
         [SerializeField] private GameObject selectActionPanel;
         [SerializeField] private GameObject selectTargetPanel;
 
+        // Combat scene information.
         private PlayerStateMachine psm;
         private CombatStateMachine csm;
         private GenericUnitStateMachine.TurnState PlayerActionType;
@@ -45,10 +48,14 @@ namespace Combat
                 case UIStates.ACTIVATE:
                     if (CombatStateMachine.TurnOrder.Count > 0 && CombatStateMachine.TurnOrder[0].tag == "Ally")
                     {
+                        // Initialize class variables.
                         psm = CombatStateMachine.TurnOrder[0].GetComponent<PlayerStateMachine>();
+
+                        // Enable relevant UI panels and load them with correct information.
                         PopulateUnitInfoPanel();
                         unitInfoPanel.SetActive(true);
                         selectActionPanel.SetActive(true);
+
                         CurrentUIState = UIStates.WAIT;
                     }
                     break;
@@ -147,10 +154,13 @@ namespace Combat
 
         private void SelectionDone()
         {
+            // Disable and enable relevant UI panels.
             unitInfoPanel.SetActive(false);
             selectTargetPanel.SetActive(false);
 
             CurrentUIState = UIStates.WAIT;
+
+            // Set state of PSM according to chosen action.
             psm.CurrentState = PlayerActionType;
         }
 

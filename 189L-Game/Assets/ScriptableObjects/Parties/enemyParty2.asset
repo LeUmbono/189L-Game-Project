@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: enemyParty2
   m_EditorClassIdentifier: 
   slot1: {fileID: 11400000, guid: 6a2e6b66584267b478cb0080eb276ecc, type: 2}
-  slot2: {fileID: 11400000, guid: 6a2e6b66584267b478cb0080eb276ecc, type: 2}
-  slot3: {fileID: 11400000, guid: bf686cee1e94efc41ae08854ef33f065, type: 2}
+  slot2: {fileID: 11400000, guid: bf686cee1e94efc41ae08854ef33f065, type: 2}
+  slot3: {fileID: 11400000, guid: 6a2e6b66584267b478cb0080eb276ecc, type: 2}
   slot4: {fileID: 11400000, guid: 6a2e6b66584267b478cb0080eb276ecc, type: 2}
   slot1curHP: 0
   slot2curHP: 0
