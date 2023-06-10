@@ -1,28 +1,35 @@
 using DigitalRuby.Tween;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace Combat
 {
     public class PlayerStateMachine : GenericUnitStateMachine
     {
-        public PlayerUnit Player;
+        //public PlayerUnit Player;
         public float BuffAmount;
         
         void Start()
         {
+            // Instantiate class variables.
             isDead = false;
             BuffAmount = 0.0f;
             CurrentState = TurnState.WAIT;
 
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = Player.BaseClassData.ClassSprite;
+            // Set sprite of player based on incoming party data.
+            spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+            spriteRenderer.sprite = Unit.BaseClassData.ClassSprite;
+
+            // Instantiate combat scene game object variables.
             audioSource = this.GetComponent<AudioSource>();
             steamBar = GameObject.Find("SteamBar").GetComponent<SteamBar>();
             csm = GameObject.Find("CombatManager").GetComponent<CombatStateMachine>();
             uism = GameObject.Find("UIManager").GetComponent<UIStateMachine>();
-            uism.HealthBars[Location].GetComponent<HealthBar>().SetMaxHealth(Player.MaxHP);
-            UpdateHealthBar(Player.CurrentHP);
+
+            // Initialize health bar.
+            uism.HealthBars[Location].GetComponent<HealthBar>().SetMaxHealth(Unit.MaxHP);
+            UpdateHealthBar(Unit.CurrentHP);
         }
 
         void Update()
@@ -43,6 +50,7 @@ namespace Combat
                     StartCoroutine(PerformSpecial());
                     break;
                 case TurnState.DEAD:
+                    // The flag isDead ensures that death code is only executed once.
                     if (isDead)
                     {
                         return;
@@ -81,31 +89,40 @@ namespace Combat
 
         protected override void DoDamage()
         {
-            UnitToTarget.GetComponent<EnemyStateMachine>().TakeDamage(Player.Attack + BuffAmount);
+            UnitToTarget.GetComponent<EnemyStateMachine>().TakeDamage(Unit.Attack + BuffAmount);
         }
 
         public override void TakeDamage(float damage)
         {
-            var damageTaken = Mathf.Max(damage - Player.Defense, 1.0f);
-            Player.CurrentHP -= damageTaken;
+            // Damage formula calculated by taking the incoming damage minus the enemy's defense. 
+            // At least 1 point of damage is taken at any given time.
 
-            if (Player.CurrentHP <= 0.0f)
+            var damageTaken = Mathf.Max(damage - Unit.Defense, 1.0f);
+            Unit.CurrentHP -= damageTaken;
+
+            // Player dies if current HP goes below 0.
+            if (Unit.CurrentHP <= 0.0f)
             {
-                Player.CurrentHP = 0.0f;
+                Unit.CurrentHP = 0.0f;
                 CurrentState = TurnState.DEAD;
-                if(deathSound != null)
+
+                // Play death sound effect.
+                if (deathSound != null)
                 {
                     PlaySound(deathSound);
                 }
             }
             else
             {
-                if(takeDamageSound != null)
+                // Play take damage sound effect.
+                if (takeDamageSound != null)
                 {
                     PlaySound(takeDamageSound);
                 }
             }
-            UpdateHealthBar(Player.CurrentHP);
+
+            // Update health bar of enemy.
+            UpdateHealthBar(Unit.CurrentHP);
         }
 
         public void UpdateHealthBar(float health)
@@ -150,7 +167,7 @@ namespace Combat
             steamBar.ChangeSteam(10.0f);
 
             // Flip sprite on way back.
-            this.gameObject.GetComponent<SpriteRenderer>().flipX = !this.gameObject.GetComponent<SpriteRenderer>().flipX;
+            spriteRenderer.flipX = !spriteRenderer.flipX;
 
             // Animate enemy back to initial position.
             while (MoveTowardsPosition(initialPosition))
@@ -159,7 +176,7 @@ namespace Combat
             }
 
             // Flip sprite to correct orientation once back to original position.
-            this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            spriteRenderer.flipX = false;
 
             // Set combat state of CSM to CheckGame.
             csm.CurrentCombatState = CombatStateMachine.CombatStates.CHECKGAME;
@@ -185,6 +202,14 @@ namespace Combat
             }
             
             DoSwap(UnitToTarget);
+            
+            // Heal 10% of max HP. 
+            this.Unit.CurrentHP += 0.1f * this.Unit.MaxHP;
+            if (this.Unit.CurrentHP > this.Unit.MaxHP)
+            {
+                this.Unit.CurrentHP = this.Unit.MaxHP;
+            }
+            UpdateHealthBar(Unit.CurrentHP);
 
             // Remove this enemy game object from front of turn queue
             // and re-add back at the back of the queue.
@@ -211,7 +236,6 @@ namespace Combat
 
             yield return new WaitForSeconds(0.25f);
 
-            // Animation probably in execute later.
             var initialPosition = transform.position;
             var targetPosition = new Vector3 (UnitToTarget.GetComponent<SpriteRenderer>().bounds.min.x - gameObject.GetComponent<SpriteRenderer>().bounds.extents.x, 
                 UnitToTarget.transform.position.y, 
@@ -222,30 +246,30 @@ namespace Combat
                 yield return null;
             }
 
-            this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            spriteRenderer.flipX = false;
             
-            // Pause for 0.25 seconds.
-            yield return new WaitForSeconds(0.25f);
+            // Pause for 0.1 seconds.
+            yield return new WaitForSeconds(0.1f);
 
-            // See if this works.
-            Player.BaseClassData.SpecialAbility.Execute(this.gameObject);
+            // Execute special ability.
+            Unit.BaseClassData.SpecialAbility.Execute(this.gameObject);
 
+            // Wait for sound effect to stop playing before proceeding.
             yield return new WaitWhile(() => IsPlaying());
 
-            // Animation probably in execute later.
             while (MoveTowardsPosition(initialPosition))
             {
                 yield return null;
             }
 
             // Flip sprite to correct orientation once back to original position.
-            this.gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            spriteRenderer.flipX = false;
 
             // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
             csm.EndTurn(this.gameObject);
 
-            steamBar.ChangeSteam(Player.BaseClassData.SpecialAbility.GetSteamBarChangeValue());
-
+            steamBar.ChangeSteam(Unit.BaseClassData.SpecialAbility.GetSteamBarChangeValue());
+            
             // Set combat state of CSM to CheckGame.
             csm.CurrentCombatState = CombatStateMachine.CombatStates.CHECKGAME;
 
@@ -258,7 +282,7 @@ namespace Combat
 
             if(direction < 0)
             {
-                this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+                spriteRenderer.flipX = true;
             }
 
             System.Action<ITween<Vector3>> updatePos = (t) =>
@@ -266,7 +290,11 @@ namespace Combat
                 transform.position = t.CurrentValue;
             };
 
-            this.gameObject.Tween("Movement", transform.position, target, 0.4f, TweenScaleFunctions.SineEaseOut, updatePos);
+
+            // Animate from original position to target in 0.4 seconds with the SineEaseOut function.
+            // SineEaseOut = Fast in the beginning, slow in the ending.
+            this.gameObject.Tween("Movement", transform.position, target, 0.2f, TweenScaleFunctions.SineEaseOut, updatePos);
+            
             return target != transform.position;
         }
     }

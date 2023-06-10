@@ -1,10 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Combat;
 using Overworld;
-using TMPro;
+using Unity.VisualScripting;
 
 public class SceneGameManager : MonoBehaviour
 {
@@ -14,9 +13,11 @@ public class SceneGameManager : MonoBehaviour
     [SerializeField] private float timeToWait;
     [SerializeField][Range(0, 1)] private float slowdownPercent;
     [SerializeField] private Material transitionMaterial;
+  
 
     // Holds reference to overworld player.
     private PlayerController overworldPlayer;
+    private AudioSource encounterAudioSource;
 
     // Holds the most recent references to player and enemy parties.
     public PartyData playerData;
@@ -24,6 +25,10 @@ public class SceneGameManager : MonoBehaviour
 
     private void Awake()
     {
+
+        //overworldMusicPlayer = GameObject.Find("MusicManager").GetComponent<AudioSource>();
+        encounterAudioSource = this.GetComponent<AudioSource>();
+
         transitionMaterial.SetFloat("_Cutoff", 0f);
         DontDestroyOnLoad(this.gameObject);
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -94,16 +99,16 @@ public class SceneGameManager : MonoBehaviour
             switch(psm.Location)
             {
                 case 0:
-                    this.playerData.slot1curHP = psm.Player.CurrentHP;
+                    this.playerData.slot1curHP = psm.Unit.CurrentHP;
                     break;
                 case 1:
-                    this.playerData.slot2curHP = psm.Player.CurrentHP;
+                    this.playerData.slot2curHP = psm.Unit.CurrentHP;
                     break;
                 case 2:
-                    this.playerData.slot3curHP = psm.Player.CurrentHP;
+                    this.playerData.slot3curHP = psm.Unit.CurrentHP;
                     break;
                 case 3:
-                    this.playerData.slot4curHP = psm.Player.CurrentHP;
+                    this.playerData.slot4curHP = psm.Unit.CurrentHP;
                     break;
                 default:
                     Debug.LogError("NO PROPER LOCATION");
@@ -150,14 +155,28 @@ public class SceneGameManager : MonoBehaviour
         }
 
         SceneManager.UnloadSceneAsync(combatSceneName);
+
+        HealPlayerParty();
+        // Resume overworld theme.
+        var musicPlayer = GameObject.Find("MusicManager").GetComponent<AudioSource>();
+        musicPlayer.Play();
     }
 
     public IEnumerator LoadCombatScene(PartyData pData, PartyData eData)
     {
+        // Stop overworld theme when entering combat.
+        var musicPlayer = GameObject.Find("MusicManager").GetComponent<AudioSource>();
+        musicPlayer.Stop();
+
+        // Play encounter sound effect.
+        encounterAudioSource.Play();
+
         while (PlayingTransition())
         {
             yield return null;
         }
+
+        encounterAudioSource.Stop();
 
         SceneManager.LoadScene(combatSceneName, LoadSceneMode.Additive);
 
@@ -177,16 +196,16 @@ public class SceneGameManager : MonoBehaviour
             switch(psm.Location)
             {
                 case 0:
-                    psm.Player = new PlayerUnit(this.playerData.slot1, this.playerData.slot1name, this.playerData.slot1curHP);
+                    psm.Unit = new PlayerUnit(this.playerData.slot1, this.playerData.slot1name, this.playerData.slot1curHP);
                     break;
                 case 1:
-                    psm.Player = new PlayerUnit(this.playerData.slot2, this.playerData.slot2name, this.playerData.slot2curHP);
+                    psm.Unit = new PlayerUnit(this.playerData.slot2, this.playerData.slot2name, this.playerData.slot2curHP);
                     break;
                 case 2:
-                    psm.Player = new PlayerUnit(this.playerData.slot3, this.playerData.slot3name, this.playerData.slot3curHP);
+                    psm.Unit = new PlayerUnit(this.playerData.slot3, this.playerData.slot3name, this.playerData.slot3curHP);
                     break;
                 case 3:
-                    psm.Player = new PlayerUnit(this.playerData.slot4, this.playerData.slot4name, this.playerData.slot4curHP);
+                    psm.Unit = new PlayerUnit(this.playerData.slot4, this.playerData.slot4name, this.playerData.slot4curHP);
                     break;
                 default:
                     Debug.LogError("NO PROPER LOCATION");
@@ -200,16 +219,16 @@ public class SceneGameManager : MonoBehaviour
             switch(esm.Location)
             {
                 case 4:
-                    esm.Enemy = new EnemyUnit(this.enemyData.slot1);
+                    esm.Unit = new EnemyUnit(this.enemyData.slot1);
                     break;
                 case 5:
-                    esm.Enemy = new EnemyUnit(this.enemyData.slot2);
+                    esm.Unit = new EnemyUnit(this.enemyData.slot2);
                     break;
                 case 6:
-                    esm.Enemy = new EnemyUnit(this.enemyData.slot3);
+                    esm.Unit = new EnemyUnit(this.enemyData.slot3);
                     break;
                 case 7:
-                    esm.Enemy = new EnemyUnit(this.enemyData.slot4);
+                    esm.Unit = new EnemyUnit(this.enemyData.slot4);
                     break;
                 default:
                     Debug.LogError("NO PROPER LOCATION");
@@ -243,8 +262,11 @@ public class SceneGameManager : MonoBehaviour
 
     private bool PlayingTransition()
     {
+        // Animate the cutoff shader over time.
         var cutoff = transitionMaterial.GetFloat("_Cutoff") + Time.deltaTime;
         transitionMaterial.SetFloat("_Cutoff", cutoff);
+        
+        // After 1 second, the transition is done.
         if (cutoff < 1.0)
         {
             return true;

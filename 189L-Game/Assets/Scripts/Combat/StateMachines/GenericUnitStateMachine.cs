@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace Combat
 {
-    public class GenericUnitStateMachine : MonoBehaviour
+    public abstract class GenericUnitStateMachine : MonoBehaviour
     {
         // Unit state list.
         public enum TurnState
@@ -21,14 +19,17 @@ namespace Combat
         // Run-time information about the unit.
         public TurnState CurrentState;
         public GameObject UnitToTarget;
+        public GenericUnit Unit;
 
         [SerializeField]
         protected int location;
         protected CombatStateMachine csm;
         protected UIStateMachine uism;
+        protected SpriteRenderer spriteRenderer;
         protected bool actionStarted = false;
-
         protected bool isDead;
+
+        // Combat scene information.
         protected AudioSource audioSource;
         protected SteamBar steamBar;
 
@@ -55,14 +56,9 @@ namespace Combat
             return audioSource.isPlaying;
         }
 
-        public virtual void TakeDamage(float damage)
-        {
+        public abstract void TakeDamage(float damage);
 
-        }
-        protected virtual void DoDamage()
-        {
-
-        }
+        protected abstract void DoDamage();
 
         protected void DoSwap(GameObject target)
         {

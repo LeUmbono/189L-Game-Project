@@ -9,20 +9,27 @@ namespace Combat
 {
     public class EnemyStateMachine : GenericUnitStateMachine
     {
-        public EnemyUnit Enemy;
+        //public EnemyUnit Enemy;
         public bool IsTaunted;
         void Start()
         {
+            // Instantiate class variables.
             isDead = false;
             IsTaunted = false;
             CurrentState = TurnState.WAIT;
 
-            this.gameObject.GetComponent<SpriteRenderer>().sprite = Enemy.BaseClassData.ClassSprite;
+            // Set sprite of player based on incoming party data.
+            spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+            spriteRenderer.sprite = Unit.BaseClassData.ClassSprite;
+
+            // Instantiate combat scene game object variables.
             audioSource = this.GetComponent<AudioSource>();
             csm = GameObject.Find("CombatManager").GetComponent<CombatStateMachine>();
             uism = GameObject.Find("UIManager").GetComponent<UIStateMachine>();
-            uism.HealthBars[Location].GetComponent<HealthBar>().SetMaxHealth(Enemy.MaxHP);
-            uism.HealthBars[Location].GetComponent<HealthBar>().SetHealth(Enemy.CurrentHP);
+
+            // Initialize health bar.
+            uism.HealthBars[Location].GetComponent<HealthBar>().SetMaxHealth(Unit.MaxHP);
+            uism.HealthBars[Location].GetComponent<HealthBar>().SetHealth(Unit.CurrentHP);
         }
 
         void Update()
@@ -38,6 +45,7 @@ namespace Combat
                     StartCoroutine(PerformAttack());
                     break;
                 case TurnState.DEAD:
+                    // The flag isDead ensures that death code is only executed once.
                     if (isDead)
                     {
                         return;
@@ -49,6 +57,8 @@ namespace Combat
 
                         // Change sprite to reflect death / play death animation.
                         this.gameObject.GetComponent<SpriteRenderer>().color = Color.black;
+
+                        // Disable dead unit health bar.
                         uism.HealthBars[Location].SetActive(false);
 
                         // Move dead enemy to the furthest end of the formation.
@@ -90,26 +100,62 @@ namespace Combat
 
             if(!IsTaunted)
             {
-                UnitToTarget = CombatStateMachine.AlliesInBattle[Random.Range(0, CombatStateMachine.AlliesInBattle.Count)];
+                UnitToTarget = TargetPlayerUnit();
             }
             
             CurrentState = TurnState.ATTACK;
         }
 
+        private GameObject TargetPlayerUnit()
+        {
+            // Select a target based on a biased targeting engine that favors player units in front.
+            var randomSeed = Random.Range(0, 100);
+            var playerCount = CombatStateMachine.AlliesInBattle.Count-1;
+
+            GameObject targetUnit = null;
+
+            if (0 <= randomSeed && randomSeed < EnemyTargetingEngine.TargetingProbabilities[playerCount][0])
+            {
+                targetUnit = CombatStateMachine.AlliesInBattle.Find(player => player.GetComponent<PlayerStateMachine>().Location == 3);
+            }
+            else if (EnemyTargetingEngine.TargetingProbabilities[playerCount][0] <= randomSeed 
+                && randomSeed < EnemyTargetingEngine.TargetingProbabilities[playerCount][1])
+            {
+                targetUnit = CombatStateMachine.AlliesInBattle.Find(player => player.GetComponent<PlayerStateMachine>().Location == 2);
+            }
+            else if (EnemyTargetingEngine.TargetingProbabilities[playerCount][1] <= randomSeed 
+                && randomSeed < EnemyTargetingEngine.TargetingProbabilities[playerCount][2])
+            {
+                targetUnit = CombatStateMachine.AlliesInBattle.Find(player => player.GetComponent<PlayerStateMachine>().Location == 1);
+            }
+            else
+            {
+                targetUnit = CombatStateMachine.AlliesInBattle.Find(player => player.GetComponent<PlayerStateMachine>().Location == 0);
+            }
+
+            return targetUnit;
+        }
+
         protected override void DoDamage()
         {
-            UnitToTarget.GetComponent<PlayerStateMachine>().TakeDamage(Enemy.Attack);
+            UnitToTarget.GetComponent<PlayerStateMachine>().TakeDamage(Unit.Attack);
         }
 
         public override void TakeDamage(float damage)
         {
-            var damageTaken = Mathf.Max(damage - Enemy.Defense, 1.0f);
-            Enemy.CurrentHP -= damageTaken;
+            // Damage formula calculated by taking the incoming damage minus the enemy's defense. 
+            // At least 1 point of damage is taken at any given time.
 
-            if (Enemy.CurrentHP <= 0.0f)
+            var damageTaken = Mathf.Max(damage - Unit.Defense, 1.0f);
+            Unit.CurrentHP -= damageTaken;
+
+            // Enemy dies if current HP goes below 0.
+            if (Unit.CurrentHP <= 0.0f)
             {
-                Enemy.CurrentHP = 0.0f;
+                Unit.CurrentHP = 0.0f;
                 CurrentState = TurnState.DEAD;
+
+                // Play death sound effect.
                 if (deathSound != null)
                 {
                     PlaySound(deathSound);
@@ -117,13 +163,15 @@ namespace Combat
             }
             else
             {
+                // Play take damage sound effect.
                 if (takeDamageSound != null)
                 {
                     PlaySound(takeDamageSound);
                 }
             }
 
-            uism.HealthBars[Location].GetComponent<HealthBar>().SetHealth(Enemy.CurrentHP);
+            // Update health bar of enemy.
+            uism.HealthBars[Location].GetComponent<HealthBar>().SetHealth(Unit.CurrentHP);
         }
 
         private IEnumerator PerformAttack()
@@ -135,7 +183,7 @@ namespace Combat
 
             actionStarted = true;
 
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.1f);
 
             // Animate enemy to attack player unit.
             var initialPosition = transform.position;
@@ -147,8 +195,8 @@ namespace Combat
                 yield return null;
             }
 
-            // Pause for 0.5 seconds.
-            yield return new WaitForSeconds(0.25f);
+            // Pause for 0.1 seconds.
+            yield return new WaitForSeconds(0.1f);
 
             // Do damage.
             DoDamage();
@@ -160,7 +208,7 @@ namespace Combat
             IsTaunted = false;
 
             // Flip sprite on way back.
-            this.gameObject.GetComponent<SpriteRenderer>().flipX = !this.gameObject.GetComponent<SpriteRenderer>().flipX;
+            spriteRenderer.flipX = !spriteRenderer.flipX;
 
             // Animate enemy back to initial position.
             while (MoveTowardsPosition(initialPosition))
@@ -169,7 +217,7 @@ namespace Combat
             }
 
             // Flip sprite to correct orientation once back to original position.
-            this.gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            spriteRenderer.flipX = true;
 
             // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
             csm.EndTurn(this.gameObject);
@@ -188,7 +236,7 @@ namespace Combat
                 transform.position = t.CurrentValue;
             };
 
-            this.gameObject.Tween("Movement", transform.position, target, 0.4f, TweenScaleFunctions.SineEaseOut, updatePos);
+            this.gameObject.Tween("Movement", transform.position, target, 0.2f, TweenScaleFunctions.SineEaseOut, updatePos);
             return target != transform.position;
         }
     }

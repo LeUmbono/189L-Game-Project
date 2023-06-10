@@ -55,8 +55,13 @@ Shader "SteamBarShader"
 
             float3 Noise(float2 uv)
             {
+                // Texture is pebbles with "nice circular bodies of white".
+                // Sample the texture, but scroll rightwards.   
                 float noise = tex2D(_MainTex, float2(uv.x - _Time.y * time_shift, uv.y)).r;
-                noise = noise * lerp(cloudSize1, cloudSize2, uv.x) * brightness; //makes texture into two colors
+                // As the texture is more left, make the cloud size bigger.
+                // As the texture is more right, make the cloud size smaller.
+                // Multiply it according to its brightness.
+                noise = noise * lerp(cloudSize1, cloudSize2, uv.x) * brightness; 
                 return float3(noise, noise, noise);
             }
 
@@ -70,13 +75,13 @@ Shader "SteamBarShader"
 
             fixed4 frag(v2f i) : SV_Target
             {
-                float food = Noise(i.uv);
-                if (food < 0.2)
+                // If the pixel is "black enough", discard it.
+                float albedo = Noise(i.uv);
+                if (albedo < 0.2)
                 {
                     discard;
                 }
                 return float4(steam_color * float3(Noise(i.uv)), 1.0);
-                //float4(Noise(i.uv), 1.0);  //tex2D(_MainTex, i.uv);//float4(Noise(i.uv), 1.0);
             }
             ENDCG
         }

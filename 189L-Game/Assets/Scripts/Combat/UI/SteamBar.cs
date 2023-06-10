@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -30,7 +29,8 @@ namespace Combat
         private AudioClip shortcircuitedTheme;
         [SerializeField]
         private AudioClip shortcircuitedTransition;
-
+        
+        // Variables for steam bar functionality.
         [SerializeField]
         private float overclockedThreshold = 40.0f;
         [SerializeField]
@@ -38,13 +38,28 @@ namespace Combat
         private float steamValue = 0.0f;
         private SteamValue currentSteamState;
 
+        // Variables for color of steam bar.
+        [SerializeField]
+        private Material steamMaterial;
+        [SerializeField]
+        private Color inertColor;
+        [SerializeField]
+        private Color overclockedColor;
+        [SerializeField]
+        private Color shortcircuitedColor;
+
         void Start()
         {
+            // Initialization of variables.
             audioSource = GameObject.Find("CombatMusicManager").GetComponent<AudioSource>();
             audioSource.clip = inertTheme;
             currentSteamState = SteamValue.Inert;
             slider.value = 0.0f;
 
+            // Set color of steam bar to its inert state.
+            ChangeMaterialColor(inertColor);
+
+            // Play inert theme at start of combat.
             audioSource.loop = true;
             audioSource.Play();
         }
@@ -74,19 +89,23 @@ namespace Combat
             // Set the current steam state.
             if (0.0f <= steamValue && steamValue < overclockedThreshold)
             {
+                ChangeMaterialColor(inertColor);
                 currentSteamState = SteamValue.Inert;
             }
             else if (overclockedThreshold <= steamValue && steamValue < shortcircuitedThreshold)
             {
+                ChangeMaterialColor(overclockedColor);
                 currentSteamState = SteamValue.Overclocked;
             }
             else if (shortcircuitedThreshold <= steamValue && steamValue < 100.0f)
             {
+                ChangeMaterialColor(shortcircuitedColor);
                 currentSteamState = SteamValue.Shortcircuited;
             }
 
             var isInDifferentState = previousSteamState != currentSteamState ? true : false;
 
+            // Apply corresponding steam bar effects if state of steam bar changes.
             if (isInDifferentState)
             {
                 switch (currentSteamState)
@@ -111,7 +130,7 @@ namespace Combat
             // Reset all player unit stats to base stats.
             foreach (var ally in CombatStateMachine.AlliesInBattle)
             {
-                ally.GetComponent<PlayerStateMachine>().Player.ResetStats();
+                ally.GetComponent<PlayerStateMachine>().Unit.ResetStats();
             }
         }
 
@@ -122,8 +141,8 @@ namespace Combat
             // Reset stats. Apply 1.5x multiplier to ATK, AGI.
             foreach (var ally in CombatStateMachine.AlliesInBattle)
             {
-                ally.GetComponent<PlayerStateMachine>().Player.ResetStats();
-                ally.GetComponent<PlayerStateMachine>().Player.
+                ally.GetComponent<PlayerStateMachine>().Unit.ResetStats();
+                ally.GetComponent<PlayerStateMachine>().Unit.
                     ApplyMultiplierToStats(1.5f, 1.0f, 1.5f);
             }
         }
@@ -135,8 +154,8 @@ namespace Combat
             // Reset stats. Apply 0.5x multiplier to DEF, AGI.
             foreach (var ally in CombatStateMachine.AlliesInBattle)
             {
-                ally.GetComponent<PlayerStateMachine>().Player.ResetStats();
-                ally.GetComponent<PlayerStateMachine>().Player.
+                ally.GetComponent<PlayerStateMachine>().Unit.ResetStats();
+                ally.GetComponent<PlayerStateMachine>().Unit.
                     ApplyMultiplierToStats(1.0f, 0.5f, 0.5f);
             }
         }
@@ -148,13 +167,12 @@ namespace Combat
 
         IEnumerator PlayInertTheme()
         {
-            /*
             audioSource.loop = false;
             audioSource.clip = inertTransition;
             audioSource.Play();
 
             yield return new WaitWhile(() => audioSource.isPlaying);
-            */
+            
             yield return new WaitForSeconds(1);
 
             audioSource.loop = true;
@@ -186,6 +204,10 @@ namespace Combat
             audioSource.loop = true;
             audioSource.clip = shortcircuitedTheme;
             audioSource.Play();
+        }
+        private void ChangeMaterialColor(Color color)
+        {
+            steamMaterial.SetColor("steam_color", color);
         }
     }
 }

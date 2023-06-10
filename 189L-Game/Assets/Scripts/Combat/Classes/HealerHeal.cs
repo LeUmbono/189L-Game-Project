@@ -16,13 +16,14 @@ namespace Combat
             PSM.PlaySound(specialSound);
 
             // Heal damage. 
-            target.Player.CurrentHP += 0.2f * target.Player.MaxHP;
-            if(target.Player.CurrentHP > target.Player.MaxHP)
+            target.Unit.CurrentHP += 0.4f * target.Unit.MaxHP;
+            if(target.Unit.CurrentHP > target.Unit.MaxHP)
             {
-                target.Player.CurrentHP = target.Player.MaxHP;
+                target.Unit.CurrentHP = target.Unit.MaxHP;
             }
 
-            target.UpdateHealthBar(target.Player.CurrentHP);
+            // Update health bar of healed player unit.
+            target.UpdateHealthBar(target.Unit.CurrentHP);
         }
 
         public override List<bool> SelectTargets(GenericUnitStateMachine performer)
@@ -49,5 +50,4 @@ namespace Combat
             return 15.0f;
         }
     }
-
 }
