@@ -100,10 +100,40 @@ namespace Combat
 
             if(!IsTaunted)
             {
-                UnitToTarget = CombatStateMachine.AlliesInBattle[Random.Range(0, CombatStateMachine.AlliesInBattle.Count)];
+                UnitToTarget = TargetPlayerUnit();
             }
             
             CurrentState = TurnState.ATTACK;
+        }
+
+        private GameObject TargetPlayerUnit()
+        {
+            // Select a target based on a biased targeting engine that favors player units in front.
+            var randomSeed = Random.Range(0, 100);
+            var playerCount = CombatStateMachine.AlliesInBattle.Count-1;
+
+            GameObject targetUnit = null;
+
+            if (0 <= randomSeed && randomSeed < EnemyTargetingEngine.TargetingProbabilities[playerCount][0])
+            {
+                targetUnit = CombatStateMachine.AlliesInBattle.Find(player => player.GetComponent<PlayerStateMachine>().Location == 3);
+            }
+            else if (EnemyTargetingEngine.TargetingProbabilities[playerCount][0] <= randomSeed 
+                && randomSeed < EnemyTargetingEngine.TargetingProbabilities[playerCount][1])
+            {
+                targetUnit = CombatStateMachine.AlliesInBattle.Find(player => player.GetComponent<PlayerStateMachine>().Location == 2);
+            }
+            else if (EnemyTargetingEngine.TargetingProbabilities[playerCount][1] <= randomSeed 
+                && randomSeed < EnemyTargetingEngine.TargetingProbabilities[playerCount][2])
+            {
+                targetUnit = CombatStateMachine.AlliesInBattle.Find(player => player.GetComponent<PlayerStateMachine>().Location == 1);
+            }
+            else
+            {
+                targetUnit = CombatStateMachine.AlliesInBattle.Find(player => player.GetComponent<PlayerStateMachine>().Location == 0);
+            }
+
+            return targetUnit;
         }
 
         protected override void DoDamage()

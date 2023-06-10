@@ -18,6 +18,6 @@ MonoBehaviour:
   baseHP: 80
   baseAttack: 25
   baseDefense: 0
-  baseAgility: 13
+  baseAgility: 15
   attackRange: 7
   specialAbility: {fileID: 0}
