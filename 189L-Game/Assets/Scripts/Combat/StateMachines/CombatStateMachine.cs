@@ -162,23 +162,8 @@ namespace Combat
             {
                 float xAgility, yAgility;
 
-                if (x.tag == "Ally")
-                {
-                    xAgility = x.GetComponent<PlayerStateMachine>().Player.Agility;
-                }
-                else
-                {
-                    xAgility = x.GetComponent<EnemyStateMachine>().Enemy.Agility;
-                }
-
-                if (y.tag == "Ally")
-                {
-                    yAgility = y.GetComponent<PlayerStateMachine>().Player.Agility;
-                }
-                else
-                {
-                    yAgility = y.GetComponent<EnemyStateMachine>().Enemy.Agility;
-                }
+                xAgility = x.GetComponent<GenericUnitStateMachine>().Unit.Agility;
+                yAgility = y.GetComponent<GenericUnitStateMachine>().Unit.Agility;
 
                 if (xAgility < yAgility) return 1;
                 else return -1;

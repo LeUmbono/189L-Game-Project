@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   className: Sludge
   classSprite: {fileID: 21300000, guid: 56094019f596d584382d16b872dcb63a, type: 3}
-  classIcon: {fileID: 21300000, guid: 56094019f596d584382d16b872dcb63a, type: 3}
+  classIcon: {fileID: 21300000, guid: 27a1e13b9ef20f94594b6cc83d3ec7be, type: 3}
   baseHP: 60
   baseAttack: 14
   baseDefense: 5

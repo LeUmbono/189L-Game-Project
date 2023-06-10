@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,6 +27,16 @@ namespace Combat
         [SerializeField] private GameObject selectActionPanel;
         [SerializeField] private GameObject selectTargetPanel;
 
+        // Unit info panel information.
+        private Image unitIcon;
+        private TMPro.TextMeshProUGUI unitNameTextbox;
+        private TMPro.TextMeshProUGUI classNameTextbox;
+        private TMPro.TextMeshProUGUI hpValueTextbox;
+        private TMPro.TextMeshProUGUI atkValueTextbox;
+        private TMPro.TextMeshProUGUI defValueTextbox;
+        private TMPro.TextMeshProUGUI agiValueTextbox;
+        private TMPro.TextMeshProUGUI rngValueTextbox;
+
         // Combat scene information.
         private PlayerStateMachine psm;
         private CombatStateMachine csm;
@@ -34,6 +46,16 @@ namespace Combat
         {
             csm = GameObject.Find("CombatManager").GetComponent<CombatStateMachine>();
             CurrentUIState = UIStates.ACTIVATE;
+
+            // Initialize unit info panel information.
+            unitIcon = unitInfoPanel.transform.Find("Icon").GetComponent<Image>();
+            unitNameTextbox = unitInfoPanel.transform.Find("Name").GetComponent<TMPro.TextMeshProUGUI>();
+            classNameTextbox = unitInfoPanel.transform.Find("ClassName").GetComponent<TMPro.TextMeshProUGUI>();
+            hpValueTextbox = unitInfoPanel.transform.Find("HPValue").GetComponent<TMPro.TextMeshProUGUI>();
+            atkValueTextbox = unitInfoPanel.transform.Find("AttackValue").GetComponent<TMPro.TextMeshProUGUI>();
+            defValueTextbox = unitInfoPanel.transform.Find("DefenseValue").GetComponent<TMPro.TextMeshProUGUI>();
+            agiValueTextbox = unitInfoPanel.transform.Find("AgilityValue").GetComponent<TMPro.TextMeshProUGUI>();
+            rngValueTextbox = unitInfoPanel.transform.Find("RangeValue").GetComponent<TMPro.TextMeshProUGUI>();
 
             // Deactivate UI elements at the start of combat.
             unitInfoPanel.SetActive(false);
@@ -53,6 +75,7 @@ namespace Combat
 
                         // Enable relevant UI panels and load them with correct information.
                         PopulateUnitInfoPanel();
+                        PopulateSelectTargetPanel();
                         unitInfoPanel.SetActive(true);
                         selectActionPanel.SetActive(true);
 
@@ -67,6 +90,17 @@ namespace Combat
             }
         }
 
+        private void PopulateSelectTargetPanel()
+        {
+            foreach(var button in TargetButtons)
+            {
+                var unit = button.GetComponent<TargetSelectButton>().TargetPrefab;
+                var unitIcon = button.transform.Find("UnitIcon").GetComponent<Image>();
+
+                unitIcon.sprite = unit.GetComponent<GenericUnitStateMachine>().Unit.BaseClassData.ClassIcon; 
+            }
+        }
+
         public void SelectAttack()
         {
             PlayerActionType = GenericUnitStateMachine.TurnState.ATTACK;
@@ -77,7 +111,7 @@ namespace Combat
 
             var targets = new List<bool>() { false, false, false, false, false, false, false, false };
 
-            for (int i = 4; i <= Mathf.Min(psm.Location + psm.Player.BaseClassData.AttackRange, 7); i++)
+            for (int i = 4; i <= Mathf.Min(psm.Location + psm.Unit.BaseClassData.AttackRange, 7); i++)
             {
                 targets[i] = true;
             }
@@ -119,7 +153,7 @@ namespace Combat
             PlayerActionType = GenericUnitStateMachine.TurnState.SPECIAL;
             selectActionPanel.SetActive(false);
 
-            var special = psm.Player.BaseClassData.SpecialAbility;
+            var special = psm.Unit.BaseClassData.SpecialAbility;
 
             // Only let player swap adjacent units.
             DisableTargetButtons();
@@ -142,14 +176,40 @@ namespace Combat
 
         private void PopulateUnitInfoPanel()
         {
-            unitInfoPanel.transform.Find("Icon").GetComponent<Image>().sprite = psm.Player.BaseClassData.ClassIcon;
-            unitInfoPanel.transform.Find("Name").GetComponent<TMPro.TextMeshProUGUI>().text = psm.Player.UnitName;
-            unitInfoPanel.transform.Find("ClassName").GetComponent<TMPro.TextMeshProUGUI>().text = psm.Player.BaseClassData.ClassName;
-            unitInfoPanel.transform.Find("HPValue").GetComponent<TMPro.TextMeshProUGUI>().text = Mathf.Ceil(psm.Player.CurrentHP).ToString() + " / " + Mathf.Ceil(psm.Player.MaxHP).ToString();
-            unitInfoPanel.transform.Find("AttackValue").GetComponent<TMPro.TextMeshProUGUI>().text = Mathf.Ceil(psm.Player.Attack + psm.BuffAmount).ToString();
-            unitInfoPanel.transform.Find("DefenseValue").GetComponent<TMPro.TextMeshProUGUI>().text = Mathf.Ceil(psm.Player.Defense).ToString();
-            unitInfoPanel.transform.Find("AgilityValue").GetComponent<TMPro.TextMeshProUGUI>().text = Mathf.Ceil(psm.Player.Agility).ToString();
-            unitInfoPanel.transform.Find("RangeValue").GetComponent<TMPro.TextMeshProUGUI>().text = psm.Player.BaseClassData.AttackRange.ToString();
+            // Set values of all unit info panel elements.
+            unitIcon.sprite = psm.Unit.BaseClassData.ClassIcon;
+            unitNameTextbox.text = psm.Unit.UnitName;
+            classNameTextbox.text = psm.Unit.BaseClassData.ClassName;
+            hpValueTextbox.text = Mathf.Ceil(psm.Unit.CurrentHP).ToString() + " / " + Mathf.Ceil(psm.Unit.MaxHP).ToString();
+            atkValueTextbox.text = Mathf.Ceil(psm.Unit.Attack + psm.BuffAmount).ToString();
+            defValueTextbox.text = Mathf.Ceil(psm.Unit.Defense).ToString();
+            agiValueTextbox.text = Mathf.Ceil(psm.Unit.Agility).ToString();
+            rngValueTextbox.text = psm.Unit.BaseClassData.AttackRange.ToString();
+            
+            // Based on changes in stats, color text appropriately.
+            ColorTextOnChange(atkValueTextbox, psm.Unit.Attack + psm.BuffAmount, psm.Unit.BaseClassData.BaseAttack);
+            ColorTextOnChange(defValueTextbox, psm.Unit.Defense, psm.Unit.BaseClassData.BaseDefense);
+            ColorTextOnChange(agiValueTextbox, psm.Unit.Agility, psm.Unit.BaseClassData.BaseAgility);
+        }
+
+        private void ColorTextOnChange(TMPro.TextMeshProUGUI text, float runtimeStat, float baseStat)
+        {
+            // Displays stat text as white if equal to base stat,
+            // green if greater than base stat, and
+            // red if lower than base stat.
+
+            if (runtimeStat == baseStat)
+            {
+                text.color = Color.white;
+            }
+            else if (runtimeStat > baseStat)
+            {
+                text.color = Color.green;
+            }
+            else
+            {
+                text.color = Color.red;
+            }
         }
 
         private void SelectionDone()
@@ -168,6 +228,8 @@ namespace Combat
         {
             foreach (var button in TargetButtons)
             {
+                var unitIcon = button.transform.Find("UnitIcon").GetComponent<Image>();
+                unitIcon.color = Color.gray;
                 button.GetComponent<Button>().interactable = false;
             }
         }
@@ -185,9 +247,10 @@ namespace Combat
                 if (targets[i] == true && isDead != true)
                 {
                     TargetButtons[i].GetComponent<Button>().interactable = true;
+                    var unitIcon = TargetButtons[i].transform.Find("UnitIcon").GetComponent<Image>();
+                    unitIcon.color = Color.white;
                 }
             }
         }
     }
-
 }

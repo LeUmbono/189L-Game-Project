@@ -9,7 +9,7 @@ namespace Combat
 {
     public class EnemyStateMachine : GenericUnitStateMachine
     {
-        public EnemyUnit Enemy;
+        //public EnemyUnit Enemy;
         public bool IsTaunted;
         void Start()
         {
@@ -20,7 +20,7 @@ namespace Combat
 
             // Set sprite of player based on incoming party data.
             spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
-            spriteRenderer.sprite = Enemy.BaseClassData.ClassSprite;
+            spriteRenderer.sprite = Unit.BaseClassData.ClassSprite;
 
             // Instantiate combat scene game object variables.
             audioSource = this.GetComponent<AudioSource>();
@@ -28,8 +28,8 @@ namespace Combat
             uism = GameObject.Find("UIManager").GetComponent<UIStateMachine>();
 
             // Initialize health bar.
-            uism.HealthBars[Location].GetComponent<HealthBar>().SetMaxHealth(Enemy.MaxHP);
-            uism.HealthBars[Location].GetComponent<HealthBar>().SetHealth(Enemy.CurrentHP);
+            uism.HealthBars[Location].GetComponent<HealthBar>().SetMaxHealth(Unit.MaxHP);
+            uism.HealthBars[Location].GetComponent<HealthBar>().SetHealth(Unit.CurrentHP);
         }
 
         void Update()
@@ -138,7 +138,7 @@ namespace Combat
 
         protected override void DoDamage()
         {
-            UnitToTarget.GetComponent<PlayerStateMachine>().TakeDamage(Enemy.Attack);
+            UnitToTarget.GetComponent<PlayerStateMachine>().TakeDamage(Unit.Attack);
         }
 
         public override void TakeDamage(float damage)
@@ -146,13 +146,13 @@ namespace Combat
             // Damage formula calculated by taking the incoming damage minus the enemy's defense. 
             // At least 1 point of damage is taken at any given time.
 
-            var damageTaken = Mathf.Max(damage - Enemy.Defense, 1.0f);
-            Enemy.CurrentHP -= damageTaken;
+            var damageTaken = Mathf.Max(damage - Unit.Defense, 1.0f);
+            Unit.CurrentHP -= damageTaken;
 
             // Enemy dies if current HP goes below 0.
-            if (Enemy.CurrentHP <= 0.0f)
+            if (Unit.CurrentHP <= 0.0f)
             {
-                Enemy.CurrentHP = 0.0f;
+                Unit.CurrentHP = 0.0f;
                 CurrentState = TurnState.DEAD;
 
                 // Play death sound effect.
@@ -171,7 +171,7 @@ namespace Combat
             }
 
             // Update health bar of enemy.
-            uism.HealthBars[Location].GetComponent<HealthBar>().SetHealth(Enemy.CurrentHP);
+            uism.HealthBars[Location].GetComponent<HealthBar>().SetHealth(Unit.CurrentHP);
         }
 
         private IEnumerator PerformAttack()
