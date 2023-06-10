@@ -50,5 +50,4 @@ namespace Combat
             return 15.0f;
         }
     }
-
 }
