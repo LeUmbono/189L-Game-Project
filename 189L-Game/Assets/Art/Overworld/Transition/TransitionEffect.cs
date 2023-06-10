@@ -7,6 +7,7 @@ public class TransitionEffect : MonoBehaviour
 {
     public Material material;
 
+    // Applies transition material directly to camera.
     private void OnRenderImage(RenderTexture source, RenderTexture destination)
     {
         if (material != null)

@@ -262,8 +262,11 @@ public class SceneGameManager : MonoBehaviour
 
     private bool PlayingTransition()
     {
+        // Animate the cutoff shader over time.
         var cutoff = transitionMaterial.GetFloat("_Cutoff") + Time.deltaTime;
         transitionMaterial.SetFloat("_Cutoff", cutoff);
+        
+        // After 1 second, the transition is done.
         if (cutoff < 1.0)
         {
             return true;
