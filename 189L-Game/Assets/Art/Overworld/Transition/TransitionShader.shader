@@ -41,7 +41,7 @@ Shader "Custom/TransitionShader"
             float4 _Color;
             float _Cutoff;
 
-            // Default vertex function
+            // Default vertex function.
             v2f vert (appdata v)
             {
                 v2f o;
@@ -53,7 +53,7 @@ Shader "Custom/TransitionShader"
 
             fixed4 frag(v2f i) : SV_Target
             {
-                // Sample the "cutoff texture"
+                // Sample the "cutoff texture".
                 fixed4 transit = tex2D(_CutoffTex, i.uv);
                 
                 // Since "transit" is animated overtime, the more "dark" a pixel is, 
