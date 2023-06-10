@@ -15,7 +15,7 @@ namespace Combat
             PSM.PlaySound(specialSound);
 
             // Buff the unit's attack.
-            target.BuffAmount += 0.4f * target.Player.Attack;
+            target.BuffAmount += 0.4f * target.Unit.Attack;
 
             target.UnitToTarget = gameObject;
         }

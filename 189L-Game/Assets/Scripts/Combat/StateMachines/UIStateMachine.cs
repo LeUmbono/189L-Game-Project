@@ -76,14 +76,7 @@ namespace Combat
                 var unit = button.GetComponent<TargetSelectButton>().TargetPrefab;
                 var unitIcon = button.transform.Find("UnitIcon").GetComponent<Image>();
 
-                if (unit.tag == "Ally")
-                {
-                    unitIcon.sprite = unit.GetComponent<PlayerStateMachine>().Player.BaseClassData.ClassIcon;
-                }
-                else
-                {
-                    unitIcon.sprite = unit.GetComponent<EnemyStateMachine>().Enemy.BaseClassData.ClassIcon;
-                }
+                unitIcon.sprite = unit.GetComponent<GenericUnitStateMachine>().Unit.BaseClassData.ClassIcon; 
             }
         }
 
@@ -97,7 +90,7 @@ namespace Combat
 
             var targets = new List<bool>() { false, false, false, false, false, false, false, false };
 
-            for (int i = 4; i <= Mathf.Min(psm.Location + psm.Player.BaseClassData.AttackRange, 7); i++)
+            for (int i = 4; i <= Mathf.Min(psm.Location + psm.Unit.BaseClassData.AttackRange, 7); i++)
             {
                 targets[i] = true;
             }
@@ -139,7 +132,7 @@ namespace Combat
             PlayerActionType = GenericUnitStateMachine.TurnState.SPECIAL;
             selectActionPanel.SetActive(false);
 
-            var special = psm.Player.BaseClassData.SpecialAbility;
+            var special = psm.Unit.BaseClassData.SpecialAbility;
 
             // Only let player swap adjacent units.
             DisableTargetButtons();
@@ -162,14 +155,14 @@ namespace Combat
 
         private void PopulateUnitInfoPanel()
         {
-            unitInfoPanel.transform.Find("Icon").GetComponent<Image>().sprite = psm.Player.BaseClassData.ClassIcon;
-            unitInfoPanel.transform.Find("Name").GetComponent<TMPro.TextMeshProUGUI>().text = psm.Player.UnitName;
-            unitInfoPanel.transform.Find("ClassName").GetComponent<TMPro.TextMeshProUGUI>().text = psm.Player.BaseClassData.ClassName;
-            unitInfoPanel.transform.Find("HPValue").GetComponent<TMPro.TextMeshProUGUI>().text = Mathf.Ceil(psm.Player.CurrentHP).ToString() + " / " + Mathf.Ceil(psm.Player.MaxHP).ToString();
-            unitInfoPanel.transform.Find("AttackValue").GetComponent<TMPro.TextMeshProUGUI>().text = Mathf.Ceil(psm.Player.Attack + psm.BuffAmount).ToString();
-            unitInfoPanel.transform.Find("DefenseValue").GetComponent<TMPro.TextMeshProUGUI>().text = Mathf.Ceil(psm.Player.Defense).ToString();
-            unitInfoPanel.transform.Find("AgilityValue").GetComponent<TMPro.TextMeshProUGUI>().text = Mathf.Ceil(psm.Player.Agility).ToString();
-            unitInfoPanel.transform.Find("RangeValue").GetComponent<TMPro.TextMeshProUGUI>().text = psm.Player.BaseClassData.AttackRange.ToString();
+            unitInfoPanel.transform.Find("Icon").GetComponent<Image>().sprite = psm.Unit.BaseClassData.ClassIcon;
+            unitInfoPanel.transform.Find("Name").GetComponent<TMPro.TextMeshProUGUI>().text = psm.Unit.UnitName;
+            unitInfoPanel.transform.Find("ClassName").GetComponent<TMPro.TextMeshProUGUI>().text = psm.Unit.BaseClassData.ClassName;
+            unitInfoPanel.transform.Find("HPValue").GetComponent<TMPro.TextMeshProUGUI>().text = Mathf.Ceil(psm.Unit.CurrentHP).ToString() + " / " + Mathf.Ceil(psm.Unit.MaxHP).ToString();
+            unitInfoPanel.transform.Find("AttackValue").GetComponent<TMPro.TextMeshProUGUI>().text = Mathf.Ceil(psm.Unit.Attack + psm.BuffAmount).ToString();
+            unitInfoPanel.transform.Find("DefenseValue").GetComponent<TMPro.TextMeshProUGUI>().text = Mathf.Ceil(psm.Unit.Defense).ToString();
+            unitInfoPanel.transform.Find("AgilityValue").GetComponent<TMPro.TextMeshProUGUI>().text = Mathf.Ceil(psm.Unit.Agility).ToString();
+            unitInfoPanel.transform.Find("RangeValue").GetComponent<TMPro.TextMeshProUGUI>().text = psm.Unit.BaseClassData.AttackRange.ToString();
         }
 
         private void SelectionDone()

@@ -7,7 +7,7 @@ namespace Combat
 {
     public class PlayerStateMachine : GenericUnitStateMachine
     {
-        public PlayerUnit Player;
+        //public PlayerUnit Player;
         public float BuffAmount;
         
         void Start()
@@ -19,7 +19,7 @@ namespace Combat
 
             // Set sprite of player based on incoming party data.
             spriteRenderer = this.gameObject.GetComponent<SpriteRenderer>();
-            spriteRenderer.sprite = Player.BaseClassData.ClassSprite;
+            spriteRenderer.sprite = Unit.BaseClassData.ClassSprite;
 
             // Instantiate combat scene game object variables.
             audioSource = this.GetComponent<AudioSource>();
@@ -28,8 +28,8 @@ namespace Combat
             uism = GameObject.Find("UIManager").GetComponent<UIStateMachine>();
 
             // Initialize health bar.
-            uism.HealthBars[Location].GetComponent<HealthBar>().SetMaxHealth(Player.MaxHP);
-            UpdateHealthBar(Player.CurrentHP);
+            uism.HealthBars[Location].GetComponent<HealthBar>().SetMaxHealth(Unit.MaxHP);
+            UpdateHealthBar(Unit.CurrentHP);
         }
 
         void Update()
@@ -89,7 +89,7 @@ namespace Combat
 
         protected override void DoDamage()
         {
-            UnitToTarget.GetComponent<EnemyStateMachine>().TakeDamage(Player.Attack + BuffAmount);
+            UnitToTarget.GetComponent<EnemyStateMachine>().TakeDamage(Unit.Attack + BuffAmount);
         }
 
         public override void TakeDamage(float damage)
@@ -97,13 +97,13 @@ namespace Combat
             // Damage formula calculated by taking the incoming damage minus the enemy's defense. 
             // At least 1 point of damage is taken at any given time.
 
-            var damageTaken = Mathf.Max(damage - Player.Defense, 1.0f);
-            Player.CurrentHP -= damageTaken;
+            var damageTaken = Mathf.Max(damage - Unit.Defense, 1.0f);
+            Unit.CurrentHP -= damageTaken;
 
             // Player dies if current HP goes below 0.
-            if (Player.CurrentHP <= 0.0f)
+            if (Unit.CurrentHP <= 0.0f)
             {
-                Player.CurrentHP = 0.0f;
+                Unit.CurrentHP = 0.0f;
                 CurrentState = TurnState.DEAD;
 
                 // Play death sound effect.
@@ -122,7 +122,7 @@ namespace Combat
             }
 
             // Update health bar of enemy.
-            UpdateHealthBar(Player.CurrentHP);
+            UpdateHealthBar(Unit.CurrentHP);
         }
 
         public void UpdateHealthBar(float health)
@@ -204,12 +204,12 @@ namespace Combat
             DoSwap(UnitToTarget);
             
             // Heal 10% of max HP. 
-            this.Player.CurrentHP += 0.1f * this.Player.MaxHP;
-            if (this.Player.CurrentHP > this.Player.MaxHP)
+            this.Unit.CurrentHP += 0.1f * this.Unit.MaxHP;
+            if (this.Unit.CurrentHP > this.Unit.MaxHP)
             {
-                this.Player.CurrentHP = this.Player.MaxHP;
+                this.Unit.CurrentHP = this.Unit.MaxHP;
             }
-            UpdateHealthBar(Player.CurrentHP);
+            UpdateHealthBar(Unit.CurrentHP);
 
             // Remove this enemy game object from front of turn queue
             // and re-add back at the back of the queue.
@@ -252,7 +252,7 @@ namespace Combat
             yield return new WaitForSeconds(0.1f);
 
             // Execute special ability.
-            Player.BaseClassData.SpecialAbility.Execute(this.gameObject);
+            Unit.BaseClassData.SpecialAbility.Execute(this.gameObject);
 
             // Wait for sound effect to stop playing before proceeding.
             yield return new WaitWhile(() => IsPlaying());
@@ -268,8 +268,8 @@ namespace Combat
             // Remove this enemy game object from front of turn queue and re-add back at the back of the queue.
             csm.EndTurn(this.gameObject);
 
-            steamBar.ChangeSteam(Player.BaseClassData.SpecialAbility.GetSteamBarChangeValue());
-
+            steamBar.ChangeSteam(Unit.BaseClassData.SpecialAbility.GetSteamBarChangeValue());
+            
             // Set combat state of CSM to CheckGame.
             csm.CurrentCombatState = CombatStateMachine.CombatStates.CHECKGAME;
 

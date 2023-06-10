@@ -19,6 +19,7 @@ namespace Combat
         // Run-time information about the unit.
         public TurnState CurrentState;
         public GameObject UnitToTarget;
+        public GenericUnit Unit;
 
         [SerializeField]
         protected int location;

@@ -127,7 +127,7 @@ namespace Combat
             // Reset all player unit stats to base stats.
             foreach (var ally in CombatStateMachine.AlliesInBattle)
             {
-                ally.GetComponent<PlayerStateMachine>().Player.ResetStats();
+                ally.GetComponent<PlayerStateMachine>().Unit.ResetStats();
             }
         }
 
@@ -138,8 +138,8 @@ namespace Combat
             // Reset stats. Apply 1.5x multiplier to ATK, AGI.
             foreach (var ally in CombatStateMachine.AlliesInBattle)
             {
-                ally.GetComponent<PlayerStateMachine>().Player.ResetStats();
-                ally.GetComponent<PlayerStateMachine>().Player.
+                ally.GetComponent<PlayerStateMachine>().Unit.ResetStats();
+                ally.GetComponent<PlayerStateMachine>().Unit.
                     ApplyMultiplierToStats(1.5f, 1.0f, 1.5f);
             }
         }
@@ -151,8 +151,8 @@ namespace Combat
             // Reset stats. Apply 0.5x multiplier to DEF, AGI.
             foreach (var ally in CombatStateMachine.AlliesInBattle)
             {
-                ally.GetComponent<PlayerStateMachine>().Player.ResetStats();
-                ally.GetComponent<PlayerStateMachine>().Player.
+                ally.GetComponent<PlayerStateMachine>().Unit.ResetStats();
+                ally.GetComponent<PlayerStateMachine>().Unit.
                     ApplyMultiplierToStats(1.0f, 0.5f, 0.5f);
             }
         }
