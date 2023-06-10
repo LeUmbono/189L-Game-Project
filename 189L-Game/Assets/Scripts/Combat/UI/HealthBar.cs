@@ -22,7 +22,7 @@ namespace Combat
         public void SetHealth(float health)
         {
             slider.value = health;
-            hpTextbox.text = slider.value + " / " + slider.maxValue;
+            hpTextbox.text = Mathf.Ceil(slider.value) + " / " + Mathf.Ceil(slider.maxValue);
         }
     }
 }
