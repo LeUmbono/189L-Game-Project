@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -53,6 +54,7 @@ namespace Combat
 
                         // Enable relevant UI panels and load them with correct information.
                         PopulateUnitInfoPanel();
+                        PopulateSelectTargetPanel();
                         unitInfoPanel.SetActive(true);
                         selectActionPanel.SetActive(true);
 
@@ -64,6 +66,24 @@ namespace Combat
                 case UIStates.DONE:
                     SelectionDone();
                     break;
+            }
+        }
+
+        private void PopulateSelectTargetPanel()
+        {
+            foreach(var button in TargetButtons)
+            {
+                var unit = button.GetComponent<TargetSelectButton>().TargetPrefab;
+                var unitIcon = button.transform.Find("UnitIcon").GetComponent<Image>();
+
+                if (unit.tag == "Ally")
+                {
+                    unitIcon.sprite = unit.GetComponent<PlayerStateMachine>().Player.BaseClassData.ClassIcon;
+                }
+                else
+                {
+                    unitIcon.sprite = unit.GetComponent<EnemyStateMachine>().Enemy.BaseClassData.ClassIcon;
+                }
             }
         }
 
