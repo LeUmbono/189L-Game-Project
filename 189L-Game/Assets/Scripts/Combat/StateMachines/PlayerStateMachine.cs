@@ -290,7 +290,11 @@ namespace Combat
                 transform.position = t.CurrentValue;
             };
 
+
+            // Animate from original position to target in 0.4 seconds with the SineEaseOut function.
+            // SineEaseOut = Fast in the beginning, slow in the ending.
             this.gameObject.Tween("Movement", transform.position, target, 0.2f, TweenScaleFunctions.SineEaseOut, updatePos);
+            
             return target != transform.position;
         }
     }
