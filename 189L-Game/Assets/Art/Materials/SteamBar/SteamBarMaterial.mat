@@ -36,5 +36,5 @@ Material:
     - cloudSize_2: 0
     - time_shift: 0.5
     m_Colors:
-    - steam_color: {r: 1, g: 1, b: 1, a: 1}
+    - steam_color: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 0}
   m_BuildTextureStacks: []

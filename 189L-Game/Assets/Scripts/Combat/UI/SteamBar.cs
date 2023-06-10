@@ -29,7 +29,8 @@ namespace Combat
         private AudioClip shortcircuitedTheme;
         [SerializeField]
         private AudioClip shortcircuitedTransition;
-
+        
+        // Variables for steam bar functionality.
         [SerializeField]
         private float overclockedThreshold = 40.0f;
         [SerializeField]
@@ -37,13 +38,28 @@ namespace Combat
         private float steamValue = 0.0f;
         private SteamValue currentSteamState;
 
+        // Variables for color of steam bar.
+        [SerializeField]
+        private Material steamMaterial;
+        [SerializeField]
+        private Color inertColor;
+        [SerializeField]
+        private Color overclockedColor;
+        [SerializeField]
+        private Color shortcircuitedColor;
+
         void Start()
         {
+            // Initialization of variables.
             audioSource = GameObject.Find("CombatMusicManager").GetComponent<AudioSource>();
             audioSource.clip = inertTheme;
             currentSteamState = SteamValue.Inert;
             slider.value = 0.0f;
 
+            // Set color of steam bar to its inert state.
+            ChangeMaterialColor(inertColor);
+
+            // Play inert theme at start of combat.
             audioSource.loop = true;
             audioSource.Play();
         }
@@ -73,19 +89,23 @@ namespace Combat
             // Set the current steam state.
             if (0.0f <= steamValue && steamValue < overclockedThreshold)
             {
+                ChangeMaterialColor(inertColor);
                 currentSteamState = SteamValue.Inert;
             }
             else if (overclockedThreshold <= steamValue && steamValue < shortcircuitedThreshold)
             {
+                ChangeMaterialColor(overclockedColor);
                 currentSteamState = SteamValue.Overclocked;
             }
             else if (shortcircuitedThreshold <= steamValue && steamValue < 100.0f)
             {
+                ChangeMaterialColor(shortcircuitedColor);
                 currentSteamState = SteamValue.Shortcircuited;
             }
 
             var isInDifferentState = previousSteamState != currentSteamState ? true : false;
 
+            // Apply corresponding steam bar effects if state of steam bar changes.
             if (isInDifferentState)
             {
                 switch (currentSteamState)
@@ -147,13 +167,12 @@ namespace Combat
 
         IEnumerator PlayInertTheme()
         {
-            /*
             audioSource.loop = false;
             audioSource.clip = inertTransition;
             audioSource.Play();
 
             yield return new WaitWhile(() => audioSource.isPlaying);
-            */
+            
             yield return new WaitForSeconds(1);
 
             audioSource.loop = true;
@@ -185,6 +204,10 @@ namespace Combat
             audioSource.loop = true;
             audioSource.clip = shortcircuitedTheme;
             audioSource.Play();
+        }
+        private void ChangeMaterialColor(Color color)
+        {
+            steamMaterial.SetColor("steam_color", color);
         }
     }
 }

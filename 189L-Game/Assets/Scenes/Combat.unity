@@ -3450,18 +3450,6 @@ PrefabInstance:
       value: 0.81
       objectReference: {fileID: 0}
     - target: {fileID: 3368740538371438863, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 37.490185
-      objectReference: {fileID: 0}
-    - target: {fileID: 3368740538371438863, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 37.490185
-      objectReference: {fileID: 0}
-    - target: {fileID: 3368740538371438863, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 37.490185
-      objectReference: {fileID: 0}
-    - target: {fileID: 3368740538371438863, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
@@ -3509,62 +3497,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3432264453176376453, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
-      propertyPath: m_Type
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3432264453176376453, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
-      propertyPath: m_Maskable
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3432264453176376453, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
-      propertyPath: m_Material
-      value: 
-      objectReference: {fileID: 2100000, guid: b6620903787bdcf4da9ad5040562ddc3, type: 2}
-    - target: {fileID: 3432264453176376453, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
-      propertyPath: m_RaycastTarget
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4228068360480845206, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
       propertyPath: m_Name
       value: SteamBar
       objectReference: {fileID: 0}
-    - target: {fileID: 5900047404316495066, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
-      propertyPath: m_Value
-      value: 98
-      objectReference: {fileID: 0}
-    - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
-      propertyPath: inertTheme
-      value: 
-      objectReference: {fileID: 8300000, guid: 8f63719825669234c95a9aefccb21e6c, type: 3}
-    - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
-      propertyPath: inertTransition
-      value: 
-      objectReference: {fileID: 8300000, guid: 7f4d728f65691d34cb7ccef1fe0b7a8c, type: 3}
-    - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
-      propertyPath: overclockedTheme
-      value: 
-      objectReference: {fileID: 8300000, guid: 1b1283d06f45a58429f9427e00d7583e, type: 3}
-    - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
-      propertyPath: shortcircuitedTheme
-      value: 
-      objectReference: {fileID: 8300000, guid: be56a1f9f56b2b2419877892e0ebd40b, type: 3}
-    - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
-      propertyPath: overclockedThreshold
-      value: 40
-      objectReference: {fileID: 0}
-    - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
-      propertyPath: overclockedTransition
-      value: 
-      objectReference: {fileID: 8300000, guid: 407dc46b148a1974ea403f4a7ab4ea06, type: 3}
-    - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
-      propertyPath: shortcircuitedThreshold
-      value: 75
-      objectReference: {fileID: 0}
-    - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
-      propertyPath: shortcircuitedTransition
-      value: 
-      objectReference: {fileID: 8300000, guid: 9ccdcd1a17fe86c4793518048667fe3d, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
