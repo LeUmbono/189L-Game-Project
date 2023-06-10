@@ -9,7 +9,7 @@ namespace Combat
         public Slider slider;
         private TextMeshProUGUI hpTextbox;
 
-        void Start()
+        void Awake()
         {
             hpTextbox = this.gameObject.transform.Find("HPText").GetComponent<TextMeshProUGUI>();
         }
