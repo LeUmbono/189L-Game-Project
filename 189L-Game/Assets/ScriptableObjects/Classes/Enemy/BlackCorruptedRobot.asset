@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   className: MISSINGNOOOOO
   classSprite: {fileID: 21300000, guid: e44cc16b0352ce34e829f7c71409110d, type: 3}
-  classIcon: {fileID: 21300000, guid: e44cc16b0352ce34e829f7c71409110d, type: 3}
+  classIcon: {fileID: 21300000, guid: de23c109fc9a4624386b382c81473e27, type: 3}
   baseHP: 80
   baseAttack: 25
   baseDefense: 0
