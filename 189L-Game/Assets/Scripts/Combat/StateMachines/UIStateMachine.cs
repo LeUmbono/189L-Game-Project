@@ -185,28 +185,30 @@ namespace Combat
             defValueTextbox.text = Mathf.Ceil(psm.Unit.Defense).ToString();
             agiValueTextbox.text = Mathf.Ceil(psm.Unit.Agility).ToString();
             rngValueTextbox.text = psm.Unit.BaseClassData.AttackRange.ToString();
-
+            
             // Based on changes in stats, color text appropriately.
-            ColorTextOnChange(atkValueTextbox, psm.Unit.Attack, psm.Unit.BaseClassData.BaseAttack);
+            ColorTextOnChange(atkValueTextbox, psm.Unit.Attack + psm.BuffAmount, psm.Unit.BaseClassData.BaseAttack);
             ColorTextOnChange(defValueTextbox, psm.Unit.Defense, psm.Unit.BaseClassData.BaseDefense);
             ColorTextOnChange(agiValueTextbox, psm.Unit.Agility, psm.Unit.BaseClassData.BaseAgility);
         }
 
-        private void ColorTextOnChange(TextMeshProUGUI textbox, float runtimeStat, float baseStat)
+        private void ColorTextOnChange(TMPro.TextMeshProUGUI text, float runtimeStat, float baseStat)
         {
-            // Change color of stat text depending on if runtime stat greater/lesser than base stat.
-            // A higher runtime stat means a green color. A lower runtime stat means a red color.
-            if(runtimeStat == baseStat)
+            // Displays stat text as white if equal to base stat,
+            // green if greater than base stat, and
+            // red if lower than base stat.
+
+            if (runtimeStat == baseStat)
             {
-                textbox.color = Color.white;
+                text.color = Color.white;
             }
-            else if (runtimeStat > baseStat) 
+            else if (runtimeStat > baseStat)
             {
-                textbox.color = Color.green;
+                text.color = Color.green;
             }
             else
-            { 
-                textbox.color = Color.red;
+            {
+                text.color = Color.red;
             }
         }
 
