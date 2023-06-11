@@ -11737,7 +11737,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &473969012
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12118,7 +12118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1240651283
 RectTransform:
   m_ObjectHideFlags: 0
@@ -20058,7 +20058,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 12}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1673112812
@@ -20083,19 +20083,34 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'WASD / Arrow Keys To Move
 
-    Special Abilities For Units:
 
-    Joe -
-    2x base damage
+    Special Abilities:
 
-    Schmoe - Heal
+    Ranger - Snipe
+    for 2x damage. +15 steam.
 
-    Moe - Buff
+    Healer - Heal 40% HP of adjacent ally. +15 steam.
 
-    Aron - Taunt
+    Supporter
+    - Buff ATK by 40% of adjacent ally. Effect stacks. -15 steam.
 
-    Keep
-    the steam bar in the middle by balancing abilities!'
+    Tank - Draws
+    enemy''s attention for 1 turn. -15 steam.
+
+
+    Steam Bar Explanation:
+
+    Inert
+    (0-40) - Default state. No effects.
+
+    Overclocked (40-75) - Charged state.
+    1.5x ATK, AGI.
+
+    Shortcircuited (75-100) - DANGER! 0.5x DEF, AGI.
+
+
+    Stay
+    in Overclocked by balancing your actions!'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 90a907c1faf01dc4699b44af8242e9c2, type: 2}
   m_sharedMaterial: {fileID: 5773692967917431127, guid: 90a907c1faf01dc4699b44af8242e9c2, type: 2}
@@ -20122,8 +20137,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 20
+  m_fontSizeBase: 20
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
