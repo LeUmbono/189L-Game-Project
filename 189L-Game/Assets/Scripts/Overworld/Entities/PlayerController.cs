@@ -82,7 +82,7 @@ namespace Overworld
         }
         private bool NotCollisionTile(float displacementX, float displacementY)
         {
-            if (Physics2D.OverlapBox(this.movePoint.position + new Vector3(displacementX, displacementY, 0.0f), new Vector2(tileDistance - 0.1f, tileDistance - 0.1f), 0.0f, collisionLayer))
+            if (Physics2D.Raycast(this.transform.position, new Vector2(displacementX, displacementY).normalized, tileDistance, collisionLayer))
             {
                 return false;
             }
