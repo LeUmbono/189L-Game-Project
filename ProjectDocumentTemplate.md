@@ -98,9 +98,9 @@ Morgan:
 [**Link to UI Design Document**- (includes written documentation, sketches, wireframes, mockups, prototypes, and images of assets)](https://docs.google.com/document/d/1kTopceyNEWOaCYavN3E1oi3YmahnAdp1_5BOAVHhUrs/edit?usp=sharing)
 
 There are three main screens related to the user interfaces created:
-- **Title screen/pause menu**: includes play button, instructions button, quit button, text backdrop, and blur overlay (pause menu only)
-- **Overworld**: includes pause button, small headshot backdrop, large headshot backdrop, and stat backdrop
-- **Combat**: includes health bar, turn indicator, attack button, swap button, special ability button, back arrow, headshot backdrop, enemy indicator, ally indicator, out of range overlay, unit hover indicator
+- **Title screen/pause menu** (involves point-and-click user input): includes play button, instructions button, quit button, text backdrop, and blur overlay (pause menu only)
+- **Overworld** (involves keyboard user input): includes pause button, small headshot backdrop, large headshot backdrop, and stat backdrop
+- **Combat** (involves point-and-click user input): includes health bar, turn indicator, attack button, swap button, special ability button, back arrow, headshot backdrop, enemy indicator, ally indicator, out of range overlay, unit hover indicator
 
 This list contains key combat UI components as this is the most relevant part of our game. Please see the design document for all assets and images of these assets.
 - **Health bar**: Indicates health of player's team and enemies. The background is static whereas the inner bar is dynamic. The heart is used to further reiterate relation to health.
