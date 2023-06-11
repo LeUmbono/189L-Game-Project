@@ -72,7 +72,7 @@ Clarissa
 
 Main Role: Environmental Art
 
-Sub Role: Project Management
+Sub Role: Level Design
 
 Chloe
 
@@ -263,7 +263,7 @@ Aron: There were a lot of moments in playtesting where players would use the ran
 
 There was a little bit of polishing needed to round off the rough edges such as speeding up animations and sounds to aid a sluggish game, adding visual indicators, and fixing minor visual bugs. I hadn't realized how important this process was until I felt how these changes worked in combination.. It made for a strictly more fun game with the new quality of life improvements!
 
-## Project Management
+## Level Design
 
 ## 
 
