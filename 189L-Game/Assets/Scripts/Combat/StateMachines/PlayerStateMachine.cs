@@ -7,7 +7,6 @@ namespace Combat
 {
     public class PlayerStateMachine : GenericUnitStateMachine
     {
-        //public PlayerUnit Player;
         public float BuffAmount;
         
         void Start()
@@ -145,15 +144,15 @@ namespace Combat
                 UnitToTarget.transform.position.y, 
                 UnitToTarget.transform.position.z);
 
-            yield return new WaitForSeconds(0.25f);
+            yield return new WaitForSeconds(0.1f);
 
             while (MoveTowardsPosition(targetPosition))
             {
                 yield return null;
             }
 
-            // Pause for 0.5 seconds.
-            yield return new WaitForSeconds(0.25f);
+            // Pause for 0.1 seconds.
+            yield return new WaitForSeconds(0.1f);
 
             // Do damage.
             DoDamage();
@@ -194,7 +193,8 @@ namespace Combat
 
             actionStarted = true;
 
-            yield return new WaitForSeconds(0.25f);
+            // Pause for 0.1 seconds.
+            yield return new WaitForSeconds(0.1f);
 
             if (swapSound != null) 
             {
@@ -234,7 +234,8 @@ namespace Combat
 
             actionStarted = true;
 
-            yield return new WaitForSeconds(0.25f);
+            // Pause for 0.1 seconds.
+            yield return new WaitForSeconds(0.1f);
 
             var initialPosition = transform.position;
             var targetPosition = new Vector3 (UnitToTarget.GetComponent<SpriteRenderer>().bounds.min.x - gameObject.GetComponent<SpriteRenderer>().bounds.extents.x, 
@@ -276,6 +277,7 @@ namespace Combat
             actionStarted = false;
             CurrentState = TurnState.WAIT;
         }
+
         private bool MoveTowardsPosition(Vector3 target)
         {
             var direction = target.x - transform.position.x;
@@ -290,8 +292,7 @@ namespace Combat
                 transform.position = t.CurrentValue;
             };
 
-
-            // Animate from original position to target in 0.4 seconds with the SineEaseOut function.
+            // Animate from original position to target in 0.2 seconds with the SineEaseOut function.
             // SineEaseOut = Fast in the beginning, slow in the ending.
             this.gameObject.Tween("Movement", transform.position, target, 0.2f, TweenScaleFunctions.SineEaseOut, updatePos);
             

@@ -9,7 +9,6 @@ namespace Combat
 {
     public class EnemyStateMachine : GenericUnitStateMachine
     {
-        //public EnemyUnit Enemy;
         public bool IsTaunted;
         void Start()
         {
@@ -190,6 +189,7 @@ namespace Combat
             var targetPosition = new Vector3(UnitToTarget.GetComponent<SpriteRenderer>().bounds.max.x + gameObject.GetComponent<SpriteRenderer>().bounds.extents.x,
                 UnitToTarget.transform.position.y,
                 UnitToTarget.transform.position.z);
+            
             while (MoveTowardsPosition(targetPosition))
             {
                 yield return null;
@@ -236,6 +236,8 @@ namespace Combat
                 transform.position = t.CurrentValue;
             };
 
+            // Animate from original position to target in 0.2 seconds with the SineEaseOut function.
+            // SineEaseOut = Fast in the beginning, slow in the ending.
             this.gameObject.Tween("Movement", transform.position, target, 0.2f, TweenScaleFunctions.SineEaseOut, updatePos);
             return target != transform.position;
         }
