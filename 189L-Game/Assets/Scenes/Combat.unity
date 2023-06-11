@@ -1465,7 +1465,7 @@ MonoBehaviour:
     Agility: 0
   location: 3
   takeDamageSound: {fileID: 8300000, guid: 9b0c7f0c013529f41b7320c56fa7da2a, type: 3}
-  deathSound: {fileID: 8300000, guid: ac6e1dc751aa3b749b2a7ba683e90ddc, type: 3}
+  deathSound: {fileID: 8300000, guid: cd7a5cf2c14d5c34a99502500bcae8ff, type: 3}
   swapSound: {fileID: 8300000, guid: 56c3e03c95273184d86108f8eebf8b9c, type: 3}
   BuffAmount: 0
 --- !u!82 &545576409
@@ -1740,7 +1740,7 @@ MonoBehaviour:
     Agility: 0
   location: 7
   takeDamageSound: {fileID: 8300000, guid: d44f19d977bbbec4f9267a82c836ad1d, type: 3}
-  deathSound: {fileID: 8300000, guid: ddd3cedf460143d4cb4969a0a21d45e1, type: 3}
+  deathSound: {fileID: 8300000, guid: 035da07e03a76864fa5ff523f9051d91, type: 3}
   swapSound: {fileID: 8300000, guid: 56c3e03c95273184d86108f8eebf8b9c, type: 3}
   IsTaunted: 0
 --- !u!82 &570363352
@@ -2667,7 +2667,7 @@ MonoBehaviour:
     Agility: 0
   location: 1
   takeDamageSound: {fileID: 8300000, guid: 9b0c7f0c013529f41b7320c56fa7da2a, type: 3}
-  deathSound: {fileID: 8300000, guid: ac6e1dc751aa3b749b2a7ba683e90ddc, type: 3}
+  deathSound: {fileID: 8300000, guid: cd7a5cf2c14d5c34a99502500bcae8ff, type: 3}
   swapSound: {fileID: 8300000, guid: 56c3e03c95273184d86108f8eebf8b9c, type: 3}
   BuffAmount: 0
 --- !u!82 &822175053
@@ -3286,7 +3286,7 @@ MonoBehaviour:
     Agility: 0
   location: 0
   takeDamageSound: {fileID: 8300000, guid: 9b0c7f0c013529f41b7320c56fa7da2a, type: 3}
-  deathSound: {fileID: 8300000, guid: ac6e1dc751aa3b749b2a7ba683e90ddc, type: 3}
+  deathSound: {fileID: 8300000, guid: cd7a5cf2c14d5c34a99502500bcae8ff, type: 3}
   swapSound: {fileID: 8300000, guid: 56c3e03c95273184d86108f8eebf8b9c, type: 3}
   BuffAmount: 0
 --- !u!82 &1032694900
@@ -4667,7 +4667,7 @@ MonoBehaviour:
     Agility: 0
   location: 5
   takeDamageSound: {fileID: 8300000, guid: d44f19d977bbbec4f9267a82c836ad1d, type: 3}
-  deathSound: {fileID: 8300000, guid: ddd3cedf460143d4cb4969a0a21d45e1, type: 3}
+  deathSound: {fileID: 8300000, guid: 035da07e03a76864fa5ff523f9051d91, type: 3}
   swapSound: {fileID: 8300000, guid: 56c3e03c95273184d86108f8eebf8b9c, type: 3}
   IsTaunted: 0
 --- !u!82 &1685004649
@@ -5005,7 +5005,7 @@ MonoBehaviour:
     Agility: 0
   location: 2
   takeDamageSound: {fileID: 8300000, guid: 9b0c7f0c013529f41b7320c56fa7da2a, type: 3}
-  deathSound: {fileID: 8300000, guid: ac6e1dc751aa3b749b2a7ba683e90ddc, type: 3}
+  deathSound: {fileID: 8300000, guid: cd7a5cf2c14d5c34a99502500bcae8ff, type: 3}
   swapSound: {fileID: 8300000, guid: 56c3e03c95273184d86108f8eebf8b9c, type: 3}
   BuffAmount: 0
 --- !u!82 &1741433917
@@ -5145,7 +5145,7 @@ MonoBehaviour:
     Agility: 0
   location: 4
   takeDamageSound: {fileID: 8300000, guid: d44f19d977bbbec4f9267a82c836ad1d, type: 3}
-  deathSound: {fileID: 8300000, guid: ddd3cedf460143d4cb4969a0a21d45e1, type: 3}
+  deathSound: {fileID: 8300000, guid: 035da07e03a76864fa5ff523f9051d91, type: 3}
   swapSound: {fileID: 8300000, guid: 56c3e03c95273184d86108f8eebf8b9c, type: 3}
   IsTaunted: 0
 --- !u!82 &1761927352
@@ -6341,7 +6341,7 @@ MonoBehaviour:
     Agility: 0
   location: 6
   takeDamageSound: {fileID: 8300000, guid: d44f19d977bbbec4f9267a82c836ad1d, type: 3}
-  deathSound: {fileID: 8300000, guid: ddd3cedf460143d4cb4969a0a21d45e1, type: 3}
+  deathSound: {fileID: 8300000, guid: 035da07e03a76864fa5ff523f9051d91, type: 3}
   swapSound: {fileID: 8300000, guid: 56c3e03c95273184d86108f8eebf8b9c, type: 3}
   IsTaunted: 0
 --- !u!82 &2144994038

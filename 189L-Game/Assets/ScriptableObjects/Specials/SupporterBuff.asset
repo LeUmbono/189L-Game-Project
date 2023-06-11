@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef3989e85fc7ce843b05fd218ec899c4, type: 3}
   m_Name: SupporterBuff
   m_EditorClassIdentifier: 
-  specialSound: {fileID: 8300000, guid: 972aa34e5f3bb7246ac30461aa7b47b6, type: 3}
+  specialSound: {fileID: 8300000, guid: ad0a005cce2eb6e40839d1c9f4cdec2f, type: 3}

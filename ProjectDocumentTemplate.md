@@ -2,7 +2,7 @@
 
 ## Summary ##
 
-**A paragraph-length pitch for your game.**
+In a post-apocalyptic world, humans have long gone extinct and robots rule the Earth, establishing steampunk-esque societies centered around coal as an energy source. With the dwindling supplies of coal looming over the horizon, you take charge of a robot expeditionary team in search of new sources of energy for robotkind's continued sustenance. Initial reports from the frontier tell of a pre-war ruin supposedly filled with mysterious beings operating without coal. Perhaps there you will find what you seek... 
 
 ## Gameplay Explanation ##
 
@@ -29,8 +29,6 @@ Here they are listed below:
 
 The steam bar is an ever-present mechanic in the game! Depending on the section of the bar you're on, your party may get buffed or debuffed. Pay attention to the musical cues and take care to stay in the Overclocked zone! All attacks generate 10 steam. Swapping expends 10 steam. 
 
-
-
 - 2D Positional Turn-Based RPG with character classes that dictate actions / stats / attack range in the vein of Darkest Dungeon
 - Overworld vs. Battle Phase
 - In the overworld, the party is able to move in a grid-based system. Enemies / obstacles are littered across the grid and encountering enemies in the overworld leads to a battle. 
@@ -50,7 +48,7 @@ Russell
 
 Main Role: Combat Logic
 
-Sub Role: Game Director
+Sub Role: Game Direction
 
 Jordan
 
@@ -84,9 +82,9 @@ Sub Role: Sound Effects
 
 Josh
 
-Main Role: Music 
+Main Role: Music/Sound Effects 
 
-Sub Role: Sound Effects
+Sub Role: Press Kit & Trailer
 
 Your goal is to relate the work of your role and sub-role in terms of the content of the course. Please look at the role sections below for specific instructions for each role.
 
@@ -99,9 +97,9 @@ Here is an example:
 
 You should replay any **bold text** with your relevant information. Liberally use the template when necessary and appropriate.
 
-## Producer
+## Combat Logic
 
-**Describe the steps you took in your role as producer. Typical items include group scheduling mechanism, links to meeting notes, descriptions of team logistics problems with their resolution, project organization tools (e.g., timelines, depedency/task tracking, Gantt charts, etc.), and repository management methodology.**
+Russell:
 
 ## User Interface
 
@@ -166,11 +164,9 @@ This list contains key combat UI components as this is the most relevant part of
 
 **Unit selection system**: **The most notable system that I created was the unit-select system in the combat screen**. I chose to designate allies with a green outline and enemies with a red outline to match common game UI color symbolization. Additionally, I chose to add a dark gray overlay (50% opacity) on top of “out-of-range” units in order to communicate that the player could not select these. Finally, I developed a bright blue outline and overlay (which I discovered was common in games with heavier UI) to indicate to the player which unit they were about to select; I felt high-noticeability was important because we decided not to implement a “submit” button, meaning if players click on the wrong unit by accident, they could not re-select. **My intention was that this dynamic hover/overlay would help prevent players from becoming frustrated with the game as a result of making that mistake**. You can find a prototype of this in the UI design document.
 
-## Movement/Physics
+## Environmental Art
 
-**Describe the basics of movement and physics in your game. Is it the standard physics model? What did you change or modify? Did you make your movement scripts that do not use the physics system?**
-
-## Animation and Visuals
+## Sprites / Animations
 
 **List your assets including their sources and licenses.**
 pebbles.png -  Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License (https://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US)
@@ -213,23 +209,19 @@ The support is friendly and takes a backseat to the rest of the bots. It is roun
 
 **Add an entry for each platform or input style your project supports.**
 
-## Game Logic
-
-**Document what game states and game data you managed and what design patterns you used to complete your task.**
+## Music
 
 # Sub-Roles
 
-## Cross-Platform
+## Game Direction
 
 **Describe the platforms you targeted for your game release. For each, describe the process and unique actions taken for each platform. What obstacles did you overcome? What was easier than expected?**
 
-## Audio
+## Narrative Design
 
-**List your assets including their sources and licenses.**
+**Document how the narrative is present in the game via assets, gameplay systems, and gameplay.** 
 
-**Describe the implementation of your audio system.**
-
-**Document the sound style.** 
+## Technical Artist
 
 ## Gameplay Testing
 
@@ -263,27 +255,18 @@ Based off of all of the feedback we received, **the three areas that we should f
 
 Lastly, to further add to the analysis part of the play-testing process, **I included potential solutions to any key problems play-testers brought up**; some of these were “quick fixes” that prioritized the game’s upcoming deadline, whereas others were more comprehensive solutions that I considered to be “stretch goals”. **Many of these suggestions were implemented during the final week of development, including faster combat animations, shorter SFX, more text-UI, enhanced steambar UI, and improved enemy AI**. You can find all of these suggestions in the play testing report linked at the top of this section.
 
-
 Aron: There were a lot of moments in playtesting where players would use the ranger's snipe ability during the overclocked phase of the steam bar on an oil slime. At the current attack of the ranger, the slime would live at 1 HP! This was mildly annoying for the players, and it slipped by as I was balancing the stat tables. It brought about the importance of *damage thresholds*, where dealing 39 damage to a 40 health unit was a lot different from dealing 40 damage to a 40 health unit.
 
 There was a little bit of polishing needed to round off the rough edges such as speeding up animations and sounds to aid a sluggish game, adding visual indicators, and fixing minor visual bugs. I hadn't realized how important this process was until I felt how these changes worked in combination.. It made for a strictly more fun game with the new quality of life improvements!
 
-## Narrative Design
+## Project Management
 
-**Document how the narrative is present in the game via assets, gameplay systems, and gameplay.** 
+## 
 
 ## Press Kit and Trailer
 
 **Include links to your presskit materials and trailer.**
 
 **Describe how you showcased your work. How did you choose what to show in the trailer? Why did you choose your screenshots?**
-
-
-
-## Game Feel
-
-**Document what you added to and how you tweaked your game to improve its game feel.**
-
-
 
 ## Unused Content
