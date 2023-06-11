@@ -95,12 +95,12 @@ You should replay any **bold text** with your relevant information. Liberally us
 
 Morgan:
 
-[Link to UI Design Document- (includes written documentation, sketches, wireframes, mockups, prototypes, and images of assets)](https://docs.google.com/document/d/1kTopceyNEWOaCYavN3E1oi3YmahnAdp1_5BOAVHhUrs/edit?usp=sharing)
+[**Link to UI Design Document**- (includes written documentation, sketches, wireframes, mockups, prototypes, and images of assets)](https://docs.google.com/document/d/1kTopceyNEWOaCYavN3E1oi3YmahnAdp1_5BOAVHhUrs/edit?usp=sharing)
 
 There are three main screens related to the user interfaces created:
-- *Title screen/pause menu*: includes play button, instructions button, quit button, text backdrop, and blur overlay (pause menu only)
-- *Overworld*: includes pause button, small headshot backdrop, large headshot backdrop, and stat backdrop
-- *Combat*: includes health bar, turn indicator, attack button, swap button, special ability button, back arrow, headshot backdrop, enemy indicator, ally indicator, out of range overlay, unit hover indicator
+- **Title screen/pause menu**: includes play button, instructions button, quit button, text backdrop, and blur overlay (pause menu only)
+- **Overworld**: includes pause button, small headshot backdrop, large headshot backdrop, and stat backdrop
+- **Combat**: includes health bar, turn indicator, attack button, swap button, special ability button, back arrow, headshot backdrop, enemy indicator, ally indicator, out of range overlay, unit hover indicator
 
 This list contains key combat UI components as this is the most relevant part of our game. Please see the design document for all assets and images of these assets.
 - **Health bar**: Indicates health of player's team and enemies. The background is static whereas the inner bar is dynamic. The heart is used to further reiterate relation to health.
@@ -110,49 +110,47 @@ This list contains key combat UI components as this is the most relevant part of
 ![health dynamic](https://github.com/LeUmbono/189L-Game-Project/blob/bcca53680e28f1a97548234a03d02efa329f5f69/189L-Game/Assets/Art/Combat/UI/FinalUI/health%20dynamic.png)
 
 
-- *Turn indicator*: A unit's turn is indicated by the yellow arrow above their head. The arrow is meant to "hover" to draw the user's attention and add dynamic motion to the screen.
+- **Turn indicator**: A unit's turn is indicated by the yellow arrow above their head. The arrow is meant to "hover" to draw the user's attention and add dynamic motion to the screen.
 
 ![turn](https://github.com/LeUmbono/189L-Game-Project/blob/bcca53680e28f1a97548234a03d02efa329f5f69/189L-Game/Assets/Art/Combat/UI/FinalUI/indicator%20final.png)
 
 
-- *Attack button*: Allows the player to choose which enemy they'd like to attack once pressed. Clicking on it switches to the unit selection screen.
+- **Attack button**: Allows the player to choose which enemy they'd like to attack once pressed. Clicking on it switches to the unit selection screen.
 
 ![attack](https://github.com/LeUmbono/189L-Game-Project/blob/bcca53680e28f1a97548234a03d02efa329f5f69/189L-Game/Assets/Art/Combat/UI/FinalUI/attack%20button%20final.png)
 
 
-- *Swap button*: Allows the player to swap positions with another ally once pressed. Clicking on it switches to the unit selection screen.
+- **Swap button**: Allows the player to swap positions with another ally once pressed. Clicking on it switches to the unit selection screen.
 
 ![swap](https://github.com/LeUmbono/189L-Game-Project/blob/bcca53680e28f1a97548234a03d02efa329f5f69/189L-Game/Assets/Art/Combat/UI/FinalUI/swap%20button%20final.png)
 
 
-- *Special ability button*: Allows the player to use their special ability once pressed, such as taunt, buff, heal, or snipe. Clicking on it switches to the unit selection screen.
+- **Special ability button**: Allows the player to use their special ability once pressed, such as taunt, buff, heal, or snipe. Clicking on it switches to the unit selection screen.
 
 ![star](https://github.com/LeUmbono/189L-Game-Project/blob/bcca53680e28f1a97548234a03d02efa329f5f69/189L-Game/Assets/Art/Combat/UI/FinalUI/star%20button%20final.png)
 
 
-- *Back arrow*: Takes the user from the unit selection screen back to the action selection screen when pressed.
+- **Back arrow**: Takes the user from the unit selection screen back to the action selection screen when pressed.
 
 ![back](https://github.com/LeUmbono/189L-Game-Project/blob/bcca53680e28f1a97548234a03d02efa329f5f69/189L-Game/Assets/Art/Combat/UI/FinalUI/back%20arrow.png)
 
-![back hover](https://github.com/LeUmbono/189L-Game-Project/blob/bcca53680e28f1a97548234a03d02efa329f5f69/189L-Game/Assets/Art/Combat/UI/FinalUI/back%20arrow-1.png)
 
-
-- *Enemy outline*: Red outline around a unit's headshot that indicates enemy status to the player.
+- **Enemy outline**: Red outline around a unit's headshot that indicates enemy status to the player.
 
 ![enemy](https://github.com/LeUmbono/189L-Game-Project/blob/bcca53680e28f1a97548234a03d02efa329f5f69/189L-Game/Assets/Art/Combat/UI/FinalUI/highlight_enemy.png)
 
 
-- *Ally outline*: Green outline around a unit's headshot that indicates ally status to the player.
+- **Ally outline**: Green outline around a unit's headshot that indicates ally status to the player.
 
 ![ally](https://github.com/LeUmbono/189L-Game-Project/blob/bcca53680e28f1a97548234a03d02efa329f5f69/189L-Game/Assets/Art/Combat/UI/FinalUI/highlight_ally.png)
 
 
-- *Hover outline/overlay*: Cyan outline and overlay that indicates hover over a given unit; clicking while on hover will select this unit.
+- **Hover outline/overlay**: Cyan outline and overlay that indicates hover over a given unit; clicking while on hover will select this unit.
 
 ![hover](https://github.com/LeUmbono/189L-Game-Project/blob/bcca53680e28f1a97548234a03d02efa329f5f69/189L-Game/Assets/Art/Combat/UI/FinalUI/highlight_selected.png)
 
 
-Unit selection system: *The most notable system that I created was the unit-select system in the combat screen*. I chose to designate allies with a green outline and enemies with a red outline to match common game UI color symbolization. Additionally, I chose to add a dark gray overlay (50% opacity) on top of “out-of-range” units in order to communicate that the player could not select these. Finally, I developed a bright blue outline and overlay (which I discovered was common in games with heavier UI) to indicate to the player which unit they were about to select; I felt high-noticeability was important because we decided not to implement a “submit” button, meaning if players click on the wrong unit by accident, they could not re-select. *My intention was that this dynamic hover/overlay would help prevent players from becoming frustrated with the game as a result of making that mistake*. You can find a prototype of this in the UI design document.
+Unit selection system: **The most notable system that I created was the unit-select system in the combat screen**. I chose to designate allies with a green outline and enemies with a red outline to match common game UI color symbolization. Additionally, I chose to add a dark gray overlay (50% opacity) on top of “out-of-range” units in order to communicate that the player could not select these. Finally, I developed a bright blue outline and overlay (which I discovered was common in games with heavier UI) to indicate to the player which unit they were about to select; I felt high-noticeability was important because we decided not to implement a “submit” button, meaning if players click on the wrong unit by accident, they could not re-select. **My intention was that this dynamic hover/overlay would help prevent players from becoming frustrated with the game as a result of making that mistake**. You can find a prototype of this in the UI design document.
 
 ## Movement/Physics
 
@@ -227,11 +225,11 @@ The support is friendly and takes a backseat to the rest of the bots. It is roun
 
 **Summarize the key findings from your gameplay tests.**
 
-[Playtesting Summary, Report, & Analysis](https://docs.google.com/document/d/1CTMEWQRnyL68Nw0RKID6Rn5qOjunhTB-_wRuw-S3gkI/edit?usp=sharing)
+[**Playtesting Summary, Report, & Analysis**](https://docs.google.com/document/d/1CTMEWQRnyL68Nw0RKID6Rn5qOjunhTB-_wRuw-S3gkI/edit?usp=sharing)
 
 [Playtesting Instructions & Guidelines](https://docs.google.com/document/d/19JiA8req6dwKU2h-y9f5yDnb3djJPQiXp_C-QNy4oY0/edit?usp=sharing)
 
-Morgan: To begin the play-testing process, I began by researching how to write helpful play testing follow-up questions as I’ve never actually held formal playtests before; I’ve only ever done user testing for apps. After adapting questions to fit the style of our game, I created a Google form that would be used post each playtesting session. I made sure to address a variety of concepts to make sure any feedback was as comprehensive as possible:
+Morgan: To begin the play-testing process, I began by researching how to write helpful play testing follow-up questions as I’ve never actually held formal playtests before; I’ve only ever done user testing for apps. After adapting questions to fit the style of our game, I created a Google form that would be used post each playtesting session. **I made sure to address a variety of game-related concepts to make sure any feedback was as comprehensive as possible**:
 
 1. What was your favorite part about the game?
 2. What didn’t you like about the game?
@@ -244,12 +242,12 @@ Morgan: To begin the play-testing process, I began by researching how to write h
 9. How long did you feel like you were playing the game? How long did you actually play for?
 10. If you were to suggest that one change be made to the game, what would it be?
 
-Based off of all of the feedback we received, the three areas that we should focus on before the final due date are:
-1. Clearer instructions- tutorial, access to rules, more supporting UI 
-2. More engaging gameplay- faster combat sequences, reduced time of pre-existing animations/sound effects, more animations
-3. Improved enemy AI- less randomized turn order and attack sequence, incorporate limitations the player faces (or at least make motives behind AI clear if there isn’t time to change it)
+Based off of all of the feedback we received, **the three areas that we should focus on before the final due date are**:
+1. **Clearer instructions**- potential solutions include detailed tutorial, continuous access to rules, and more supporting UI 
+2. **More engaging gameplay**- potential solutions include faster combat sequences, reduced time of pre-existing animations/sound effects, and more animations to create visual interest/engagement
+3. **Improved enemy AI**- potential solutions include less randomized turn order and attack sequence and incorporating limitations the player faces
 
-Lastly, to further add to the analysis part of the play-testing process, I included potential solutions to any key problems play-testers brought up; some of these were “quick fixes” that prioritized the game’s upcoming deadline, whereas others were more comprehensive solutions that I considered to be “stretch goals”. Many of these suggestions were implemented during the final week of development, including faster combat animations, shorter SFX, more text-UI, enhanced steambar UI, and improved enemy AI. You can find all of these suggestions in the play testing report linked at the top of this section.
+Lastly, to further add to the analysis part of the play-testing process, **I included potential solutions to any key problems play-testers brought up**; some of these were “quick fixes” that prioritized the game’s upcoming deadline, whereas others were more comprehensive solutions that I considered to be “stretch goals”. Many of these suggestions were implemented during the final week of development, including faster combat animations, shorter SFX, more text-UI, enhanced steambar UI, and improved enemy AI. You can find all of these suggestions in the play testing report linked at the top of this section.
 
 Aron: There were a lot of moments in playtesting where players would use the ranger's snipe ability during the overclocked phase of the steam bar on an oil slime. At the current attack of the ranger, the slime would live at 1 HP! This was mildly annoying for the players, and it slipped by as I was balancing the stat tables. It brought about the importance of *damage thresholds*, where dealing 39 damage to a 40 health unit was a lot different from dealing 40 damage to a 40 health unit.
 
