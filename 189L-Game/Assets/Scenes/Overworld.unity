@@ -12088,7 +12088,6 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-
   m_GameObject: {fileID: 1155740123}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -12097,12 +12096,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   tilemapVisualizer: {fileID: 1857406771}
   startPosition: {x: 0, y: 0}
-  randomWalkParameters: {fileID: 11400000, guid: 2726b124124a4934abf518b94573a05a, type: 2}
-  minRoomWidth: 10
-  minRoomHeight: 10
-  dungeonWidth: 70
-  dungeonHeight: 70
-  offset: 3
+  randomWalkParameters: {fileID: 0}
+  minRoomWidth: 4
+  minRoomHeight: 4
+  dungeonWidth: 20
+  dungeonHeight: 20
+  offset: 1
   randomWalkRooms: 0
 --- !u!1 &1240651282
 GameObject:
@@ -21267,7 +21266,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8547153827482990164, guid: 1a2e05373aa89824eb703b311a62b0f5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 25.5
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 8547153827482990164, guid: 1a2e05373aa89824eb703b311a62b0f5, type: 3}
       propertyPath: m_LocalPosition.z
