@@ -6,7 +6,9 @@ using Overworld;
 public class PauseManager : MonoBehaviour
 {
     private SceneGameManager sceneGameManager;
+    [SerializeField] private GameObject canvas;
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject rulesMenu;
     private bool isPaused;
 
     private void Start()
@@ -28,9 +30,11 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    private void PauseMenu()
+    public void PauseMenu()
     {
         Time.timeScale = 0.0f;
+        canvas.SetActive(true);
+        rulesMenu.SetActive(false);
         pauseMenu.SetActive(true);
         isPaused = true;
     }
@@ -38,13 +42,16 @@ public class PauseManager : MonoBehaviour
     public void UnpauseMenu()
     {
         Time.timeScale = 1.0f;
+        canvas.SetActive(false);
         pauseMenu.SetActive(false);
+        rulesMenu.SetActive(false);
         isPaused = false;
     }
 
     public void ShowRules()
     {
-        Debug.Log("show rules");
+        rulesMenu.SetActive(true);
+        pauseMenu.SetActive(false);
     }
 
     public void QuitGame()
