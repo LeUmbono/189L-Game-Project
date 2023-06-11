@@ -11566,7 +11566,7 @@ Tilemap:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: 0, y: 0, z: 0}
   m_Size: {x: 57, y: 66, z: 1}
-  m_TileAnchor: {x: 0.5, y: 0, z: 0}
+  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
     e00: 1
@@ -19892,7 +19892,7 @@ Tilemap:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: 0, y: 0, z: 0}
   m_Size: {x: 58, y: 67, z: 1}
-  m_TileAnchor: {x: 0.5, y: 0, z: 0}
+  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
     e00: 1
@@ -21235,6 +21235,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1875715708802259343, guid: 5a63dda27bd6b424382b3b6f9b7b8be3, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 486ea75f144bcb5409d6a2642b9585f5, type: 3}
     - target: {fileID: 7218304183602863011, guid: 5a63dda27bd6b424382b3b6f9b7b8be3, type: 3}
       propertyPath: m_Name
       value: OverworldPlayer
