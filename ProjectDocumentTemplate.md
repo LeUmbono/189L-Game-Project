@@ -166,6 +166,10 @@ This list contains key combat UI components as this is the most relevant part of
 
 ## Environmental Art
 
+Clarissa:
+
+**Combat Background**: blablabla.
+
 ## Sprites / Animations
 
 **List your assets including their sources and licenses.**
