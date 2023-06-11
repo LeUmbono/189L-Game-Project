@@ -164,6 +164,26 @@ The support is friendly and takes a backseat to the rest of the bots. It is roun
 
 **Summarize the key findings from your gameplay tests.**
 
+Morgan: To begin the play-testing process, I began by researching how to write helpful play testing follow-up questions as I’ve never actually held formal playtests before; I’ve only ever done user testing for apps. After adapting questions to fit the style of our game, I created a Google form that would be used post each playtesting session. I made sure to address a variety of concepts to make sure any feedback was as comprehensive as possible:
+
+1. What was your favorite part about the game?
+2. What didn’t you like about the game?
+3. What was confusing?
+4. How emotionally invested in the game were you?
+5. What was your strategy for combat?
+6. Did anything hold you back from seeing your strategy or plans through?
+7. Can you explain why the victorious parties won? Did you think any wins were well-deserved?
+8. Did you think anything was “missing” in terms of game feel?
+9. How long did you feel like you were playing the game? How long did you actually play for?
+10. If you were to suggest that one change be made to the game, what would it be?
+
+Based off of all of the feedback we received, the three areas that we should focus on before the final due date are:
+1. Clearer instructions- tutorial, access to rules, more supporting UI 
+2. More engaging gameplay- faster combat sequences, reduced time of pre-existing animations/sound effects, more animations
+3. Improved enemy AI- less randomized turn order and attack sequence, incorporate limitations the player faces (or at least make motives behind AI clear if there isn’t time to change it)
+
+Lastly, to further add to the analysis part of the play-testing process, I included potential solutions to any key problems play-testers brought up; some of these were “quick fixes” that prioritized the game’s upcoming deadline, whereas others were more comprehensive solutions that I considered to be “stretch goals”. Many of these suggestions were implemented during the final week of development, including faster combat animations, shorter SFX, more text-UI, enhanced steambar UI, and improved enemy AI. You can find all of these suggestions in the play testing report linked at the top of this section.
+
 Aron: There were a lot of moments in playtesting where players would use the ranger's snipe ability during the overclocked phase of the steam bar on an oil slime. At the current attack of the ranger, the slime would live at 1 HP! This was mildly annoying for the players, and it slipped by as I was balancing the stat tables. It brought about the importance of *damage thresholds*, where dealing 39 damage to a 40 health unit was a lot different from dealing 40 damage to a 40 health unit.
 
 ## Narrative Design
