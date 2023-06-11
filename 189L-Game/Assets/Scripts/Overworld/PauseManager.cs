@@ -15,7 +15,6 @@ public class PauseManager : MonoBehaviour
     {
         sceneGameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<SceneGameManager>();
         isPaused = false;
-        Debug.Log(sceneGameManager);
     }
 
     private void Update()
@@ -57,6 +56,5 @@ public class PauseManager : MonoBehaviour
     public void QuitGame()
     {
         StartCoroutine(sceneGameManager.LoadTitleScene());
-        Debug.Log("go home");
     }
 }
