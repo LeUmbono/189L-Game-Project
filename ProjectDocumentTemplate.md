@@ -95,31 +95,25 @@ You should replay any **bold text** with your relevant information. Liberally us
 
 Morgan:
 
-[Link to UI Design Document](https://docs.google.com/document/d/1kTopceyNEWOaCYavN3E1oi3YmahnAdp1_5BOAVHhUrs/edit?usp=sharing)
+[Link to UI Design Document- (includes written documentation, sketches, wireframes, mockups, prototypes, and images of assets)](https://docs.google.com/document/d/1kTopceyNEWOaCYavN3E1oi3YmahnAdp1_5BOAVHhUrs/edit?usp=sharing)
 
 There are three main screens related to the user interfaces created:
-- Title screen/pause menu: includes play button, instructions button, quit button, text backdrop, and blur overlay (pause menu only)
-- Overworld: includes pause button, small headshot backdrop, large headshot backdrop, and stat backdrop
-- Combat: includes health bar, turn indicator, attack button, swap button, special ability button, back arrow, headshot backdrop, enemy indicator, ally indicator, out of range overlay, unit hover indicator
+- *Title screen/pause menu*: includes play button, instructions button, quit button, text backdrop, and blur overlay (pause menu only)
+- *Overworld*: includes pause button, small headshot backdrop, large headshot backdrop, and stat backdrop
+- *Combat*: includes health bar, turn indicator, attack button, swap button, special ability button, back arrow, headshot backdrop, enemy indicator, ally indicator, out of range overlay, unit hover indicator
 
 This list contains key combat UI components as this is the most relevant part of our game. Please see the design document for all assets and images of these assets.
-- Health bar: Indicates health of player's team and enemies. The background is static whereas the inner bar is dynamic. The heart is used to further reiterate relation to health.
-- Turn indicator: A unit's turn is indicated by the yellow arrow above their head. The arrow is meant to "hover" to draw the user's attention and add dynamic motion to the screen.
-- Attack button: Allows the player to choose which enemy they'd like to attack once pressed. Clicking on it switches to the unit selection screen.
-- Swap button: Allows the player to swap positions with another ally once pressed. Clicking on it switches to the unit selection screen.
-- Special ability button: Allows the player to use their special ability once pressed, such as taunt, buff, heal, or snipe. Clicking on it switches to the unit selection screen.
-- Back arrow: Takes the user from the unit selection screen back to the action selection screen when pressed.
-- Enemy outline: Red outline around a unit's headshot that indicates enemy status to the player.
-- Ally outline: Green outline around a unit's headshot that indicates ally status to the player.
-- Hover outline/overlay: Cyan outline and overlay that indicates hover over a given unit; clicking while on hover will select this unit.
+- *Health bar*: Indicates health of player's team and enemies. The background is static whereas the inner bar is dynamic. The heart is used to further reiterate relation to health.
+- *Turn indicator*: A unit's turn is indicated by the yellow arrow above their head. The arrow is meant to "hover" to draw the user's attention and add dynamic motion to the screen.
+- *Attack button*: Allows the player to choose which enemy they'd like to attack once pressed. Clicking on it switches to the unit selection screen.
+- *Swap button*: Allows the player to swap positions with another ally once pressed. Clicking on it switches to the unit selection screen.
+- *Special ability button*: Allows the player to use their special ability once pressed, such as taunt, buff, heal, or snipe. Clicking on it switches to the unit selection screen.
+- *Back arrow*: Takes the user from the unit selection screen back to the action selection screen when pressed.
+- *Enemy outline*: Red outline around a unit's headshot that indicates enemy status to the player.
+- *Ally outline*: Green outline around a unit's headshot that indicates ally status to the player.
+- *Hover outline/overlay*: Cyan outline and overlay that indicates hover over a given unit; clicking while on hover will select this unit.
 
-Overall, I was in charge of the art assets and general design direction for all game UI, with support from Russell due to my unfamiliarity with the game genre we’re currently working with. After receiving UI  sketches from Russell for the combat and overworld screens, I began by making a list of all assets that would be required for each screen. I ran these by the programmers, then began developing placeholder assets and mockups for each screen via Figma. Each mockup was aimed to represent micro-game loops and interactions that a player might take during gameplay; I also created a live prototype for the combat UI to make sure all of the interactions matched the programming interactions. I then developed correctly scaled placeholder assets for all combat-UI assets, however we found these to not be super helpful due to programmers already creating placeholder assets through programming; I decided to skip this step for the remaining screens. 
-
-After the pixel art direction was settled, I began researching pixel UI and tools for creating pixel UI as I have never worked with pixel art before. Even though it might not have been the most efficient route, I ended up working in Figma and creating pixels by hand (instead of using Aseprite) as it was more cost-effective. In regards to the art assets themselves, I referenced several images and pixel games I found online while designing our game’s buttons and backdrops. I used the color palette Chloe created, but made sure to deviate from this palette a bit for key UI (health bar, combat buttons, etc.) to make sure they stood out to the player. I also chose the pixel fonts we used throughout the game’s entirety.
-
-The most notable system that I created was the unit-select system in the combat screen. I chose to designate allies with a green outline and enemies with a red outline to match common game UI color symbolization. Additionally, I chose to add a dark grey overlay (50% opacity) on top of “out-of-range” units in order to communicate that the player could not select these. Finally, I developed a bright blue outline and overlay (which I discovered was common in games with heavier UI) to indicate to the player which unit they were about to select; I felt high-noticeability was important because we decided not to implement a “submit” button, meaning if players click on the wrong unit by accident, they could not re-select. My intention was that this dynamic hover/overlay would help prevent players from becoming frustrated with the game as a result of making that mistake. 
-
-In addition to the assets themselves, I also made recommendations for their implementation, both before and after conducting play-testing. This included displaying affected stats in color (red for stat lower than base, green for stat above base), having the turn indicator “bounce” to be more visible and add visual interest to the screen via motion, and making sure all buttons had a grey overlay on hover for layout consistency. You can find more of my recommendations in my play-testing report and analysis under the Game Testing section. 
+Unit selection system: *The most notable system that I created was the unit-select system in the combat screen*. I chose to designate allies with a green outline and enemies with a red outline to match common game UI color symbolization. Additionally, I chose to add a dark gray overlay (50% opacity) on top of “out-of-range” units in order to communicate that the player could not select these. Finally, I developed a bright blue outline and overlay (which I discovered was common in games with heavier UI) to indicate to the player which unit they were about to select; I felt high-noticeability was important because we decided not to implement a “submit” button, meaning if players click on the wrong unit by accident, they could not re-select. *My intention was that this dynamic hover/overlay would help prevent players from becoming frustrated with the game as a result of making that mistake*. You can find a prototype of this in the UI design document.
 
 ## Movement/Physics
 
@@ -189,9 +183,11 @@ The support is friendly and takes a backseat to the rest of the bots. It is roun
 ## Gameplay Testing
 
 **Add a link to the full results of your gameplay tests.**
+
 [Playtesting Full Results](https://docs.google.com/spreadsheets/d/1n6ujxOvNEJYRFGBAkuFKevN88K4hgSQzI5bAZqSuePY/edit?usp=sharing)
 
 **Summarize the key findings from your gameplay tests.**
+
 [Playtesting Summary, Report, & Analysis](https://docs.google.com/document/d/1CTMEWQRnyL68Nw0RKID6Rn5qOjunhTB-_wRuw-S3gkI/edit?usp=sharing)
 
 [Playtesting Instructions & Guidelines](https://docs.google.com/document/d/19JiA8req6dwKU2h-y9f5yDnb3djJPQiXp_C-QNy4oY0/edit?usp=sharing)
