@@ -45,27 +45,27 @@ namespace Overworld
 
         private void CheckForInput()
         {
-            if (Input.GetKeyDown(KeyCode.A) && NotCollisionTile(-tileDistance, 0.0f))
+            if (Input.GetButtonDown("Left") && NotCollisionTile(-tileDistance, 0.0f))
             {
                 this.GetComponent<SpriteRenderer>().flipX = true;
                 this.movePoint.position += new Vector3(-tileDistance, 0.0f, 0.0f);
                 this.GetComponent<AudioSource>().Play();
                 canMove = false;
             }
-            else if (Input.GetKeyDown(KeyCode.D) && NotCollisionTile(tileDistance, 0.0f))
+            else if (Input.GetButtonDown("Right") && NotCollisionTile(tileDistance, 0.0f))
             {
                 this.GetComponent<SpriteRenderer>().flipX = false;
                 this.movePoint.position += new Vector3(tileDistance, 0.0f, 0.0f);
                 this.GetComponent<AudioSource>().Play();
                 canMove = false;
             }
-            else if (Input.GetKeyDown(KeyCode.W) && NotCollisionTile(0.0f, tileDistance))
+            else if (Input.GetButtonDown("Up") && NotCollisionTile(0.0f, tileDistance))
             {
                 this.movePoint.position += new Vector3(0.0f, tileDistance, 0.0f);
                 this.GetComponent<AudioSource>().Play();
                 canMove = false;
             }
-            else if (Input.GetKeyDown(KeyCode.S) && NotCollisionTile(0.0f, -tileDistance))
+            else if (Input.GetButtonDown("Down") && NotCollisionTile(0.0f, -tileDistance))
             {
                 this.movePoint.position += new Vector3(0.0f, -tileDistance, 0.0f);
                 this.GetComponent<AudioSource>().Play();
