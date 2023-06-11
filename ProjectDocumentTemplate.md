@@ -47,31 +47,45 @@ The steam bar is an ever-present mechanic in the game! Depending on the section 
 # Main Roles #
 
 Russell
+
 Main Role: Combat Logic
+
 Sub Role: Game Director
 
 Jordan
+
 Main Role: Input / Movement
+
 Sub Role: Narrative Design
 
 Aron
+
 Main Role: Combat Logic
+
 Sub Role: Technical Artist
 
 Morgan
+
 Main Role: User Interface
+
 Sub Role: Gameplay Testing
 
 Clarissa
+
 Main Role: Environmental Art
+
 Sub Role: Project Management
 
 Chloe
+
 Main Role: Character Sprites/Animations
+
 Sub Role: Sound Effects
 
 Josh
+
 Main Role: Music 
+
 Sub Role: Sound Effects
 
 Your goal is to relate the work of your role and sub-role in terms of the content of the course. Please look at the role sections below for specific instructions for each role.
@@ -251,6 +265,8 @@ Lastly, to further add to the analysis part of the play-testing process, **I inc
 
 
 Aron: There were a lot of moments in playtesting where players would use the ranger's snipe ability during the overclocked phase of the steam bar on an oil slime. At the current attack of the ranger, the slime would live at 1 HP! This was mildly annoying for the players, and it slipped by as I was balancing the stat tables. It brought about the importance of *damage thresholds*, where dealing 39 damage to a 40 health unit was a lot different from dealing 40 damage to a 40 health unit.
+
+There was a little bit of polishing needed to round off the rough edges such as speeding up animations and sounds to aid a sluggish game, adding visual indicators, and fixing minor visual bugs. I hadn't realized how important this process was until I felt how these changes worked in combination.. It made for a strictly more fun game with the new quality of life improvements!
 
 ## Narrative Design
 
