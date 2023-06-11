@@ -125,13 +125,8 @@ public class SceneGameManager : MonoBehaviour
 
     public IEnumerator LoadTitleScene()
     {
-        transitionMaterial.SetFloat("_Cutoff", 0f);
-        while (PlayingTransition())
-        {
-            yield return null;
-        }
-
         SceneManager.LoadScene(titleSceneName, LoadSceneMode.Single);
+        yield return null;
     }
     
     public IEnumerator LoadOverworldScene()
