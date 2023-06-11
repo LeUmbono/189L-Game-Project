@@ -103,33 +103,52 @@ There are three main screens related to the user interfaces created:
 - *Combat*: includes health bar, turn indicator, attack button, swap button, special ability button, back arrow, headshot backdrop, enemy indicator, ally indicator, out of range overlay, unit hover indicator
 
 This list contains key combat UI components as this is the most relevant part of our game. Please see the design document for all assets and images of these assets.
-- *Health bar*: Indicates health of player's team and enemies. The background is static whereas the inner bar is dynamic. The heart is used to further reiterate relation to health.
+- **Health bar**: Indicates health of player's team and enemies. The background is static whereas the inner bar is dynamic. The heart is used to further reiterate relation to health.
+
 ![health static](https://github.com/LeUmbono/189L-Game-Project/blob/bcca53680e28f1a97548234a03d02efa329f5f69/189L-Game/Assets/Art/Combat/UI/FinalUI/health%20static.png)
+
 ![health dynamic](https://github.com/LeUmbono/189L-Game-Project/blob/bcca53680e28f1a97548234a03d02efa329f5f69/189L-Game/Assets/Art/Combat/UI/FinalUI/health%20dynamic.png)
 
+
 - *Turn indicator*: A unit's turn is indicated by the yellow arrow above their head. The arrow is meant to "hover" to draw the user's attention and add dynamic motion to the screen.
+
 ![turn](https://github.com/LeUmbono/189L-Game-Project/blob/bcca53680e28f1a97548234a03d02efa329f5f69/189L-Game/Assets/Art/Combat/UI/FinalUI/indicator%20final.png)
 
+
 - *Attack button*: Allows the player to choose which enemy they'd like to attack once pressed. Clicking on it switches to the unit selection screen.
+
 ![attack](https://github.com/LeUmbono/189L-Game-Project/blob/bcca53680e28f1a97548234a03d02efa329f5f69/189L-Game/Assets/Art/Combat/UI/FinalUI/attack%20button%20final.png)
 
+
 - *Swap button*: Allows the player to swap positions with another ally once pressed. Clicking on it switches to the unit selection screen.
+
 ![swap](https://github.com/LeUmbono/189L-Game-Project/blob/bcca53680e28f1a97548234a03d02efa329f5f69/189L-Game/Assets/Art/Combat/UI/FinalUI/swap%20button%20final.png)
 
+
 - *Special ability button*: Allows the player to use their special ability once pressed, such as taunt, buff, heal, or snipe. Clicking on it switches to the unit selection screen.
+
 ![star](https://github.com/LeUmbono/189L-Game-Project/blob/bcca53680e28f1a97548234a03d02efa329f5f69/189L-Game/Assets/Art/Combat/UI/FinalUI/star%20button%20final.png)
 
+
 - *Back arrow*: Takes the user from the unit selection screen back to the action selection screen when pressed.
+
 ![back](https://github.com/LeUmbono/189L-Game-Project/blob/bcca53680e28f1a97548234a03d02efa329f5f69/189L-Game/Assets/Art/Combat/UI/FinalUI/back%20arrow.png)
+
 ![back hover](https://github.com/LeUmbono/189L-Game-Project/blob/bcca53680e28f1a97548234a03d02efa329f5f69/189L-Game/Assets/Art/Combat/UI/FinalUI/back%20arrow-1.png)
 
+
 - *Enemy outline*: Red outline around a unit's headshot that indicates enemy status to the player.
+
 ![enemy](https://github.com/LeUmbono/189L-Game-Project/blob/bcca53680e28f1a97548234a03d02efa329f5f69/189L-Game/Assets/Art/Combat/UI/FinalUI/highlight_enemy.png)
 
+
 - *Ally outline*: Green outline around a unit's headshot that indicates ally status to the player.
+
 ![ally](https://github.com/LeUmbono/189L-Game-Project/blob/bcca53680e28f1a97548234a03d02efa329f5f69/189L-Game/Assets/Art/Combat/UI/FinalUI/highlight_ally.png)
 
+
 - *Hover outline/overlay*: Cyan outline and overlay that indicates hover over a given unit; clicking while on hover will select this unit.
+
 ![hover](https://github.com/LeUmbono/189L-Game-Project/blob/bcca53680e28f1a97548234a03d02efa329f5f69/189L-Game/Assets/Art/Combat/UI/FinalUI/highlight_selected.png)
 
 
