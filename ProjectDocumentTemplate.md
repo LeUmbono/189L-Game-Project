@@ -6,14 +6,26 @@ In a post-apocalyptic world, humans have long gone extinct and robots rule the E
 
 ## Gameplay Explanation ##
 
+### Controls ###
 *Overworld*
 
 WASD - Movement
-Colliding with an enemy initiates the Combat phase
+ESC - Pause Game
 
 *Combat*
 
-In combat, each player unit is able to take three actions during their turn: Attack, Swap and Special. 
+Point-and-click user input - Selecting action and targeted unit during player unit's turn
+
+### Gameplay Mechanics ###
+*Overworld*
+
+The player party traverses the overworld, encountering obstacles and enemy units along the way. Their goal is to reach a specified exit tile within the level in order to discover the purported energy source and win the game. Colliding with any enemy unit on the map kickstarts a transition to the Combat phase of the game. 
+
+*Combat*
+
+Combat is turn-based. A unit's turn order is determined by its initial AGI; the higher the AGI stat, the faster the unit moves in battle. In addition, much like in Darkest Dungeon, the battlefield is composed of two blocks of four positions each. One block corresponds to player units whereas the other block contains enemy units. The position of the player units dictate the targets that are available to them via their actions.
+
+Each player unit is able to take three actions during their turn: Attack, Swap and Special. 
 
 - Attack (sword icon) simply damages the targeted enemy within your unit's range based on a max(1, ATK-DEF) formula.
 - Swap (arrow icon) allows you to switch places with an adjacent allied unit, allowing your units to change their available targets for their Attack and Special actions. Swapping also heals 10% of your unit's maximum HP.
@@ -22,24 +34,19 @@ In combat, each player unit is able to take three actions during their turn: Att
 Here they are listed below: 
 
 - Tank - Taunt (Range: all enemy units) Provoke the targeted enemy to attack you for one turn. Expends 15 steam. 
-- Support - Buff (Range: adjacent allied units) Increase the attack of an adjacent ally by 40% of their base attack. Expends 15 steam. 
+- Support - Buff (Range: adjacent allied units) Increase the attack of an adjacent ally by 40% of their base attack. Effect stacks. Expends 15 steam. 
 - Healer - Heal (Range: adjacent allied units) Heal 40% of an adjacent ally's max health points. Generates 15 steam. 
 - Ranger - Snipe (Range: all enemy units) Deal 2x base damage against an enemy. Generates 15 steam. 
 
-The steam bar is an ever-present mechanic in the game! Depending on the section of the bar you're on, your party may get buffed or debuffed. Pay attention to the musical cues and take care to stay in the Overclocked zone! All attacks generate 10 steam. Swapping expends 10 steam. 
+Each enemy unit is only able to Attack. However, they have unlimited range! 
 
-- 2D Positional Turn-Based RPG with character classes that dictate actions / stats / attack range in the vein of Darkest Dungeon
-- Overworld vs. Battle Phase
-- In the overworld, the party is able to move in a grid-based system. Enemies / obstacles are littered across the grid and encountering enemies in the overworld leads to a battle. 
-- In battle, party members and enemies each have four positions that they can take up.
-- Depending on the class of the party member / type of enemy, their attack range determines which entities they can target on the battlefield.  
-- The battle system also incorporates a "steam bar", which has various zones that either benefit or disadvantage the entire party. Each action a party member takes as well as their position during their turn affects the progress of this bar. The bar represents an integer from 0-100, and is divided into three main parts:
-    - Default Zone (0-40 steam): No buffs or debuffs are applied to the party. The starting zone. 
-    - Overclocked Zone (40-75 steam): Your party gets a 1.5x boost to ATK and AGI! 
-    - Short-circuited Zone (75-100 steam): Your party's DEF and AGI are halved! 
-- Inspiration: Action Bar in Chained Echoes
+Heavily inspired by the action bar system of Chained Echoes, the steam bar is an ever-present mechanic in the game! Depending on the section of the bar you're on, your party may receive various positive or negative effects. Pay attention to the musical cues and take care to stay in the Overclocked zone! All basic attacks generate 10 steam. Swapping expends 10 steam. Special abilities have variable effects on the steam bar. Refer to the special abilities list above for more information.
 
-### Controls ###
+The various states of the steam bar are listed below:
+
+- Default Zone (0-40 steam): No buffs or debuffs are applied to the party. The starting zone.
+- Overclocked Zone (40-75 steam): Your party gets a 1.5x boost to ATK and AGI!
+- Shortcircuited Zone (75-100 steam): Your party's DEF and AGI are halved! 
 
 **If you did work that should be factored in to your grade that does not fit easily into the proscribed roles, add it here! Please include links to resources and descriptions of game-related material that does not fit into roles here.**
 
@@ -102,21 +109,27 @@ You should replace any **bold text** with your relevant information. Liberally u
 
 Russell:
 
-In this role, I focused more on the implementation of the combat systems in code, including the turn-based engine, combat UI, steam bar, class system, and special abilities. The specific implementations for each of these systems are detailed as follows:
+In this role, I focused more on the implementation of the combat systems in code, including the turn-based engine, combat UI, steam bar, class system, attacking, swapping and special abilities. The specific implementations for each of these systems are detailed as follows:
 
-*Turn-based Engine* - The turn-based system in this game relies on the use of a hierarchy of unit state machines, an overall combat state machine and a UI state machine to run smoothly. With the combination of these state machines, units are able to properly perform their specified actions during their turn, whether reliant on user input or enemy AI. The primary components involved in this process are as follows:
+*Turn-based Engine* - The turn-based system in this game relies on the use of a hierarchy of unit state machines, an overall combat state machine and a UI state machine to run smoothly (loosely based on [xOctomanx's Unity Turn-based Tutorial Series]()). With the combination of these state machines, units are able to properly perform their specified actions during their turn, whether reliant on user input or enemy AI. The primary components involved in this process are as follows:
 
 - **Combat State Machine** - Found in [CombatStateMachine.cs](). Stores, initializes and updates combat-related information including allies and enemies in battle, the turn order queue, as well as the positions of each unit in battle. The state machine dictates the macroscopic flow of battle, ensuring the proper units are able to take their turns in order, perform their specified actions and that the combat instance is properly terminated depending on the amount of allies/enemies left standing in battle. 
 
-- **Unit State Machines** - Found in [PlayerStateMachine.cs]() and [EnemyStateMachine.cs](). Inheriting from the abstract class [GenericUnitStateMachine](), these state machines deal more specifically with the actions each unit is able to during their turn; attacking, swapping and executing special abilities for player units and simply attacking for enemy units. They also deal with damage calculations and unit death, ensuring that the deceased unit is properly removed from the turn order queue and that the game proceeds as normal. Dead units are also 'swapped' to the end of their respective formations so as to ensure soft-locking does not occur due to out-of-range issues. Player-specific and enemy-specific variables can also be found in their respective state machines, such as buff amount or whether an enemy has been taunted or not. These state machines also play the appropriate animations/sound effects when units perform an action, take damage or die.
+- **Unit State Machines** - Found in [PlayerStateMachine.cs]() and [EnemyStateMachine.cs](). Inheriting from the abstract class [GenericUnitStateMachine](), these state machines deal more specifically with the actions each unit is able to during their turn; attacking, swapping and executing special abilities for player units and simply attacking for enemy units (these actions were done as their respective coroutines). They also deal with damage calculations and unit death, ensuring that the deceased unit is properly removed from the turn order queue and that the game proceeds as normal. Dead units are also 'swapped' to the end of their respective formations so as to ensure soft-locking does not occur due to out-of-range issues. Player-specific and enemy-specific variables can also be found in their respective state machines, such as buff amount or whether an enemy has been taunted or not. These state machines also play the appropriate animations/sound effects when units perform an action, take damage or die.
 
 - **UI State Machine** - Found in [UIStateMachine.cs](). This state machine contains information about all the UI elements used in combat including health bars, the unit info panel, and the action and target selection panels. It ensures that the proper displays are shown during the correct combat phase, such as when selecting the type of action to take for the player. The UI state machine also takes in input from the buttons in the action and target selection panels and relays that information to the Player State Machine when executing actions. Furthermore, it renders stats in the unit info panel as being red/green depending on whether they have been buffed/debuffed from the base stats of the player displayed. 
 
-- **Enemy AI** -  When performing their attacks, enemy units will more often target player units in the front of the allied formation rather than those in the back, based on the targeting engine found in [EnemyTargetingEngine.cs](). Originally, enemies attacked player units at random but results from our playtesting session revealed that players often felt it was unfair when some of their squishier units (i.e. the Ranger and the Healer) were decimated almost immediately during the enemy turn. Thus, this "fairer" AI system was formed in response to that. 
+- **Enemy AI** -  When performing their attacks, enemy units will more often target player units in the front of the allied formation rather than those in the back, based on the targeting engine found in [EnemyTargetingEngine.cs](). Originally, enemies attacked player units at random but results from our playtesting session revealed that players often felt it was unfair when some of their squishier units (i.e. the Ranger and the Healer) were decimated almost immediately during the enemy units' turns. Thus, this "fairer" AI system was formed in response to that and to further encourage strategic swapping of units. 
 
 *Steam Bar* - The steam bar's functionality can be found in [SteamBar.cs](). The class specifies the state thresholds, the steam colors and music themes/transitions associated with each state of the steam bar, as well as the current steam bar state. Whenever the steam bar's value changes, a check is performed to see which state the steam bar is now in. If the steam bar's state has changed, the effects of being in the new state are applied to the player party and the combat music and appearance of the steam bar are changed appropriately. 
 
-*Class System* - Since each class in the game was designed to store the initial starting stats of each unit, I decided that storing that information in a scriptable object script (in [ClassData.cs]()) would be the best way to do so as it is lightweight and the information for each class is meant to be read-only. I also made it so that class assets for the SO can be made directly from the editor, simply through editing the values in the inspector, thus ensuring that classes for all units can be easily created. Each instance of ClassData stores a class name, sprite information, base stat values for HP, ATK, DEF, AGI, and Range, as well as a field for a special ability unique to the class. 
+*Class System* - Since each class in the game was designed to store the initial starting stats of each unit, I decided that storing that information in a scriptable object (in [ClassData.cs]()) would be the best way to do so as it is lightweight and the information for each class is meant to be read-only. I also made it so that class assets for the SO can be made directly from the editor, simply through editing the values in the inspector, thus ensuring that classes for all units can be easily created. Each instance of ClassData stores a class name, sprite information, base stat values for HP, ATK, DEF, AGI, and Range, as well as a field for the special ability unique to the class (which is also stored as a SO).
+
+*Basic Attack* - Implemented in [PlayerStateMachine.cs]() and [EnemyStateMachine.cs](). It involved using the `TakeDamage()` and `DoDamage()` methods to perform a basic max(1, ATK-DEF) calculation to that subtracts the resultant damage from a targeted unit's current HP. This ensured that any attack always dealt at least 1 point of damage regardless of one's ATK and target's DEF values. 
+
+*Swapping*  - Implemented in [PlayerStateMachine.cs]() and [GenericUnitStateMachine](). Swapping involved switching the positions of the player unit performing the swap and the target ally via the `DoSwap()` method in GenericUnitStateMachine. It also swaps the relevant UI references to each unit's game objects so as to ensure functionality of the combat UI is intact. `DoSwap()` is also called when units die, regardless of whether they were a player or enemy unit, to prevent soft-locking. Hence, it's location in GenericUnitStateMachine. This action was found initially unpopular in the playtest due to a lack of utility and the random enemy targeting system; thus, I added more incentive to use it by introducing a 10% healing effect when swapping units and adjusting the enemy AI to favor attacking player units in the front. 
+
+*Special Abilities* - In implementing special abilities into the combat, I made use of a modified version of the Command Pattern we learned in Exercise 1 that relied on an abstract class in [SpecialAbility.cs]() rather than an interface. Essentially, `SpecialAbility` is an abstract class that inherited from ScriptableObject and acted as a parent class for all subsequent special abilities; for its abstract methods, it contained an `Execute()` method to perform the functionality of the ability, a `SelectTargets()` method to return a list of possible targets from the 8 positions available in battle, and a `GetSteamBarChangeValue()` method that returned a value for which the ability would affect the progress of the steam bar. Using this `SpecialAbility` class, I was able to implement the special abilities for each player class (i.e. Snipe, Buff, Heal and Taunt).
 
 ## User Interface
 
@@ -236,7 +249,7 @@ The support is friendly and takes a backseat to the rest of the bots. It is roun
 
 ## Game Direction
 
-**Describe the platforms you targeted for your game release. For each, describe the process and unique actions taken for each platform. What obstacles did you overcome? What was easier than expected?**
+
 
 ## Narrative Design
 
