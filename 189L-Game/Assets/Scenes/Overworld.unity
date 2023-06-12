@@ -343,26 +343,13 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Joe
-
-    Job: Ranger
-
-    Health: 30
-
-    Attack: 15
-
-    Defense: 4
-
-    Agility:
-    14
-
-    Attack Range: 7
-
-    Ability: Snipe an enemy for 2x base damage
-
-
-    Description
-    Here.'
+  m_text: "Joe\nJob: Ranger\nHealth: 30\nAttack: 15\nDefense: 4\nAgility: 14\nAttack
+    Range: 7\nAbility: Snipe an enemy for 2x base damage\n\nA junkyard robot with
+    an empty bowl for a head but certainly not an empty bowl for brains! While he
+    may prefer to let the others brave the frontlines, don\u2019t underestimate him!
+    Joe certainly can pack a punch. Or maybe it\u2019s a missile? With arms as stubby
+    as those, he certainly isn\u2019t punching anyone\u2026 but that rifle barrel
+    on his forehead might just help ward off those pesky enemies in a cinch!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 90a907c1faf01dc4699b44af8242e9c2, type: 2}
   m_sharedMaterial: {fileID: 5773692967917431127, guid: 90a907c1faf01dc4699b44af8242e9c2, type: 2}
@@ -12624,7 +12611,8 @@ MonoBehaviour:
     Ability: Taunt an enemy
 
 
-    Description Here.'
+    Aaron. Big. Tanky.
+    Likes long walks in an old factory. Punchable. What else is there to say?'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 90a907c1faf01dc4699b44af8242e9c2, type: 2}
   m_sharedMaterial: {fileID: 5773692967917431127, guid: 90a907c1faf01dc4699b44af8242e9c2, type: 2}
@@ -23335,25 +23323,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Moe
-
-    Job: Support
-
-    Health: 35
-
-    Attack: 10
-
-    Defense: 6
-
-    Agility:
-    16
-
-    Attack Range: 3
-
-    Ability: Buff an ally
-
-
-    Description Here.'
+  m_text: "Moe\nJob: Support\nHealth: 35\nAttack: 10\nDefense: 6\nAgility: 16\nAttack
+    Range: 3\nAbility: Buff an ally\n\nAh, our sweet summer child. Moe. The smallest
+    of the pack that must be protected at all times. Moe has a knack for rallying
+    up the rest of the group, motivating them to really hit those enemies hard! With
+    that adorable little face of his, who wouldn\u2019t be motivated to hit a few
+    more slimes and droids with extra power? Team mascot or not, don\u2019t let that
+    cute countenance fool you\u2013Moe is a robot of many secrets. Plus, is he even
+    a robot? He says that he\u2019s a slime in an automated body but take that away
+    and he looks awfully similar to the hostile slimes\u2026"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 90a907c1faf01dc4699b44af8242e9c2, type: 2}
   m_sharedMaterial: {fileID: 5773692967917431127, guid: 90a907c1faf01dc4699b44af8242e9c2, type: 2}
@@ -23967,26 +23945,15 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Schmoe
-
-    Job: Healer
-
-    Health: 30
-
-    Attack: 10
-
-    Defense:
-    5
-
-    Agility: 10
-
-    Attack Range: 3
-
-    Ability: Heal an ally
-
-
-    Description
-    Here.'
+  m_text: "Schmoe\nJob: Healer\nHealth: 30\nAttack: 10\nDefense: 5\nAgility: 10\nAttack
+    Range: 3\nAbility: Heal an ally\n\nA scrap metal\u2026 droid? Robot? Aren\u2019t
+    those the same thing\u2026?! It supposedly resembles a long-extinct species that
+    was fond of belly rubs and engaging in an activity known back then as\u2026 \u201Cfetch\u201D.
+    Either way, Schmoe has a tendency of picking up strange doodads and thingamabobs
+    along the group\u2019s journey\u2026 a tendency that often means he has just
+    the right things to fix the others right up should they get badly damaged in
+    a tussle! A golden robot who likes to bring random things back to the others\u2026
+    like a golden collector? Or maybe a golden retriever\u2026 "
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 90a907c1faf01dc4699b44af8242e9c2, type: 2}
   m_sharedMaterial: {fileID: 5773692967917431127, guid: 90a907c1faf01dc4699b44af8242e9c2, type: 2}
