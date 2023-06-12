@@ -6,7 +6,6 @@ In a post-apocalyptic world, humans have long gone extinct and robots rule the E
 
 ## Gameplay Explanation ##
 
-### Controls ###
 *Overworld*
 
 WASD - Movement
@@ -39,6 +38,8 @@ The steam bar is an ever-present mechanic in the game! Depending on the section 
     - Overclocked Zone (40-75 steam): Your party gets a 1.5x boost to ATK and AGI! 
     - Short-circuited Zone (75-100 steam): Your party's DEF and AGI are halved! 
 - Inspiration: Action Bar in Chained Echoes
+
+### Controls ###
 
 **If you did work that should be factored in to your grade that does not fit easily into the proscribed roles, add it here! Please include links to resources and descriptions of game-related material that does not fit into roles here.**
 
@@ -95,11 +96,27 @@ Below is a template for you to highlight items of your work. These provide the e
 Here is an example:  
 *Procedural Terrain* - The background of the game consists of procedurally-generated terrain that is produced with Perlin noise. This terrain can be modified by the game at run-time via a call to its script methods. The intent is to allow the player to modify the terrain. This system is based on the component design pattern and the procedural content generation portions of the course. [The PCG terrain generation script](https://github.com/dr-jam/CameraControlExercise/blob/513b927e87fc686fe627bf7d4ff6ff841cf34e9f/Obscura/Assets/Scripts/TerrainGenerator.cs#L6).
 
-You should replay any **bold text** with your relevant information. Liberally use the template when necessary and appropriate.
+You should replace any **bold text** with your relevant information. Liberally use the template when necessary and appropriate.
 
 ## Combat Logic
 
 Russell:
+
+In this role, I focused more on the implementation of the combat systems in code, including the turn-based engine, combat UI, steam bar, class system, and special abilities. The specific implementations for each of these systems are detailed as follows:
+
+*Turn-based Engine* - The turn-based system in this game relies on the use of a hierarchy of unit state machines, an overall combat state machine and a UI state machine to run smoothly. With the combination of these state machines, units are able to properly perform their specified actions during their turn, whether reliant on user input or enemy AI. The primary components involved in this process are as follows:
+
+- **Combat State Machine** - Found in [CombatStateMachine.cs](). Stores, initializes and updates combat-related information including allies and enemies in battle, the turn order queue, as well as the positions of each unit in battle. The state machine dictates the macroscopic flow of battle, ensuring the proper units are able to take their turns in order, perform their specified actions and that the combat instance is properly terminated depending on the amount of allies/enemies left standing in battle. 
+
+- **Unit State Machines** - Found in [PlayerStateMachine.cs]() and [EnemyStateMachine.cs](). Inheriting from the abstract class [GenericUnitStateMachine](), these state machines deal more specifically with the actions each unit is able to during their turn; attacking, swapping and executing special abilities for player units and simply attacking for enemy units. They also deal with damage calculations and unit death, ensuring that the deceased unit is properly removed from the turn order queue and that the game proceeds as normal. Dead units are also 'swapped' to the end of their respective formations so as to ensure soft-locking does not occur due to out-of-range issues. Player-specific and enemy-specific variables can also be found in their respective state machines, such as buff amount or whether an enemy has been taunted or not. These state machines also play the appropriate animations/sound effects when units perform an action, take damage or die.
+
+- **UI State Machine** - Found in [UIStateMachine.cs](). This state machine contains information about all the UI elements used in combat including health bars, the unit info panel, and the action and target selection panels. It ensures that the proper displays are shown during the correct combat phase, such as when selecting the type of action to take for the player. The UI state machine also takes in input from the buttons in the action and target selection panels and relays that information to the Player State Machine when executing actions. Furthermore, it renders stats in the unit info panel as being red/green depending on whether they have been buffed/debuffed from the base stats of the player displayed. 
+
+- **Enemy AI** -  When performing their attacks, enemy units will more often target player units in the front of the allied formation rather than those in the back, based on the targeting engine found in [EnemyTargetingEngine.cs](). Originally, enemies attacked player units at random but results from our playtesting session revealed that players often felt it was unfair when some of their squishier units (i.e. the Ranger and the Healer) were decimated almost immediately during the enemy turn. Thus, this "fairer" AI system was formed in response to that. 
+
+*Steam Bar* - The steam bar's functionality can be found in [SteamBar.cs](). The class specifies the state thresholds, the steam colors and music themes/transitions associated with each state of the steam bar, as well as the current steam bar state. Whenever the steam bar's value changes, a check is performed to see which state the steam bar is now in. If the steam bar's state has changed, the effects of being in the new state are applied to the player party and the combat music and appearance of the steam bar are changed appropriately. 
+
+*Class System* - Since each class in the game was designed to store the initial starting stats of each unit, I decided that storing that information in a scriptable object script (in [ClassData.cs]()) would be the best way to do so as it is lightweight and the information for each class is meant to be read-only. I also made it so that class assets for the SO can be made directly from the editor, simply through editing the values in the inspector, thus ensuring that classes for all units can be easily created. Each instance of ClassData stores a class name, sprite information, base stat values for HP, ATK, DEF, AGI, and Range, as well as a field for a special ability unique to the class. 
 
 ## User Interface
 

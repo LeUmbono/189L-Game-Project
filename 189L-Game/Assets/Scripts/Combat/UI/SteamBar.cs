@@ -34,7 +34,7 @@ namespace Combat
         [SerializeField]
         private float overclockedThreshold = 40.0f;
         [SerializeField]
-        private float shortcircuitedThreshold = 60.0f;
+        private float shortcircuitedThreshold = 75.0f;
         private float steamValue = 0.0f;
         private SteamValue currentSteamState;
 

@@ -169,6 +169,7 @@ namespace Combat
                 else return -1;
             });
         }
+
         public void EndTurn(GameObject unit)
         {
             // Reduce order of sprite in scene.
