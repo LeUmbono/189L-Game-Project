@@ -232,8 +232,7 @@ The support is friendly and takes a backseat to the rest of the bots. It is roun
 
 ![Support](https://github.com/LeUmbono/189L-Game-Project/blob/37db298b54b21f46af9d6708d36a3033c2614c3f/189L-Game/Assets/Art/Combat/Sprites/supportFINAL.png)
 
-
-![Sniper](https://github.com/LeUmbono/189L-Game-Project/blob/37db298b54b21f46af9d6708d36a3033c2614c3f/189L-Game/Assets/Art/Combat/Sprites/sniperFINAL.png)
+![Ranger](https://github.com/LeUmbono/189L-Game-Project/blob/37db298b54b21f46af9d6708d36a3033c2614c3f/189L-Game/Assets/Art/Combat/Sprites/sniperFINAL.png)
 
 ![Healer](https://github.com/LeUmbono/189L-Game-Project/blob/dd6acc891590242862999f573f340b54f847e743/189L-Game/Assets/Art/Combat/Sprites/healerFINAL.png)
 
@@ -249,7 +248,19 @@ The support is friendly and takes a backseat to the rest of the bots. It is roun
 
 ## Game Direction
 
+Russell:
 
+In my role as Game Director, I was in charge of organizing regular weekly meetings to discuss progress on the game, establishing collaboration guidelines / task-tracking, inter-team communication and troubleshooting as well as ensuring that our collective vision for the game remained as close as possible from what we initially set out to accomplish. For all team-related communication, I created a [Discord server]() that had channels dedicated to each aspect of the game including programming, art/design and sound/music. These aspects will be discussed in more detail below:
+
+*Organizing weekly progress checks* - Every Sunday at 12:30 pm, I would organize a team-wide meeting in our Discord server to discuss each member's expectations and progress in terms of their roles for the game. This ensured that I as the director knew where everyone was at during the project and that each member was clear on their reponsibilities for the week. Any concerns about the game were also brought to attention during this meeting, allowing us to come up with solutions as a team. If any members missed the meeting, I would update them privately via Discord. 
+
+*Establishing collaboration guidelines / task-tracking* - I was also responsible for creating the [GitHub repository]() for our project, ensuring that all team members were invited to collaborate and that it had the proper [Unity .gitignore file]() to prevent commit issues due to large file sizes. In managing GitHub, I instituted a policy whereby the main branch was not to be touched by any person under any circumstances unless I gave my explicit permission; instead, any new feature would have to be implemented on a separate branch that was to be named after the feature and the contributor to the feature (such as russell-umboh/combat-ui). This ensured that the number of merge conflicts would be kept to a minimum when it came to incorporating new features into the main branch. 
+
+For task-tracking, I initially created a [workspace]() in Trello, an online to-do list-making website, to keep track of our tasks for every week. This workspace was separated into three main taskboards: Programming, Music and General (for all other tasks) due to the relative complexity of each of those roles. In each board, there were To-Do, In Progress, and Completed sections between which members would move task cards once they have completed a certain phase of the task. However, I recognized that this was not very popular/confusing among the members because they had to switch between Trello and Discord and so I eventually just moved task-tracking completely into the Discord server, pinning the tasks in the #announcements channel and striking them out as they were completed.
+
+*Inter-team communication and troubleshooting* - Whenever any team member encountered difficulties with aspects of their role, or had personal circumstances that prevented or limited their work, I would come up with solutions / accommodations to ensure that they could continue working on the project in a comfortable manner. For instance, we had initially wanted to design our Overworld by hand. However, that took too much time and so I suggested using some procedural content generation (PCG) to easily generate the initial layout of the dungeon automatically. Coincidentally, I was also doing an independent study on the topic and so I was able to easily find resources (see [here]()) to implement this system into our game, using binary space partitioning to generate our factory level consisting of rooms and corridors via a room-first approach (found in [RoomFirstDungeonGenerator.cs]()). Then, the level designer could manually place enemies and obstacles throughout the entire layout. 
+
+*Ensuring collective vision of game is maintained* - To ensure that our game remained as faithful as possible to the initial plan, I diligently monitored our progress throughout the quarter, ensuring that all incoming changes to the repository followed quality checks with regards to code organization (based on the [Microsoft C# style guide]()), namespaces and naming conventions. I also organized all the files in the Unity project itself, grouping them into sections such as Art, Music/Sound, and Scripts as intuitively as possible. Furthermore, I made the executive decisions for the team in choosing which aspects of the game to prioritize in the interests of time, primarily focusing on the combat system as that was what initially made the entire game appealing to us. 
 
 ## Narrative Design
 
