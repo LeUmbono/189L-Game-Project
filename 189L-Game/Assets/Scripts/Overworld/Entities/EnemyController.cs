@@ -18,6 +18,7 @@ namespace Overworld
             if(other.tag == "Player")
             {
                 PartyData allyParty = other.gameObject.GetComponent<PlayerController>().partyData;
+                other.GetComponent<PlayerController>().DisableInput();
                 StartCoroutine(transitioner.LoadCombatScene(allyParty, this.partyData));
                 Object.Destroy(this.gameObject, 1f);
             }
