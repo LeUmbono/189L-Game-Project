@@ -1,6 +1,7 @@
 {
   "ExpandedNodes": [
     "",
+    "\\189L-Game",
     "\\189L-Game\\Assets",
     "\\189L-Game\\Assets\\Scripts",
     "\\189L-Game\\Assets\\Scripts\\Combat",
@@ -9,6 +10,6 @@
     "\\189L-Game\\Assets\\Scripts\\Combat\\UI",
     "\\189L-Game\\Assets\\Scripts\\Combat\\Units"
   ],
-  "SelectedNode": "\\ProjectDocumentTemplate.md",
+  "SelectedNode": "\\189L-Game\\Assets\\Scripts\\Combat\\StateMachines\\GenericUnitStateMachine.cs",
   "PreviewInSolutionExplorer": false
 }
