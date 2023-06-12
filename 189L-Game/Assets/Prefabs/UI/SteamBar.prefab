@@ -276,9 +276,9 @@ MonoBehaviour:
   overclockedThreshold: 40
   shortcircuitedThreshold: 75
   steamMaterial: {fileID: 2100000, guid: b6620903787bdcf4da9ad5040562ddc3, type: 2}
-  inertColor: {r: 0.31132078, g: 0.31132078, b: 0.31132078, a: 0}
+  inertColor: {r: 0.4684229, g: 0.6415094, b: 0.63768363, a: 0}
   overclockedColor: {r: 1, g: 1, b: 1, a: 0}
-  shortCircuitedColor: {r: 0.1981132, g: 0.096066214, b: 0.096066214, a: 0}
+  shortcircuitedColor: {r: 0.26415092, g: 0, b: 0, a: 0}
 --- !u!1 &6546248258484984118
 GameObject:
   m_ObjectHideFlags: 0
