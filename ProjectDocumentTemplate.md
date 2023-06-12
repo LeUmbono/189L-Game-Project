@@ -131,6 +131,15 @@ In this role, I focused more on the implementation of the combat systems in code
 
 *Special Abilities* - In implementing special abilities into the combat, I made use of a modified version of the Command Pattern we learned in Exercise 1 that relied on an abstract class in [SpecialAbility.cs](https://github.com/LeUmbono/189L-Game-Project/blob/main/189L-Game/Assets/Scripts/Combat/Classes/SpecialAbility.cs) rather than an interface. Essentially, `SpecialAbility` is an abstract class that inherited from ScriptableObject and acted as a parent class for all subsequent special abilities; for its abstract methods, it contained an `Execute()` method to perform the functionality of the ability, a `SelectTargets()` method to return a list of possible targets from the 8 positions available in battle, and a `GetSteamBarChangeValue()` method that returned a value for which the ability would affect the progress of the steam bar. Using this `SpecialAbility` class, I was able to implement the special abilities for each player class (i.e. Snipe, Buff, Heal and Taunt).
 
+
+Aron: 
+There were a lot of moments in playtesting where players would use the ranger's snipe ability during the overclocked phase of the steam bar on an oil slime. At the current attack of the ranger, the slime would live at 1 HP! This was mildly annoying for the players, and it slipped by as I was balancing the stat tables. It brought about the importance of *damage thresholds*, where dealing 39 damage to a 40 health unit was a lot different from dealing 40 damage to a 40 health unit. 
+
+I added a bit of tweening for the movements instead of the attacks being linear for a nicer looking effect.
+
+I ended up balancing most of the players and enemies. With good stategy, I'm pretty happy how difficult the game is; it is very difficult if you ignore the steam bar and just play according to your whims! In the beginning, I plotted out a google spreadsheet to count how many attacks it would take to defeat an enemy. The ranger would be able to three shot an enemy in the neutral portion of the steam bar, two shot in the overclocked portion, and one shot with the snipe ability. These damage thresholds were ideally supposed to make combat more satisfying have minimizing the amount of "wasted damage". Ultimately, though, with all the dynamic variables in play and the fact that *all* your party members get a turn made this method of balancing pretty unsustainable. If you want players to have satisfying combat, play-testing is more efficient!
+
+There was a little bit of polishing needed to round off the rough edges such as speeding up animations and sounds to aid a sluggish game, adding visual indicators, and fixing minor visual bugs. I hadn't realized how important this process was until I felt how these changes worked in combination.. It made for a strictly more fun game with the new quality of life improvements!
 ## User Interface
 
 **Describe your user interface and how it relates to gameplay. This can be done via the template.**
@@ -206,20 +215,6 @@ Clarissa:
 pebbles.png -  Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License (https://creativecommons.org/licenses/by-nc-sa/3.0/deed.en_US)
 
 **Describe how your work intersects with game feel, graphic design, and world-building. Include your visual style guide if one exists.**
-
-*Shaders*
-
-Aron: I realized that the steam bar would be a central mechanic, the "main appeal" of our game, so I paid great attention to its visuals. To emphasize it controlled the very "life-force" of our party, animating it was a must. Based on my scrapped steam shader, pixels on the left of the material had bigger clouds than the pixels on the right of the material. I wanted to give the impression that the steam bubbled up and disppated. This visual falls apart near the right end since I wanted a distinct cutoff point to indicate the value of the bar; no visual flare should get in the way of visual clarity.
-https://www.shadertoy.com/view/DlcXWr
-
-![Pebbles](https://github.com/LeUmbono/189L-Game-Project/blob/00ae6f72d6bac068c276995ddababd89b3e30f5b/189L-Game/Assets/Art/Materials/SteamBar/pebbles.jpg)
-
-Aron: Pebbles were chosen as an interesting noise texture since they were bulbous and had strong outlines for where each cloud would begin and end. A binary simplex noise (through rounding) was tried at first, but its noisy edges made for an unclean cartoony effect. The pebble texture was rounded to give nice banding. See the shadertoy shader for more details.
-
-![Transition](https://github.com/LeUmbono/189L-Game-Project/blob/00ae6f72d6bac068c276995ddababd89b3e30f5b/189L-Game/Assets/Art/Overworld/Transition/ShaderTexture%20-%20Copy.png)
-
-Aron: The transition shader took a lot of iteration. I speculated having a factory-like piston transition, where boxes on a conveyor belt would scroll across and gradually cover the screen, and a steam nozzle shader where steam would "spray" from nozzles in the corner of the screen.. All these transitions felt clunky and not thematic. I ultimately went with a gear, a central character design element for our party members to provide simple visual language for initiating the combat phase.
-
 *Sprite Art*
 
 Great care was put into gears as a thematic element for the party members. Its design is very flexible in nature; our designs used the gear as a shield on the tank, an accessory on the ranger, and a radial crank on the support. Our visual design heavily leaned on strong shape language to communicate party purpose. 
@@ -289,6 +284,20 @@ For task-tracking, I initially created a [workspace](https://trello.com/w/ecs189
 
 ## Technical Artist
 
+*Shaders*
+
+Aron: I realized that the steam bar would be a central mechanic, the "main appeal" of our game, so I paid great attention to its visuals. To emphasize it controlled the very "life-force" of our party, animating it was a must. Based on my scrapped steam shader, pixels on the left of the material had bigger clouds than the pixels on the right of the material. I wanted to give the impression that the steam bubbled up and disppated. This visual falls apart near the right end since I wanted a distinct cutoff point to indicate the value of the bar; no visual flare should get in the way of visual clarity.
+https://www.shadertoy.com/view/DlcXWr
+
+![Pebbles](https://github.com/LeUmbono/189L-Game-Project/blob/00ae6f72d6bac068c276995ddababd89b3e30f5b/189L-Game/Assets/Art/Materials/SteamBar/pebbles.jpg)
+
+Aron: Pebbles were chosen as an interesting noise texture since they were bulbous and had strong outlines for where each cloud would begin and end. A binary simplex noise (through rounding) was tried at first, but its noisy edges made for an unclean cartoony effect. The pebble texture was rounded to give nice banding. See the shadertoy shader for more details.
+
+![Transition](https://github.com/LeUmbono/189L-Game-Project/blob/00ae6f72d6bac068c276995ddababd89b3e30f5b/189L-Game/Assets/Art/Overworld/Transition/ShaderTexture%20-%20Copy.png)
+
+Aron: The transition shader took a lot of iteration. I speculated having a factory-like piston transition, where boxes on a conveyor belt would scroll across and gradually cover the screen, and a steam nozzle shader where steam would "spray" from nozzles in the corner of the screen.. All these transitions felt clunky and not thematic. I ultimately went with a gear, a central character design element for our party members to provide simple visual language for initiating the combat phase. Funnily enough, I actually used a traditional drawing application to create the texture, hence the slight imperfections. I'll have to use an alternate image/texture editing program if I want professionl and easy to create textures later on..
+
+
 ## Gameplay Testing
 
 **Add a link to the full results of your gameplay tests.**
@@ -321,10 +330,6 @@ Based off of all of the feedback we received, **the three areas that we should f
 
 Lastly, to further add to the analysis part of the play-testing process, **I included potential solutions to any key problems play-testers brought up**; some of these were “quick fixes” that prioritized the game’s upcoming deadline, whereas others were more comprehensive solutions that I considered to be “stretch goals”. **Many of these suggestions were implemented during the final week of development, including faster combat animations, shorter SFX, more text-UI, enhanced steambar UI, and improved enemy AI**. You can find all of these suggestions in the play testing report linked at the top of this section.
 
-Aron: There were a lot of moments in playtesting where players would use the ranger's snipe ability during the overclocked phase of the steam bar on an oil slime. At the current attack of the ranger, the slime would live at 1 HP! This was mildly annoying for the players, and it slipped by as I was balancing the stat tables. It brought about the importance of *damage thresholds*, where dealing 39 damage to a 40 health unit was a lot different from dealing 40 damage to a 40 health unit.
-
-There was a little bit of polishing needed to round off the rough edges such as speeding up animations and sounds to aid a sluggish game, adding visual indicators, and fixing minor visual bugs. I hadn't realized how important this process was until I felt how these changes worked in combination.. It made for a strictly more fun game with the new quality of life improvements!
-
 ## Level Design
 
 ## 
@@ -347,6 +352,3 @@ Josh: I worked with Chloe to help create a Press Kit! We decided to use Wix as i
 3) Trailer page
 4) Downlaod page
 5) The Team: talks a bit about the people who made the game
-
-
-## Unused Content
