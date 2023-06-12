@@ -3501,6 +3501,42 @@ PrefabInstance:
       propertyPath: m_Name
       value: SteamBar
       objectReference: {fileID: 0}
+    - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
+      propertyPath: inertColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
+      propertyPath: inertColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
+      propertyPath: inertColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
+      propertyPath: overclockedColor.b
+      value: 0.08627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
+      propertyPath: overclockedColor.g
+      value: 0.5019608
+      objectReference: {fileID: 0}
+    - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
+      propertyPath: overclockedColor.r
+      value: 0.08627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
+      propertyPath: shortcircuitedColor.b
+      value: 0.08627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
+      propertyPath: shortcircuitedColor.g
+      value: 0.08627451
+      objectReference: {fileID: 0}
+    - target: {fileID: 7675143087940933661, guid: 232f0756dac660d40a93eb6cb27af693, type: 3}
+      propertyPath: shortcircuitedColor.r
+      value: 0.4901961
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

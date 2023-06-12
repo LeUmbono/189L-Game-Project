@@ -13,6 +13,7 @@ public class SceneGameManager : MonoBehaviour
     [SerializeField] private float timeToWait;
     [SerializeField][Range(0, 1)] private float slowdownPercent;
     [SerializeField] private Material transitionMaterial;
+    private const int UILayerInt = 5;
   
 
     // Holds reference to overworld player.
@@ -149,6 +150,8 @@ public class SceneGameManager : MonoBehaviour
             yield return null;
         }
 
+        overworldPlayer.EnableInput();
+
         SceneManager.UnloadSceneAsync(combatSceneName);
 
         HealPlayerParty();
@@ -240,7 +243,10 @@ public class SceneGameManager : MonoBehaviour
 
         foreach(GameObject obj in objs)
         {
-            obj.SetActive(value);
+            if(obj.layer != UILayerInt)
+            {
+                obj.SetActive(value);
+            }
         }
     }
 

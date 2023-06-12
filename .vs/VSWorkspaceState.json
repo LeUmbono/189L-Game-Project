@@ -5,11 +5,12 @@
     "\\189L-Game\\Assets",
     "\\189L-Game\\Assets\\Scripts",
     "\\189L-Game\\Assets\\Scripts\\Combat",
-    "\\189L-Game\\Assets\\Scripts\\Combat\\Classes",
     "\\189L-Game\\Assets\\Scripts\\Combat\\StateMachines",
+    "\\189L-Game\\Assets\\Scripts\\Combat\\Tween",
     "\\189L-Game\\Assets\\Scripts\\Combat\\UI",
-    "\\189L-Game\\Assets\\Scripts\\Combat\\Units"
+    "\\189L-Game\\Assets\\Scripts\\Combat\\Units",
+    "\\189L-Game\\Assets\\Scripts\\Overworld"
   ],
-  "SelectedNode": "\\189L-Game\\Assets\\Scripts\\Combat\\StateMachines\\GenericUnitStateMachine.cs",
+  "SelectedNode": "\\189L-Game\\Assets\\Scripts\\Overworld\\SceneGameManager.cs",
   "PreviewInSolutionExplorer": false
 }
