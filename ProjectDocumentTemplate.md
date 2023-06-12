@@ -242,7 +242,21 @@ The support is friendly and takes a backseat to the rest of the bots. It is roun
 
 **Add an entry for each platform or input style your project supports.**
 
-## Music
+## Music and Sound Effects
+
+Josh: 
+
+I was in charge of creating music and sound effects that enhanced experience of playing the game!
+
+*Music* - To create the music, I use a DAW called Reaper and my MIDI controller/synth, the Arturia MiniLab 3.  There are two main themes I had to create; one for the overworld, and one for the combat theme. Given that the overworld was going to be an abandoned factory, I wanted to create music for it that would impart a lonely, melancholy tone. After settling on one of the many different sounds in the Analog Lab V soundbank, I added reverb and increased the bass to resemble the vast spaciousness of an abandoned factory. When it came to actually creating musical ideas, I didn't really take any inspiration from any sources. I started improvising and took notes of what I liked. I should note that while coming up with ideas for the overworld theme, I tried to sing what I played as I wanted the overworld theme to be more melodic. The process for creating the combat theme was a bit different though. Unlike the overworld theme, the combat theme was entirely improvised. I chose some musical scales and chords that I wanted to center the combat theme around and went ham! The sound patch I chose for the combat theme was interesting in the fact that when I pressed one note on the keyboard it'd play 2 different notes (at different times)! Without getting too much into the music theory, it created a level of uncontrolled chaos that I didn't try to control. It made me play more by ear rather than worrying about the music theory which I believed resulted in a more "raw" sound. I previous said that I didn't really draw inspiration from other music when trying to create the 2 main themes. That being said, I did draw inspiration when creating variations of the combat theme from the Mario franchise. In many Mario games, when you're almost out of time when completing a level, it will play a little blurb signaling that time's almost up and then it will play a more intense version of the original level theme. I tried implementing that in our game through the steam system since time wasn't an important factor. Whether or not the steam bar was in its default, overclocked, or shortcircuited zone would impact what theme was playing and the intensity of the them.
+
+Here are some images of the software I used when producing the music:
+
+![Analog Lab V](https://github.com/LeUmbono/189L-Game-Project/assets/102931991/7170f8f6-936e-437b-83e2-77a2aae29ba7)
+![Reaper](https://github.com/LeUmbono/189L-Game-Project/assets/102931991/9ea5cf46-b328-4215-9644-a9359e9deb0e)
+![Reaper Midi](https://github.com/LeUmbono/189L-Game-Project/assets/102931991/a7ad7230-703b-49c3-8ac3-f0bafff91f54)
+
+
 
 # Sub-Roles
 
