@@ -256,9 +256,14 @@ Here are some images of the software I used when producing the music:
 ![Reaper](https://github.com/LeUmbono/189L-Game-Project/assets/102931991/9ea5cf46-b328-4215-9644-a9359e9deb0e)
 ![Reaper Midi](https://github.com/LeUmbono/189L-Game-Project/assets/102931991/a7ad7230-703b-49c3-8ac3-f0bafff91f54)
 
-All the files can be found in this folder:
-[![Music and Sound Effects](https://github.com/LeUmbono/189L-Game-Project/tree/5e0ef6d322f8881ac412ca2eeebc8002dd77134a/189L-Game/Assets/Audio)
+All the sound effects were created by using whatever objects I had on me. I practically chose objects at random and took note of what interactions I liked and tried improving on prior experimentation. For example, one of the earlier sound effects was created by hitting a glass with different parts of the spoon and I later used a larger spoon in order to get a lower pitched sound. Each sound effect was rarely a singular audio file; most of the times it'd be 2 or 3 audio files layered. Lots of processing was done (distortion, reversals, reverb, and etc) on all of the sounds and all the processinng was done in Audacity.
 
+Here are image of the software I used when producing the music:
+
+![Buff](https://github.com/LeUmbono/189L-Game-Project/assets/102931991/4180308a-264c-44cc-8f0d-4f385f836004)
+
+All the files can be found in this folder:
+[![Music and Sound Effects]](https://github.com/LeUmbono/189L-Game-Project/tree/5e0ef6d322f8881ac412ca2eeebc8002dd77134a/189L-Game/Assets/Audio)
 
 # Sub-Roles
 
@@ -329,5 +334,12 @@ There was a little bit of polishing needed to round off the rough edges such as 
 **Include links to your presskit materials and trailer.**
 
 **Describe how you showcased your work. How did you choose what to show in the trailer? Why did you choose your screenshots?**
+
+Josh: I was in charge of making the trailer! Given that there's not a lot of variation in the aesthetics of the gameplay and there's not much content to highlight for a full minute, I decided to create a trailer that moreso resembles a movie trailer (background image with text, then show footage, repeat!). That being said, I knew that I needed to highlight the overworld and especially the combat. I wanted footage of the combat had to include the moves of each character and to also showcase the different combat options (basic attacks, switching, and specials moves). To be brutally honest, my editing skills are NOT very good so I decided to double down on that and to make it obvious to the viewers that the trailer wasn't taking itself seriously at all (through the use of poorly edited memes). I focused on giving an entertaining product rather than a polished product. The editing software that I chose to use was Windows Movie Maker as it's lightweight and easy to use and I chose OBS to record the footage for the same reason. Another aspect of the game that I wanted to capture in the game was the difference between the desolate loneliness of the overworld and the chaoticness of the combat. I captured this by making the first part of the trailer much calmer and then suddenly making trailer have much more energy after a grand pause. The 
+Here are pictures of the software I used to create the trailer:
+
+![Windows Movie Maker](https://github.com/LeUmbono/189L-Game-Project/assets/102931991/86395def-da61-4c55-9703-80cfd6f3ae28)
+![Windows Movie Maker 1](https://github.com/LeUmbono/189L-Game-Project/assets/102931991/6112b704-4d9f-44cc-bee5-13f2c9f345ac)
+
 
 ## Unused Content
