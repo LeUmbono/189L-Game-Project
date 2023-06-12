@@ -256,6 +256,9 @@ Here are some images of the software I used when producing the music:
 ![Reaper](https://github.com/LeUmbono/189L-Game-Project/assets/102931991/9ea5cf46-b328-4215-9644-a9359e9deb0e)
 ![Reaper Midi](https://github.com/LeUmbono/189L-Game-Project/assets/102931991/a7ad7230-703b-49c3-8ac3-f0bafff91f54)
 
+All the files can be found in this folder:
+![Music and Sound Effects](https://github.com/LeUmbono/189L-Game-Project/assets/audio)
+
 
 
 # Sub-Roles
