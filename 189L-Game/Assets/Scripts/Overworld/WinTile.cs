@@ -1,22 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Overworld;
+using Manager;
 
-public class WinTile : MonoBehaviour
+namespace Overworld
 {
-    private SceneGameManager sgm;
-
-    private void Awake()
+    public class WinTile : MonoBehaviour
     {
-        sgm = GameObject.FindGameObjectWithTag("Manager").GetComponent<SceneGameManager>();
-    }
+        private SceneGameManager sgm;
 
-    private void OnTriggerEnter2D(Collider2D other) 
-    {
-        if (other.gameObject.tag == "Player")
+        private void Awake()
         {
-            Debug.Log("Won game!");
-            StartCoroutine(sgm.LoadTitleScene());
+            sgm = GameObject.FindGameObjectWithTag("Manager").GetComponent<SceneGameManager>();
+        }
+
+        private void OnTriggerEnter2D(Collider2D other) 
+        {
+            if (other.gameObject.tag == "Player")
+            {
+                Debug.Log("Won game!");
+                StartCoroutine(sgm.LoadTitleScene());
+            }
         }
     }
 }
