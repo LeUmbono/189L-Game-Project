@@ -86,7 +86,7 @@ Chloe
 
 Main Role: Character Sprites/Animations
 
-Sub Role: Sound Effects
+Sub Role: Press Kit & Trailer
 
 Josh
 
@@ -217,19 +217,31 @@ pebbles.png -  Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unporte
 **Describe how your work intersects with game feel, graphic design, and world-building. Include your visual style guide if one exists.**
 *Sprite Art*
 
-Great care was put into gears as a thematic element for the party members. Its design is very flexible in nature; our designs used the gear as a shield on the tank, an accessory on the ranger, and a radial crank on the support. Our visual design heavily leaned on strong shape language to communicate party purpose. 
+Chloe:
 
-The tank is sturdy, slow, and reliable. These traits are best communicated with a heavy square shape.
+While subtle, lots of thought was put into the design for the character sprites--particularly the main party of four that the player will be using throughout the game. Because the four operate as a group, both in the context of lore and gameplay, the design elements should reflect that. It creates a subconscious correlation amongst the group that differentiates them from the enemy mobs. Since I wanted to make sure I was capturing the overall aesthetic of the game correctly, I worked with Aron to make sure the designs were up to par with the vision of the game's look. Linked below are the pencil sketches and general references used when coming up with initial ideas for the characters. 
+
+[**Link to Character Design Document**](https://docs.google.com/document/d/1LTDMd8NK6Myg2-QTEyYwR584kGqLLvQo91sOe5-0Bvk/edit?usp=sharing)
+
+As mentioned in the character design document, it was made a point to try and utilize different shapes for each character, along with elements of gears, cogs, or pipes throughout the party. Our designs used the gear as a shield on the tank, an accessory on the ranger, and a radial crank on the support. Visual design also helps indicate the purpose of each party member more. 
+
+Aron's design is very bulky and purposely the largest of the party in size. His overall shape represents a square; squares generally exude reliability and stability--a tank. The darker shades of Aron's body are the exact shades seen in the support, Moe, which allows for a slow ease into the colors of the support instead of an abrupt color clash. This goes the same with all the other party members. I mentioned it lightly in the character design document but the colors were chosen so there was enough variety while also having enough colors shared so it's easier on the eyes. Each character sprite also has a small little button panel with a centered, brighter color for a highlight since a metallic palette tends to be dull. Aron's buttons and eyes are a bright yellow, in this case. 
 
 ![Tank](https://github.com/LeUmbono/189L-Game-Project/blob/37db298b54b21f46af9d6708d36a3033c2614c3f/189L-Game/Assets/Art/Combat/Sprites/tankFINAL.png)
 
-The support is friendly and takes a backseat to the rest of the bots. It is round to communicate a friendlier aura than the sharper and sturdier ranger and tank bot.
+In contrast to Aron, our support robot, Moe, is significantly smaller and has a rounder shape. With a circle head and a cute face, the point of this design was to exude more friendliness and approachability. The warm orange hues in the slime is seen in Aron's lights and eyes to have a more even distribution of colors. As expected, the bright highlight color for Moe is orange. 
 
 ![Support](https://github.com/LeUmbono/189L-Game-Project/blob/37db298b54b21f46af9d6708d36a3033c2614c3f/189L-Game/Assets/Art/Combat/Sprites/supportFINAL.png)
 
+The ranger, Joe, was a bit more challenging to design. I knew I wanted a taller, more rectangular sprite initially since so far there were only "stubbier" characters. A triangle shape was planned initially, but triangles have a tendency to come off as too hostile or too sharp. I ended up compromising with a bowl-like shape instead for Joe's head for a bit more of a friendlier look and a long, skinny rectangular body. A hint of green is used as the highlight and to complement the more metallic, earthy colors on Joe. 
+
 ![Ranger](https://github.com/LeUmbono/189L-Game-Project/blob/37db298b54b21f46af9d6708d36a3033c2614c3f/189L-Game/Assets/Art/Combat/Sprites/sniperFINAL.png)
 
+Schmoe, our healer, was designed by Aron and colored by me. For the final member of the party, I wanted to combine the orange/yellow hues and the bronze-brown look from the tank, support, and ranger respectively. I settled with a faded gold color with the bright highlight being blue. 
+
 ![Healer](https://github.com/LeUmbono/189L-Game-Project/blob/dd6acc891590242862999f573f340b54f847e743/189L-Game/Assets/Art/Combat/Sprites/healerFINAL.png)
+
+An overall challenge I faced was the transition over from digital art to pixel art. While it was easy to quickly adjust to the new platform I was using to draw (Asperite), I quickly ran into some issues that are exclusive to pixel art, such as making the pixels symmetrical or making sure no pixels are out of line. Additionally, drawing lines in a pixel effect can be tricky since it solely comprises squares, and lines can come off as too "bulky" without the right shape envisioned or colors can come off as too "sudden" without the proper color selection. The issue fixed itself over time, however, as I gained more experience adjusting to the slight differences in pixel art and traditional digital art. 
 
 ## Input
 
@@ -350,5 +362,9 @@ Josh: I worked with Chloe to help create a Press Kit! We decided to use Wix as i
 1) Home page: has a general synopysis of the game
 2) Meet The Cast: a more "for fun" page meant to introduce characters in the game
 3) Trailer page
-4) Downlaod page
+4) Download page
 5) The Team: talks a bit about the people who made the game
+
+Chloe: Josh and I worked together on the Press Kit. We both weren't too sure what to use to create our website at first until Josh suggested Wix. He set up the framework and color scheme on the website while I was in charge of filling in the website. The front page (home page) describes the setting of the game's story before indicating what type of gameplay the reader should expect. Since we knew we would be including the trailer in one of the pages as well, I wanted to try and match the mood of the trailer--a fun and somewhat zany robot adventure. The descriptions I wrote in Meet the Cast are aimed to reflect that to hopefully rope the reader in with more lighthearted descriptions while a more clear-cut description for each character would appear in the actual game to explain their in-game mechanics and functionalities. 
+
+[**Link to Website**](https://joshlgvu.wixsite.com/cogheartchronicles)
