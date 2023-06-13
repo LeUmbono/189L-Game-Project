@@ -25065,6 +25065,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 486ea75f144bcb5409d6a2642b9585f5, type: 3}
+    - target: {fileID: 4084972227689276535, guid: 5a63dda27bd6b424382b3b6f9b7b8be3, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7218304183602863011, guid: 5a63dda27bd6b424382b3b6f9b7b8be3, type: 3}
       propertyPath: m_Name
       value: OverworldPlayer
