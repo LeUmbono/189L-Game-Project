@@ -11,7 +11,7 @@ In a post-apocalyptic world, humans have long gone extinct and robots rule the E
 
 WASD/Arrow Keys - Movement
 ESC - Pause Game
-`/z - Open Bios
+`/Z Open Bios
 
 *Combat*
 
@@ -22,9 +22,19 @@ Point-and-click user input - Selecting action and targeted unit during player un
 
 The player party traverses the overworld, encountering obstacles and enemy units along the way. Their goal is to reach a specified exit tile within the level in order to discover the purported energy source and win the game. Colliding with any enemy unit on the map kickstarts a transition to the Combat phase of the game. 
 
+The player can also open the pause menu to pause the game, examine the combat mechanics or quit the game. They are also able to access a bio / status screen to examine their units' stats and lore in the context of the game.
+
 *Combat*
 
 Combat is turn-based. A unit's turn order is determined by its initial AGI; the higher the AGI stat, the faster the unit moves in battle. In addition, much like in Darkest Dungeon, the battlefield is composed of two blocks of four positions each. One block corresponds to player units whereas the other block contains enemy units. The position of the player units dictate the targets that are available to them via their actions.
+
+All units in the game possess the following five stats:
+
+- HP - Determines a unit's life force.
+- Attack - Determines the power of the unit’s attacks.
+- Defense - Determines the unit's resistance to attacks.
+- Agility - The unit's speed in battle. Determines turn order.
+- Range - Determines the reach of a unit's attack from their position. Determines which targets are available to the unit.
 
 Each player unit is able to take three actions during their turn: Attack, Swap and Special. 
 
@@ -130,8 +140,9 @@ In this role, I focused more on the implementation of the combat systems in code
 
 *Swapping*  - Implemented in [PlayerStateMachine.cs](https://github.com/LeUmbono/189L-Game-Project/blob/main/189L-Game/Assets/Scripts/Combat/StateMachines/PlayerStateMachine.cs) and [GenericUnitStateMachine](https://github.com/LeUmbono/189L-Game-Project/blob/main/189L-Game/Assets/Scripts/Combat/StateMachines/GenericUnitStateMachine.cs). Swapping involved switching the positions of the player unit performing the swap and the target ally via the `DoSwap()` method in GenericUnitStateMachine. It also swaps the relevant UI references to each unit's game objects so as to ensure functionality of the combat UI is intact. `DoSwap()` is also called when units die, regardless of whether they were a player or enemy unit, to prevent soft-locking. Hence, it's location in GenericUnitStateMachine. This action was found initially unpopular in the playtest due to a lack of utility and the random enemy targeting system; thus, I added more incentive to use it by introducing a 10% healing effect when swapping units and adjusting the enemy AI to favor attacking player units in the front. 
 
-*Special Abilities* - In implementing special abilities into the combat, I made use of a modified version of the Command Pattern we learned in Exercise 1 that relied on an abstract class in [SpecialAbility.cs](https://github.com/LeUmbono/189L-Game-Project/blob/main/189L-Game/Assets/Scripts/Combat/Classes/SpecialAbility.cs) rather than an interface. Essentially, `SpecialAbility` is an abstract class that inherited from ScriptableObject and acted as a parent class for all subsequent special abilities; for its abstract methods, it contained an `Execute()` method to perform the functionality of the ability, a `SelectTargets()` method to return a list of possible targets from the 8 positions available in battle, and a `GetSteamBarChangeValue()` method that returned a value for which the ability would affect the progress of the steam bar. Using this `SpecialAbility` class, I was able to implement the special abilities for each player class (i.e. Snipe, Buff, Heal and Taunt).
+*Special Abilities* - In implementing special abilities into the combat, I made use of a modified version of the Command Pattern we learned in Exercise 1 that relied on an abstract class in [SpecialAbility.cs](https://github.com/LeUmbono/189L-Game-Project/blob/main/189L-Game/Assets/Scripts/Combat/Classes/SpecialAbility.cs) rather than an interface. Essentially, `SpecialAbility` is an abstract class that inherited from ScriptableObject and acted as a parent class for all subsequent special abilities; for its abstract methods, it contained an `Execute()` method to perform the functionality of the ability, a `SelectTargets()` method to return a list of possible targets from the 8 positions available in battle, and a `GetSteamBarChangeValue()` method that returned a value for which the ability would affect the progress of the steam bar. Using this `SpecialAbility` class, I was successfully able to implement the special abilities for each player class (i.e. Snipe, Buff, Heal and Taunt).
 
+In terms of failures / shortcomings, I was unable to implement swapping / special actions for the enemy units as originally planned. This was mostly because of time constraints in coming up with new special abilities and a more sophisticated enemy AI to execute these actions in a varied, yet reasonable manner. If the opportunity presents itself in the future, I would definitely like to make an updated version of the game with the above features included.
 
 Aron: 
 There were a lot of moments in playtesting where players would use the ranger's snipe ability during the overclocked phase of the steam bar on an oil slime. At the current attack of the ranger, the slime would live at 1 HP! This was mildly annoying for the players, and it slipped by as I was balancing the stat tables. It brought about the importance of *damage thresholds*, where dealing 39 damage to a 40 health unit was a lot different from dealing 40 damage to a 40 health unit. 
