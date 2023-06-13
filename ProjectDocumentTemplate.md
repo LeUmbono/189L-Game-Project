@@ -219,7 +219,21 @@ This list contains key combat UI components as this is the most relevant part of
 
 Clarissa:
 
-**Combat Background**: blablabla.
+My main role in this project was environment art/design. I was in charge of creating the tileset for the overworld level and the backgorund art for the combat scene. I also created the background art for the title screen.
+
+- **Combat Background**: Concept art and design for combat scene. Started with concept art and finished with actual design. Taking into account the environment we are working in, I created a 2D side-view for when the player enters combat. The proportions of everything takes into account the level design involved so that the setting does not take away from the effect of the characters themselves but rather enhances them.
+
+[combat background](https://github.com/LeUmbono/189L-Game-Project/blob/0a84aed8ec1e6e084eb3810cd35fda5133cf4f19/189L-Game/Assets/Art/Combat/Environment/combat.aseprite)
+
+- **Tileset**: The games setting takes place in an abandoned factory. I created a tileset including things you would see in a factory. I used a cool toned color palette involving lots of grays and blues. This was my first time creating a tileset and first time ever making a 2D top down game. I made about 10-12 tiles for the tileset which involved the floors, walls, and other objects you would see in a factory. The tileset was then imported into Unity and sliced 64x64 pixel ratio to create each of the tiles. 
+
+[tileset](https://github.com/LeUmbono/189L-Game-Project/blob/0a84aed8ec1e6e084eb3810cd35fda5133cf4f19/189L-Game/Assets/Art/Overworld/Environment/tileset-final.png)
+
+- **Title screen background**: Basic background art for the title screen that gives a glimpse of what the game will be like. Started with concept art and finished with actual design. I decided to do the outside of the factory as this was our general setting and I had already created art for the inside. I tried to create the background with placement and position of the building in mind as I didn't want the background art to be too distracting/strong that it took away from the title and buttons.
+
+[title screen background](https://github.com/LeUmbono/189L-Game-Project/blob/0a84aed8ec1e6e084eb3810cd35fda5133cf4f19/189L-Game/Assets/Art/Title/title.png)
+
+[Link to mood/inspiration board that I referenced](https://pin.it/5j54rf5)
 
 ## Sprites / Animations
 
@@ -377,7 +391,11 @@ Lastly, to further add to the analysis part of the play-testing process, **I inc
 
 ## Level Design
 
-## 
+Clarissa: I was in charge of level design excluding placement of enemies. With the tileset I created, Russell created a script to procedurally generate the overall map. I used this script to generate a map until I was satisfied. Within the script there was only one tile set for both the floor and the walls so once I generated a map I was satisfied with, I went back and manually changed tiles that needed to be replaced. I replaced a lot of the walls to the appropriate perspective as there are tiles for the top of walls and a side view tile to give the top-down effect. I used the tile mapping system in Unity to create tile brushes for each of the tiles I created and then started to place them around the scene to make the map feel more full. Level design holds a significant role in gameplay and the overall feel of the game so every tile that I placed and its location holds significance. Tiles are placed around the map not only to add to the environment, but also to challenge the player. Some tiles hold colliders which stops the player from going within that general area and this sort of creates obstacles for the player when facing enemies.
+
+[tileset](https://github.com/LeUmbono/189L-Game-Project/blob/0a84aed8ec1e6e084eb3810cd35fda5133cf4f19/189L-Game/Assets/Art/Overworld/Environment/tileset-final.png)
+
+[procedural generation script used](https://github.com/LeUmbono/189L-Game-Project/tree/0a84aed8ec1e6e084eb3810cd35fda5133cf4f19/189L-Game/Assets/Scripts/Overworld/PCG)
 
 ## Press Kit and Trailer
 
