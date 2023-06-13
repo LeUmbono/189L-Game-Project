@@ -9,8 +9,9 @@ In a post-apocalyptic world, humans have long gone extinct and robots rule the E
 ### Controls ###
 *Overworld*
 
-WASD - Movement
+WASD/Arrow Keys - Movement
 ESC - Pause Game
+`/z - Open Bios
 
 *Combat*
 
@@ -246,8 +247,25 @@ An overall challenge I faced was the transition over from digital art to pixel a
 ## Input
 
 **Describe the default input configuration.**
+WASD/Arrow Keys - Overworld Movement
+`/z - Open Bios
+Esc - Pause
 
 **Add an entry for each platform or input style your project supports.**
+Supported Only for PC (Mouse and Keyboard)
+
+Jordan:
+
+Being in charge of input, I dealt with the overworld movement and also worked on transitions between scenes, along with implementing some of the UI. Below I will explain each of sections, how I went about each system, and the trials/tribulations to in order to create such functionality.
+
+*Overworld Movement* - I based the overworld movement off of gameplusjames' tutorial (https://youtu.be/mbzXIOKZurA), but slightly modified the collision logic towards something more succinct. Based on whether or not the object next to the player would be a tile or an enemy, I would want different things to occur. This, along with a win/exit tile, made movement and logic more than just the initial tutorial. Lots of the logic were incorporated into their respective scripts (enemies dealing with combat transitions, win tile dealing with winning). Within the player, I must have kept data regarding the party and properly given data to instantiate a combat scene, of which will be iterated upon when talking about transitions. Below will be examples of the scripts used for the overworld movement and logic within the tilemaps.
+![PlayerController](189L-Game/Assets/Scripts/Overworld/Entities/PlayerController.cs)
+![EnemyController](189L-Game/Assets/Scripts/Overworld/Entities/EnemyController.cs)
+![WinTile](189L-Game/Assets/Scripts/Overworld/WinTile.cs)
+
+*Transitions* - 
+
+*UI* - 
 
 ## Music and Sound Effects
 
@@ -293,6 +311,10 @@ For task-tracking, I initially created a [workspace](https://trello.com/w/ecs189
 ## Narrative Design
 
 **Document how the narrative is present in the game via assets, gameplay systems, and gameplay.** 
+
+Jordan:
+
+Narrative Design was much more cumulative and the artists definitely participated a lot in the overall vibes of the game, and I had to build off a narrative with their art and ideas in mind (rather than the other way around).
 
 ## Technical Artist
 
