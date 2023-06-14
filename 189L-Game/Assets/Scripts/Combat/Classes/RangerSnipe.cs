@@ -17,7 +17,7 @@ namespace Combat
             PSM.PlaySound(specialSound);
 
             // Deal damage. 
-            target.TakeDamage(PSM.Unit.Attack * 2);
+            target.TakeDamage((PSM.Unit.Attack + PSM.BuffAmount) * 2);
         }
 
         public override List<bool> SelectTargets(GenericUnitStateMachine performer)
