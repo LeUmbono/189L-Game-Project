@@ -126,12 +126,10 @@ namespace Combat
                     }
                     break;
                 case CombatStates.WIN:
-                    Debug.Log("You win!");
                     gameManager.UpdatePlayerData();
                     StartCoroutine(gameManager.WinFunction());
                     break;
                 case CombatStates.LOSE:
-                    Debug.Log("You lose");
                     StartCoroutine(gameManager.LoadTitleScene());
                     break;
             }

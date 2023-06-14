@@ -294,7 +294,7 @@ Being in charge of input, I dealt with the overworld movement and also worked on
 
 ## Music and Sound Effects
 
-Josh: 
+Josh:
 
 I was in charge of creating music and sound effects!
 
@@ -404,6 +404,7 @@ Clarissa: I was in charge of level design excluding placement of enemies. With t
 **Describe how you showcased your work. How did you choose what to show in the trailer? Why did you choose your screenshots?**
 
 Josh: I was in charge of making the trailer! Given that there's not a lot of variation in the aesthetics of the gameplay and there's not much content to highlight for a full minute, I decided to create a trailer that more resembles a movie trailer (background image with text, then show footage, repeat!). That being said, I knew that I needed to highlight the overworld and combat gameplay. I wanted footage of the combat to include the moves of each character and to also showcase the different combat options (basic attacks, switching, and special moves). To be brutally honest, my editing skills are NOT very good so I decided to double down on that and focus on giving an entertaining product rather than a polished product. Because of this, I tried to make it obvious to the viewers that the trailer wasn't taking itself seriously at all (through the use of poorly edited memes). A lot of memes that I included in this trailer were recommendations given to me by peers, not in this class. The memes served two primary purposes:
+
 1) To connect with gamers: many of the memes I included are either from video games or are associated with video games. Hopefully, some audience will find the memes amusing and it'll entice them to play the game!
 2) Keeping the viewers' attention: a lot of the gameplay looks very similar visually. Memes popping out of nowhere hopefully break up the grey theme and makes the trailer pop out a little more!
 The editing software that I chose to use was Windows Movie Maker as it's lightweight and easy to use and I chose OBS to record the footage for the same reason. Another aspect of the game that I wanted to capture in the game was the difference between the desolate loneliness of the overworld and the chaoticness of the combat. I captured this by making the first part of the trailer much calmer and then suddenly making the trailer have much more energy after a grand pause. 
@@ -414,6 +415,7 @@ Here are pictures of the software I used to create the trailer:
 [**Link to Trailer**]()
 
 Josh: I worked with Chloe to help create a Press Kit! We decided to use Wix as it's lightweight and simple to use. I was in charge of creating the frame and aesthetics of the website. I wanted the palette of the website to be some sort of minimalistic black and white to complement screenshots of the game which are generally very gray. Although the game has pixel art, I chose to make the website have a clean, slick look as I wanted to website to be visually appealing and easy to read even if it meant that the theme of the website didn't perfectly match the theme of the game. I decided to have the following pages in the website:
+
 1) Home page: has a general synopsis of the game
 2) Meet The Cast: a more "for fun" page meant to introduce characters in the game
 3) Trailer page

@@ -25,6 +25,7 @@ namespace Manager
         private void Start()
         {
             sceneGameManager = GameObject.FindGameObjectWithTag("Manager").GetComponent<SceneGameManager>();
+            Time.timeScale = 1.0f;
             isPaused = false;
             isInDescMenu = false;
             menuOpen = false;
