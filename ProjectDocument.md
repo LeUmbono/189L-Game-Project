@@ -425,7 +425,6 @@ Here are pictures of the software I used to create the trailer:
 
 ![Windows Movie Maker](https://github.com/LeUmbono/189L-Game-Project/assets/102931991/86395def-da61-4c55-9703-80cfd6f3ae28)
 ![Windows Movie Maker 1](https://github.com/LeUmbono/189L-Game-Project/assets/102931991/6112b704-4d9f-44cc-bee5-13f2c9f345ac)
-[**Link to Trailer**]()
 
 Josh: I worked with Chloe to help create a Press Kit! We decided to use Wix as it's lightweight and simple to use. I was in charge of creating the frame and aesthetics of the website. I wanted the palette of the website to be some sort of minimalistic black and white to complement screenshots of the game which are generally very gray. Although the game has pixel art, I chose to make the website have a clean, slick look as I wanted to website to be visually appealing and easy to read even if it meant that the theme of the website didn't perfectly match the theme of the game. I decided to have the following pages in the website:
 
@@ -438,4 +437,6 @@ Josh: I worked with Chloe to help create a Press Kit! We decided to use Wix as i
 
 Chloe: Josh and I worked together on the Press Kit. We both weren't too sure what to use to create our website at first until Josh suggested Wix. He set up the framework and color scheme on the website while I was in charge of filling in the website. The front page (home page) describes the setting of the game's story before indicating what type of gameplay the reader should expect. Since we knew we would be including the trailer in one of the pages as well, I wanted to try and match the mood of the trailer--a fun and somewhat zany robot adventure. The descriptions I wrote in Meet the Cast are aimed to reflect that to hopefully rope the reader in with more lighthearted descriptions while a more clear-cut description for each character would appear in the actual game to explain their in-game mechanics and functionalities. 
 
-[**Link to Website**](https://joshlgvu.wixsite.com/cogheartchronicles)
+The website below contains the game's press kit and trailer!
+
+[**Link to Press Kit/Trailer Website**](https://joshlgvu.wixsite.com/cogheartchronicles)
