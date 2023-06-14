@@ -245,7 +245,7 @@ pebbles.png -  Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unporte
 
 Chloe:
 
-While subtle, lots of thought was put into the design for the character sprites--particularly the main party of four that the player will be using throughout the game. Because the four operate as a group, both in the context of lore and gameplay, the design elements should reflect that. It creates a subconscious correlation amongst the group that differentiates them from the enemy mobs. Since I wanted to make sure I was capturing the overall aesthetic of the game correctly, I worked with Aron to make sure the designs were up to par with the vision of the game's look. Linked below are the pencil sketches and general references used when coming up with initial ideas for the characters. 
+While subtle, lots of thought was put into the design for the character sprites--particularly the main party of four that the player will be using throughout the game. Because the four operate as a group, both in the context of lore and gameplay, the design elements should reflect that. It creates a subconscious correlation amongst the group that differentiates them from the enemy mobs. Since I wanted to make sure I was capturing the overall aesthetic of the game correctly, I worked with Aron to make sure the designs were up to par with the vision of the game's look. Linked below are the pencil sketches and general references used when coming up with initial ideas for the characters. For the final designs, I used Asperite to draw them pixelated and export them. 
 
 [**Link to Character Design Document**](https://docs.google.com/document/d/1LTDMd8NK6Myg2-QTEyYwR584kGqLLvQo91sOe5-0Bvk/edit?usp=sharing)
 
@@ -268,6 +268,10 @@ Schmoe, our healer, was designed by Aron and colored by me. For the final member
 ![Healer](https://github.com/LeUmbono/189L-Game-Project/blob/dd6acc891590242862999f573f340b54f847e743/189L-Game/Assets/Art/Combat/Sprites/healerFINAL.png)
 
 An overall challenge I faced was the transition over from digital art to pixel art. While it was easy to quickly adjust to the new platform I was using to draw (Asperite), I quickly ran into some issues that are exclusive to pixel art, such as making the pixels symmetrical or making sure no pixels are out of line. Additionally, drawing lines in a pixel effect can be tricky since it solely comprises squares, and lines can come off as too "bulky" without the right shape envisioned or colors can come off as too "sudden" without the proper color selection. The issue fixed itself over time, however, as I gained more experience adjusting to the slight differences in pixel art and traditional digital art. 
+
+I also created the title screen's "Cogheart Chronicles" in the front. It was much less free form than drawing especially because I had to make sure all the words were of same length and font style. I ended up going with a more rigid font and trying to emulate a metallic sheen to it to represent our robot theme. 
+
+![Title](https://github.com/LeUmbono/189L-Game-Project/blob/aad4327fec7e2880c4a8fd054fa4a848604c40c8/189L-Game/Assets/Art/Title/titlescreenFINAL.png)
 
 ## Input
 
