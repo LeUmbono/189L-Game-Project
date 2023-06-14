@@ -273,7 +273,7 @@ An overall challenge I faced was the transition over from digital art to pixel a
 
 **Describe the default input configuration.**
 WASD/Arrow Keys - Overworld Movement
-`/z - Open Bios
+tilda/z - Open Bios
 Esc - Pause
 
 **Add an entry for each platform or input style your project supports.**
@@ -284,13 +284,22 @@ Jordan:
 Being in charge of input, I dealt with the overworld movement and also worked on transitions between scenes, along with implementing some of the UI. Below I will explain each of sections, how I went about each system, and the trials/tribulations to in order to create such functionality.
 
 *Overworld Movement* - I based the overworld movement off of gameplusjames' tutorial (https://youtu.be/mbzXIOKZurA), but slightly modified the collision logic towards something more succinct. Based on whether or not the object next to the player would be a tile or an enemy, I would want different things to occur. This, along with a win/exit tile, made movement and logic more than just the initial tutorial. Lots of the logic were incorporated into their respective scripts (enemies dealing with combat transitions, win tile dealing with winning). Within the player, I must have kept data regarding the party and properly given data to instantiate a combat scene, of which will be iterated upon when talking about transitions. Below will be examples of the scripts used for the overworld movement and logic within the tilemaps.
-![PlayerController](189L-Game/Assets/Scripts/Overworld/Entities/PlayerController.cs)
-![EnemyController](189L-Game/Assets/Scripts/Overworld/Entities/EnemyController.cs)
-![WinTile](189L-Game/Assets/Scripts/Overworld/WinTile.cs)
+[PlayerController](https://github.com/LeUmbono/189L-Game-Project/blob/bcecc768101324c9f96e78d300a42665c5465fa5/189L-Game/Assets/Scripts/Overworld/Entities/PlayerController.cs)
+[EnemyController](https://github.com/LeUmbono/189L-Game-Project/blob/bcecc768101324c9f96e78d300a42665c5465fa5/189L-Game/Assets/Scripts/Overworld/Entities/EnemyController.cs)
+[WinTile](https://github.com/LeUmbono/189L-Game-Project/blob/0635a28a1185b56984958c96ac104f8e87811a5a/189L-Game/Assets/Scripts/Overworld/WinTile.cs)
 
-*Transitions* - 
+*Transitions* - The majority of my time besides overworld was spent working on transitions. This included transitions between the title, overworld, and combat scenes. Russell wanted additive scenes and the data for parties to be stored within the overworld, so attempting the challenge of instantiating a combat scene was fun. One of my learning goals I had within the initial plan document was working with bringing scenes together, and dealing with transitions definitely gave me the experience I was seeking for. Being able to see Russell's combat code and finding how/where to link up proper transitions felt like something I could definitely bring towards a collaborative environment. 
+     That being said, transitions are dealt with through a manager which is kept to be not destroyed on load. It definitely feels like somewhat of an unsafe practice, and in hindsight I would probably like to be more careful with how I manage transitions. However, the manager is called for switching between scenes, and deals with things like instantiation and how to deal with each scene. The overworld is disabled while combat is ongoing, and the manager instantiates everything as the scene loads. I was somewhat inspired to take this route from the watcher or pub/sub pattern exercise done in class. To some extent, the pattern was used, but the publisher was already implemented by Unity. That is, I utilized the OnSceneLoaded and OnSceneUnloaded publishers for some of my logic. If I were to improve upon the design of my code, I would utilize this publisher more, as I discovered the functionality when most of my code was already implemented.
+    Additionally, I worked on the pause state for the overworld, which will be talked about more in the UI section. Below are the managers which dealt with transitions.
+[SceneGameManager](https://github.com/LeUmbono/189L-Game-Project/blob/bcecc768101324c9f96e78d300a42665c5465fa5/189L-Game/Assets/Scripts/Overworld/SceneGameManager.cs)
+[PauseManager](https://github.com/LeUmbono/189L-Game-Project/blob/bcecc768101324c9f96e78d300a42665c5465fa5/189L-Game/Assets/Scripts/Overworld/PauseManager.cs)
 
-*UI* - 
+*UI* - I worked a fair portion on implementing UI into the game. Namely, I worked on the functionality of the title and pause screen. Assets were provided by artists of the team, and working to incorporate them based on their designs/sketches took a bit of time. Adding button functionality is not new to me, and so I was pretty used to implementing it in Unity. It is somewhat messy how it is handled, but the majority of calls are from the scene game manager. Below a script  which calls the scene game manager to help with button functionality.
+[TitleScreenManager](https://github.com/LeUmbono/189L-Game-Project/blob/bcecc768101324c9f96e78d300a42665c5465fa5/189L-Game/Assets/Scripts/Title/TitleScreenManager.cs)
+
+*Party/EntityData* - Because I dealt with the overworld and had to store datas in the entities of the map, I find it somewhat worthwhile to note the scripts involving the system. Russell left it very blank for me to fill out, so I created party data which encapsulates all the player's relevant data, such as current HP and personal info which was not encapsulated in the class data which Russell worked on. Adding this into entities stores the data, and the scene game manager pulls the needed data to start up combat properly. Although at the beginning of every battle the party is full healed, there is capability to keep health totals between battles (although we found it immensely difficult for gameplay).
+[PartyData](https://github.com/LeUmbono/189L-Game-Project/blob/bcecc768101324c9f96e78d300a42665c5465fa5/189L-Game/Assets/Scripts/Overworld/Party/PartyData.cs)
+[OverworldEntity](https://github.com/LeUmbono/189L-Game-Project/blob/bcecc768101324c9f96e78d300a42665c5465fa5/189L-Game/Assets/Scripts/Overworld/Entities/OverworldEntity.cs)
 
 ## Music and Sound Effects
 
@@ -339,7 +348,7 @@ For task-tracking, I initially created a [workspace](https://trello.com/w/ecs189
 
 Jordan:
 
-Narrative Design was much more cumulative and the artists definitely participated a lot in the overall vibes of the game, and I had to build off a narrative with their art and ideas in mind (rather than the other way around).
+Narrative Design was much more cumulative and the artists definitely participated a lot in the overall vibes of the game, and I had to build off a narrative with their art and ideas in mind (rather than the other way around). To somewhat create a narrative of the game, I helped with making descriptions of each character, of which can be noticed through the bios key of tilda/z. The narrative isn't much of a pushing point in the game, but it can be seen in game and within the presskit that something exists. In simple terms, the extent of my job was making sure everything was not too out of flavor. Everything should be post-apocalyptic to some degree, and I gave the robot some personality or backstory behind it.
 
 ## Technical Artist
 
